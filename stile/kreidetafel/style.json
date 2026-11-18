@@ -1,0 +1,11 @@
+{
+  "name": "kreidetafel",
+  "beschreibung": "Tafel-Look: dunkelgruene Tafel, Kreide-Weiss, Gelb und Rosa. Gut fuer Lern-/Mathe-/Wissenschafts-Erklaerer.",
+  "colors": {"bg": "#2C4A3E", "bg2": "#1E352C", "ink": "#F4F1E8", "accent": "#F6D55C", "accent2": "#7FD1B9",
+             "warn": "#F28B82", "muted": "#A7B8AE", "card": "#35574A"},
+  "fonts": {"head": ["segoeprb.ttf", "Fredoka-Bold.ttf"], "body": ["segoepr.ttf", "Nunito-Regular.ttf"], "caption": ["Nunito-Black.ttf"], "hand": ["segoepr.ttf", "Fredoka-Regular.ttf"]},
+  "background": {"type": "spotlight", "grain": 0.05, "vignette": 0.2},
+  "line_width": 5, "corner": 12, "shadow": false,
+  "motion": {"push": 0.0, "crossfade": 0.15, "kick": 0.0},
+  "sound": {"palette": "soft", "music_gain": 0.08, "sfx_gain": 0.35}
+}

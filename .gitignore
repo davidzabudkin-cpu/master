@@ -1,0 +1,10 @@
+
+!motion-kit/out/.gitkeep
+!projekte/.gitkeep
+*.pyc
+.DS_Store
+__pycache__/
+cache/
+motion-kit/out/*
+node_modules/
+projekte/*

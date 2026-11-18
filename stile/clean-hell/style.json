@@ -1,0 +1,11 @@
+{
+  "name": "clean-hell",
+  "beschreibung": "Apple-clean: heller Verlauf, viel Luft, eine Akzentfarbe, weiche Schatten. Gut fuer Tech, Business, Produkt-Erklaerer.",
+  "colors": {"bg": "#F7F5F0", "bg2": "#E6ECF5", "ink": "#16181D", "accent": "#FF6B3D", "accent2": "#3D7BFF",
+             "warn": "#E0413A", "muted": "#8A8F98", "card": "#FFFFFF"},
+  "fonts": {"head": ["Fredoka-Bold.ttf"], "body": ["Nunito-Regular.ttf"], "caption": ["Nunito-Black.ttf"], "hand": ["Fredoka-Regular.ttf"]},
+  "background": {"type": "gradient", "angle": 160, "grain": 0.015, "vignette": 0.0},
+  "line_width": 4, "corner": 24, "shadow": true,
+  "motion": {"push": 0.003, "crossfade": 0.2, "kick": 0.6},
+  "sound": {"palette": "soft", "music_gain": 0.10, "sfx_gain": 0.45}
+}

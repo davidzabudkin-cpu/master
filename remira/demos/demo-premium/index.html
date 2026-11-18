@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Remira Omnichannel Demo</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050608; --ink:#fff; --mute:#A8A8A8; --line:rgba(255,255,255,.12); --card:rgba(11,13,17,.88);
+  --acc:#41B6E6; --c1:#41B6E6; --c2:#28ABBA; --c3:#61BD47; --c4:#FCDA34; --c5:#FF9524; --c6:#F53D47;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:#050608;color:var(--ink);font-family:'Source Sans 3','Source Sans Pro',Arial,sans-serif;font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html.cur,html.cur *{cursor:none!important}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img{display:block}
+ul{list-style:none}
+
+/* Ebenen */
+#bg,#gl{position:fixed;left:0;top:0;width:100vw;height:100vh;pointer-events:none}
+#bg{z-index:0}
+#gl{z-index:1}
+#spot{position:fixed;left:0;top:0;width:900px;height:900px;margin:-450px 0 0 -450px;z-index:0;pointer-events:none;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(65,182,230,.16),rgba(40,171,186,.06) 45%,transparent 70%);transform:translate3d(72vw,30vh,0);will-change:transform}
+main,footer{position:relative;z-index:2}
+main{overflow-x:clip}
+.wrap{width:min(1200px,100% - 48px);margin-inline:auto}
+
+/* Kopf */
+.nav{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px clamp(16px,3vw,40px);
+  background:linear-gradient(#050608 0%,rgba(5,6,8,.72) 60%,transparent)}
+.nav img{height:34px;width:auto}
+.nav nav{display:flex;gap:30px;font-weight:600;font-size:15px;color:#d6d9de}
+.nav nav a{position:relative;padding:6px 0}
+.nav nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--acc);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.nav nav a:hover::after{transform:scaleX(1)}
+
+/* Knöpfe (magnetisch) */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:15px 28px;border-radius:999px;background:var(--acc);color:#001018;font-weight:700;font-size:16px;letter-spacing:.01em;
+  transition:transform .5s var(--ease),background-color .3s;will-change:transform}
+.btn span{display:inline-block;transition:transform .5s var(--ease);pointer-events:none}
+.btn.mag,.btn.mag span{transition:transform .12s linear,background-color .3s}
+.btn:hover{background:#6fcaf0}
+.btn.ghost{background:rgba(5,6,8,.72);color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35)}
+.btn.ghost:hover{background:rgba(40,44,52,.85)}
+.btn.sm{padding:10px 20px;font-size:14px}
+
+/* Typo */
+.label{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#cfd3d9;margin-bottom:18px}
+.label i{width:10px;height:10px;border-radius:50%;background:var(--c,var(--acc));flex:none}
+h1,h2{font-weight:900;line-height:1.04;letter-spacing:-.015em}
+h1{font-size:clamp(2.3rem,5vw,4.4rem)}
+h2{font-size:clamp(1.8rem,3.5vw,3rem)}
+.thin{font-weight:300;color:#b9c0ca;display:block}
+.wd{display:inline-block;white-space:nowrap}
+.ch{display:inline-block;will-change:transform}
+.lead{font-size:clamp(1.05rem,1.4vw,1.25rem);color:#c9ced6;max-width:30em;margin-top:22px}
+section{position:relative}
+.sec{padding:clamp(80px,12vh,150px) 0}
+.rv{opacity:0;transition:opacity 1s var(--ease);transition-delay:calc(var(--i,0)*70ms)}
+.rv.in{opacity:1}
+.anchor{position:absolute;aspect-ratio:1;pointer-events:none}
+
+/* 1 Hero */
+.hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:96px 0 40px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:24px}
+.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.fig{position:relative;display:flex;justify-content:center;align-items:center}
+.fig .anchor{left:50%;top:47%;width:min(96%,540px);transform:translate(-50%,-50%)}
+.fig .par{will-change:transform}
+.fig img{height:auto;width:auto;max-width:100%;max-height:min(74vh,700px);object-fit:contain;animation:schweben 7s ease-in-out infinite;filter:drop-shadow(0 30px 40px rgba(0,0,0,.55))}
+@keyframes schweben{0%,100%{transform:translate3d(0,-8px,0)}50%{transform:translate3d(0,10px,0)}}
+.scrollhint{position:absolute;left:50%;bottom:22px;width:1px;height:46px;background:linear-gradient(transparent,rgba(255,255,255,.6));transform-origin:top;animation:hint 2.4s var(--ease) infinite}
+@keyframes hint{0%{transform:scaleY(0);opacity:0}40%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+
+/* 2 Bühne */
+.stage{height:300vh}
+.sticky{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;padding-top:70px}
+.stage-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center}
+.stage-sub{color:#c9ced6;margin-top:18px;max-width:27em}
+.dia{position:relative;width:min(100%,560px);aspect-ratio:1/.84;margin-left:auto}
+.dia svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.dia line{stroke:rgba(255,255,255,.3);stroke-width:1.5;stroke-dasharray:3 7;vector-effect:non-scaling-stroke;opacity:.25;transition:opacity .5s,stroke .4s}
+.dia.live line{opacity:.8}
+.dia line.sel{stroke:var(--lc);opacity:1;stroke-dasharray:8 6;animation:fluss 1s linear infinite}
+@keyframes fluss{to{stroke-dashoffset:-28}}
+.node{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:9px;padding:13px 20px;border-radius:999px;font-weight:700;font-size:16px;white-space:nowrap;
+  background:rgba(13,15,20,.9);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.18);opacity:.6;transition:opacity .5s,box-shadow .4s,background-color .4s}
+.node i{width:9px;height:9px;border-radius:50%;background:var(--nc)}
+.node.on{opacity:1}
+.node:hover{opacity:1;box-shadow:inset 0 0 0 1.5px var(--nc)}
+.node.sel{opacity:1;box-shadow:inset 0 0 0 2px var(--nc),0 0 34px -6px var(--nc)}
+.node:nth-of-type(1){left:17%;top:14%}.node:nth-of-type(2){left:83%;top:14%}
+.node:nth-of-type(3){left:17%;top:86%}.node:nth-of-type(4){left:83%;top:86%}
+.hub{position:absolute;left:50%;top:50%;width:clamp(120px,15vw,190px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;display:grid;place-items:center;text-align:center;
+  background:radial-gradient(closest-side,rgba(65,182,230,.2),transparent 72%)}
+.hub b{font-size:clamp(11px,1.15vw,15px);line-height:1.15;font-weight:900;letter-spacing:.04em;text-transform:uppercase;max-width:62%;transition:opacity .25s}
+.no-gl .hub::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(var(--c1) 0 16.6%,var(--c2) 0 33.3%,var(--c3) 0 50%,var(--c4) 0 66.6%,var(--c5) 0 83.3%,var(--c6) 0);
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 16px),#000 calc(100% - 15px));mask:radial-gradient(farthest-side,transparent calc(100% - 16px),#000 calc(100% - 15px))}
+.panel{margin-top:30px;padding:22px 24px;border-radius:18px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);max-width:30em;min-height:176px;transition:opacity .2s}
+.panel.weg{opacity:0}
+.panel h3{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:900}
+.panel h3 i{width:11px;height:11px;border-radius:50%;background:var(--pc,#fff);transition:background-color .3s}
+.panel p{color:#c9ced6;margin-top:6px;font-size:16px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.tags li{font-size:13px;font-weight:600;padding:5px 12px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--pc,#fff);color:#fff}
+.hint{font-size:13px!important;color:var(--mute)!important;margin-top:12px!important}
+
+/* 3 Baustellen + magnetisches Raster */
+.probs{overflow:hidden}
+#grid{position:absolute;inset:0;width:100%;height:100%}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;position:relative}
+.probs ul{display:grid;gap:10px;margin-top:34px}
+.probs li{display:flex;gap:14px;align-items:center;padding:14px 18px;border-radius:14px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);font-weight:600;font-size:16px;transition:box-shadow .35s,opacity 1s var(--ease)}
+.probs li::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--c);flex:none}
+.probs li:hover{box-shadow:inset 0 0 0 1.5px var(--c)}
+.gridside{position:relative;min-height:440px}
+.gridside .anchor{left:50%;top:44%;width:min(56%,260px);transform:translate(-50%,-50%)}
+.gridnote{position:absolute;left:50%;bottom:0;transform:translateX(-50%);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
+
+/* 4 Vorteile */
+.head{position:relative}
+.head .anchor{right:4%;top:50%;width:clamp(84px,11vw,150px);transform:translateY(-50%)}
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px}
+.vgrid article{padding:24px;border-radius:16px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);position:relative;overflow:hidden}
+.vgrid article::before{content:"";position:absolute;left:0;top:0;height:3px;width:100%;background:var(--c);transform:scaleX(.14);transform-origin:left;transition:transform .7s var(--ease)}
+.vgrid article:hover::before{transform:scaleX(1)}
+.vgrid h3{font-size:21px;font-weight:900;line-height:1.15}
+.vgrid h3 span{display:block;font-weight:300;color:#b9c0ca}
+.vgrid p{color:#c9ced6;font-size:15.5px;margin-top:10px}
+
+/* 5 Module (Tilt-Karten) */
+.mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px;perspective:1200px}
+.tilt{position:relative;padding:26px 24px 28px;border-radius:18px;background:linear-gradient(160deg,rgba(22,26,33,.96),rgba(9,11,14,.96));box-shadow:inset 0 0 0 1px var(--line),0 24px 40px -28px #000;
+  transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .6s var(--ease),opacity 1s var(--ease);will-change:transform;overflow:hidden}
+.tilt.aktiv{transition:transform .08s linear,opacity 1s var(--ease)}
+.tilt::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .4s;
+  background:radial-gradient(260px circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.2),transparent 65%)}
+.tilt.aktiv::after{opacity:1}
+.tilt .nr{font-size:12px;font-weight:700;letter-spacing:.16em;color:var(--c)}
+.tilt h3{font-size:21px;font-weight:900;line-height:1.15;margin-top:10px}
+.tilt p{color:#c9ced6;font-size:15.5px;margin-top:10px}
+.tilt .bar{position:absolute;left:24px;right:24px;bottom:0;height:3px;background:var(--c);border-radius:3px 3px 0 0}
+
+/* 6 Kundenstimme */
+.quote .wrap{display:grid;grid-template-columns:.7fr 1.3fr;gap:40px;align-items:center}
+.qring{position:relative;min-height:300px}
+.qring .anchor{left:50%;top:50%;width:min(80%,280px);transform:translate(-50%,-50%)}
+blockquote{font-size:clamp(1.5rem,2.9vw,2.5rem);font-weight:300;line-height:1.2;color:#dfe3e8}
+blockquote b{font-weight:900;color:#fff}
+figcaption{margin-top:22px;color:var(--mute);font-size:15px}
+figcaption b{display:block;color:#fff;font-size:17px}
+
+/* 7 CTA */
+.cta{min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:90px 0 60px}
+.cta .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
+.cta .fig img{max-height:min(60vh,540px);animation-duration:8s}
+.cta .fig .anchor{width:min(84%,400px)}
+.done{min-height:1.5em;margin-top:16px;color:var(--c3);font-weight:600;font-size:15px}
+
+footer{padding:26px 24px 60px;text-align:center;font-size:13px;color:#8d939c;border-top:1px solid var(--line);background:#050608}
+footer a{text-decoration:underline}
+.badge{position:fixed;right:12px;bottom:10px;z-index:30;font-size:11px;letter-spacing:.06em;color:#aeb4bd;background:rgba(5,6,8,.8);padding:5px 10px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);pointer-events:none}
+
+/* Cursor */
+#cdot,#cring{position:fixed;left:0;top:0;z-index:99;pointer-events:none;border-radius:50%;opacity:0;will-change:transform}
+#cdot{width:6px;height:6px;margin:-3px 0 0 -3px;background:#fff}
+#cring{width:38px;height:38px;margin:-19px 0 0 -19px;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.55);transition:box-shadow .3s,background-color .3s}
+#cring.gross{box-shadow:inset 0 0 0 1.5px var(--acc);background:rgba(65,182,230,.12)}
+html.cur #cdot,html.cur #cring{opacity:1}
+
+/* Handy */
+@media (max-width:899px){
+  body{font-size:16px}
+  .wrap{width:calc(100% - 32px)}
+  .nav nav{display:none}
+  .nav img{height:28px}
+  #spot{width:560px;height:560px;margin:-280px 0 0 -280px;transform:translate3d(80vw,22vh,0)}
+  .hero{padding:88px 0 30px;align-items:flex-start}
+  .hero .wrap,.cta .wrap,.split,.quote .wrap,.stage-grid{grid-template-columns:1fr}
+  .fig img{max-height:44vh}
+  .fig .anchor{width:min(76%,290px)}
+  .scrollhint{display:none}
+  .stage{height:260vh}
+  .sticky{align-items:flex-start;padding-top:74px}
+  .stage-grid{gap:0;width:calc(100% - 32px)}
+  .stage-grid>div:first-child{display:contents}
+  .stage-head{order:1}.dia{order:2;margin:26px auto 22px;aspect-ratio:1/.78;max-width:420px}.panel{order:3;margin-top:0;padding:16px 18px;min-height:168px}
+  .stage-sub{font-size:14.5px;margin-top:10px}
+  .node{padding:10px 14px;font-size:14px}
+  .node:nth-of-type(odd){left:21%}.node:nth-of-type(even){left:79%}
+  .panel h3{font-size:18px}.panel p{font-size:14.5px}
+  .tags li{font-size:12px;padding:4px 10px}
+  .gridside{min-height:280px}
+  .gridside .anchor{width:170px}
+  .head .anchor{right:0;top:0;transform:none;width:70px}
+  .vgrid,.mgrid{grid-template-columns:1fr;margin-top:30px}
+  .qring{min-height:170px}.qring .anchor{width:140px}
+  .cta{padding-top:80px}
+  .cta .fig img{max-height:36vh}
+  .cta .fig .anchor{width:min(70%,250px)}
+  .badge{font-size:10px}
+}
+@media (max-width:899px) and (max-height:720px){.stage-sub{display:none}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transition:none}
+  .fig img,.scrollhint,.dia line.sel{animation:none}
+  .stage{height:auto}.sticky{position:relative;height:auto;padding:110px 0 60px}
+}
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div id="spot" aria-hidden="true"></div>
+<canvas id="gl" aria-hidden="true"></canvas>
+
+<header class="nav">
+  <a href="#top" aria-label="REMIRA, nach oben"><img src="assets/logo.svg" alt="REMIRA" width="147" height="34"></a>
+  <nav>
+    <a href="#kanaele">Kanäle</a>
+    <a href="#vorteile">Vorteile</a>
+    <a href="#module">Module</a>
+  </nav>
+  <a href="#kontakt" class="btn sm" data-mag><span>Demo anfragen</span></a>
+</header>
+
+<main id="top">
+  <!-- 1 HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="label"><i></i>Omnichannel Commerce Software</p>
+        <h1 class="fx"><span class="thin">Verkaufen Sie dort,</span> wo gekauft wird.</h1>
+        <p class="lead">Ohne Medienbruch. Mit einer Single Source of Truth. Online und im stationären Handel.</p>
+        <div class="actions">
+          <a href="#kontakt" class="btn" data-mag><span>Demo anfragen</span></a>
+          <a href="#kanaele" class="btn ghost" data-mag><span>Kanäle verbinden</span></a>
+        </div>
+      </div>
+      <div class="fig">
+        <div class="anchor" data-ring></div>
+        <div class="par" id="par1"><img src="assets/heldin.webp" alt="Die REMIRA-Heldin im Comic-Stil" fetchpriority="high"></div>
+      </div>
+    </div>
+    <span class="scrollhint" aria-hidden="true"></span>
+  </section>
+
+  <!-- 2 BÜHNE: Ring zerfällt, verbindet die Kanäle, wird zum Hub -->
+  <section class="stage" id="kanaele">
+    <div class="sticky">
+      <div class="wrap stage-grid">
+        <div>
+          <div class="stage-head">
+            <p class="label"><i style="--c:var(--c3)"></i>Ein Hub für alles</p>
+            <h2 class="fx"><span class="thin">Alle Kanäle.</span> Eine Plattform.</h2>
+            <p class="stage-sub">Die Software verbindet alle Vertriebs- und Verkaufskanäle auf einer zentralen Plattform und synchronisiert Informationen in Echtzeit.</p>
+          </div>
+          <div class="panel" id="panel" aria-live="polite">
+            <h3><i></i><span id="pT">Der Hub</span></h3>
+            <p id="pS"></p>
+            <ul class="tags" id="pTags"></ul>
+            <p class="hint" id="pH">Klicken Sie auf einen Kanal.</p>
+          </div>
+        </div>
+        <div class="dia" id="dia">
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <line x1="50" y1="50" x2="17" y2="14"/><line x1="50" y1="50" x2="83" y2="14"/>
+            <line x1="50" y1="50" x2="17" y2="86"/><line x1="50" y1="50" x2="83" y2="86"/>
+          </svg>
+          <button class="node" data-ch="filiale" type="button" aria-pressed="false" style="--nc:var(--c6)"><i></i>Filiale</button>
+          <button class="node" data-ch="shop" type="button" aria-pressed="false" style="--nc:var(--c2)"><i></i>Online-Shop</button>
+          <button class="node" data-ch="markt" type="button" aria-pressed="false" style="--nc:var(--c5)"><i></i>Marktplatz</button>
+          <button class="node" data-ch="app" type="button" aria-pressed="false" style="--nc:var(--c3)"><i></i>App</button>
+          <div class="hub" id="hub" data-ring><b id="hubT">Single Source of Truth</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 BAUSTELLEN + MAGNETISCHES RASTER -->
+  <section class="sec probs" id="baustellen">
+    <canvas id="grid" aria-hidden="true"></canvas>
+    <div class="wrap split">
+      <div>
+        <p class="label rv"><i style="--c:var(--c6)"></i>Was der Hub löst</p>
+        <h2 class="fx rv"><span class="thin">Fünf Baustellen.</span> Eine Datenbasis.</h2>
+        <ul>
+          <li class="rv" style="--i:0;--c:var(--c1)">Isolierte, nicht synchronisierte Bestände über mehrere Kanäle</li>
+          <li class="rv" style="--i:1;--c:var(--c2)">Overselling, fehlende Transparenz über Orders und Retouren</li>
+          <li class="rv" style="--i:2;--c:var(--c3)">Medienbrüche zwischen Shop, Filiale und Backend</li>
+          <li class="rv" style="--i:3;--c:var(--c5)">Hoher manueller Abstimmungsaufwand zwischen Systemen</li>
+          <li class="rv" style="--i:4;--c:var(--c6)">Fehlende Bestandstransparenz</li>
+        </ul>
+      </div>
+      <div class="gridside">
+        <div class="anchor" data-ring></div>
+        <p class="gridnote" id="gridnote">Maus bewegen · Daten ziehen sich zusammen</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 VORTEILE -->
+  <section class="sec" id="vorteile">
+    <div class="wrap">
+      <div class="head">
+        <div class="anchor" data-ring></div>
+        <p class="label rv"><i style="--c:var(--c1)"></i>Ihre Vorteile</p>
+        <h2 class="fx rv"><span class="thin">Kaufen, reservieren, abholen.</span> Über jeden Kanal.</h2>
+      </div>
+      <div class="vgrid">
+        <article class="rv" style="--i:0;--c:var(--c1)"><h3><span>Verbesserte</span> Effizienz</h3><p>Filialprozesse einfacher machen, inklusive Warenwirtschaft, Kasse und Umlagerung.</p></article>
+        <article class="rv" style="--i:1;--c:var(--c2)"><h3><span>Erhöhte</span> Kundenzufriedenheit</h3><p>Mobile Funktionen für hohe Beratungsqualität über alle Kanäle hinweg.</p></article>
+        <article class="rv" style="--i:2;--c:var(--c3)"><h3><span>Volle</span> Skalierbarkeit</h3><p>Flexibel bleiben und schnell auf neue Anforderungen reagieren.</p></article>
+        <article class="rv" style="--i:0;--c:var(--c4)"><h3><span>Schnelle</span> Digitalisierung</h3><p>Integration über viele Systeme hinweg, vom Auftrag bis zum Go-live.</p></article>
+        <article class="rv" style="--i:1;--c:var(--c5)"><h3><span>Mehr als eine</span> Middleware</h3><p>Verbindet heterogene Systeme und unterstützt sämtliche Geschäftslogiken und Prozesse.</p></article>
+        <article class="rv" style="--i:2;--c:var(--c6)"><h3><span>Kanalübergreifende</span> Prozesse</h3><p>Verkaufs- und Bezahlprozesse über alle Kanäle steuern und alle Zahlen im Blick behalten.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 MODULE -->
+  <section class="sec" id="module">
+    <div class="wrap">
+      <div class="head">
+        <div class="anchor" data-ring></div>
+        <p class="label rv"><i style="--c:var(--c5)"></i>Die Bausteine</p>
+        <h2 class="fx rv"><span class="thin">Sechs Module.</span> Ein System.</h2>
+      </div>
+      <div class="mgrid">
+        <article class="tilt rv" style="--i:0;--c:var(--c1)"><p class="nr">POINT-OF-SALE</p><h3>POS Check-out Software</h3><p>Beschleunigt Kassenprozesse. Alle Informationen werden in Echtzeit über alle Kassen und Standorte hinweg aktualisiert.</p><span class="bar"></span></article>
+        <article class="tilt rv" style="--i:1;--c:var(--c2)"><p class="nr">WARENWIRTSCHAFT</p><h3>Warenwirtschaft für KMU und Konzerne</h3><p>Die Basis für Ihren Omnichannel-Commerce-Prozess. Unterstützt in Verkauf, Einkauf, Controlling und Warensteuerung.</p><span class="bar"></span></article>
+        <article class="tilt rv" style="--i:2;--c:var(--c3)"><p class="nr">ORDER MANAGEMENT</p><h3>Order Management System</h3><p>Sorgt dafür, dass die Auftragsabwicklung effizient und schnell abläuft.</p><span class="bar"></span></article>
+        <article class="tilt rv" style="--i:0;--c:var(--c4)"><p class="nr">MOBILE STORE</p><h3>Mobile Store Management</h3><p>Kasse, Omnichannel-Funktionen und Filialmanagement in einer App, im Back-Office wie auf der Fläche.</p><span class="bar"></span></article>
+        <article class="tilt rv" style="--i:1;--c:var(--c5)"><p class="nr">PAYMENT</p><h3>Zahlungssoftware</h3><p>Bildet den Kartenzahlungsverkehr am Point of Sale und im Online-Handel ab. PayPal, Klarna und weitere Anbieter sind integrierbar.</p><span class="bar"></span></article>
+        <article class="tilt rv" style="--i:2;--c:var(--c6)"><p class="nr">CUSTOMER HUB</p><h3>Customer Hub</h3><p>Marketing, Loyalty Services und Kundenverwaltung in einem. Alle Kundendaten in Echtzeit.</p><span class="bar"></span></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 KUNDENSTIMME -->
+  <section class="sec quote">
+    <div class="wrap">
+      <div class="qring"><div class="anchor" data-ring></div></div>
+      <figure>
+        <p class="label rv"><i style="--c:var(--c4)"></i>Kundenstimme</p>
+        <blockquote class="rv">„Ein Kunde schrieb uns, <b>einen so guten Service</b> wie bei INTERSPORT habe er <b>noch nie erlebt.</b>“</blockquote>
+        <figcaption class="rv"><b>Oliver Krumholz</b>Geschäftsführer bei INTERSPORT KRUMHOLZ</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 7 CTA -->
+  <section class="cta" id="kontakt">
+    <div class="wrap">
+      <div>
+        <p class="label"><i style="--c:var(--c3)"></i>Nächster Schritt</p>
+        <h2 class="fx rv"><span class="thin">Neugierig auf</span> Ihren Hub?</h2>
+        <p class="lead rv">Wir zeigen Ihnen die Omnichannel Commerce Software an Ihren eigenen Kanälen.</p>
+        <div class="actions"><button class="btn" type="button" id="ctaBtn" data-mag><span>Demo anfragen</span></button></div>
+        <p class="done" id="done" aria-live="polite"></p>
+      </div>
+      <div class="fig">
+        <div class="anchor" data-ring></div>
+        <div class="par" id="par2"><img src="assets/held.webp" alt="Der REMIRA-Held im Comic-Stil" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Interne Konzept-Demo für eine Schulung · keine offizielle REMIRA-Seite · Inhalte von <a href="https://remira.com/de/omnichannel-commerce-software" target="_blank" rel="noopener">remira.com/de/omnichannel-commerce-software</a></p>
+</footer>
+<div class="badge">Konzept-Demo · nicht offiziell</div>
+<div id="cring" aria-hidden="true"></div><div id="cdot" aria-hidden="true"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(() => {
+'use strict';
+const $ = id => document.getElementById(id);
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FINE = matchMedia('(hover:hover) and (pointer:fine)').matches;
+const isMobile = () => innerWidth < 900;
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const ss = t => { t = clamp(t); return t * t * (3 - 2 * t); };
+const mix = (a, b, k) => a + (b - a) * k;
+const COL = ['#41B6E6', '#28ABBA', '#61BD47', '#FCDA34', '#FF9524', '#F53D47'];
+const RGB = COL.map(h => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)]);
+let vw = innerWidth, vh = innerHeight;
+const mouse = { x: vw * .7, y: vh * .35, sx: vw * .7, sy: vh * .35, on: false, moved: false };
+
+/* ---------- Inhalte (alle Aussagen von remira.com/de/omnichannel-commerce-software) ---------- */
+const KANAL = {
+  hub: { t: 'Der Hub', c: '#41B6E6', s: 'Eine Single Source of Truth für alle Kanäle.', tags: ['Bestände', 'Preise', 'Produktdaten', 'Kundendaten', 'Bestellungen'], hub: 'Single Source of Truth' },
+  filiale: { t: 'Filiale', c: COL[5], s: 'Kasse, Warenwirtschaft und Umlagerung greifen ineinander.', tags: ['Click & Collect', 'Rückgabe in der Filiale', 'Digitaler Kassenbon'], hub: 'Filiale verbunden' },
+  shop: { t: 'Online-Shop', c: COL[1], s: 'Bestände, Preise und Aktionen stehen in Echtzeit im Shop.', tags: ['Ship-from-Store', 'Bestandsanzeige in Echtzeit', 'Einheitliche Preise'], hub: 'Shop verbunden' },
+  markt: { t: 'Marktplatz', c: COL[4], s: 'Artikel, Bestände, Preise und Aufträge zentral steuern, z. B. für Amazon, Zalando oder eBay.', tags: ['Zentrale Marktplatzintegration', 'Überverkäufe vermeiden'], hub: 'Marktplatz verbunden' },
+  app: { t: 'App', c: COL[2], s: 'Omnichannel, mobile Kasse und Inventur direkt auf der Fläche.', tags: ['Endless Aisle', 'Check-out auf der Fläche', 'Ware aus anderen Standorten'], hub: 'App verbunden' }
+};
+const NODE_SEG = [5, 1, 4, 2]; // Segment je Kanal (Filiale, Shop, Marktplatz, App)
+
+/* ---------- Maus ---------- */
+if (FINE) addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; mouse.on = true; mouse.moved = true; }, { passive: true });
+
+/* ---------- Einblenden an Ort und Stelle ---------- */
+const rvs = [...document.querySelectorAll('.rv')];
+if ('IntersectionObserver' in window && !RM) {
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+  rvs.forEach(el => io.observe(el));
+} else rvs.forEach(el => el.classList.add('in'));
+
+/* ---------- Kanal-Hub ---------- */
+const panel = $('panel'), dia = $('dia'), hubEl = $('hub');
+const nodes = [...document.querySelectorAll('.node')];
+const lines = [...dia.querySelectorAll('line')];
+let sel = 'hub', swapT = 0;
+function fillPanel(key) {
+  const d = KANAL[key];
+  $('pT').textContent = d.t; $('pS').textContent = d.s;
+  const ul = $('pTags'); ul.textContent = '';
+  d.tags.forEach(t => { const li = document.createElement('li'); li.textContent = t; ul.appendChild(li); });
+  $('pH').hidden = key !== 'hub';
+  $('hubT').textContent = d.hub;
+  panel.style.setProperty('--pc', d.c);
+}
+function choose(key) {
+  sel = key === sel ? 'hub' : key;
+  nodes.forEach((n, i) => {
+    const on = n.dataset.ch === sel;
+    n.classList.toggle('sel', on); n.setAttribute('aria-pressed', on);
+    lines[i].classList.toggle('sel', on); lines[i].style.setProperty('--lc', KANAL[n.dataset.ch].c);
+  });
+  clearTimeout(swapT);
+  if (RM) { fillPanel(sel); return; }
+  panel.classList.add('weg'); $('hubT').style.opacity = 0;
+  swapT = setTimeout(() => { fillPanel(sel); panel.classList.remove('weg'); $('hubT').style.opacity = 1; }, 190);
+}
+nodes.forEach(n => n.addEventListener('click', () => choose(n.dataset.ch)));
+fillPanel('hub');
+if (!FINE) { $('pH').textContent = 'Tippen Sie auf einen Kanal.'; $('gridnote').textContent = 'Daten ziehen sich zusammen'; }
+
+$('ctaBtn').addEventListener('click', () => { $('done').textContent = 'Konzept-Demo: Hier würde die Anfrage starten.'; });
+
+/* ---------- Text-Hover: Buchstaben weichen der Maus aus ---------- */
+const heads = [];
+document.querySelectorAll('.fx').forEach(h => {
+  h.setAttribute('aria-label', h.textContent.replace(/\s+/g, ' ').trim());
+  const letters = [];
+  const walk = node => [...node.childNodes].forEach(ch => {
+    if (ch.nodeType === 3) {
+      const frag = document.createDocumentFragment();
+      ch.textContent.split(/(\s+)/).forEach(part => {
+        if (!part) return;
+        if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+        const w = document.createElement('span'); w.className = 'wd'; w.setAttribute('aria-hidden', 'true');
+        [...part].forEach(c => { const s = document.createElement('span'); s.className = 'ch'; s.textContent = c; w.appendChild(s); letters.push({ el: s, ox: 0, oy: 0, x: 0, y: 0, f: 0, thin: !!node.closest && !!node.closest('.thin'), i: letters.length }); });
+        frag.appendChild(w);
+      });
+      ch.replaceWith(frag);
+    } else if (ch.nodeType === 1) walk(ch);
+  });
+  walk(h);
+  heads.push({ el: h, letters, busy: false });
+});
+function measureLetters() {
+  heads.forEach(h => {
+    const hr = h.el.getBoundingClientRect();
+    h.letters.forEach(l => { const r = l.el.getBoundingClientRect(); l.ox = r.left + r.width / 2 - hr.left - l.x; l.oy = r.top + r.height / 2 - hr.top - l.y; });
+  });
+}
+function letterFx() {
+  const R = 130;
+  for (const h of heads) {
+    const hr = h.el.getBoundingClientRect();
+    const near = mouse.on && mouse.x > hr.left - R && mouse.x < hr.right + R && mouse.y > hr.top - R && mouse.y < hr.bottom + R;
+    if (!near && !h.busy) continue;
+    let busy = false;
+    for (const l of h.letters) {
+      let tx = 0, ty = 0, tf = 0;
+      if (near) {
+        const dx = hr.left + l.ox - mouse.x, dy = hr.top + l.oy - mouse.y, d = Math.hypot(dx, dy) || 1;
+        if (d < R) { tf = 1 - d / R; tf *= tf; tx = dx / d * tf * 12; ty = dy / d * tf * 12 - tf * 5; }
+      }
+      l.x += (tx - l.x) * .16; l.y += (ty - l.y) * .16; l.f += (tf - l.f) * .16;
+      if (Math.abs(l.x) + Math.abs(l.y) + l.f > .02) {
+        busy = true;
+        l.el.style.transform = `translate3d(${l.x.toFixed(2)}px,${l.y.toFixed(2)}px,0)`;
+        const c = RGB[l.i % 6], b = l.thin ? 185 : 255, k = Math.min(1, l.f * 1.6);
+        l.el.style.color = `rgb(${mix(b, c[0], k) | 0},${mix(b, c[1], k) | 0},${mix(b, c[2], k) | 0})`;
+      } else if (l.el.style.transform) { l.x = l.y = l.f = 0; l.el.style.transform = ''; l.el.style.color = ''; }
+    }
+    h.busy = busy;
+  }
+}
+
+/* ---------- Magnetische Knöpfe ---------- */
+if (FINE && !RM) document.querySelectorAll('[data-mag]').forEach(b => {
+  const inner = b.querySelector('span');
+  b.addEventListener('mousemove', e => {
+    const r = b.getBoundingClientRect();
+    const dx = clamp((e.clientX - r.left - r.width / 2) * .28, -11, 11), dy = clamp((e.clientY - r.top - r.height / 2) * .4, -9, 9);
+    b.classList.add('mag');
+    b.style.transform = `translate3d(${dx}px,${dy}px,0)`; inner.style.transform = `translate3d(${dx * .55}px,${dy * .55}px,0)`;
+  });
+  b.addEventListener('mouseleave', () => { b.classList.remove('mag'); b.style.transform = ''; inner.style.transform = ''; });
+});
+
+/* ---------- Tilt-Karten ---------- */
+if (FINE && !RM) document.querySelectorAll('.tilt').forEach(c => {
+  c.addEventListener('mousemove', e => {
+    const r = c.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+    c.classList.add('aktiv');
+    c.style.setProperty('--ry', ((px - .5) * 16).toFixed(2) + 'deg'); c.style.setProperty('--rx', ((.5 - py) * 16).toFixed(2) + 'deg');
+    c.style.setProperty('--gx', (px * 100).toFixed(1) + '%'); c.style.setProperty('--gy', (py * 100).toFixed(1) + '%');
+  });
+  c.addEventListener('mouseleave', () => { c.classList.remove('aktiv'); c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg'); });
+});
+
+/* ---------- Cursor ---------- */
+const cdot = $('cdot'), cring = $('cring'); let crx = 0, cry = 0, crs = 1, cts = 1, curOn = false;
+if (FINE && !RM) {
+  document.addEventListener('mouseover', e => {
+    const hit = e.target.closest && e.target.closest('a,button,.tilt');
+    cts = hit ? (hit.classList.contains('tilt') ? 1.5 : 1.9) : 1; cring.classList.toggle('gross', !!hit);
+  }, { passive: true });
+  document.addEventListener('mouseleave', () => document.documentElement.classList.remove('cur'));
+  document.addEventListener('mouseenter', () => { if (curOn) document.documentElement.classList.add('cur'); });
+}
+function cursorFx() {
+  if (!FINE || RM || !mouse.on) return;
+  if (!curOn) { curOn = true; crx = mouse.x; cry = mouse.y; document.documentElement.classList.add('cur'); }
+  crx += (mouse.x - crx) * .2; cry += (mouse.y - cry) * .2; crs += (cts - crs) * .18;
+  cdot.style.transform = `translate3d(${mouse.x}px,${mouse.y}px,0)`;
+  cring.style.transform = `translate3d(${crx.toFixed(1)}px,${cry.toFixed(1)}px,0) scale(${crs.toFixed(3)})`;
+}
+
+/* ---------- Hintergrund: Liniennetz + Lichtspot ---------- */
+const bg = (() => {
+  const cv = $('bg'), ctx = cv.getContext('2d'); let dpr = 1, P = [], lastW = 0;
+  function size() {
+    dpr = Math.min(devicePixelRatio || 1, 1.5);
+    cv.width = vw * dpr; cv.height = vh * dpr; cv.style.width = vw + 'px'; cv.style.height = vh + 'px';
+    if (vw !== lastW) { lastW = vw; const n = isMobile() ? 26 : 70; P = Array.from({ length: n }, (_, i) => ({ x: Math.random() * vw, y: Math.random() * vh, vx: (Math.random() - .5) * .22, vy: (Math.random() - .5) * .22, c: i % 9 === 0 ? i % 6 : -1 })); }
+  }
+  function draw(still) {
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, vw, vh);
+    const L = isMobile() ? 110 : 140, mx = mouse.sx, my = mouse.sy, mOn = mouse.on;
+    for (const p of P) {
+      if (!still) {
+        p.x += p.vx; p.y += p.vy;
+        if (mOn) { const dx = mx - p.x, dy = my - p.y, d2 = dx * dx + dy * dy; if (d2 < 48400 && d2 > 900) { p.x += dx * .004; p.y += dy * .004; } }
+        if (p.x < -20) p.x = vw + 20; else if (p.x > vw + 20) p.x = -20;
+        if (p.y < -20) p.y = vh + 20; else if (p.y > vh + 20) p.y = -20;
+      }
+    }
+    ctx.lineWidth = 1;
+    for (let i = 0; i < P.length; i++) {
+      const a = P[i];
+      for (let j = i + 1; j < P.length; j++) {
+        const b = P[j], dx = a.x - b.x, dy = a.y - b.y, d = dx * dx + dy * dy;
+        if (d < L * L) { ctx.strokeStyle = `rgba(150,190,220,${(.16 * (1 - Math.sqrt(d) / L)).toFixed(3)})`; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
+      }
+      if (mOn) { const dx = a.x - mx, dy = a.y - my, d = Math.hypot(dx, dy); if (d < 210) { ctx.strokeStyle = `rgba(65,182,230,${(.4 * (1 - d / 210)).toFixed(3)})`; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mx, my); ctx.stroke(); } }
+      ctx.fillStyle = a.c >= 0 ? COL[a.c] : 'rgba(255,255,255,.4)';
+      ctx.beginPath(); ctx.arc(a.x, a.y, a.c >= 0 ? 2.2 : 1.3, 0, 6.283); ctx.fill();
+    }
+  }
+  return { size, draw };
+})();
+const spot = $('spot');
+
+/* ---------- Magnetisches Raster ---------- */
+const grid = (() => {
+  const cv = $('grid'), sec = cv.parentElement, ctx = cv.getContext('2d');
+  let dpr = 1, W = 0, H = 0, pts = [], vis = false, ax = -999, ay = -999, aOn = false, touchT = 0;
+  const R = 160;
+  function size() {
+    W = sec.clientWidth; H = sec.clientHeight; dpr = Math.min(devicePixelRatio || 1, isMobile() ? 1.5 : 2);
+    cv.width = W * dpr; cv.height = H * dpr;
+    const sp = isMobile() ? 28 : 34; pts = [];
+    const cols = Math.floor(W / sp), rows = Math.floor(H / sp), offx = (W - (cols - 1) * sp) / 2, offy = (H - (rows - 1) * sp) / 2;
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) { const x = offx + c * sp, y = offy + r * sp; pts.push({ hx: x, hy: y, x, y, vx: 0, vy: 0 }); }
+  }
+  if ('IntersectionObserver' in window) new IntersectionObserver(es => { vis = es[0].isIntersecting; }).observe(sec); else vis = true;
+  if (FINE) {
+    sec.addEventListener('mousemove', e => { const r = cv.getBoundingClientRect(); ax = e.clientX - r.left; ay = e.clientY - r.top; aOn = true; }, { passive: true });
+    sec.addEventListener('mouseleave', () => { aOn = false; });
+  } else {
+    sec.addEventListener('touchmove', e => { const r = cv.getBoundingClientRect(), t = e.touches[0]; ax = t.clientX - r.left; ay = t.clientY - r.top; aOn = true; touchT = performance.now(); }, { passive: true });
+  }
+  function draw(t, still) {
+    if (!vis && !still) return;
+    let on = aOn, x0 = ax, y0 = ay;
+    if (!FINE && !still && performance.now() - touchT > 1600) { // Handy: ruhiger, eigener Anziehungspunkt
+      const r = cv.getBoundingClientRect(), cy = clamp(vh * .5 - r.top, 80, H - 80);
+      x0 = W * .5 + Math.cos(t * .5) * W * .3; y0 = cy + Math.sin(t * .8) * 110; on = true;
+    }
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = 'rgba(255,255,255,.15)';
+    const near = [];
+    for (const p of pts) {
+      let tx = p.hx, ty = p.hy, f = 0;
+      if (on) { const dx = x0 - p.hx, dy = y0 - p.hy, d = Math.hypot(dx, dy); if (d < R) { f = 1 - d / R; tx += dx * f * .5; ty += dy * f * .5; p.d = d; } }
+      p.vx = (p.vx + (tx - p.x) * .12) * .8; p.vy = (p.vy + (ty - p.y) * .12) * .8; p.x += p.vx; p.y += p.vy;
+      if (f > 0) { p.f = f; near.push(p); } else ctx.fillRect(p.x - 1, p.y - 1, 2, 2);
+    }
+    for (const p of near) {
+      const c = RGB[Math.min(5, (p.d / R * 6) | 0)];
+      if (p.d < 95) { ctx.strokeStyle = `rgba(${c[0]},${c[1]},${c[2]},${(p.f * .35).toFixed(3)})`; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(x0, y0); ctx.stroke(); }
+      ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${(.4 + .6 * p.f).toFixed(3)})`;
+      ctx.beginPath(); ctx.arc(p.x, p.y, 1.2 + p.f * 2.6, 0, 6.283); ctx.fill();
+    }
+  }
+  return { size, draw };
+})();
+
+/* ---------- 3D-Ring (Three.js) ---------- */
+const stage = $('kanaele');
+const anchors = [...document.querySelectorAll('[data-ring]')];
+let stageT = 0, lastLive = null;
+const gl = (() => {
+  const cv = $('gl');
+  if (!window.THREE) return null;
+  let renderer;
+  try { renderer = new THREE.WebGLRenderer({ canvas: cv, alpha: true, antialias: true, powerPreference: 'high-performance' }); } catch (e) { return null; }
+  const mob = isMobile();
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, mob ? 1.5 : 2));
+  const scene = new THREE.Scene(), FOV = 30, cam = new THREE.PerspectiveCamera(FOV, 1, 10, 8000);
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x1a2230, .5));
+  const key = new THREE.DirectionalLight(0xffffff, .8); key.position.set(-400, 600, 900); scene.add(key);
+  const rim = new THREE.DirectionalLight(0x41B6E6, .3); rim.position.set(500, -300, 200); scene.add(rim);
+  const pl = new THREE.PointLight(0xffffff, .6, 1600); pl.position.set(0, 0, 420); scene.add(pl);
+
+  const TUBE = .125, CR = .96, ARC = Math.PI / 3 - 2 * TUBE - .05;
+  const arcGeo = new THREE.TorusGeometry(1, TUBE, mob ? 14 : 26, mob ? 18 : 40, ARC); arcGeo.rotateZ(-ARC / 2); arcGeo.translate(-CR, 0, 0);
+  const capGeo = new THREE.SphereGeometry(TUBE, mob ? 14 : 24, mob ? 10 : 18);
+  const group = new THREE.Group(); scene.add(group);
+  const segs = COL.map((c, i) => {
+    const mat = new THREE.MeshPhysicalMaterial({ color: c, roughness: .2, metalness: .12, clearcoat: 1, clearcoatRoughness: .1, emissive: c, emissiveIntensity: .3 });
+    const g = new THREE.Group(); g.add(new THREE.Mesh(arcGeo, mat));
+    [-1, 1].forEach(s => { const m = new THREE.Mesh(capGeo, mat); m.position.set(Math.cos(s * ARC / 2) - CR, Math.sin(s * ARC / 2), 0); g.add(m); });
+    group.add(g);
+    const th = Math.PI / 2 - i * Math.PI / 3;
+    return { g, mat, th, hx: CR * Math.cos(th), hy: CR * Math.sin(th), node: NODE_SEG.indexOf(i), boost: 0 };
+  });
+  const v = new THREE.Vector3();
+  const cur = { x: 0, y: 0, r: 100, init: false }; let spin = 0, lastT = 0, lastOp = -1, tmx = 0, tmy = 0;
+
+  function size() { renderer.setSize(vw, vh, true); cam.aspect = vw / vh; cam.position.z = (vh / 2) / Math.tan(FOV * Math.PI / 360); cam.updateProjectionMatrix(); }
+
+  function target() {
+    const ref = vh * .62; let a = null, b = null;
+    for (const el of anchors) {
+      const r = el.getBoundingClientRect(); if (!r.width) continue;
+      const it = { x: r.left + r.width / 2, y: r.top + r.height / 2, r: r.width / 2 };
+      if (it.y <= ref) a = it; else { b = it; break; }
+    }
+    if (!a) return { x: b.x, y: b.y, r: b.r, k: 0 };
+    if (!b) return { x: a.x, y: a.y, r: a.r, k: 0 };
+    const k = clamp((ref - a.y) / (b.y - a.y)), s = ss(k);
+    return { x: mix(a.x, b.x, s), y: mix(a.y, b.y, s), r: mix(a.r, b.r, s), k };
+  }
+
+  function update(t) {
+    const dt = Math.min(.05, t - lastT || .016); lastT = t;
+    // Bühnen-Fortschritt
+    const sr = stage.getBoundingClientRect(), total = stage.offsetHeight - vh;
+    stageT = RM || total < 50 ? 0 : clamp(-sr.top / total);
+    const up = clamp((stageT - .1) / .3), down = clamp((stageT - .68) / .24), E = up * (1 - down);
+    const flat = RM ? 0 : ss(stageT / .09) * (1 - ss((stageT - .95) / .05));
+    const live = E > .55;
+    if (live !== lastLive) { lastLive = live; dia.classList.toggle('live', live); nodes.forEach(n => n.classList.toggle('on', live)); }
+
+    const tg = target();
+    if (!cur.init || RM) { cur.x = tg.x; cur.y = tg.y; cur.r = tg.r; cur.init = true; }
+    else { cur.x += (tg.x - cur.x) * .2; cur.y += (tg.y - cur.y) * .2; cur.r += (tg.r - cur.r) * .2; }
+    const op = 1 - .5 * Math.sin(Math.PI * tg.k);
+    if (Math.abs(op - lastOp) > .01) { lastOp = op; cv.style.opacity = op.toFixed(2); }
+
+    if (FINE && mouse.on) { tmx += ((mouse.x / vw - .5) * 2 - tmx) * .05; tmy += ((mouse.y / vh - .5) * 2 - tmy) * .05; }
+    if (!RM) spin = (spin + dt * .22) % (Math.PI * 2);
+    const sp = (spin > Math.PI ? spin - Math.PI * 2 : spin) * (1 - ss(E * 3)) * (1 - flat * .0);
+    const turn = ss(tg.k) * Math.PI * 2;
+    const wob = RM ? 0 : Math.sin(t * .6) * .07;
+    group.position.set(cur.x - vw / 2, vh / 2 - cur.y, 0);
+    group.rotation.set((-.5 + tmy * .4 + wob) * (1 - flat) + tmy * .12 * flat, (.55 + tmx * .55 + turn) * (1 - flat) + tmx * .16 * flat, sp);
+    group.scale.setScalar(Math.max(10, cur.r));
+    group.updateMatrixWorld(true);
+    pl.position.set(FINE && mouse.on ? mouse.sx - vw / 2 : group.position.x - 200, FINE && mouse.on ? vh / 2 - mouse.sy : group.position.y + 200, 420);
+
+    // Kanal-Ziele
+    let hub = null, nr = null;
+    if (E > 0) { const h = hubEl.getBoundingClientRect(); hub = { x: h.left + h.width / 2, y: h.top + h.height / 2 }; nr = nodes.map(n => n.getBoundingClientRect()); }
+    for (const s of segs) {
+      const isSel = s.node >= 0 && nodes[s.node].dataset.ch === sel;
+      s.boost += ((isSel ? 1 : 0) - s.boost) * .12;
+      s.mat.emissiveIntensity = .3 + .5 * s.boost;
+      if (E <= 0) {
+        const k = 1 + .14 * s.boost;
+        s.g.position.set(s.hx * k, s.hy * k, .25 * s.boost); s.g.rotation.set(0, 0, s.th); s.g.scale.setScalar(1);
+      } else if (s.node < 0) { // Blau und Gelb bleiben als Klammer am Hub
+        const k = 1 + .34 * ss(E);
+        s.g.position.set(s.hx * k, s.hy * k, 0); s.g.rotation.set(0, 0, s.th); s.g.scale.setScalar(1);
+      } else {
+        const e = ss(clamp((E - .07 * s.node) / (1 - .21)));
+        const r = nr[s.node], nx = r.left + r.width / 2, ny = r.top + r.height / 2;
+        let dx = nx - hub.x, dy = ny - hub.y; const d = Math.hypot(dx, dy) || 1; dx /= d; dy /= d;
+        const off = r.height / 2 + cur.r * .3;
+        v.set(nx + dx * off - vw / 2, vh / 2 - (ny + dy * off), 0); group.worldToLocal(v);
+        const phi = Math.atan2(-dy, dx); let dph = ((phi - s.th + Math.PI) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2) - Math.PI;
+        s.g.position.set(mix(s.hx, v.x, e), mix(s.hy, v.y, e), mix(0, v.z, e) + Math.sin(Math.PI * e) * .9);
+        s.g.rotation.set(e * Math.PI * 2, 0, s.th + dph * e);
+        s.g.scale.setScalar(1 - .1 * e + .12 * s.boost * e);
+      }
+    }
+    renderer.render(scene, cam);
+  }
+  return { size, update };
+})();
+if (!gl) document.documentElement.classList.add('no-gl');
+
+/* ---------- Schleife ---------- */
+const par1 = $('par1'), par2 = $('par2');
+function resize() {
+  vw = innerWidth; vh = innerHeight;
+  bg.size(); grid.size(); if (gl) gl.size(); measureLetters();
+}
+let rT = 0;
+addEventListener('resize', () => { clearTimeout(rT); rT = setTimeout(() => { resize(); if (RM) still(); }, 120); });
+function still() { const t = performance.now() / 1000; bg.draw(true); grid.draw(t, true); if (gl) gl.update(t); }
+function frame(now) {
+  const t = now / 1000;
+  mouse.sx += (mouse.x - mouse.sx) * .08; mouse.sy += (mouse.y - mouse.sy) * .08;
+  if (FINE && mouse.on) {
+    spot.style.transform = `translate3d(${mouse.sx.toFixed(1)}px,${mouse.sy.toFixed(1)}px,0)`;
+    const px = (mouse.sx / vw - .5), py = (mouse.sy / vh - .5);
+    par1.style.transform = `translate3d(${(px * -16).toFixed(1)}px,${(py * -10).toFixed(1)}px,0)`;
+    par2.style.transform = `translate3d(${(px * -14).toFixed(1)}px,${(py * -8).toFixed(1)}px,0)`;
+  }
+  bg.draw(false); grid.draw(t, false); if (FINE) letterFx(); if (gl) gl.update(t); cursorFx();
+  requestAnimationFrame(frame);
+}
+resize();
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(measureLetters);
+addEventListener('load', () => { resize(); if (RM) still(); });
+if (RM) { still(); let q = false; addEventListener('scroll', () => { if (q) return; q = true; requestAnimationFrame(() => { q = false; if (gl) gl.update(performance.now() / 1000); }); }, { passive: true }); }
+else requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

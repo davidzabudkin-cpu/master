@@ -1,0 +1,55 @@
+{
+  "name": "<name>",
+  "beschreibung": "<ein Satz: Gefuehl + wofuer>",
+  "colors": {
+    "bg": "#F7F5F0",
+    "bg2": "#E6ECF5",
+    "ink": "#16181D",
+    "accent": "#FF6B3D",
+    "accent2": "#3D7BFF",
+    "warn": "#E0413A",
+    "muted": "#8A8F98",
+    "card": "#FFFFFF"
+  },
+  "fonts": {
+    "head": [
+      "Fredoka-Bold.ttf"
+    ],
+    "body": [
+      "Nunito-Regular.ttf"
+    ],
+    "caption": [
+      "Nunito-Black.ttf"
+    ],
+    "hand": [
+      "Fredoka-Regular.ttf"
+    ]
+  },
+  "background": {
+    "type": "gradient",
+    "angle": 160,
+    "grain": 0.015,
+    "vignette": 0.0
+  },
+  "line_width": 4,
+  "corner": 24,
+  "shadow": true,
+  "motion": {
+    "push": 0.003,
+    "crossfade": 0.2,
+    "kick": 0.6
+  },
+  "sound": {
+    "palette": "soft",
+    "music_gain": 0.1,
+    "sfx_gain": 0.45
+  },
+  "_hilfe": {
+    "background.type": "paper | solid | gradient | spotlight | mesh | image:datei.png",
+    "fonts": "Dateinamen; gesucht in diesem Ordner, motion-kit/fonts und Systemschriften; erste gefundene gewinnt",
+    "motion.push": "Kamera-Push pro 10 Frames (0.003 = sanft, 0 = still)",
+    "motion.crossfade": "Ueberblendung in s zwischen Szenen (0 = harter Schnitt)",
+    "motion.kick": "Staerke der Kamera-Stoesse (0 = aus)",
+    "sound.palette": "soft | cinematic (nur Info fuer Claude)"
+  }
+}

@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Stichprobeninventur – Konzept-Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<header class="rm-nav">
+  <a href="#top" class="rm-logo" aria-label="Nach oben"><span class="rm-ring" aria-hidden="true"></span>REMIRA</a>
+  <nav class="rm-links">
+    <a href="#ablauf">Ablauf</a>
+    <a href="#rechner">Rechner</a>
+    <a href="#sicher">Zertifikate</a>
+  </nav>
+  <a href="#kontakt" class="rm-btn rm-btn-sm">Datenanalyse</a>
+</header>
+
+<a class="rm-orig" href="https://remira.com/de/inventur-software" target="_blank" rel="noopener">Original ansehen ↗</a>
+
+<main id="top">
+
+  <!-- 1 HERO -->
+  <section class="rm-hero">
+    <div class="rm-hero-text">
+      <p class="rm-label"><i style="--c:var(--r1)"></i>Stichprobeninventur aus der Cloud</p>
+      <h1 class="rm-h1"><span class="rm-thin">Inventur in</span> Stunden.<br><span class="rm-thin">Nicht in</span> Tagen.</h1>
+      <p class="rm-lead">Bis zu <b>99 % weniger Zählaufwand</b> – PwC-zertifiziert, ohne Installation, ohne Lagerschließung.</p>
+      <div class="rm-actions">
+        <a href="#kontakt" class="rm-btn">Kostenlose Datenanalyse</a>
+        <a href="#rechner" class="rm-btn rm-btn-ghost">Ersparnis rechnen</a>
+      </div>
+    </div>
+    <!-- PLATZHALTER: Remira-Hero-Figuren (Frau + Mann). Referenzen von David folgen. -->
+    <div class="rm-heroes">
+      <figure class="rm-slot" data-hero="frau">
+        <span class="rm-slot-ring" aria-hidden="true"></span>
+        <figcaption>Remira-Heldin<br><small>Referenzbild folgt</small></figcaption>
+      </figure>
+      <figure class="rm-slot rm-slot-b" data-hero="mann">
+        <span class="rm-slot-ring" aria-hidden="true"></span>
+        <figcaption>Remira-Held<br><small>Referenzbild folgt</small></figcaption>
+      </figure>
+    </div>
+    <div class="rm-scrollhint" aria-hidden="true"><span></span>Scrollen</div>
+  </section>
+
+  <!-- 2 SIGNATURE: Punkte-Lager -->
+  <section class="rm-stage rm-sig" id="idee" style="--len:420">
+    <div class="rm-sticky">
+      <canvas class="rm-dots" aria-hidden="true"></canvas>
+      <div class="rm-sig-copy">
+        <p class="rm-sig-a rm-words" data-a="-0.2" data-b="0.08">Vollinventur heißt: <b>jeden einzelnen Artikel</b> zählen.</p>
+        <p class="rm-sig-b rm-words" data-a="0.36" data-b="0.58">Stichprobe heißt: nur zählen, <b>was leuchtet.</b> Der Rest wird statistisch hochgerechnet.</p>
+      </div>
+      <div class="rm-counter" aria-live="off">
+        <span class="rm-count-num">0</span>
+        <span class="rm-count-lbl">Positionen zu zählen</span>
+      </div>
+      <p class="rm-sig-foot">Zulässig nach § 241 HGB · Beispiel-Darstellung</p>
+    </div>
+  </section>
+
+  <!-- 3 RECHNER -->
+  <section class="rm-calc" id="rechner" data-ink="hell">
+    <div class="rm-wrap">
+      <p class="rm-label rm-reveal"><i style="--c:var(--r3)"></i>Selbst ausprobieren</p>
+      <h2 class="rm-h2 rm-words" data-io>Wie viele Positionen zählt ihr heute?</h2>
+      <div class="rm-calc-box rm-reveal">
+        <label class="rm-calc-row" for="rmN">
+          <span>Lagerpositionen</span>
+          <output id="rmNout">20.000</output>
+        </label>
+        <input id="rmN" type="range" min="1000" max="500000" step="1000" value="20000" aria-label="Anzahl Lagerpositionen">
+        <div class="rm-bars">
+          <div class="rm-bar">
+            <div class="rm-bar-head"><span>Vollinventur</span><b id="rmFull">20.000</b></div>
+            <div class="rm-track"><div class="rm-fill rm-fill-full"></div></div>
+          </div>
+          <div class="rm-bar">
+            <div class="rm-bar-head"><span>Stichprobe, im besten Fall</span><b id="rmSample">200</b></div>
+            <div class="rm-track"><div class="rm-fill rm-fill-sample"></div></div>
+          </div>
+        </div>
+        <p class="rm-note">Gerechnet mit Remiras Angabe „bis zu 99 % weniger Zählaufwand“. Das echte Potenzial hängt von Lager und Bestandsgenauigkeit ab – die kostenlose Datenanalyse rechnet es mit euren Daten.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 ABLAUF -->
+  <section class="rm-stage rm-flow" id="ablauf" style="--len:320">
+    <div class="rm-sticky">
+      <div class="rm-wrap">
+        <p class="rm-label"><i style="--c:var(--r2)"></i>So läuft es ab</p>
+        <h2 class="rm-h2 rm-words" data-a="-0.35" data-b="-0.05">Vier Schritte. Kein IT-Projekt.</h2>
+        <div class="rm-steps">
+          <div class="rm-line"><i></i></div>
+          <article class="rm-step" data-k="0">
+            <span class="rm-step-n">01</span>
+            <h3>ERP-Daten rein</h3>
+            <p>Export aus SAP EWM, Proalpha, AutoStore & Co. – per CSV, ohne Schnittstelle.</p>
+          </article>
+          <article class="rm-step" data-k="1">
+            <span class="rm-step-n">02</span>
+            <h3>Zähllisten kommen raus</h3>
+            <p>Die Software wählt die Stichproben mathematisch-statistisch aus.</p>
+          </article>
+          <article class="rm-step" data-k="2">
+            <span class="rm-step-n">03</span>
+            <h3>Zählen</h3>
+            <p>Mit Papierliste, Zähl-App oder direkt im System – mit eigenem Team.</p>
+          </article>
+          <article class="rm-step" data-k="3">
+            <span class="rm-step-n">04</span>
+            <h3>PDF für den Prüfer</h3>
+            <p>Automatische Auswertung, fertiger Ergebnisbericht für den Wirtschaftsprüfer.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 VORTEILE (12 → 4) -->
+  <section class="rm-why" data-ink="hell">
+    <div class="rm-wrap">
+      <p class="rm-label rm-reveal"><i style="--c:var(--r4)"></i>Warum es sich lohnt</p>
+      <h2 class="rm-h2 rm-words" data-io>Weniger zählen. Mehr Ruhe.</h2>
+      <div class="rm-cards">
+        <article class="rm-card rm-reveal" style="--c:var(--r1)"><h3>Bis zu 99 % weniger</h3><p>Nur Stichproben zählen statt das ganze Lager.</p></article>
+        <article class="rm-card rm-reveal" style="--c:var(--r2)"><h3>Lager bleibt offen</h3><p>Keine Stichtags-Schließung, kein Fremdpersonal.</p></article>
+        <article class="rm-card rm-reveal" style="--c:var(--r3)"><h3>In 10 Minuten startklar</h3><p>Browser öffnen, registrieren, loslegen. Keine Installation.</p></article>
+        <article class="rm-card rm-reveal" style="--c:var(--r5)"><h3>Prüfer-sicher</h3><p>Zertifiziertes Verfahren mit vollständiger Dokumentation.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 ZERTIFIKATE -->
+  <section class="rm-certs" id="sicher">
+    <div class="rm-wrap">
+      <h2 class="rm-h2 rm-words" data-io>Geprüft, bevor ihr zählt.</h2>
+      <div class="rm-seals">
+        <div class="rm-seal rm-reveal"><b>PwC</b><span>zertifiziert nach IDW PS 880</span></div>
+        <div class="rm-seal rm-reveal"><b>TÜV</b><span>Datenschutz-Zertifikat</span></div>
+        <div class="rm-seal rm-reveal"><b>ISO/IEC 27001</b><span>Informationssicherheit</span></div>
+        <div class="rm-seal rm-reveal"><b>§ 241 HGB</b><span>gesetzlich zulässiges Verfahren</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 CTA -->
+  <section class="rm-cta" id="kontakt">
+    <div class="rm-wrap rm-cta-grid">
+      <div>
+        <h2 class="rm-h2 rm-words" data-io>Lohnt sich das bei euch?</h2>
+        <p class="rm-lead rm-reveal">Wir simulieren eine Stichprobeninventur mit euren echten Daten und zeigen das Einsparpotenzial. Kostenlos.</p>
+        <button class="rm-btn rm-btn-big rm-reveal" type="button" id="rmCta">Kostenlose Datenanalyse anfragen</button>
+        <p class="rm-cta-done" id="rmDone" hidden>Demo: Hier würde das Anfrage-Formular öffnen.</p>
+      </div>
+      <!-- PLATZHALTER: zweite Hero-Figur (Mann), Referenz folgt -->
+      <figure class="rm-slot rm-slot-cta" data-hero="mann-cta">
+        <span class="rm-slot-ring" aria-hidden="true"></span>
+        <figcaption>Remira-Held<br><small>Referenzbild folgt</small></figcaption>
+      </figure>
+    </div>
+  </section>
+</main>
+
+<footer class="rm-foot">
+  <p>Interne Konzept-Demo für eine Schulung · keine offizielle Remira-Seite · Inhalte von remira.com/de/inventur-software</p>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

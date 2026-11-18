@@ -1,0 +1,12 @@
+{
+  "name": "doodle-papier",
+  "beschreibung": "Handgezeichnetes Notizbuch: warmes Papier, dicke schwarze Linien, flache Farben. Erprobt im Finanz-Erklaerkanal (Penny).",
+  "colors": {"bg": "#FDFBF0", "bg2": "#F1EAD6", "ink": "#1F1F1F", "accent": "#E6B23C", "accent2": "#2E7D4F",
+             "warn": "#C8402F", "muted": "#8C8577", "card": "#FFFFFF"},
+  "fonts": {"head": ["segoeprb.ttf", "Fredoka-Bold.ttf"], "body": ["segoepr.ttf", "Nunito-Regular.ttf"],
+            "caption": ["Nunito-Black.ttf"], "hand": ["segoepr.ttf", "Fredoka-Regular.ttf"]},
+  "background": {"type": "paper", "grain": 0.02, "vignette": 0.0},
+  "line_width": 6, "corner": 16, "shadow": false,
+  "motion": {"push": 0.0, "crossfade": 0.0, "kick": 0.0},
+  "sound": {"palette": "soft", "music_gain": 0.08, "sfx_gain": 0.35}
+}

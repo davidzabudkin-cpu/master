@@ -1,0 +1,195 @@
+<title>KI-Lernpfad Marketing</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;900&display=swap">
+<style>
+/* Layout: eine ruhige Lesespalte, Kapitel als Stationen eines Lernpfads, Aufgaben als abhakbare Karten */
+:root{
+  --bg:#F5F7F9; --surface:#FFFFFF; --soft:#E8F2F9; --fg:#0A0C10; --muted:#555B66; --line:#D5DDE5;
+  --accent:#005EB8; --accent-fill:#41B6E6; --on-accent:#0A0C10; --done:#43B02A;
+  --display:'Source Sans 3', 'Source Sans Pro', Arial, sans-serif; --text:'Source Sans 3', 'Source Sans Pro', Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0A0C10; --surface:#14181E; --soft:#1A2230; --fg:#F2F5F8; --muted:#AEB6C0; --line:#2A313C;
+  --accent:#41B6E6; --accent-fill:#41B6E6; --on-accent:#0A0C10; --done:#85CC69; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0A0C10; --surface:#14181E; --soft:#1A2230; --fg:#F2F5F8; --muted:#AEB6C0; --line:#2A313C;
+  --accent:#41B6E6; --accent-fill:#41B6E6; --on-accent:#0A0C10; --done:#85CC69; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:17px/1.6 var(--text);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:760px;margin:0 auto;padding-block:48px 96px;display:flex;flex-direction:column;gap:56px}
+h1,h2,h3{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(36px,7vw,60px);font-weight:700}
+h2{font-size:clamp(26px,4.5vw,34px);font-weight:700}
+h3{font-size:20px;font-weight:700}
+p{margin:0}
+a{color:var(--accent)}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--accent)}
+.lead{font-size:20px;color:var(--muted);max-width:62ch}
+header{display:flex;flex-direction:column;gap:20px}
+.progress{display:flex;align-items:center;gap:14px;font-size:15px;color:var(--muted)}
+.bar{flex:1;height:8px;background:var(--soft);border-radius:8px;overflow:hidden}
+.bar span{display:block;height:100%;width:0;background:var(--accent-fill);transition:width .4s ease}
+section{display:flex;flex-direction:column;gap:18px}
+.step{display:flex;gap:14px;align-items:baseline}
+.step b{font-family:var(--display);color:var(--accent);font-size:15px;min-width:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.tile p{color:var(--muted);font-size:15px}
+.formula{display:flex;flex-wrap:wrap;gap:8px}
+.formula span{background:var(--soft);border-radius:999px;padding:6px 14px;font-size:15px}
+.formula span b{color:var(--accent)}
+.prompt{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.prompt .who{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.prompt q{quotes:"„" "“";font-style:italic;white-space:pre-wrap}
+.copy{align-self:flex-start;font:600 14px var(--text);background:transparent;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:5px 14px;cursor:pointer}
+.copy:focus-visible,.task input:focus-visible,details summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.task{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;cursor:pointer}
+.task input{width:22px;height:22px;margin-top:2px;accent-color:var(--done);flex:none}
+.task.is-done{border-color:var(--done)}
+.task.is-done .t{text-decoration:line-through;color:var(--muted)}
+.task small{display:block;color:var(--muted);font-size:14px}
+.week{display:flex;flex-direction:column;gap:10px}
+.week h3 span{color:var(--muted);font-weight:500;font-size:16px}
+.rules{display:flex;flex-direction:column;gap:10px;padding:0;margin:0;list-style:none}
+.rules li{background:var(--soft);border-radius:14px;padding:14px 16px}
+.res{display:flex;flex-direction:column;gap:10px;padding:0;margin:0;list-style:none}
+.res li{display:flex;flex-direction:column;gap:2px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.res li span{color:var(--muted);font-size:15px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+details summary{cursor:pointer;font-weight:600}
+details p{margin-top:10px;color:var(--muted)}
+.note{font-size:14px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.bar span{transition:none}}
+</style>
+
+<div class="wrap">
+<header>
+  <p class="eyebrow">Marketing-Team · nach der Schulung vom 11.11.2026</p>
+  <h1>KI im Arbeitsalltag: euer Lernpfad</h1>
+  <p class="lead">Die Tools werden jeden Monat besser. Wer jetzt lernt, sie richtig zu benutzen, spart sich später Stunden. Hier steht alles aus der Schulung zum Nachlesen, dazu Aufgaben für vier Wochen und gute Quellen.</p>
+  <div class="progress" aria-live="polite"><div class="bar"><span id="bar"></span></div><span id="count">0 von 0 Aufgaben</span></div>
+  <p class="note">Abgehakte Aufgaben merkt sich nur euer eigener Browser.</p>
+</header>
+
+<section id="was-ist-ki">
+  <p class="eyebrow">1 · Verstehen</p>
+  <h2>Was eine KI eigentlich ist</h2>
+  <p>Eine Sprach-KI wie Claude oder ChatGPT hat riesige Mengen Text gelesen und sagt Wort für Wort voraus, was am wahrscheinlichsten als Nächstes kommt. Deshalb klingt sie klug. Sie schlägt aber nichts in einer Datenbank nach und kann sich darum sehr überzeugt irren.</p>
+  <div class="grid">
+    <div class="tile"><h3>Hat alles gelesen</h3><p>Schreibt, fasst zusammen und erklärt in Sekunden.</p></div>
+    <div class="tile"><h3>Kennt euch nicht</h3><p>Weiß nichts über unsere Kunden, Produkte oder unseren Ton, bis ihr es erzählt.</p></div>
+    <div class="tile"><h3>Erfindet manchmal</h3><p>Zahlen, Namen und Zitate immer prüfen.</p></div>
+  </div>
+  <details><summary>Welches Modell nehme ich?</summary><p>Claude gibt es in drei Größen: Haiku (schnell, für Kleinkram), Sonnet (Allrounder, reicht fast immer) und Opus (für lange, schwierige Aufgaben). Faustregel: im Zweifel Sonnet, wenn es knifflig wird, Opus.</p></details>
+  <details><summary>Was sind Credits?</summary><p>Chat-Tools laufen meist im Abo mit einer Nutzungsgrenze. Bild- und Video-Tools wie Higgsfield rechnen mit Credits ab, also Guthaben pro Ergebnis. Text kostet fast nichts, Bilder wenig, Videos am meisten. Darum erst das Bild perfekt machen, dann daraus ein Video.</p></details>
+</section>
+
+<section id="fragen">
+  <p class="eyebrow">2 · Gut fragen</p>
+  <h2>Ein guter Auftrag hat fünf Teile</h2>
+  <div class="formula"><span><b>Rolle</b> wer soll sie sein?</span><span><b>Aufgabe</b> was genau?</span><span><b>Kontext</b> für wen, warum?</span><span><b>Format</b> wie lang, wie aussehen?</span><span><b>Beispiel</b> so wie das hier</span></div>
+  <p>Ihr müsst das nicht auswendig können. Am einfachsten: auf das Mikrofon drücken, frei erzählen wie einer Kollegin, und am Ende diesen Satz anhängen:</p>
+  <div class="prompt"><q>Stell mir erst 3 Fragen, bevor du loslegst.</q><button class="copy" type="button">Kopieren</button></div>
+  <p>Wenn das Ergebnis nicht passt, nicht neu anfangen, sondern weiterreden: „kürzer“, „lockerer“, „das zweite gefällt mir, mach davon drei Varianten“.</p>
+</section>
+
+<section id="vorlagen">
+  <p class="eyebrow">3 · Ausprobieren</p>
+  <h2>Vorlagen zum Kopieren</h2>
+  <p>Eckige Klammern durch eure Angaben ersetzen. Nur öffentliche oder erfundene Daten verwenden.</p>
+  <div class="prompt"><span class="who">Text</span><q>Du bist Texterin für eine Software-Firma im Handel. Hier ist unser LinkedIn-Post: [Post einfügen]. Finde Tippfehler, mach den Einstieg stärker und gib mir drei Varianten: sachlich, locker, mit Frage am Ende. Max. 120 Wörter.</q><button class="copy" type="button">Kopieren</button></div>
+  <div class="prompt"><span class="who">Design</span><q>Ich brauche eine Grafik für [Thema], Zielgruppe [Zielgruppe]. Schlag mir 3 Bildideen vor und schreib für jede einen Bild-Prompt auf Englisch für ein KI-Bildtool. Kein Text im Bild.</q><button class="copy" type="button">Kopieren</button></div>
+  <div class="prompt"><span class="who">Events</span><q>Wir planen [Event] am [Datum] für [Anzahl] Gäste. Mach mir einen Ablaufplan, eine Einladungs-Mail und eine Checkliste mit Fristen. Stell mir erst 3 Fragen.</q><button class="copy" type="button">Kopieren</button></div>
+  <div class="prompt"><span class="who">Daten</span><q>Hier ist eine anonymisierte Tabelle. Nenne mir die 3 wichtigsten Erkenntnisse in einfachen Worten und schlag ein Diagramm vor, das sie am besten zeigt.</q><button class="copy" type="button">Kopieren</button></div>
+  <div class="prompt"><span class="who">Führung</span><q>Hier ist meine Idee für [Thema]. Sei ein kritischer Sparringspartner: Stell mir 5 unbequeme Fragen und nenne die 3 größten Risiken.</q><button class="copy" type="button">Kopieren</button></div>
+</section>
+
+<section id="skills">
+  <p class="eyebrow">4 · Weiterdenken</p>
+  <h2>Skills: einmal erklären, immer richtig</h2>
+  <p>Ein Skill ist eine Einarbeitungsmappe für die KI: Anleitung, Regeln und gute Beispiele zu einer Aufgabe. Claude liest sie automatisch, sobald die Aufgabe passt. Ihr müsst ihn nicht selbst schreiben. Erzählt Claude, wie ihr eine Aufgabe erledigt, und bittet: „Mach daraus einen Skill.“</p>
+  <div class="grid">
+    <div class="tile"><h3>Unser Schreibstil</h3><p>Ton, Wörter, die wir nutzen und meiden, zwei gute Beispielposts.</p></div>
+    <div class="tile"><h3>Event-Checkliste</h3><p>Fristen, Zuständigkeiten, Vorlagen für Einladungen.</p></div>
+    <div class="tile"><h3>Monatsreport</h3><p>Welche Kennzahlen, welche Diagramme, welcher Aufbau.</p></div>
+  </div>
+</section>
+
+<section id="regeln">
+  <p class="eyebrow">5 · Sicher bleiben</p>
+  <h2>Drei Regeln</h2>
+  <ul class="rules">
+    <li><b>Keine Kunden- oder internen Daten</b> in private KI-Konten. Vorher klären, welche Tools die Firma erlaubt.</li>
+    <li><b>Alles prüfen</b>, vor allem Zahlen, Namen, Zitate und Fakten.</li>
+    <li><b>Ihr seid verantwortlich</b> für das, was rausgeht, nicht die KI.</li>
+  </ul>
+</section>
+
+<section id="plan">
+  <p class="eyebrow">6 · Üben</p>
+  <h2>Vier Wochen, jeden Tag zehn Minuten</h2>
+  <div class="week"><h3>Woche 1 <span>Anfangen</span></h3>
+    <label class="task"><input type="checkbox" id="t1"><span class="t">Konto bei Claude anlegen und die Handy-App installieren<small>claude.ai, kostenlose Version reicht zum Start</small></span></label>
+    <label class="task"><input type="checkbox" id="t2"><span class="t">Eine echte Mail oder einen Text von dieser Woche überarbeiten lassen</span></label>
+    <label class="task"><input type="checkbox" id="t3"><span class="t">Einmal nur per Sprache einen Auftrag geben</span></label>
+  </div>
+  <div class="week"><h3>Woche 2 <span>Besser fragen</span></h3>
+    <label class="task"><input type="checkbox" id="t4"><span class="t">Dieselbe Aufgabe einmal kurz und einmal mit allen fünf Bausteinen fragen, Ergebnisse vergleichen</span></label>
+    <label class="task"><input type="checkbox" id="t5"><span class="t">„Stell mir erst 3 Fragen“ bei drei Aufgaben benutzen</span></label>
+    <label class="task"><input type="checkbox" id="t6"><span class="t">Kurs „Claude 101“ der Anthropic Academy anfangen</span></label>
+  </div>
+  <div class="week"><h3>Woche 3 <span>Euer Mini-Projekt</span></h3>
+    <label class="task"><input type="checkbox" id="t7"><span class="t">Mini-Projekt aus der Schulung umsetzen<small>Text, Design, Events, Daten oder Führung, siehe Vorlagen oben</small></span></label>
+    <label class="task"><input type="checkbox" id="t8"><span class="t">Eine PDF oder Tabelle hochladen und zusammenfassen lassen</span></label>
+    <label class="task"><input type="checkbox" id="t9"><span class="t">Ergebnis im Team in zwei Minuten zeigen, auch was nicht geklappt hat</span></label>
+  </div>
+  <div class="week"><h3>Woche 4 <span>Dranbleiben</span></h3>
+    <label class="task"><input type="checkbox" id="t10"><span class="t">Eine Aufgabe finden, die ihr ständig wiederholt, und Claude daraus einen Skill bauen lassen</span></label>
+    <label class="task"><input type="checkbox" id="t11"><span class="t">Ein Bild mit einem KI-Bildtool erstellen</span></label>
+    <label class="task"><input type="checkbox" id="t12"><span class="t">Aufschreiben: Wo spart mir KI jede Woche Zeit?</span></label>
+  </div>
+</section>
+
+<section id="quellen">
+  <p class="eyebrow">7 · Weiterlernen</p>
+  <h2>Gute Quellen</h2>
+  <ul class="res">
+    <li><a href="https://anthropic.skilljar.com/" target="_blank" rel="noopener">Anthropic Academy</a><span>Kostenlose Kurse der Claude-Macher. Zum Start: „Claude 101“ und „AI Fluency“. Englisch, mit Zertifikat.</span></li>
+    <li><a href="https://support.claude.com/" target="_blank" rel="noopener">Claude-Hilfe-Center</a><span>Anleitungen zu Projekten, Dateien, Connectors und Skills.</span></li>
+    <li><a href="https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">Prompting-Leitfaden von Anthropic</a><span>Für alle, die tiefer einsteigen wollen. Englisch.</span></li>
+    <li><a href="https://www.coursera.org/learn/ai-for-everyone" target="_blank" rel="noopener">AI For Everyone (Coursera)</a><span>Der Klassiker für Nicht-Techniker, kostenlos anhörbar. Englisch, deutsche Untertitel.</span></li>
+    <li><a href="https://grow.google/prompting-essentials/" target="_blank" rel="noopener">Google Prompting Essentials</a><span>Kompakter Prompting-Kurs von Google, meist kostenpflichtig über Coursera.</span></li>
+    <li><a href="https://www.youtube.com/results?search_query=Prompting+Crashkurs+deutsch" target="_blank" rel="noopener">YouTube: Prompting-Crashkurs auf Deutsch</a><span>Suche nach aktuellen deutschen Einsteiger-Videos, nach „Dieses Jahr“ filtern.</span></li>
+    <li><a href="https://www.youtube.com/results?search_query=Claude+KI+Tutorial+deutsch+Anf%C3%A4nger" target="_blank" rel="noopener">YouTube: Claude für Einsteiger</a><span>Videos zeigen Bedienung und Alltagsbeispiele.</span></li>
+    <li><a href="https://www.youtube.com/results?search_query=Higgsfield+AI+tutorial" target="_blank" rel="noopener">YouTube: Higgsfield-Tutorials</a><span>Für Bilder und Videos per KI. Englisch.</span></li>
+  </ul>
+</section>
+</div>
+
+<script>
+(function(){
+  var boxes=[].slice.call(document.querySelectorAll('.task input'));
+  var KEY='ki-lernpfad-v1', saved={};
+  try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){saved={}}
+  function render(){
+    var done=0;
+    boxes.forEach(function(b){b.closest('.task').classList.toggle('is-done',b.checked); if(b.checked)done++;});
+    document.getElementById('count').textContent=done+' von '+boxes.length+' Aufgaben';
+    document.getElementById('bar').style.width=(boxes.length?done/boxes.length*100:0)+'%';
+  }
+  boxes.forEach(function(b){
+    b.checked=!!saved[b.id];
+    b.addEventListener('change',function(){saved[b.id]=b.checked;try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}render();});
+  });
+  render();
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var q=btn.parentNode.querySelector('q'), text=q.textContent;
+      function ok(){btn.textContent='Kopiert';setTimeout(function(){btn.textContent='Kopieren'},1600)}
+      function fallback(){var r=document.createRange();r.selectNodeContents(q);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Markiert, Strg+C';}
+      try{navigator.clipboard.writeText(text).then(ok,fallback)}catch(e){fallback()}
+    });
+  });
+})();
+</script>

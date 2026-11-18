@@ -1,0 +1,11 @@
+{
+  "name": "mesh-pastell",
+  "beschreibung": "Weiche, koernige Pastell-Verlaeufe (Kobalt-Hellblau -> Creme -> Pfirsich), elegante Serif-Ueberschriften. Erprobt fuer Studio-/Brand-Reels (ZAB).",
+  "colors": {"bg": "#F4EFE7", "bg2": "#8FB4DA", "ink": "#1A1A1A", "accent": "#FF7A3D", "accent2": "#2F5BD3",
+             "warn": "#D9432F", "muted": "#7F7A74", "card": "#FFFFFF"},
+  "fonts": {"head": ["PlayfairDisplay-Bold.ttf"], "body": ["Nunito-Regular.ttf"], "caption": ["Nunito-Black.ttf"], "hand": ["Fredoka-Regular.ttf"]},
+  "background": {"type": "mesh", "colors": ["#8FB4DA", "#F4EFE7", "#F7C9A8", "#FF9B62"], "grain": 0.03, "vignette": 0.0},
+  "line_width": 3, "corner": 28, "shadow": false,
+  "motion": {"push": 0.003, "crossfade": 0.25, "kick": 0.5},
+  "sound": {"palette": "soft", "music_gain": 0.12, "sfx_gain": 0.4}
+}

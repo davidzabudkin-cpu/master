@@ -1,0 +1,11 @@
+{
+  "name": "dunkel-kino",
+  "beschreibung": "Filmisch dunkel: Nachtblau, Spotlight, Filmkorn, Gold-Akzent. Gut fuer Storys, Geschichte, Mystery, True Crime.",
+  "colors": {"bg": "#1B2333", "bg2": "#07090F", "ink": "#F2EEE6", "accent": "#F2B544", "accent2": "#5FB3C9",
+             "warn": "#E8553E", "muted": "#7D8799", "card": "#232C3F"},
+  "fonts": {"head": ["PlayfairDisplay-Bold.ttf"], "body": ["Nunito-Regular.ttf"], "caption": ["Nunito-Black.ttf"], "hand": ["Fredoka-Regular.ttf"]},
+  "background": {"type": "spotlight", "grain": 0.035, "vignette": 0.35},
+  "line_width": 4, "corner": 14, "shadow": true,
+  "motion": {"push": 0.005, "crossfade": 0.2, "kick": 1.0},
+  "sound": {"palette": "cinematic", "music_gain": 0.12, "sfx_gain": 0.5}
+}
