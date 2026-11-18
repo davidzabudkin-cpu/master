@@ -1,8 +1,8 @@
-// Remira-Glossar „Order Management System“ als Motion-Video. Alles Vektor in Canvas; jedes Bild hängt nur von t ab (timeline.js).
+// REMIRA-Glossar „Warenwirtschaftssystem“ als Motion-Video (v2, eigener Aufbau). Alles Vektor in Canvas; jedes Bild hängt nur von t ab (timeline.js).
 import { VARIANT, A_SHIFT, REMIRA_INK } from './data.js';
 import { S, plain } from './texte.js';
-import { W, H, FPS, DURATION, RINGC, BLUE, GREEN, RED, ORANGE, GREY, SOFT, SC, ORDER, LOGO_W, LOGO_S, LOGO_X, LOGO_Y, CLAIM, END_TITLE_Y, END_CTA_Y, ST1, ST2, PB, HW, CN, GN } from './data.js';
-import { T, TX, WHIPS, camAt, ringAt, spinAt, heroAt, sceneIndex, FLIGHTS, STREAM, DISP } from './timeline.js';
+import { W, H, FPS, DURATION, RINGC, BLUE, GREEN, RED, ORANGE, GREY, SOFT, SC, ORDER, LOGO_W, LOGO_S, LOGO_X, LOGO_Y, CLAIM, END_TITLE_Y, END_CTA_Y, SHELF, FL, CY, PR, HW, HB, GN } from './data.js';
+import { T, TX, WHIPS, camAt, ringAt, spinAt, heroAt, sceneIndex, FLOW_BOXES, STREAM } from './timeline.js';
 import { phosphorPath } from './phosphor-icons.js';
 import { prog, clamp, lerp, outCubic, inCubic, outBack, inOutCubic, rng } from './lib/ease.js';
 
@@ -134,180 +134,263 @@ function drawRing(t) {
   });
 }
 
+// Icon ohne Animation (z. B. in Karten)
+function drawIconAt(icon, x, y, size, col, a = 1) { g.save(); g.globalAlpha *= a; g.translate(x - size / 2, y - size / 2); g.scale(size / 256, size / 256); g.fillStyle = col; g.fill(icon); g.restore(); }
+
 // ---------- Szenen (lokale Koordinaten, Ursprung = Szenenmitte) ----------
 const L = (s, t) => { const r = ringAt(t); return { x: r.x - SC[s][0], y: r.y - SC[s][1], r: r.r }; };
-const LINE1 = [[ST1.x[0], ST1.y], [ST1.x[3], ST1.y]];
+
+// Karton (die „Ware“): Ringfarbe, Klebeband, weiche Kante
+function carton(x, y, w, col, a = 1, rot = 0, sq = 1) {
+  if (a <= 0) return; const h = w * .82;
+  g.save(); g.translate(x, y); g.rotate(rot); g.scale(1, sq); g.globalAlpha *= a;
+  const gr = g.createLinearGradient(0, -h / 2, 0, h / 2); gr.addColorStop(0, col); gr.addColorStop(1, shade(col, -.28));
+  g.beginPath(); g.roundRect(-w / 2, -h / 2, w, h, w * .1); g.fillStyle = gr; g.fill();
+  g.fillStyle = 'rgba(255,255,255,.28)'; g.fillRect(-w * .09, -h / 2, w * .18, h * .55);
+  g.fillStyle = 'rgba(0,0,0,.14)'; g.fillRect(-w / 2 + w * .06, -h / 2 + h * .24, w - w * .12, 2);
+  g.restore();
+}
+function shade(hex, f) { const n = parseInt(hex.slice(1), 16), c = [n >> 16, n >> 8 & 255, n & 255].map(v => Math.round(f < 0 ? v * (1 + f) : v + (255 - v) * f)); return `rgb(${c})`; }
+// Regal: Böden + Seitenpfosten, baut sich von links auf
+function shelf(sh, u) {
+  if (u <= 0) return; const w = sh.cw * sh.cols, hh = sh.ch * sh.rows;
+  g.save(); g.strokeStyle = 'rgba(255,255,255,.32)'; g.lineWidth = 4; g.lineCap = 'round';
+  for (let r = 0; r <= sh.rows; r++) { const y = sh.y0 + r * sh.ch; g.beginPath(); g.moveTo(sh.x0, y); g.lineTo(sh.x0 + w * outCubic(u), y); g.stroke(); }
+  g.globalAlpha = outCubic(u); g.lineWidth = 3; g.strokeStyle = 'rgba(255,255,255,.18)';
+  for (let c = 0; c <= sh.cols; c++) { const x = sh.x0 + c * sh.cw; g.beginPath(); g.moveTo(x, sh.y0); g.lineTo(x, sh.y0 + hh); g.stroke(); }
+  g.restore();
+}
+const slot = (sh, k) => ({ x: sh.x0 + sh.cw * (k % sh.cols + .5), y: sh.y0 + sh.ch * (Math.floor(k / sh.cols) + 1) - 6 - sh.box * .41 });
+function tile(x, y, s, tA, lit) {
+  const u = outBack(prog(tNow, tA, tA + .5), 1.5); if (u <= 0) return;
+  g.save(); g.translate(x, y); g.scale(u, u);
+  g.beginPath(); g.roundRect(-s / 2, -s / 2, s, s, s * .22); g.fillStyle = `rgba(65,182,230,${.05 + .12 * lit})`; g.fill();
+  g.lineWidth = 2; g.strokeStyle = lit > .02 ? `rgba(65,182,230,${.35 + .65 * lit})` : 'rgba(255,255,255,.22)'; g.stroke(); g.restore();
+}
+function chip(x, y, label, col, u, align = 'center', icon = null) {
+  if (u <= 0) return; g.save(); g.font = font(22, 700);
+  const tw = g.measureText(label).width, ico = icon ? 20 : 0, gap = icon ? 6 : 0, padL = 14, padR = 16, cw = padL + ico + gap + tw + padR;
+  const cx = align === 'right' ? x - cw / 2 : align === 'left' ? x + cw / 2 : x, s = outBack(clamp(u), 2.2);
+  g.translate(cx, y); g.scale(s, s); g.globalAlpha *= clamp(u * 2); g.fillStyle = col; g.beginPath(); g.roundRect(-cw / 2, -17, cw, 34, 17); g.fill();
+  if (icon) { g.save(); g.translate(-cw / 2 + padL, -ico / 2); g.scale(ico / 256, ico / 256); g.fillStyle = '#fff'; g.fill(icon); g.restore(); }
+  g.fillStyle = '#fff'; g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillText(label, -cw / 2 + padL + ico + gap, 1); g.restore();
+}
+const lerpPt = (a, b, u) => [lerp(a[0], b[0], u), lerp(a[1], b[1], u)];
+
+// Szene 2: Bahn + Datenlinien zum Ring
+const FL_TOP = FL.ring[1] + 72 + 8, FL_DATA = FL.x.map(x => curve([[x, FL.y - FL.tile / 2 - 8], [x, FL.y - 120], [x * .25, FL_TOP + 70], [x * .08, FL_TOP]]));
+const passTimes = k => FLOW_BOXES.map(tb => tb + (FL.x[k] - FL.x[0]) / FL.speed);
+// Szene 3: Positionen auf der Kreisbahn
+const DEG = Math.PI / 180, CYP = CY.ang.map(a => [CY.c[0] + CY.R * Math.cos(a * DEG), CY.c[1] + CY.R * Math.sin(a * DEG)]);
+const LAP = 5.5, cycAng = t => { const q = t - T.lap0; if (q <= 0) return -90; return q < LAP ? -90 + 360 * q / LAP : -90 + 360 + 360 * (q - LAP) / (LAP * 2); };
+const cycPasses = k => { const out = []; for (let n = 0; n < 4; n++) { const a = CY.ang[k] + 90 + 360 * n; out.push(a <= 360 ? T.lap0 + a / 360 * LAP : T.lap0 + LAP + (a - 360) / 360 * LAP * 2); } return out; };
+// Szene 5: Bahnen Quellen → Hub, Hub → Panel
+const hubEdge = (hub, r, dy, side) => [hub[0] + side * Math.sqrt(r * r - dy * dy), hub[1] + dy];
+const SRC_IN = HW.srcY.map(y => { const dy = clamp((y - HW.hub[1]) * .3, -70, 70), e = hubEdge(HW.hub, HW.hubR + 8, dy, -1); return curve([[HW.srcX + 52, y], [HW.srcX + 200, y], [e[0] - 140, e[1]], e]); });
+const PANEL_L = HW.panel.x - HW.panel.w / 2;
+// Szene 6: Speichen
+const SPOKES = HB.pos.map(([x, y]) => { const dx = x - HB.hub[0], dy = y - HB.hub[1], d = Math.hypot(dx, dy), ux = dx / d, uy = dy / d; return [[HB.hub[0] + ux * (HB.hubR + 10), HB.hub[1] + uy * (HB.hubR + 10)], [x - ux * (HB.r + 8), y - uy * (HB.r + 8)]]; });
+// Szene 7: Bestandsverlauf
+const CH = GN.chart, CX1 = GN.ringX - 62 - 14, CYC = 10;
+const zig = x => { const v = (x - CH.x0) / (CX1 - CH.x0); return (Math.sin(v * 21) * .75 + Math.sin(v * 7.3 + 1.2) * .45) * (1 - v ** 3); };
 
 const scenes = {
-  intro: {
+  hook: {
     pre(t) {
-      softGlow(0, -60, 900, 'rgba(40,120,190,A)', .16);
-      // Titel, rückt nach oben
-      const m = inOutCubic(prog(t, ...T.titleUp));
-      g.save(); g.translate(0, lerp(110, -390, m)); g.scale(lerp(1, .66, m), lerp(1, .66, m));
-      text(S.titleSmall, 0, -48, 46, t, TX.title[0], 99, { w: 500, col: SOFT });
-      text(S.title, 0, 42, 86, t, TX.title[0] + .15, 99, { w: 800 });
-      g.restore();
-      // Linie + Stationen
-      const R = L('intro', t), la = prog(t, 4.5, 5.0);
-      chain(ST1.x, ST1.y, 62, R.x, la, t > T.v1(0));
-      ST1.x.forEach((x, k) => {
-        const lit = prog(t, T.v1(k), T.v1(k) + .3);
-        station(x, ST1.y, 62, T.st1(k), lit, R);
-        text(ST1.label[k], x, ST1.y + 112, 30, t, T.st1(k) + .2, 99, { w: 600, col: lit > .5 ? '#fff' : SOFT });
-      });
-      text(S.sub1, 0, 282, 42, t, TX.sub1[0], 99, { w: 500, lh: 56, st: .06 });
+      softGlow(0, -40, 950, 'rgba(40,120,190,A)', .16);
+      text(S.titleSmall, 0, -170, 44, t, T.titleIn, 99, { w: 500, col: SOFT });
+      text(S.title, 0, -95, 80, t, T.titleIn + .15, 99, { w: 800 });
+      shelf(SHELF, prog(t, 1.6, 2.4));
+      for (let k = 0; k < 10; k++) {
+        const u = prog(t, T.box(k), T.box(k) + .45); if (u <= 0) continue; const p = slot(SHELF, k), e = outCubic(u);
+        carton(p.x, p.y - (1 - e) * 70, SHELF.box, RINGC[k % 6], clamp(u * 3), 0, 1 - .08 * Math.sin(Math.PI * clamp(u * 1.4)) );
+      }
     },
-    post(t) { ST1.x.forEach((x, k) => drawIcon(ICON[ST1.icon[k]], x, ST1.y, 44, prog(t, T.st1(k) + .1, T.st1(k) + .7), '#fff', 1.7)); }
+    post() {}
   },
-  steps: {
+  flow: {
     pre(t) {
-      softGlow(0, 0, 900, 'rgba(40,120,190,A)', .14);
-      text(S.head2, 0, -390, 60, t, TX.head2[0], 99, { w: 800 });
-      const R = L('steps', t);
-      chain(ST2.x, ST2.y, 62, R.x, prog(t, 11.4, 11.9), t > T.v2(0));
-      ST2.x.forEach((x, k) => {
-        const lit = prog(t, T.v2(k), T.v2(k) + .3);
-        station(x, ST2.y, 62, T.st2(k), lit, R);
-        text(ST2.label[k].join('\n'), x, ST2.y + 118, 34, t, T.st2(k) + .2, 99, { w: 700, lh: 40, col: lit > .5 ? '#fff' : SOFT });
+      softGlow(0, 60, 950, 'rgba(40,120,190,A)', .14);
+      text(S.sub1, 0, -380, 42, t, TX.sub1[0], 99, { w: 500, lh: 56, st: .06 });
+      const ra = prog(t, 9.3, 10.0);
+      // Bahn (Förderband): nur zwischen den Kacheln, Muster läuft in Förderrichtung
+      for (let k = 0; k < 3; k++) {
+        const a = FL.x[k] + FL.tile / 2 + 8, b = FL.x[k + 1] - FL.tile / 2 - 8; if (ra <= 0) break;
+        g.save(); g.globalAlpha = ra; g.strokeStyle = 'rgba(255,255,255,.18)'; g.lineWidth = 10; g.lineCap = 'round'; g.beginPath(); g.moveTo(a, FL.y); g.lineTo(lerp(a, b, outCubic(ra)), FL.y); g.stroke();
+        g.strokeStyle = 'rgba(65,182,230,.55)'; g.lineWidth = 3; g.setLineDash([10, 14]); g.lineDashOffset = -(t * FL.speed) % 24; g.stroke(); g.restore();
+      }
+      // Datenlinien Kachel → Ring
+      FL_DATA.forEach((pts, k) => dotted(pts, 0, inOutCubic(prog(t, T.node(k) + .4, T.node(k) + 1.1)), .3));
+      FL.x.forEach((x, k) => {
+        let lit = 0; for (const tp of passTimes(k)) lit = Math.max(lit, decay(t, tp, .4));
+        tile(x, FL.y, FL.tile, T.node(k), clamp(lit * 1.4));
+        text(FL.label[k], x, FL.y + 102, 30, t, T.node(k) + .2, 99, { w: 600, col: lit > .3 ? '#fff' : SOFT });
       });
+      // Kartons auf der Bahn (verschwinden in den Kacheln)
+      for (const tb of FLOW_BOXES) {
+        const x = FL.x[0] + (t - tb) * FL.speed; if (t < tb || x > FL.x[3]) continue;
+        const d = Math.min(...FL.x.map(c => Math.abs(c - x))), a = clamp((d - FL.tile / 2 - 30) / 22) * clamp((t - tb) * 4);
+        carton(x, FL.y - 2, 46, RINGC[Math.round((tb - T.flow0) / T.flowEvery) % 6], a);
+      }
     },
-    post(t) { ST2.x.forEach((x, k) => drawIcon(ICON[ST2.icon[k]], x, ST2.y, 44, prog(t, T.st2(k) + .1, T.st2(k) + .7), '#fff', 1.7)); }
+    post(t) {
+      FL.x.forEach((x, k) => drawIcon(ICON[FL.icon[k]], x, FL.y, 46, prog(t, T.node(k) + .1, T.node(k) + .7), '#fff'));
+      // Datenpunkte steigen zum Ring, wenn ein Karton eine Kachel erreicht („abbilden“)
+      FL.x.forEach((x, k) => { for (const tp of passTimes(k)) { const u = prog(t, tp, tp + .8); if (u > 0 && u < 1) glowDot(...ptAt(FL_DATA[k], inOutCubic(u)), 5.5, RINGC[k + 1], Math.min(1, u * 6, (1 - u) * 5)); } });
+    }
+  },
+  cycle: {
+    pre(t) {
+      softGlow(CY.c[0], CY.c[1], 950, 'rgba(40,140,210,A)', .18);
+      text(S.head2, 0, -440, 60, t, TX.head2[0], 99, { w: 800 });
+      // Kreisbahn nur zwischen den Stationen, mit Richtungspfeilen
+      const oa = inOutCubic(prog(t, 18.0, 19.0)), gap = (CY.r + 9) / CY.R;
+      for (let k = 0; k < 5; k++) {
+        const a0 = CY.ang[k] * DEG + gap, a1 = (CY.ang[k] + 72) * DEG - gap, ae = lerp(a0, a1, clamp(oa * 5 - k));
+        if (ae <= a0) continue;
+        g.save(); g.globalAlpha = .4; g.strokeStyle = '#fff'; g.lineWidth = 2.4; g.lineCap = 'round'; g.setLineDash([.01, 9]); g.beginPath(); g.arc(CY.c[0], CY.c[1], CY.R, a0, ae); g.stroke(); g.restore();
+        const am = (a0 + a1) / 2; if (ae > am) { const px = CY.c[0] + CY.R * Math.cos(am), py = CY.c[1] + CY.R * Math.sin(am);
+          g.save(); g.translate(px, py); g.rotate(am + Math.PI / 2); g.globalAlpha = .7; g.strokeStyle = BLUE; g.lineWidth = 3; g.lineCap = 'round'; g.lineJoin = 'round'; g.beginPath(); g.moveTo(-6, -7); g.lineTo(3, 0); g.lineTo(-6, 7); g.stroke(); g.restore(); }
+      }
+      CYP.forEach(([x, y], k) => {
+        let lit = 0; for (const tp of cycPasses(k)) lit = Math.max(lit, decay(t, tp, .5));
+        const done = t > cycPasses(k)[0] ? .35 : 0;
+        station(x, y, CY.r, T.st2(k), Math.max(lit, done));
+        const ln = CY.label[k];
+        text(ln.join('\n'), x, y + CY.r + 34, 32, t, T.st2(k) + .2, 99, { w: 700, lh: 36, col: lit > .3 ? '#fff' : SOFT });
+      });
+      // Karton läuft im Kreis (unsichtbar auf den Stationen)
+      if (t > T.lap0 - .2) { const a = cycAng(t) * DEG, x = CY.c[0] + CY.R * Math.cos(a), y = CY.c[1] + CY.R * Math.sin(a), d = Math.min(...CYP.map(p => Math.hypot(p[0] - x, p[1] - y)));
+        carton(x, y, 40, RINGC[0], clamp((d - CY.r * .6) / 26) * prog(t, T.lap0 - .2, T.lap0 + .1)); }
+    },
+    post(t) {
+      CYP.forEach(([x, y], k) => drawIcon(ICON[CY.icon[k]], x, y, 44, prog(t, T.st2(k) + .1, T.st2(k) + .7), '#fff'));
+      hubLabel(t, 'cycle', 17.8);
+    }
   },
   problem: {
     pre(t) {
       softGlow(0, 40, 1000, 'rgba(200,50,60,A)', .10);
       text(S.label3, 0, -448, 26, t, TX.label3[0], 99, { w: 800, col: RED, ls: 4 });
       text(S.head3, 0, -372, 52, t, TX.head3[0], 99, { w: 700, acc: ORANGE, lh: 62 });
-      // Kanäle links
-      PB.chY.forEach((y, k) => { station(PB.chX, y, 54, T.pch(k), 0); text(PB.chLabel[k], PB.chX, y + 82, 28, t, T.pch(k) + .2, 99, { w: 600, col: SOFT }); });
-      // Bildschirme rechts + Papierstapel
-      const landed = [0, 0, 0];
-      FLIGHTS.forEach(([c, s], n) => { if (t >= T.flight(n) + .95) landed[s]++; });
-      PB.scY.forEach((y, k) => {
-        const u = outBack(prog(t, T.psc(k), T.psc(k) + .5), 1.4); if (u <= 0) return;
-        g.save(); g.translate(PB.scX, y); g.scale(u, u);
-        glass(0, 0, 230, 140, 12, 1, 'rgba(255,255,255,.25)');
-        g.fillStyle = ['rgba(65,182,230,.55)', 'rgba(252,218,52,.55)', 'rgba(245,61,71,.55)'][k]; g.beginPath(); g.roundRect(-115, -70, 230, 22, [12, 12, 0, 0]); g.fill();
-        g.fillStyle = 'rgba(255,255,255,.18)'; for (let i = 0; i < 3; i++) g.fillRect(-90, -30 + i * 24, [150, 110, 130][(i + k) % 3], 9);
-        g.fillStyle = 'rgba(255,255,255,.25)'; g.fillRect(-6, 70, 12, 22); g.fillRect(-40, 90, 80, 6);
-        g.restore();
-        for (let i = 0; i < Math.min(landed[k], 6); i++) { // Stapel
-          g.save(); g.translate(PB.scX + 168, y + 58 - i * 11); g.rotate(((i * 37 + k * 11) % 9 - 4) * .02);
-          g.fillStyle = '#E9EEF3'; g.strokeStyle = 'rgba(0,0,0,.25)'; g.lineWidth = 1; g.beginPath(); g.rect(-30, -5, 60, 9); g.fill(); g.stroke(); g.restore();
+      const sh = PR.shelf; shelf(sh, prog(t, T.shelf2 - .3, T.shelf2 + .3));
+      const ch = prog(t, ...T.chaos);
+      PR.state.forEach((st, k) => {
+        const p = slot(sh, k), a0 = prog(t, T.shelf2 + k * .04, T.shelf2 + k * .04 + .3), col = RINGC[k % 6];
+        if (st < 0) {   // leer: Karton fällt heraus, Fach rot
+          const u = prog(t, T.chaos[0] + k * .05, T.chaos[0] + k * .05 + .5);
+          carton(p.x, p.y + inCubic(u) * 160, sh.box, col, a0 * (1 - u));
+          if (u > .6) { const r = outBack(prog(t, T.chaos[0] + .5 + k * .05, T.chaos[0] + .9 + k * .05), 1.6);
+            g.save(); g.globalAlpha = clamp(r); g.strokeStyle = RED; g.lineWidth = 2.4; g.setLineDash([7, 7]); g.beginPath(); g.roundRect(p.x - sh.box / 2, p.y - sh.box * .41, sh.box, sh.box * .82, 9); g.stroke(); g.setLineDash([]);
+            g.fillStyle = RED; g.beginPath(); g.arc(p.x, p.y, 15 * r, 0, 7); g.fill(); g.fillStyle = '#fff'; g.font = font(22, 800); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('!', p.x, p.y + 1); g.restore(); }
+        } else {
+          carton(p.x, p.y, sh.box, col, a0);
+          for (let n = 0; n < st; n++) {   // überfüllt: zusätzliche Kartons quetschen sich ins Fach
+            const u = prog(t, T.chaos[0] + .2 + n * .18 + k * .03, T.chaos[0] + .55 + n * .18 + k * .03); if (u <= 0) continue;
+            carton(p.x - 34 + n * 30, p.y - 30 - n * 8 - (1 - outCubic(u)) * 60, sh.box * .55, RINGC[(k + n + 2) % 6], clamp(u * 3), (n % 2 ? .18 : -.15));
+          }
+          if (st > 0 && ch > .5) { g.save(); g.globalAlpha = clamp((ch - .5) * 2) * .9; g.strokeStyle = ORANGE; g.lineWidth = 2.4; g.beginPath(); g.roundRect(p.x - sh.cw / 2 + 8, p.y - sh.ch + 30, sh.cw - 16, sh.ch - 8, 10); g.stroke(); g.restore(); }
         }
       });
-      // Fehlende Verbindung zwischen den Systemen
+      // Lose Listen (Tabellen) flattern rein, rote „?“-Verbindungen
+      PR.lists.forEach(([x, y], k) => {
+        const u = prog(t, T.list(k), T.list(k) + .7); if (u <= 0) return; const e = outCubic(u), rot = [-.12, .09, -.05][k];
+        g.save(); g.translate(x + (1 - e) * 900, y - (1 - e) * 120); g.rotate(rot + (1 - e) * .8); g.globalAlpha = clamp(u * 3);
+        g.fillStyle = '#E9EEF3'; g.beginPath(); g.roundRect(-75, -95, 150, 190, 8); g.fill();
+        g.fillStyle = ['rgba(65,182,230,.75)', 'rgba(252,218,52,.8)', 'rgba(255,149,36,.8)'][k]; g.fillRect(-75, -95, 150, 22);
+        g.fillStyle = 'rgba(30,40,55,.35)'; for (let i = 0; i < 7; i++) { g.fillRect(-58, -58 + i * 21, 40, 6); g.fillRect(-10, -58 + i * 21, [60, 44, 52][(i + k) % 3], 6); }
+        g.restore();
+      });
       const ma = prog(t, T.mism, T.mism + .5);
-      if (ma > 0) for (let k = 0; k < 2; k++) {
-        const y0 = PB.scY[k] + 40, y1 = PB.scY[k + 1] - 40, xm = PB.scX - 150, blink = .55 + .45 * Math.cos((t - T.mism) * 5 + k);
-        g.save(); g.globalAlpha = ma * blink; g.strokeStyle = RED; g.lineWidth = 2.4; g.setLineDash([8, 9]); g.beginPath(); g.moveTo(PB.scX - 115, y0 + 10); g.quadraticCurveTo(xm - 40, (y0 + y1) / 2, PB.scX - 115, y1 - 10); g.stroke(); g.setLineDash([]);
-        g.fillStyle = RED; g.font = font(30, 800); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('?', xm - 42, (y0 + y1) / 2); g.restore();
-      }
-      // Schlagworte
+      if (ma > 0) [[0, 1], [1, 2]].forEach(([i, j], n) => {
+        const [x0, y0] = PR.lists[i], [x1, y1] = PR.lists[j], xm = (x0 + x1) / 2 + (n ? -110 : 110), ym = (y0 + y1) / 2, blink = .55 + .45 * Math.cos((t - T.mism) * 5 + n);
+        g.save(); g.globalAlpha = ma * blink; g.strokeStyle = RED; g.lineWidth = 2.4; g.setLineDash([8, 9]); g.beginPath(); g.moveTo(x0 + (n ? -20 : 40), y0 + 60); g.quadraticCurveTo(xm, ym, x1 + (n ? 20 : -40), y1 - 60); g.stroke(); g.setLineDash([]);
+        g.fillStyle = RED; g.font = font(30, 800); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('?', xm + (n ? 10 : -10), ym); g.restore();
+      });
       S.kw3.forEach((s, k) => {
         const x = [-560, 0, 560][k], w = text(s, x + 14, 412, 40, t, T.kw(k), 99, { w: 700 });
         const u = outBack(prog(t, T.kw(k), T.kw(k) + .4), 2); if (u > 0 && w) { g.fillStyle = RED; g.beginPath(); g.arc(x + 14 - w / 2 - 22, 412 + capMid(40, 700), 8 * u, 0, 7); g.fill(); }
       });
     },
     post(t) {
-      PB.chY.forEach((y, k) => drawIcon(ICON[PB.chIcon[k]], PB.chX, y, 42, prog(t, T.pch(k) + .1, T.pch(k) + .7), '#fff', 1.7));
-      // Uhrzeiger im grauen Ring
-      const R = L('problem', t), ca = prog(t, 20.2, 20.8) * (1 - prog(t, T.recolor[0], T.recolor[0] + .4));
+      const R = L('problem', t), ca = prog(t, 26.9, 27.5) * (1 - prog(t, T.recolor[0], T.recolor[0] + .4));
       if (ca > 0) {
         const ticks = Math.max(0, Math.floor((t - T.tick0) * 2)), frac = (t - T.tick0) * 2 - ticks, snap = t > T.tick0 ? outBack(clamp(frac * 6), 2.5) : 0;
-        const am = ((ticks + snap) * 30) * Math.PI / 180, ah = (t - 20) * .25;
+        const am = ((ticks + snap) * 30) * Math.PI / 180, ah = (t - 27) * .25;
         g.save(); g.translate(R.x, R.y); g.globalAlpha = ca; g.strokeStyle = '#fff'; g.lineCap = 'round';
-        g.lineWidth = 4; g.beginPath(); g.moveTo(0, 0); g.lineTo(Math.sin(ah) * 18, -Math.cos(ah) * 18); g.stroke();
-        g.lineWidth = 3; g.beginPath(); g.moveTo(0, 0); g.lineTo(Math.sin(am) * 30, -Math.cos(am) * 30); g.stroke();
+        g.lineWidth = 4; g.beginPath(); g.moveTo(0, 0); g.lineTo(Math.sin(ah) * 17, -Math.cos(ah) * 17); g.stroke();
+        g.lineWidth = 3; g.beginPath(); g.moveTo(0, 0); g.lineTo(Math.sin(am) * 28, -Math.cos(am) * 28); g.stroke();
         g.fillStyle = '#fff'; g.beginPath(); g.arc(0, 0, 4.5, 0, 7); g.fill(); g.restore();
       }
-      // Zettel fliegen von den Kanälen auf die Bildschirme
-      FLIGHTS.forEach(([c, s], n) => {
-        const t0 = T.flight(n), u = prog(t, t0, t0 + .95); if (u <= 0 || u >= 1) return;
-        const p0 = [PB.chX + 60, PB.chY[c]], p3 = [PB.scX - 120, PB.scY[s] + 10], up = (n % 2 ? -1 : 1) * 170;
-        const e = inOutCubic(u), [x, y] = bez(p0, [p0[0] + 300, p0[1] + up], [p3[0] - 300, p3[1] - up], p3, e);
-        g.save(); g.translate(x, y); g.rotate(Math.sin(e * 6 + n) * .5); g.globalAlpha = Math.min(1, u * 8, (1 - u) * 8);
-        g.fillStyle = '#F2F5F8'; g.beginPath(); g.roundRect(-14, -18, 28, 36, 3); g.fill();
-        g.fillStyle = 'rgba(30,40,55,.45)'; for (let i = 0; i < 3; i++) g.fillRect(-9, -10 + i * 8, i === 2 ? 11 : 18, 3);
-        g.restore();
-      });
     }
   },
   how: {
     pre(t) {
-      softGlow(HW.hub[0], HW.hub[1], 900, 'rgba(40,140,210,A)', .2 * prog(t, 30.4, 31.4));
+      softGlow(HW.hub[0], HW.hub[1], 900, 'rgba(40,140,210,A)', .2 * prog(t, 35.4, 36.4));
       text(S.head4, 0, -445, 56, t, TX.head4[0], 99, { w: 800 });
-      const [hx, hy] = HW.hub, R = HW.hubR;
-      // Bahnen
-      HW.chY.forEach((y, k) => { dotted(CH_IN[k], 0, inOutCubic(prog(t, T.hch(k) + .3, T.hch(k) + .9)), .35); });
-      HW.dY.forEach((y, k) => { dotted(D_OUT[k], 0, inOutCubic(prog(t, T.hd(k) + .2, T.hd(k) + .8)), .35); });
-      // Kanäle
-      HW.chY.forEach((y, k) => { station(HW.chX, y, 48, T.hch(k), 0); text(HW.chLabel[k], HW.chX, y + 72, 26, t, T.hch(k) + .2, 99, { w: 600, col: SOFT }); });
-      // Ziele
-      HW.dY.forEach((y, k) => {
-        let fl = 0; DISP.forEach((d, n) => { if (d === k) fl = Math.max(fl, decay(t, T.disp(n) + .8, .35)); });
-        station(HW.dX, y, 54, T.hd(k), clamp(fl * 1.5)); text(HW.dLabel[k], HW.dX, y + 82, 28, t, T.hd(k) + .2, 99, { w: 600, col: SOFT });
-        if (fl > .02) softGlow(HW.dX, y, 120, 'rgba(65,182,230,A)', .35 * fl);
-      });
-      // Bestandskarte
-      const cu = outBack(prog(t, T.card, T.card + .5), 1.3);
-      if (cu > 0) {
-        const [cx, cy] = HW.card;
-        dotted([[hx, hy + R + 8], [cx, cy - 62]], 0, 1, .5 * cu);
-        g.save(); g.translate(cx, cy); g.scale(cu, cu);
-        glass(0, 0, 440, 118, 18, 1);
-        g.font = font(26, 700); g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillStyle = SOFT; g.fillText(S.stock, -196, -26); const stockW = g.measureText(S.stock).width;
-        g.font = font(20, 600); g.fillStyle = BLUE; g.fillText(S.realtime, Math.max(-84, -196 + stockW + 18), -26);
-        // Füllstand bewegt sich mit jeder ankommenden Bestellung
-        const lvl = .72, fillU = outCubic(prog(t, T.card + .25, T.card + 1.6));   // eine monotone Füllung, kein Zurückspringen
-        g.fillStyle = 'rgba(255,255,255,.12)'; g.beginPath(); g.roundRect(-196, 14, 392, 16, 8); g.fill();
-        const bg2 = g.createLinearGradient(-196, 0, 196, 0); bg2.addColorStop(0, BLUE); bg2.addColorStop(1, GREEN); g.fillStyle = bg2; g.beginPath(); g.roundRect(-196, 14, 392 * lvl * fillU, 16, 8); g.fill();
+      HW.srcY.forEach((y, k) => { dotted(SRC_IN[k], 0, inOutCubic(prog(t, T.src(k) + .3, T.src(k) + .9)), .35); station(HW.srcX, y, 44, T.src(k), 0); text(HW.srcLabel[k], HW.srcX, y + 70, 26, t, T.src(k) + .2, 99, { w: 600, col: SOFT }); });
+      // Hub → Dashboard
+      const P0 = HW.panel, pu = outBack(prog(t, T.panel, T.panel + .5), 1.2);
+      dotted([[HW.hub[0] + HW.hubR + 10, HW.hub[1]], [PANEL_L - 8, HW.hub[1]]], 0, inOutCubic(prog(t, T.panel - .3, T.panel + .3)), .5);
+      if (pu > 0) {
+        g.save(); g.translate(P0.x, P0.y); g.scale(pu, pu); glass(0, 0, P0.w, P0.h, 22, 1);
+        const lx = -P0.w / 2 + 40, rx = P0.w / 2 - 40, hy = -P0.h / 2 + 46;
+        g.font = font(28, 700); g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillStyle = SOFT; g.fillText(S.stock, lx, hy); const sw = g.measureText(S.stock).width;
+        g.font = font(21, 600); g.fillStyle = BLUE; g.fillText(S.realtime, lx + sw + 20, hy);
         const ok = prog(t, T.avail, T.avail + .25);
-        if (ok < 1) { g.globalAlpha = 1 - ok; g.font = font(22, 600); g.fillStyle = SOFT; g.textAlign = 'right'; g.fillText(S.checking, 196, -26); g.globalAlpha = 1; }
-        if (ok > 0) {
-          g.font = font(22, 700); const tw = g.measureText(S.available).width, padL = 12, ico = 20, gap = 6, padR = 16, cw = padL + ico + gap + tw + padR;
-          const s = outBack(ok, 2.2); g.save(); g.translate(196 - cw / 2, -26); g.scale(s, s); g.fillStyle = GREEN; g.beginPath(); g.roundRect(-cw / 2, -17, cw, 34, 17); g.fill();
-          g.save(); g.translate(-cw / 2 + padL, -ico / 2); g.scale(ico / 256, ico / 256); g.fillStyle = '#fff'; g.fill(ICON.check); g.restore();
-          g.fillStyle = '#fff'; g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillText(S.available, -cw / 2 + padL + ico + gap, 1); g.restore();
-        }
+        if (ok < 1) { g.globalAlpha = 1 - ok; g.font = font(22, 600); g.fillStyle = SOFT; g.textAlign = 'right'; g.fillText(S.checking, rx, hy); g.globalAlpha = 1; }
+        chip(rx, hy, S.available, GREEN, ok, 'right', ICON.check);
+        // Artikelzeilen: Icon, Balken, Mindestbestand
+        const bx0 = lx + 64, bw = rx - 170 - bx0, mx = bx0 + bw * HW.min;
+        HW.rows.forEach((ry, k) => {
+          const y = ry - P0.y + (-10);
+          drawIconAt(ICON.package, lx + 18, y, 30, '#fff', .9);
+          g.fillStyle = 'rgba(255,255,255,.1)'; g.beginPath(); g.roundRect(bx0, y - 9, bw, 18, 9); g.fill();
+          let lvl = HW.fill[k] * outCubic(prog(t, T.card + k * .2, T.card + k * .2 + 1.0)), low = 0;
+          if (k === 1) { const d = inOutCubic(prog(t, ...T.dip)), r = inOutCubic(prog(t, ...T.refill)); lvl = lerp(lerp(lvl, .2, d), .82, r); low = d * (1 - r); }
+          if (lvl > .005) { const gr = g.createLinearGradient(bx0, 0, bx0 + bw, 0); gr.addColorStop(0, BLUE); gr.addColorStop(1, GREEN); g.fillStyle = gr; g.beginPath(); g.roundRect(bx0, y - 9, bw * lvl, 18, 9); g.fill();
+            if (low > 0) { g.globalAlpha = low; g.fillStyle = RED; g.beginPath(); g.roundRect(bx0, y - 9, bw * lvl, 18, 9); g.fill(); g.globalAlpha = 1; } }
+          g.save(); g.strokeStyle = 'rgba(255,255,255,.55)'; g.lineWidth = 2; g.setLineDash([4, 5]); g.beginPath(); g.moveTo(mx, y - 18); g.lineTo(mx, y + 18); g.stroke(); g.restore();
+        });
         g.restore();
+        // Chip „nachbestellt“ neben der kritischen Zeile (außerhalb der Skalierung, steht still)
+        chip(P0.x + P0.w / 2 - 40, HW.rows[1] - 10, S.reorder, BLUE, prog(t, T.reorder, T.reorder + .3) * (pu >= 1 ? 1 : 0), 'right', ICON['arrows-clockwise']);
       }
-      // Bildunterschriften 1–3 mit Nummer
-      caption(t, 1, S.cap1, TX.cap1);
-      caption(t, 2, S.cap2, TX.cap2);
-      caption(t, 3, S.cap3, TX.cap3, S.cap3sub);
+      // Umlagerung zwischen zwei Filialen
+      const su = prog(t, T.move[0] - .7, T.move[0] - .2);
+      if (su > 0) {
+        const [a, b] = HW.stores; HW.stores.forEach(([x, y], k) => station(x, y, 44, T.move[0] - .7 + k * .1, 0));
+        dotted([[a[0] + 52, a[1]], [b[0] - 52, b[1]]], 0, inOutCubic(su), .5);
+        chip((a[0] + b[0]) / 2, a[1] - 50, S.transfer, 'rgba(65,182,230,.9)', prog(t, T.move[0] - .3, T.move[0]), 'center');
+        const mu = prog(t, ...T.move); if (mu > 0 && mu < 1) carton(lerp(a[0] + 52, b[0] - 52, inOutCubic(mu)), a[1], 36, RINGC[4], Math.min(1, mu * 6, (1 - mu) * 6));
+      }
+      caption(t, 1, S.cap1, TX.cap1); caption(t, 2, S.cap2, TX.cap2); caption(t, 3, S.cap3, TX.cap3, S.cap3sub);
     },
     post(t) {
-      HW.chY.forEach((y, k) => drawIcon(ICON[HW.chIcon[k]], HW.chX, y, 38, prog(t, T.hch(k) + .1, T.hch(k) + .7), '#fff', 1.7));
-      HW.dY.forEach((y, k) => drawIcon(ICON[HW.dIcon[k]], HW.dX, y, 42, prog(t, T.hd(k) + .1, T.hd(k) + .7), '#fff', 1.7));
-      // Bestellungen strömen ein
-      STREAM.forEach(s => { const u = prog(t, s.t, s.t + .9); if (u <= 0 || u >= 1) return; const [x, y] = ptAt(CH_IN[s.c], inOutCubic(u)); glowDot(x, y, 6.5, RINGC[s.c], Math.min(1, u * 6, (1 - u) * 5)); });
-      // Aufträge gehen raus
-      DISP.forEach((d, n) => { const u = prog(t, T.disp(n), T.disp(n) + .8); if (u <= 0 || u >= 1) return; const [x, y] = ptAt(D_OUT[d], inOutCubic(u)); glowDot(x, y, 7, RINGC[(n + 2) % 6], Math.min(1, u * 6, (1 - u) * 5)); });
-      hubLabel(t, 'how');
+      HW.srcY.forEach((y, k) => drawIcon(ICON[HW.srcIcon[k]], HW.srcX, y, 38, prog(t, T.src(k) + .1, T.src(k) + .7), '#fff'));
+      if (t > T.move[0] - .7) HW.stores.forEach(([x, y], k) => drawIcon(ICON.storefront, x, y, 38, prog(t, T.move[0] - .6 + k * .1, T.move[0] + k * .1), '#fff'));
+      STREAM.forEach(s => { const u = prog(t, s.t, s.t + .9); if (u <= 0 || u >= 1) return; glowDot(...ptAt(SRC_IN[s.c], inOutCubic(u)), 6, RINGC[s.c], Math.min(1, u * 6, (1 - u) * 5)); });
+      hubLabel(t, 'how', 35.9);
     }
   },
-  can: {
+  hubs: {
     pre(t) {
-      softGlow(CN.hub[0], CN.hub[1], 900, 'rgba(40,140,210,A)', .18);
+      softGlow(HB.hub[0], HB.hub[1], 950, 'rgba(40,140,210,A)', .18);
       text(S.head5, 0, -440, 56, t, TX.head5[0], 99, { w: 800 });
-      CN.pos.forEach(([x, y], k) => {
-        const t0 = T.cards(k), u = outBack(prog(t, t0, t0 + .5), 1.4); if (u <= 0) return;
-        const pts = C_OUT[k]; dotted(pts, 0, inOutCubic(prog(t, t0 - .25, t0 + .15)), .4);
-        for (let j = 0; j < 3; j++) { const q = ((t - t0 - .3) * .55 + j / 3) % 1; if (t > t0 + .3) glowDot(...ptAt(pts, q), 4.5, RINGC[k + 1], .8 * Math.min(1, q * 6, (1 - q) * 6)); }
-        g.save(); g.translate(x, y); g.scale(u, u);
-        glass(0, 0, 548, 150, 22, 1);
-        g.beginPath(); g.arc(-200, 0, 46, 0, 7); g.fillStyle = 'rgba(65,182,230,.16)'; g.fill(); g.strokeStyle = 'rgba(65,182,230,.6)'; g.lineWidth = 2; g.stroke();
-        g.restore();
-        const ln = CN.lines[k];
-        text(ln.join('\n'), x - 130, y - (ln.length - 1) * 20, 36, t, t0 + .15, 99, { w: 700, align: 'left', lh: 40 });
+      HB.pos.forEach(([x, y], k) => {
+        const t0 = T.hb(k); dotted(SPOKES[k], 0, inOutCubic(prog(t, t0 - .25, t0 + .2)), .4);
+        station(x, y, HB.r, t0, .35);
+        text(HB.lines[k].join('\n'), x, y + HB.r + 36, 32, t, t0 + .15, 99, { w: 700, lh: 38 });
       });
-      text(S.foot5, 0, 405, 50, t, TX.foot5[0], 99, { w: 700 });
+      text(S.foot5, 0, 450, 50, t, TX.foot5[0], 99, { w: 700 });
     },
     post(t) {
-      CN.pos.forEach(([x, y], k) => drawIcon(ICON[CN.icon[k]], x - 200, y, 46, prog(t, T.cards(k) + .1, T.cards(k) + .7), '#fff', 1.7));
-      hubLabel(t, 'can');
+      HB.pos.forEach(([x, y], k) => {
+        drawIcon(ICON[HB.icon[k]], x, y, 46, prog(t, T.hb(k) + .1, T.hb(k) + .7), '#fff');
+        if (t > T.hb(k) + .3) for (let j = 0; j < 2; j++) { const q = ((t - T.hb(k) - .3) * .7 + j / 2) % 1, out = j === 0, u = out ? q : 1 - q;
+          glowDot(...lerpPt(SPOKES[k][0], SPOKES[k][1], u), 4.5, RINGC[k + 1], .85 * Math.min(1, q * 6, (1 - q) * 6)); }
+      });
+      hubLabel(t, 'hubs', 52.9);
     }
   },
   gain: {
@@ -321,15 +404,26 @@ const scenes = {
         if (c > 0) { g.save(); g.translate(-762, y + capMid(48, 700)); g.beginPath(); g.rect(-18, -18, 36 * c, 36); g.clip(); g.translate(-16, -16); g.scale(32 / 256, 32 / 256); g.fillStyle = '#fff'; g.fill(ICON.check); g.restore(); }
         text(s, -710, y, 48, t, t0 + .08, 99, { w: 700, align: 'left' });
       });
-      g.save(); g.globalAlpha = prog(t, 55.8, 56.3) * .35; g.strokeStyle = '#fff'; g.lineWidth = 2; g.beginPath(); g.moveTo(250, GN.base + 2); g.lineTo(770, GN.base + 2); g.stroke(); g.restore();
-      GN.bx.forEach((x, k) => {
-        const h = GN.bh[k] * outCubic(prog(t, T.bar(k), T.bar(k) + 1.0)); if (h <= 0) return;
-        const gr = g.createLinearGradient(0, GN.base - h, 0, GN.base); gr.addColorStop(0, RINGC[k]); gr.addColorStop(1, 'rgba(255,255,255,.04)');
-        g.fillStyle = gr; g.beginPath(); g.roundRect(x - 38, GN.base - h, 76, h, [12, 12, 0, 0]); g.fill();
-      });
+      // Zonen: Überbestand (oben, orange), Korridor (grün), Fehlbestand (unten, rot)
+      const za = prog(t, 61.9, 62.5), B = CH.band; if (za <= 0) return;
+      g.save(); g.globalAlpha = za;
+      g.fillStyle = 'rgba(255,149,36,.07)'; g.fillRect(CH.x0, CH.y0, CX1 - CH.x0, CYC - B - CH.y0);
+      g.fillStyle = 'rgba(245,61,71,.07)'; g.fillRect(CH.x0, CYC + B, CX1 - CH.x0, CH.y1 - CYC - B);
+      g.fillStyle = 'rgba(97,189,71,.13)'; g.fillRect(CH.x0, CYC - B, CX1 - CH.x0, 2 * B);
+      g.strokeStyle = 'rgba(97,189,71,.55)'; g.lineWidth = 2; g.setLineDash([6, 7]); [CYC - B, CYC + B].forEach(y => { g.beginPath(); g.moveTo(CH.x0, y); g.lineTo(CX1, y); g.stroke(); }); g.setLineDash([]);
+      g.strokeStyle = 'rgba(255,255,255,.3)'; g.lineWidth = 2; g.beginPath(); g.moveTo(CH.x0, CH.y0); g.lineTo(CH.x0, CH.y1); g.lineTo(CX1, CH.y1); g.stroke();
+      g.restore();
+      // Linie: Zickzack → glatt im Korridor, Farbe je nach Zone
+      const amp = 200 * (1 - .88 * inOutCubic(prog(t, T.check(0), T.check(3) + .6))), rv = inOutCubic(prog(t, ...T.draw)), n = 90;
+      const pts = Array.from({ length: n + 1 }, (_, i) => { const x = lerp(CH.x0, CX1, i / n); return [x, CYC + amp * zig(x)]; });
+      g.save(); g.lineWidth = 5; g.lineCap = 'round';
+      for (let i = 0; i < n * rv; i++) { const [x0, y0] = pts[i], [x1, y1] = pts[i + 1], ym = (y0 + y1) / 2;
+        g.strokeStyle = ym < CYC - B ? ORANGE : ym > CYC + B ? RED : GREEN; g.beginPath(); g.moveTo(x0, y0); g.lineTo(x1, y1); g.stroke(); }
+      g.restore();
     },
     post() {}
   },
+
   end: {
     pre(t) {
       softGlow(0, -120, 1000, 'rgba(40,120,190,A)', .18);
@@ -381,23 +475,18 @@ function endB(t) {
   text(S.cta, left + 26, by, 26, t, TX.end3[0] + .1, 99, { w: 600, align: 'left' });
 }
 function caption(t, n, s, [t0, t1], sub) {
-  if (t < t0 || (t > t1 && t1 < WHIPS[3][0])) return;
+  if (t < t0 || (t > t1 && t1 < WHIPS[4][0])) return;
   g.save(); g.font = font(46, 700); const plain = s.replace(/\*/g, ''), w = g.measureText(plain).width; g.restore();
-  const y = sub ? 380 : 400, bx = -w / 2 - 44, fadeOut = t1 >= WHIPS[3][0] ? 1 : 1 - prog(t, t1 - .3, t1);
+  const y = sub ? 380 : 400, bx = -w / 2 - 44, fadeOut = t1 >= WHIPS[4][0] ? 1 : 1 - prog(t, t1 - .3, t1);
   const u = outBack(prog(t, t0, t0 + .4), 2) * fadeOut;
   if (u > 0) { g.save(); g.globalAlpha = fadeOut; g.translate(bx, Math.round(y) + capMid(46, 700)); g.scale(u, u); g.fillStyle = BLUE; g.beginPath(); g.arc(0, 0, 25, 0, 7); g.fill(); g.fillStyle = '#fff'; g.font = font(28, 800); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(String(n), 0, 1); g.restore(); }
-  text(s, 22, y, 46, t, t0 + .1, t1, { w: 700, fade: t1 < WHIPS[3][0] });
+  text(s, 22, y, 46, t, t0 + .1, t1, { w: 700, fade: t1 < WHIPS[4][0] });
   if (sub) text(sub, 0, y + 58, 34, t, t0 + 1.2, t1, { w: 500, col: SOFT });
 }
-function hubLabel(t, s) {
-  const R = L(s, t), a = prog(t, 30.5, 31.1); if (a <= 0) return;
+function hubLabel(t, s, t0) {
+  const R = L(s, t), a = prog(t, t0, t0 + .6); if (a <= 0) return;
   g.save(); g.globalAlpha = a; g.font = font(R.r * .27, 800); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = '#fff'; g.fillText(S.hub, R.x, R.y + 1); g.restore();
 }
-// Bahnen Szene 4/5
-const hubEdge = (hub, r, dy, side) => [hub[0] + side * Math.sqrt(r * r - dy * dy), hub[1] + dy];
-const CH_IN = HW.chY.map(y => { const dy = (y + 15) * .28, e = hubEdge(HW.hub, HW.hubR - 6, dy, -1); return curve([[HW.chX + 54, y], [HW.chX + 260, y], [e[0] - 200, e[1]], e]); });
-const D_OUT = HW.dY.map(y => { const dy = (y + 10) * .3, e = hubEdge(HW.hub, HW.hubR - 6, dy, 1); return curve([e, [e[0] + 200, e[1]], [HW.dX - 260, y], [HW.dX - 60, y]]); });
-const C_OUT = CN.pos.map(([x, y]) => { const sx = Math.sign(x), dy = clamp(y * .35, -80, 80), e = hubEdge(CN.hub, CN.hubR - 4, dy, sx); return curve([e, [e[0] + sx * 140, e[1]], [x - sx * 380, y], [x - sx * 276, y]]); });
 
 // ---------- Hintergrund ----------
 const STREAKS = (() => { const r = rng(19); return Array.from({ length: 7 }, () => ({ p: r(), v: .6 + r() * .8, o: (r() - .5) * 900, l: 160 + r() * 260, w: 1 + r() * 1.5, a: .1 + r() * .15, c: RINGC[Math.floor(r() * 6)] })); })();
@@ -421,7 +510,7 @@ function drawScene(t) {
   drawRing(t);
   for (const s of vis) { g.save(); g.translate(...SC[s]); layered(sceneAlpha(s, t), () => scenes[s].post(t)); g.restore(); }
   // Lichtstreifen in Fahrtrichtung während der Kamerafahrten: kein leeres Bild in der Mitte der Fahrt
-  for (const [a, b] of WHIPS) if (t > a && t < b && a !== WHIPS[2][0]) {
+  for (const [a, b] of WHIPS) if (t > a && t < b && a !== WHIPS[3][0]) {
     const q = (t - a) / (b - a), A = camAt(a), B = camAt(b), dx = B.x - A.x, dy = B.y - A.y, L0 = Math.hypot(dx, dy), ux = dx / L0, uy = dy / L0, al = Math.sin(Math.PI * q) ** 2;
     g.save(); g.setTransform(scale, 0, 0, scale, 0, 0); g.globalCompositeOperation = 'lighter'; g.lineCap = 'round';
     STREAKS.forEach(s => {

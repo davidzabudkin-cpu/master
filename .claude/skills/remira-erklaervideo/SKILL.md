@@ -66,3 +66,6 @@ Vorlage: `remira/projekte/plattform-animation/` (Messung: `tools/measure.py`).
 ## Ton-Mastering (18.11.2026)
 - Kein `loudnorm` für das Endmastering: fällt bei großem Dynamikumfang (leises Intro) in den dynamischen Modus und drückt das Intro hoch. Stattdessen `tools/master.py` aus `warenwirtschaft-video` (messen → linear auf −16 LUFS → Limiter −1,5 dBFS).
 - Intro-Pegel gegen das freigegebene OMS-Video messen (RMS 0–5 s ≈ −29, 5–10 s ≈ −21, Hauptteil ≈ −16 dB). Keine Claps.
+
+## Neues Video, nicht Kopie (18.11.2026)
+- Von `oms-video` übernehmen: Technik (Renderer, Text-Helfer, Ring, Kamera-Fahrten, Ton-Pipeline), Ring als roten Faden, Endkarte B. **Neu erfinden:** Szenen, Key Visuals, Kamerapfad und Ring-Rollen passend zum Thema (Beispiel WWS: Regal, Warenstrom, Kreislauf, Bestands-Dashboard, Datendrehscheibe, Bestandslinie). Vorher Storyboard nach Skill `storyboard` mit Gates.

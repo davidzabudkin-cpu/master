@@ -71,7 +71,7 @@
 | **OMS-Erklärvideo** (71 s, 16:9, ohne Stimme, Glossar „Order Management System“) | `remira/projekte/oms-video/REMIRA-OMS-Erklaervideo-DE.mp4` und `-EN.mp4` + Code (Texte beider Sprachen in `src/texte.js`) | 7 Feedback-Runden, Endkarte B. **Offen:** David findet Claps störend (Intro ohne, ab 0:11 noch drin) – evtl. ganz raus. |
 | **Plattform-Animation** (21 s, Plattform-Sechseck animiert) | `remira/projekte/plattform-animation/REMIRA-Plattform-Animation-EN.mp4` und `-DE.mp4` + Code (Texte in `src/data.js`) | regelmäßige, weich gerundete Sechsecke, Hintergrund schwarz, Phosphor bold. **Offen:** hat noch die alte Flächen-Musik – evtl. dynamische Musik wie OMS. |
 | **Erklärvideo Stichprobeninventur** (Englisch, mit Stimme) | `remira/projekte/erklaervideo-v2-inventur/` | Schulungs-Demo. Bild rendert (Assets am 18.11. wiederhergestellt, Heldenbilder per `tools/hero_frames.py`, braucht `pip install opencv-python-headless`). **Fehlt:** Stimmdateien `assets/vo/*.mp3` (ElevenLabs) und das fertige MP4 – mit Ton erst nach neuer Stimme aus einem freigegebenen Tool. |
-| **Warenwirtschaft-Erklärvideo** (71,5 s, wie OMS) | `remira/projekte/warenwirtschaft-video/REMIRA-WWS-Erklaervideo-DE.mp4` und `-EN.mp4` + Code | gebaut 18.11. aus remira.com-Glossar + Produktseite, Musik ohne Claps; **offen:** Freigabe Texte (Szene 3, Slogan, EN) |
+| **Warenwirtschaft-Erklärvideo** (74,5 s, v2 eigener Aufbau: Regal, Warenstrom, Kreislauf, Dashboard, Drehscheibe, Bestandslinie) | `remira/projekte/warenwirtschaft-video/REMIRA-WWS-Erklaervideo-DE.mp4` und `-EN.mp4` + Code | gebaut 18.11. aus remira.com-Glossar + Produktseite, Musik ohne Claps; **offen:** Freigabe Texte (Problem-Szene, Slogan, EN) |
 | **Demo-Websites** | `remira/demos/demo-premium/` (3D-Ring, Maus-Effekte, Fable), `demo-commerce/`, `demo-website/` (Inventur) | Konzept-Demos, intern |
 | **KI-Schulung 11.11.** | `remira/schulung/` (Präsentation als HTML, Lernpfad, Spickzettel, Folien-Quelle) | gehalten |
 | **Rechtsleitfaden KI** | `remira/rechtliches/` | fertig, keine Rechtsberatung |
@@ -95,6 +95,7 @@ Neues Video = Ordner `oms-video` kopieren, `src/data.js`, `src/timeline.js`, Sze
 - Videos neu mit eigenem Renderer (18.11.): Ton bitgenau übernommen, Bild gleich; OMS-Endkarten-Claim jetzt feste Breite statt x-Höhen-Messung (war browserabhängig). Regeln: `remira-erklaervideo` → „Rendern“.
 - Zweisprachig (18.11.): EN-OMS und DE-Plattform sind eigene Übersetzungen, vor Veröffentlichung von Marketing freigeben lassen; offizielle Begriffe von remira.com/en bzw. /de haben Vorrang.
 - Mastering: `loudnorm` fiel bei leisem Intro in den dynamischen Modus und hob es um bis zu 10 dB an → WWS nutzt lineares Mastering (`tools/master.py`), Intro am OMS-Pegel gemessen (18.11.).
+- Neues Video ≠ Kopie: OMS ist Vorlage für Technik, Ring-Faden und Endkarte, aber Szenen, Bildsprache und Kamerapfad werden fürs Thema neu erfunden (WWS v1 war zu ähnlich, 18.11.).
 - Neue Lehren hier und im zuständigen Skill ergänzen.
 
 ## 11. Was bewusst NICHT im Kit ist

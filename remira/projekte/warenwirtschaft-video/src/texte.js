@@ -16,7 +16,7 @@ export const S = pick({
     kw3: ['Manueller Datenabgleich', 'Fehlender Überblick', 'Hoher Planungsaufwand'],                                               // G Schnittstellen, P Überblick/Planung
     head4: 'So funktioniert ein *WWS*', hub: 'WWS',
     ch4: ['Wareneingang', 'Lager', 'Filiale', 'Online-Shop'], d4: ['Lieferant', 'Filiale', 'Online-Shop'],
-    stock: 'Bestand', realtime: '● Echtzeit', checking: 'wird ermittelt …', available: 'aktuell',
+    stock: 'Bestand', realtime: '● Echtzeit', checking: 'wird ermittelt …', available: 'aktuell', reorder: 'nachbestellt', transfer: 'Umlagerung',
     cap1: 'Alle Daten laufen *zentral* zusammen.',                                                                                  // P zentrale Datendrehscheibe
     cap2: 'Artikelbestände werden *exakt* ermittelt.',                                                                             // P
     cap3: 'Das System bestellt *selbständig* nach', cap3sub: 'oder schlägt Umlagerungen aus anderen Filialen vor.',                 // P
@@ -41,7 +41,7 @@ export const S = pick({
     kw3: ['Manual data matching', 'Lack of overview', 'High planning effort'],
     head4: 'How an *MMS* works', hub: 'MMS',
     ch4: ['Goods receipt', 'Warehouse', 'Store', 'Online shop'], d4: ['Supplier', 'Store', 'Online shop'],
-    stock: 'Stock', realtime: '● Real time', checking: 'calculating …', available: 'up to date',
+    stock: 'Stock', realtime: '● Real time', checking: 'calculating …', available: 'up to date', reorder: 'reordered', transfer: 'Transfer',
     cap1: 'All data comes together *centrally.*',
     cap2: 'Stock levels are determined *precisely.*',
     cap3: 'The system reorders *automatically*', cap3sub: 'or suggests transfers from other stores.',

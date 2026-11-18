@@ -130,16 +130,16 @@ def swell(d, g=1.0, f=2400):
 # ---------- Musik (Runde 5): modern, rhythmisch, 116 BPM – Drums, Bass, kurze Plucks, keine Flächen ----------
 # Aufbau: Intro leise (Hats + Pluck, ab 4,5 s Kick) → Schritte (voller Beat) → Problem (Moll, halbes Tempo-Gefühl, dumpf)
 # → Wendepunkt (Snare-Roll) → Drop auf den Hub → Lösung (16tel-Hats, zweites Motiv ab „Möglichkeiten“) → Logo: Drums stoppen, Ausklang.
-W_ = Q['whips']; BPM = 116; BEAT = 60 / BPM; S16 = BEAT / 4
+W_ = Q['whips']; M_ = Q.get('musik', W_); BPM = 116; BEAT = 60 / BPM; S16 = BEAT / 4
 HUB, LOGO = Q['hubHit'], Q['logo']
 
 
 def sec(t):
-    if t < W_[0][0]: return 'intro'
-    if t < W_[1][0]: return 'steps'
-    if t < W_[2][0]: return 'problem'
+    if t < M_[0][0]: return 'intro'
+    if t < M_[1][0]: return 'steps'
+    if t < M_[2][0]: return 'problem'
     if t < HUB: return 'turn'
-    if t < W_[3][0]: return 'how'
+    if t < M_[3][0]: return 'how'
     if t < LOGO: return 'full'
     return 'end'
 
@@ -187,7 +187,7 @@ for i in range(n16):
     mode = 'min' if s == 'problem' else 'maj'
     name, root = PROG[mode][(bar // 2) % 4]; tones = CH[name][1:]
     dark = s == 'problem'
-    ramp = min(1.0, max(0.0, (t - W_[0][1]) / (13.0 - W_[0][1])))   # Runde 6: weicher Einstieg bis 0:13, danach unverändert
+    ramp = min(1.0, max(0.0, (t - M_[0][1]) / (13.0 - M_[0][1])))   # Runde 6: weicher Einstieg bis 0:13, danach unverändert
     # Kick
     if (s in ('steps', 'how', 'full') and i % 4 == 0) or (s == 'intro' and t >= 4.5 and i % 8 == 0) or (dark and i % 8 == 0):
         place(music, t, kick(.45 if s == 'intro' else .7 + .3 * ramp), 1.0)
@@ -213,15 +213,15 @@ for i in range(n16):
         place(music, t, pl(tones[[0, 2, 1][[0, 6, 10].index(step)]] + 12, .55, .2, 1600), db(-9), rev=.15)
 
 # Wendepunkt: Snare-Roll, der sich zum Drop auf den Hub steigert
-t0 = W_[2][0]; k = 0
+t0 = M_[2][0]; k = 0
 while t0 + k * S16 < HUB - .02:
-    tt = t0 + k * S16; u = (tt - W_[2][0]) / (HUB - W_[2][0])
+    tt = t0 + k * S16; u = (tt - M_[2][0]) / (HUB - M_[2][0])
     if k % (2 if u < .6 else 1) == 0: place(music, tt, snare(.3 + .7 * u ** 1.5), db(-6), rev=.1)
     k += 1
 place(music, HUB, kick(1.1), 1.0); place(music, HUB, crash(1.0), db(-4))
 # Akzente auf allen anderen Übergängen: kurzer Snare-Fill vor dem Ende der Fahrt, Crash bei Ankunft
 for a, b in W_:
-    if a == W_[2][0]: continue
+    if a == M_[2][0]: continue
     for j in range(4): place(music, b - (4 - j) * S16, snare(.35 + .15 * j), db(-8), rev=.1)
     place(music, b, crash(.8), db(-7))
 # Logo: Drums stoppen, letzter Akkord als Pluck-Arpeggio + Bassnote klingt aus
@@ -250,7 +250,7 @@ for k, tv in enumerate(Q['v2']): place(sfx, tv - .01, tap([65, 67, 69, 72, 74][k
 for t0 in Q['pch'] + Q['psc']: place(sfx, t0, thump(.5), db(-17), rev=.2); place(sfx, t0 + .02, tap(57, .5), db(-20), rev=.3)
 for k, tf in enumerate(Q['flights']): place(sfx, tf + .05, paper(1.0), db(-17), pan=-.5, rev=.15); place(sfx, tf + .93, tick(.7, 1500), db(-20), pan=.6)
 tt = Q['tick0']; k = 0
-while tt < W_[2][0] - .1: place(sfx, tt, tick(.55, [2000, 1700][k % 2]), db(-23)); tt += .5; k += 1
+while tt < M_[2][0] - .1: place(sfx, tt, tick(.55, [2000, 1700][k % 2]), db(-23)); tt += .5; k += 1
 place(sfx, Q['mism'], chord([50, 51], 1.2, .6), db(-22))
 for k, tk in enumerate(Q['kw']): place(sfx, tk, thump(.6), db(-15)); place(sfx, tk + .01, tap([57, 56, 53][k], .8), db(-16), rev=.4)
 # Wendepunkt: Heldin, Ring wird bunt, Hub
@@ -277,7 +277,7 @@ irn = int(2.6 * SR); ti = np.arange(irn) / SR
 ir = np.vstack([lp(rng.standard_normal(irn), 5200) * np.exp(-ti / .75) for _ in range(2)]) * .03
 verb = np.vstack([fftconvolve(hp(send[c], 220), ir[c])[:N] for c in range(2)])
 # Dramaturgie der Musik: Intro leiser, Steigerung zur Lösung, ruhiges Ende (Abschnitts-Pegel mit weichen Rampen)
-_pts = [(0, 6), (W_[0][0], 6), (W_[0][1], -4.5), (13.0, -3), (W_[1][0], -3), (W_[1][1], -3), (W_[2][0], -3), (HUB, 0), (W_[3][0], 0), (W_[3][1], .5), (LOGO, .5), (DUR, 0)]
+_pts = [(0, 6), (M_[0][0], 6), (M_[0][1], -4.5), (13.0, -3), (M_[1][0], -3), (M_[1][1], -3), (M_[2][0], -3), (HUB, 0), (M_[3][0], 0), (M_[3][1], .5), (LOGO, .5), (DUR, 0)]
 _tt = np.arange(N) / SR; _env = db(np.interp(_tt, [a for a, _ in _pts], [b for _, b in _pts])); music *= _env
 mrms = np.sqrt((music[:, :int(DUR * SR)] ** 2).mean()) + 1e-9   # Musik auf denselben Pegel wie bisher (RMS −25,5 dB), SFX-Verhältnis bleibt
 MUS, SFX, VRB = music * (db(-25.5) / mrms), sfx * db(-5.5), verb * db(-11)
