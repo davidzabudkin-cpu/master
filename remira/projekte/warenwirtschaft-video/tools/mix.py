@@ -132,6 +132,8 @@ def swell(d, g=1.0, f=2400):
 # → Wendepunkt (Snare-Roll) → Drop auf den Hub → Lösung (16tel-Hats, zweites Motiv ab „Möglichkeiten“) → Logo: Drums stoppen, Ausklang.
 W_ = Q['whips']; M_ = Q.get('musik', W_); BPM = 100; BEAT = 60 / BPM; S16 = BEAT / 4
 HUB, LOGO = Q['hubHit'], Q['logo']
+# v4: Intro nur noch 4,7 s → Kick im Intro ab der Hälfte, weiche Rampe bis 5 s nach der ersten Fahrt (statt fester 4,5 s / 13 s)
+INTRO_KICK = M_[0][0] * .5; RAMP_END = M_[0][1] + 5.0
 
 
 def sec(t):
@@ -204,10 +206,10 @@ for i in range(n16):
     mode = 'min' if s == 'problem' else 'maj'
     name, root = PROG[mode][(bar // 2) % 4]; tones = CH[name][1:]
     dark = s == 'problem'
-    ramp = min(1.0, max(0.0, (t - M_[0][1]) / (13.0 - M_[0][1])))
+    ramp = min(1.0, max(0.0, (t - M_[0][1]) / (RAMP_END - M_[0][1])))
     groove = s in ('steps', 'how', 'full')
     # Kick: gebrochen im Hauptteil, im Intro nur auf 1 (ab 4,5 s), im Problem nur auf 1 und 3, dumpfer
-    if (groove and step in KICK) or (s == 'intro' and t >= 4.5 and step == 0) or (dark and step in (0, 8)):
+    if (groove and step in KICK) or (s == 'intro' and t >= INTRO_KICK and step == 0) or (dark and step in (0, 8)):
         place(music, t, lp(kick(.4 if s == 'intro' else (.55 if dark else .65 + .3 * ramp)), 2200 if dark else 9000), 1.0)
     # Shaker statt Hi-Hats: 16tel, Akzent auf den Offbeats
     if s == 'intro' and t > 1.0 and i % 2 == 1: place(music, t, shaker(.35 + .25 * (step % 4 == 2)), db(-9), pan=-.25)
@@ -219,7 +221,7 @@ for i in range(n16):
     if groove and step in (0, 6, 10, 14): place(music, t, bass(root - 12 + {0: 0, 6: 7, 10: 0, 14: 12}[step], S16 * (3.2 if step == 0 else 1.8)), db(-2))
     if dark and step == 0: place(music, t, lp(bass(root - 12, BEAT * 3.2), 260), db(-1))
     # Marimba-Motiv
-    if s in ('intro', 'steps', 'how', 'full') and ARP[step] is not None and not (s == 'intro' and t < 1.2):
+    if s in ('intro', 'steps', 'how', 'full') and ARP[step] is not None and not (s == 'intro' and t < .8):
         gp = {'intro': .5, 'steps': .7, 'how': .8, 'full': .85}[s]
         place(music, t, marimba(tones[ARP[step] % len(tones)] + 12, gp), db(-6), pan=.3 * np.sin(i * .7), rev=.14)
     if s == 'full' and ARP2[step] is not None: place(music, t, marimba(tones[ARP2[step] % len(tones)] + 24, .4, .25), db(-11), pan=-.35, rev=.15)
@@ -290,7 +292,7 @@ irn = int(2.6 * SR); ti = np.arange(irn) / SR
 ir = np.vstack([lp(rng.standard_normal(irn), 5200) * np.exp(-ti / .75) for _ in range(2)]) * .03
 verb = np.vstack([fftconvolve(hp(send[c], 220), ir[c])[:N] for c in range(2)])
 # Dramaturgie der Musik: Intro leiser, Steigerung zur Lösung, ruhiges Ende (Abschnitts-Pegel mit weichen Rampen)
-_pts = [(0, 3), (M_[0][0], 3), (M_[0][1], -4.5), (13.0, -3), (M_[1][0], -3), (M_[1][1], -3), (M_[2][0], -3), (HUB, 0), (M_[3][0], 0), (M_[3][1], .5), (LOGO, .5), (DUR, 0)]
+_pts = [(0, 3), (M_[0][0], 3), (M_[0][1], -4.5), (RAMP_END, -3), (M_[1][0], -3), (M_[1][1], -3), (M_[2][0], -3), (HUB, 0), (M_[3][0], 0), (M_[3][1], .5), (LOGO, .5), (DUR, 0)]
 _tt = np.arange(N) / SR; _env = db(np.interp(_tt, [a for a, _ in _pts], [b for _, b in _pts])); music *= _env
 mrms = np.sqrt((music[:, :int(DUR * SR)] ** 2).mean()) + 1e-9   # Musik auf denselben Pegel wie bisher (RMS −25,5 dB), SFX-Verhältnis bleibt
 MUS, SFX, VRB = music * (db(-25.5) / mrms), sfx * db(-5.5), verb * db(-11)

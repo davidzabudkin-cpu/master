@@ -10,8 +10,8 @@ export const S = pick({
     st1: ['Lieferant', 'Lager', 'Filiale', 'Kunde'],
     head2: 'Ein WWS verbindet *alle Bereiche:*',                                                                                     // G Bestandteile
     st2: [['Einkauf'], ['Waren-', 'eingang'], ['Lager'], ['Waren-', 'ausgang'], ['Verkauf']],
-    label3: 'DAS PROBLEM',
-    head3: 'Ohne zentrales System liegen Bestände und Verkäufe\nan *vielen verschiedenen Stellen.*',
+    q3: 'Was ist das Problem ohne *zentrales System?*',                                                                              // Marketing 23.11.: Frage statt Label
+    head3: 'Ohne WWS liegen Bestände und Verkäufe\nan *vielen verschiedenen Stellen.*',
     ch3: ['Filiale', 'Lager', 'Online-Shop'],
     kw3: ['Manueller Datenabgleich', 'Fehlender Überblick', 'Hoher Planungsaufwand'],                                               // G Schnittstellen, P Überblick/Planung
     head4: 'So funktioniert ein *WWS*', hub: 'WWS',
@@ -19,7 +19,7 @@ export const S = pick({
     stock: 'Bestand', realtime: '● Echtzeit', checking: 'wird ermittelt …', available: 'aktuell', reorder: 'nachbestellt', transfer: 'Umlagerung',
     cap1: 'Alle Daten laufen *zentral* zusammen.',                                                                                  // P zentrale Datendrehscheibe
     cap2: 'Artikelbestände werden *exakt* ermittelt.',                                                                             // P
-    cap3: 'Das System bestellt *selbständig* nach', cap3sub: 'oder schlägt Umlagerungen aus anderen Filialen vor.',                 // P
+    cap3: 'Das System bestellt *selbstständig* nach', cap3sub: 'oder schlägt Umlagerungen aus anderen Filialen vor.',                 // P
     head5: 'Was dadurch *möglich* wird:',
     cards5: [['Omnichannel-Handel'], ['Echtzeit-', 'Auswertungen'], ['Zentrale', 'Datendrehscheibe'], ['EDI-Kommunikation', 'mit Lieferanten']], // P
     foot5: 'Die Basis für *zeitgemäßen Omnichannel-Handel.*',                                                                      // P
@@ -35,8 +35,8 @@ export const S = pick({
     st1: ['Supplier', 'Warehouse', 'Store', 'Customer'],
     head2: 'An MMS connects *all areas:*',
     st2: [['Purchasing'], ['Goods', 'receipt'], ['Warehouse'], ['Goods', 'issue'], ['Sales']],
-    label3: 'THE PROBLEM',
-    head3: 'Without a central system, stock and sales data\nare spread across *many different places.*',
+    q3: 'What is the problem without a *central system?*',
+    head3: 'Without an MMS, stock and sales data\nare spread across *many different places.*',
     ch3: ['Store', 'Warehouse', 'Online shop'],
     kw3: ['Manual data matching', 'Lack of overview', 'High planning effort'],
     head4: 'How an *MMS* works', hub: 'MMS',

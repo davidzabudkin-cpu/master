@@ -35,11 +35,11 @@ const LOGO = { petals: [], word: [] };
 }
 const HERO = await createImageBitmap(await (await fetch('../assets/brand/remira-heldin-freigestellt.png')).blob());
 
-// ---------- Icons: Original-Phosphor-Icons (MIT), Gewicht regular, siehe Skill remira-phosphor-icons ----------
+// ---------- Icons: Original-Phosphor-Icons (MIT), Gewicht light (schmal wie bei REMIRA, Marketing 23.11.), siehe Skill remira-phosphor-icons ----------
 const ICON = new Proxy({}, { get: (c, n) => c[n] || (c[n] = phosphorPath(n)) });
 // Phosphor-Icons sind Flächen (keine Striche): Einblenden per Pop (Skalierung + Deckkraft) und weicher Wischblende von links.
 function drawIcon(icon, x, y, size, u, col) {
-  if (u <= 0) return; size *= 1.12;   // bold + etwas größer, damit Icons neben fettem Text nicht dünn wirken
+  if (u <= 0) return; size *= 1.12;   // etwas größer als der Kreis nahelegt, damit die schmalen light-Icons gut lesbar bleiben
   const e = outBack(clamp(u * 1.4), 1.6), a = clamp(u * 2.2), wipe = clamp(u * 1.6);
   g.save(); g.translate(x, y); g.scale(e, e); g.globalAlpha *= a;
   if (wipe < 1) { g.beginPath(); g.rect(-size / 2 - 2, -size / 2 - 2, (size + 4) * wipe, size + 4); g.clip(); }
@@ -67,7 +67,7 @@ function text(str, x, y, px, t, t0, t1, o = {}) {
   if (t < t0) return 0;
   const { w = 700, col = '#fff', acc = BLUE, align = 'center', lh = px * 1.18, st = .045, fade = false, ls = 0 } = o;
   const outA = fade ? 1 - prog(t, t1 - .3, t1) : 1; if (outA <= 0) return 0;
-  g.save(); g.font = font(px, w); g.textBaseline = 'middle'; g.textAlign = 'left'; if (ls) g.letterSpacing = ls + 'px';
+  g.save(); const baseA = g.globalAlpha; g.font = font(px, w); g.textBaseline = 'middle'; g.textAlign = 'left'; if (ls) g.letterSpacing = ls + 'px';
   const space = g.measureText(' ').width; let idx = 0, maxW = 0;
   str.split('\n').forEach((line, li) => {
     const words = []; let accent = false;
@@ -77,7 +77,7 @@ function text(str, x, y, px, t, t0, t1, o = {}) {
     let cx = Math.round(align === 'center' ? x - tot / 2 : align === 'right' ? x - tot : x); const cy = Math.round(y + li * lh);   // stehender Text auf ganzen Pixeln
     words.forEach((sg, i) => {
       const u = outCubic(prog(t, t0 + idx * st, t0 + idx * st + .5)); idx++;
-      if (u > 0) { g.globalAlpha = u * outA; let xx = Math.round(cx); for (const [p, a] of sg) { g.fillStyle = a ? acc : col; g.fillText(p, xx, cy + (u >= 1 ? 0 : (1 - u) * px * .35)); xx += g.measureText(p).width; } }
+      if (u > 0) { g.globalAlpha = baseA * u * outA; let xx = Math.round(cx); for (const [p, a] of sg) { g.fillStyle = a ? acc : col; g.fillText(p, xx, cy + (u >= 1 ? 0 : (1 - u) * px * .35)); xx += g.measureText(p).width; } }
       cx += widths[i] + space;
     });
   });
@@ -99,6 +99,10 @@ function station(x, y, r, tA, lit, R = null) {
   g.restore();
 }
 let tNow = 0;
+// Blickführung (v4): Was gerade erklärt wird, ist hell; der Rest wird auf DIM abgedunkelt. dimAt = 1 → DIM ab t0 (weich, .4 s), zurück ab t1.
+const DIM = .32;
+const dimAt = (t, t0, t1 = 1e9) => 1 - (1 - DIM) * (prog(t, t0 - .2, t0 + .2) - prog(t, t1 - .2, t1 + .2));
+function withA(a, fn) { if (a <= 0) return; g.save(); g.globalAlpha *= a; try { fn(); } finally { g.restore(); } }
 // Optische Zeilenmitte: Mitte der Großbuchstaben (H) relativ zur y-Position bei textBaseline 'middle' – dort sitzen Badges, Häkchen und Bullets
 function capMid(px, w = 700) { g.save(); g.font = font(px, w); g.textBaseline = 'middle'; const m = g.measureText('H'); g.restore(); return (m.actualBoundingBoxDescent - m.actualBoundingBoxAscent) / 2; }
 // Linien-Kette: Segmente nur zwischen den Kreisen (Kreisrand + 6 px), blau gefüllt bis zur Bildmarke
@@ -156,7 +160,7 @@ function shelf(sh, u) {
   if (u <= 0) return; const w = sh.cw * sh.cols, hh = sh.ch * sh.rows;
   g.save(); g.strokeStyle = 'rgba(255,255,255,.32)'; g.lineWidth = 4; g.lineCap = 'round';
   for (let r = 0; r <= sh.rows; r++) { const y = sh.y0 + r * sh.ch; g.beginPath(); g.moveTo(sh.x0, y); g.lineTo(sh.x0 + w * outCubic(u), y); g.stroke(); }
-  g.globalAlpha = outCubic(u); g.lineWidth = 3; g.strokeStyle = 'rgba(255,255,255,.18)';
+  g.globalAlpha *= outCubic(u); g.lineWidth = 3; g.strokeStyle = 'rgba(255,255,255,.18)';
   for (let c = 0; c <= sh.cols; c++) { const x = sh.x0 + c * sh.cw; g.beginPath(); g.moveTo(x, sh.y0); g.lineTo(x, sh.y0 + hh); g.stroke(); }
   g.restore();
 }
@@ -169,7 +173,7 @@ function tile(x, y, s, tA, lit) {
 }
 function chip(x, y, label, col, u, align = 'center', icon = null) {
   if (u <= 0) return; g.save(); g.font = font(22, 700);
-  const tw = g.measureText(label).width, ico = icon ? 20 : 0, gap = icon ? 6 : 0, padL = 14, padR = 16, cw = padL + ico + gap + tw + padR;
+  const tw = g.measureText(label).width, ico = icon ? 22 : 0, gap = icon ? 6 : 0, padL = 14, padR = 16, cw = padL + ico + gap + tw + padR;
   const cx = align === 'right' ? x - cw / 2 : align === 'left' ? x + cw / 2 : x, s = outBack(clamp(u), 2.2);
   g.translate(cx, y); g.scale(s, s); g.globalAlpha *= clamp(u * 2); g.fillStyle = col; g.beginPath(); g.roundRect(-cw / 2, -17, cw, 34, 17); g.fill();
   if (icon) { g.save(); g.translate(-cw / 2 + padL, -ico / 2); g.scale(ico / 256, ico / 256); g.fillStyle = '#fff'; g.fill(icon); g.restore(); }
@@ -198,7 +202,7 @@ const scenes = {
   hook: {
     pre(t) {
       softGlow(0, -40, 950, 'rgba(40,120,190,A)', .16);
-      text(S.titleSmall, 0, -170, 44, t, T.titleIn, 99, { w: 500, col: SOFT });
+      text(S.titleSmall, 0, -170, 44, t, T.titleIn, 99, { w: 700, col: SOFT });
       text(S.title, 0, -95, 80, t, T.titleIn + .15, 99, { w: 800 });
       shelf(SHELF, prog(t, 1.6, 2.4));
       for (let k = 0; k < 10; k++) {
@@ -211,7 +215,7 @@ const scenes = {
   flow: {
     pre(t) {
       softGlow(0, 60, 950, 'rgba(40,120,190,A)', .14);
-      text(S.sub1, 0, -380, 42, t, TX.sub1[0], 99, { w: 500, lh: 56, st: .06 });
+      text(S.sub1, 0, -380, 42, t, TX.sub1[0], 99, { w: 700, lh: 56, st: .06 });   // fett wie alle Texte (Marketing 23.11.)
       const ra = prog(t, ...T.rail);
       // Bahn (Förderband): nur zwischen den Kacheln, Muster läuft in Förderrichtung
       for (let k = 0; k < 3; k++) {
@@ -244,7 +248,7 @@ const scenes = {
       softGlow(CY.c[0], CY.c[1], 950, 'rgba(40,140,210,A)', .18);
       text(S.head2, 0, -440, 60, t, TX.head2[0], 99, { w: 800 });
       // Kreisbahn nur zwischen den Stationen, mit Richtungspfeilen
-      const oa = inOutCubic(prog(t, T.st2(0) - .2, T.st2(0) + .8)), gap = (CY.r + 9) / CY.R;
+      const oa = inOutCubic(prog(t, T.st2(0) - .2, T.st2(4) + .6)), gap = (CY.r + 9) / CY.R;
       for (let k = 0; k < 5; k++) {
         const a0 = CY.ang[k] * DEG + gap, a1 = (CY.ang[k] + 72) * DEG - gap, ae = lerp(a0, a1, clamp(oa * 5 - k));
         if (ae <= a0) continue;
@@ -271,8 +275,12 @@ const scenes = {
   problem: {
     pre(t) {
       softGlow(0, 40, 1000, 'rgba(200,50,60,A)', .10);
-      text(S.label3, 0, -448, 26, t, TX.label3[0], 99, { w: 800, col: RED, ls: 4 });
-      text(S.head3, 0, -372, 52, t, TX.head3[0], 99, { w: 700, acc: ORANGE, lh: 62 });
+      // v4: erst groß die Frage, dann kleiner der Problemtext (Marketing 23.11.)
+      text(S.q3, 0, -440, 62, t, T.q3, 99, { w: 800, acc: ORANGE });
+      text(S.head3, 0, -352, 40, t, T.head3, 99, { w: 600, col: SOFT, acc: ORANGE, lh: 52 });
+      // Blickführung: Regal → Listen → Schlagworte
+      const shA = dimAt(t, T.list(0)), liA = dimAt(t, T.kw(0));
+      g.save(); g.globalAlpha *= shA;
       const sh = PR.shelf; shelf(sh, prog(t, T.shelf2 - .3, T.shelf2 + .3));
       const ch = prog(t, ...T.chaos);
       PR.state.forEach((st, k) => {
@@ -281,7 +289,7 @@ const scenes = {
           const u = prog(t, T.chaos[0] + k * .05, T.chaos[0] + k * .05 + .5);
           carton(p.x, p.y + inCubic(u) * 160, sh.box, col, a0 * (1 - u));
           if (u > .6) { const r = outBack(prog(t, T.chaos[0] + .5 + k * .05, T.chaos[0] + .9 + k * .05), 1.6);
-            g.save(); g.globalAlpha = clamp(r); g.strokeStyle = RED; g.lineWidth = 2.4; g.setLineDash([7, 7]); g.beginPath(); g.roundRect(p.x - sh.box / 2, p.y - sh.box * .41, sh.box, sh.box * .82, 9); g.stroke(); g.setLineDash([]);
+            g.save(); g.globalAlpha *= clamp(r); g.strokeStyle = RED; g.lineWidth = 2.4; g.setLineDash([7, 7]); g.beginPath(); g.roundRect(p.x - sh.box / 2, p.y - sh.box * .41, sh.box, sh.box * .82, 9); g.stroke(); g.setLineDash([]);
             g.fillStyle = RED; g.beginPath(); g.arc(p.x, p.y, 15 * r, 0, 7); g.fill(); g.fillStyle = '#fff'; g.font = font(22, 800); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('!', p.x, p.y + 1); g.restore(); }
         } else {
           carton(p.x, p.y, sh.box, col, a0);
@@ -289,13 +297,14 @@ const scenes = {
             const u = prog(t, T.chaos[0] + .2 + n * .18 + k * .03, T.chaos[0] + .55 + n * .18 + k * .03); if (u <= 0) continue;
             carton(p.x - 34 + n * 30, p.y - 30 - n * 8 - (1 - outCubic(u)) * 60, sh.box * .55, RINGC[(k + n + 2) % 6], clamp(u * 3), (n % 2 ? .18 : -.15));
           }
-          if (st > 0 && ch > .5) { g.save(); g.globalAlpha = clamp((ch - .5) * 2) * .9; g.strokeStyle = ORANGE; g.lineWidth = 2.4; g.beginPath(); g.roundRect(p.x - sh.cw / 2 + 8, p.y - sh.ch + 30, sh.cw - 16, sh.ch - 8, 10); g.stroke(); g.restore(); }
+          if (st > 0 && ch > .5) { g.save(); g.globalAlpha *= clamp((ch - .5) * 2) * .9; g.strokeStyle = ORANGE; g.lineWidth = 2.4; g.beginPath(); g.roundRect(p.x - sh.cw / 2 + 8, p.y - sh.ch + 30, sh.cw - 16, sh.ch - 8, 10); g.stroke(); g.restore(); }
         }
       });
+      g.restore(); g.save(); g.globalAlpha *= liA;
       // Lose Listen (Tabellen) flattern rein, rote „?“-Verbindungen
       PR.lists.forEach(([x, y], k) => {
         const u = prog(t, T.list(k), T.list(k) + .7); if (u <= 0) return; const e = outCubic(u), rot = [-.12, .09, -.05][k];
-        g.save(); g.translate(x + (1 - e) * 900, y - (1 - e) * 120); g.rotate(rot + (1 - e) * .8); g.globalAlpha = clamp(u * 3);
+        g.save(); g.translate(x + (1 - e) * 900, y - (1 - e) * 120); g.rotate(rot + (1 - e) * .8); g.globalAlpha *= clamp(u * 3);
         g.fillStyle = '#E9EEF3'; g.beginPath(); g.roundRect(-75, -95, 150, 190, 8); g.fill();
         g.fillStyle = ['rgba(65,182,230,.75)', 'rgba(252,218,52,.8)', 'rgba(255,149,36,.8)'][k]; g.fillRect(-75, -95, 150, 22);
         g.fillStyle = 'rgba(30,40,55,.35)'; for (let i = 0; i < 7; i++) { g.fillRect(-58, -58 + i * 21, 40, 6); g.fillRect(-10, -58 + i * 21, [60, 44, 52][(i + k) % 3], 6); }
@@ -304,9 +313,10 @@ const scenes = {
       const ma = prog(t, T.mism, T.mism + .5);
       if (ma > 0) [[0, 1], [1, 2]].forEach(([i, j], n) => {
         const [x0, y0] = PR.lists[i], [x1, y1] = PR.lists[j], xm = (x0 + x1) / 2 + (n ? -110 : 110), ym = (y0 + y1) / 2, blink = .55 + .45 * Math.cos((t - T.mism) * 5 + n);
-        g.save(); g.globalAlpha = ma * blink; g.strokeStyle = RED; g.lineWidth = 2.4; g.setLineDash([8, 9]); g.beginPath(); g.moveTo(x0 + (n ? -20 : 40), y0 + 60); g.quadraticCurveTo(xm, ym, x1 + (n ? 20 : -40), y1 - 60); g.stroke(); g.setLineDash([]);
+        g.save(); g.globalAlpha *= ma * blink; g.strokeStyle = RED; g.lineWidth = 2.4; g.setLineDash([8, 9]); g.beginPath(); g.moveTo(x0 + (n ? -20 : 40), y0 + 60); g.quadraticCurveTo(xm, ym, x1 + (n ? 20 : -40), y1 - 60); g.stroke(); g.setLineDash([]);
         g.fillStyle = RED; g.font = font(30, 800); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('?', xm + (n ? 10 : -10), ym); g.restore();
       });
+      g.restore();
       S.kw3.forEach((s, k) => {
         const x = [-560, 0, 560][k], w = text(s, x + 14, 412, 40, t, T.kw(k), 99, { w: 700 });
         const u = outBack(prog(t, T.kw(k), T.kw(k) + .4), 2); if (u > 0 && w) { g.fillStyle = RED; g.beginPath(); g.arc(x + 14 - w / 2 - 22, 412 + capMid(40, 700), 8 * u, 0, 7); g.fill(); }
@@ -328,34 +338,46 @@ const scenes = {
     pre(t) {
       softGlow(HW.hub[0], HW.hub[1], 900, 'rgba(40,140,210,A)', .2 * prog(t, T.hubHit - 1.2, T.hubHit - .2));
       text(S.head4, 0, -445, 56, t, TX.head4[0], 99, { w: 800 });
+      stepRow(t);
+      // Blickführung: ab ② treten die Quellen zurück, ab der Umlagerung auch das Dashboard
+      const srcA = dimAt(t, T.step[1]), panA = dimAt(t, T.stores - .2);
+      g.save(); g.globalAlpha *= srcA;
       HW.srcY.forEach((y, k) => { dotted(SRC_IN[k], 0, inOutCubic(prog(t, T.src(k) + .3, T.src(k) + .9)), .35); station(HW.srcX, y, 44, T.src(k), 0); text(HW.srcLabel[k], HW.srcX, y + 70, 26, t, T.src(k) + .2, 99, { w: 600, col: SOFT }); });
+      g.restore();
       // Hub → Dashboard
+      g.save(); g.globalAlpha *= panA;
       const P0 = HW.panel, pu = outBack(prog(t, T.panel, T.panel + .5), 1.2);
       dotted([[HW.hub[0] + HW.hubR + 10, HW.hub[1]], [PANEL_L - 8, HW.hub[1]]], 0, inOutCubic(prog(t, T.panel - .3, T.panel + .3)), .5);
       if (pu > 0) {
-        g.save(); g.translate(P0.x, P0.y); g.scale(pu, pu); glass(0, 0, P0.w, P0.h, 22, 1);
+        g.save(); g.translate(P0.x, P0.y); g.scale(pu, pu); const fr = prog(t, T.panel + .3, T.panel + .8) * (1 - prog(t, T.stores - .4, T.stores));
+        glass(0, 0, P0.w, P0.h, 22, 1, `rgba(${Math.round(lerp(255, 65, fr))},${Math.round(lerp(255, 182, fr))},${Math.round(lerp(255, 230, fr))},${(.16 + .6 * fr).toFixed(3)})`);
+        if (fr > 0) softGlow(0, 0, P0.w * .62, 'rgba(65,182,230,A)', .1 * fr);
         const lx = -P0.w / 2 + 40, rx = P0.w / 2 - 40, hy = -P0.h / 2 + 46;
         g.font = font(28, 700); g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillStyle = SOFT; g.fillText(S.stock, lx, hy); const sw = g.measureText(S.stock).width;
         g.font = font(21, 600); g.fillStyle = BLUE; g.fillText(S.realtime, lx + sw + 20, hy);
         const ok = prog(t, T.avail, T.avail + .25);
-        if (ok < 1) { g.globalAlpha = 1 - ok; g.font = font(22, 600); g.fillStyle = SOFT; g.textAlign = 'right'; g.fillText(S.checking, rx, hy); g.globalAlpha = 1; }
+        if (ok < 1) { g.save(); g.globalAlpha *= 1 - ok; g.font = font(22, 600); g.fillStyle = SOFT; g.textAlign = 'right'; g.fillText(S.checking, rx, hy); g.restore(); }
         chip(rx, hy, S.available, GREEN, ok, 'right', ICON.check);
         // Artikelzeilen: Icon, Balken, Mindestbestand
         const bx0 = lx + 64, bw = rx - 205 - bx0, mx = bx0 + bw * HW.min;
+        // ③: nur die kritische Zeile bleibt hell
+        const rowDim = dimAt(t, T.step[2] + 1.2, T.stores - .2);
         HW.rows.forEach((ry, k) => {
-          const y = ry;
+          const y = ry; g.save(); if (k !== 1) g.globalAlpha *= rowDim;
           drawIconAt(ICON.package, lx + 18, y, 30, '#fff', .9);
           g.fillStyle = 'rgba(255,255,255,.1)'; g.beginPath(); g.roundRect(bx0, y - 9, bw, 18, 9); g.fill();
           let lvl = HW.fill[k] * outCubic(prog(t, T.card + k * .2, T.card + k * .2 + 1.0)), low = 0;
           if (k === 1) { const d = inOutCubic(prog(t, ...T.dip)), r = inOutCubic(prog(t, ...T.refill)); lvl = lerp(lerp(lvl, .2, d), .82, r); low = d * (1 - r); }
           if (lvl > .005) { const gr = g.createLinearGradient(bx0, 0, bx0 + bw, 0); gr.addColorStop(0, BLUE); gr.addColorStop(1, GREEN); g.fillStyle = gr; g.beginPath(); g.roundRect(bx0, y - 9, bw * lvl, 18, 9); g.fill();
-            if (low > 0) { g.globalAlpha = low; g.fillStyle = RED; g.beginPath(); g.roundRect(bx0, y - 9, bw * lvl, 18, 9); g.fill(); g.globalAlpha = 1; } }
+            if (low > 0) { g.save(); g.globalAlpha *= low; g.fillStyle = RED; g.beginPath(); g.roundRect(bx0, y - 9, bw * lvl, 18, 9); g.fill(); g.restore(); } }
           g.save(); g.strokeStyle = 'rgba(255,255,255,.55)'; g.lineWidth = 2; g.setLineDash([4, 5]); g.beginPath(); g.moveTo(mx, y - 18); g.lineTo(mx, y + 18); g.stroke(); g.restore();
+          g.restore();
         });
         g.restore();
         // Chip „nachbestellt“ neben der kritischen Zeile (außerhalb der Skalierung, steht still)
         chip(P0.x + P0.w / 2 - 40, P0.y + HW.rows[1], S.reorder, BLUE, prog(t, T.reorder, T.reorder + .3) * (pu >= 1 ? 1 : 0), 'right', ICON['arrows-clockwise']);
       }
+      g.restore();
       // Umlagerung zwischen zwei Filialen
       const su = prog(t, T.stores, T.stores + .5);
       if (su > 0) {
@@ -364,10 +386,10 @@ const scenes = {
         chip((a[0] + b[0]) / 2, a[1] - 50, S.transfer, 'rgba(65,182,230,.9)', prog(t, T.move[0] - .3, T.move[0]), 'center');
         const mu = prog(t, ...T.move); if (mu > 0 && mu < 1) carton(lerp(a[0] + 52, b[0] - 52, inOutCubic(mu)), a[1], 36, RINGC[4], Math.min(1, mu * 6, (1 - mu) * 6));
       }
-      caption(t, 1, S.cap1, TX.cap1); caption(t, 2, S.cap2, TX.cap2); caption(t, 3, S.cap3, [TX.cap3[0], WHIPS[4][0]], S.cap3sub, TX.cap3sub[0]);
+      caption(t, S.cap1, TX.cap1); caption(t, S.cap2, TX.cap2); caption(t, S.cap3, [TX.cap3[0], WHIPS[4][0]], S.cap3sub, TX.cap3sub[0]);
     },
     post(t) {
-      HW.srcY.forEach((y, k) => drawIcon(ICON[HW.srcIcon[k]], HW.srcX, y, 38, prog(t, T.src(k) + .1, T.src(k) + .7), '#fff'));
+      withA(dimAt(t, T.step[1]), () => HW.srcY.forEach((y, k) => drawIcon(ICON[HW.srcIcon[k]], HW.srcX, y, 38, prog(t, T.src(k) + .1, T.src(k) + .7), '#fff')));
       if (t > T.stores) HW.stores.forEach(([x, y], k) => drawIcon(ICON.storefront, x, y, 38, prog(t, T.stores + .1 + k * .15, T.stores + .7 + k * .15), '#fff'));
       STREAM.forEach(s => { const u = prog(t, s.t, s.t + .9); if (u <= 0 || u >= 1) return; glowDot(...ptAt(SRC_IN[s.c], inOutCubic(u)), 6, RINGC[s.c], Math.min(1, u * 6, (1 - u) * 5)); });
       hubLabel(t, 'how', T.recolor[0]);
@@ -379,7 +401,8 @@ const scenes = {
       text(S.head5, 0, -440, 56, t, TX.head5[0], 99, { w: 800 });
       HB.pos.forEach(([x, y], k) => {
         const t0 = T.hb(k); dotted(SPOKES[k], 0, inOutCubic(prog(t, t0 - .25, t0 + .2)), .4);
-        station(x, y, HB.r, t0, .35);
+        const nx = k < 3 ? T.hb(k + 1) : T.foot5, cur = prog(t, t0, t0 + .3) * (1 - prog(t, nx - .2, nx + .2));   // nur der neue Knoten leuchtet
+        station(x, y, HB.r, t0, .35 + .65 * cur);
         text(HB.lines[k].join('\n'), x, y + HB.r + 36, 32, t, t0 + .15, 99, { w: 700, lh: 38 });
       });
       text(S.foot5, 0, 450, 50, t, TX.foot5[0], 99, { w: 700 });
@@ -474,14 +497,34 @@ function endB(t) {
   if (pu > 0) { g.save(); g.globalAlpha = pu; g.beginPath(); g.roundRect(left + 1.25, by - 24 + (1 - pu) * 10, w, 48, 24); g.strokeStyle = BLUE; g.lineWidth = 2.5; g.stroke(); g.fillStyle = 'rgba(65,182,230,.12)'; g.fill(); g.restore(); }
   text(S.cta, left + 26, by, 26, t, TX.end3[0] + .1, 99, { w: 600, align: 'left' });
 }
-function caption(t, n, s, [t0, t1], sub, subAt) {
+// Schritt-Nummern ①②③ (v4, Marketing 23.11.): groß und mittig zwischen Headline und Grafik statt klein links vor dem Satz.
+// Alle drei erscheinen mit Schritt 1 (man sieht die Reihenfolge), der aktuelle ist blau gefüllt, erledigte bekommen ein Häkchen, kommende sind nur Umriss.
+function stepRow(t) {
+  const y0 = T.step[0], a = prog(t, y0 - .1, y0 + .3); if (a <= 0) return;
+  const R = 30, gapX = 110, y = HW.stepY, xs = [-gapX, 0, gapX];
+  g.save(); g.globalAlpha *= a;
+  for (let k = 0; k < 2; k++) { const on = prog(t, T.step[k + 1] - .3, T.step[k + 1] + .2); g.save(); g.lineWidth = 2.4; g.lineCap = 'round';
+    g.strokeStyle = 'rgba(255,255,255,.25)'; g.setLineDash([.01, 9]); g.beginPath(); g.moveTo(xs[k] + R + 10, y); g.lineTo(xs[k + 1] - R - 10, y); g.stroke();
+    if (on > 0) { g.setLineDash([]); g.strokeStyle = BLUE; g.beginPath(); g.moveTo(xs[k] + R + 10, y); g.lineTo(lerp(xs[k] + R + 10, xs[k + 1] - R - 10, on), y); g.stroke(); } g.restore(); }
+  xs.forEach((x, k) => {
+    const act = prog(t, T.step[k] - .1, T.step[k] + .3), done = k < 2 ? prog(t, T.step[k + 1] - .1, T.step[k + 1] + .3) : 0, cur = act * (1 - done);
+    const s = 1 + .12 * cur + .12 * Math.exp(-Math.max(0, t - T.step[k]) / .15) * (t > T.step[k] ? 1 : 0);
+    g.save(); g.translate(x, y); g.scale(s, s);
+    if (cur > 0) softGlow(0, 0, R * 2.6, 'rgba(65,182,230,A)', .35 * cur);
+    g.beginPath(); g.arc(0, 0, R, 0, 7); g.fillStyle = `rgba(65,182,230,${(act * (1 - .82 * done)).toFixed(3)})`; g.fill();
+    g.lineWidth = 2.4; g.strokeStyle = act > 0 ? BLUE : 'rgba(255,255,255,.35)'; g.stroke();
+    if (done > .5) { g.translate(-14, -14); g.scale(28 / 256, 28 / 256); g.fillStyle = BLUE; g.fill(ICON.check); }
+    else { g.fillStyle = act > .5 ? '#fff' : 'rgba(255,255,255,.55)'; g.font = font(32, 800); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(String(k + 1), 0, 2); }
+    g.restore();
+  });
+  g.restore();
+}
+// Satz des Schritts: mittig unter den Nummern, Unterzeile kleiner darunter
+function caption(t, s, [t0, t1], sub, subAt) {
   if (t < t0 || (t > t1 && t1 < WHIPS[4][0])) return;
-  g.save(); g.font = font(46, 700); const plain = s.replace(/\*/g, ''), w = g.measureText(plain).width; g.restore();
-  const y = sub ? 380 : 400, bx = -w / 2 - 44, fadeOut = t1 >= WHIPS[4][0] ? 1 : 1 - prog(t, t1 - .3, t1);
-  const u = outBack(prog(t, t0, t0 + .4), 2) * fadeOut;
-  if (u > 0) { g.save(); g.globalAlpha = fadeOut; g.translate(bx, Math.round(y) + capMid(46, 700)); g.scale(u, u); g.fillStyle = BLUE; g.beginPath(); g.arc(0, 0, 25, 0, 7); g.fill(); g.fillStyle = '#fff'; g.font = font(28, 800); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(String(n), 0, 1); g.restore(); }
-  text(s, 22, y, 46, t, t0 + .1, t1, { w: 700, fade: t1 < WHIPS[4][0] });
-  if (sub) text(sub, 0, y + 58, 34, t, subAt ?? t0 + 1.2, t1, { w: 500, col: SOFT });
+  const y = HW.capY, fade = t1 < WHIPS[4][0];
+  text(s, 0, y, 46, t, t0 + .1, t1, { w: 700, fade });
+  if (sub) text(sub, 0, y + 54, 32, t, subAt ?? t0 + 1.2, t1, { w: 600, col: SOFT });
 }
 function hubLabel(t, s, t0) {
   const R = L(s, t), a = prog(t, t0, t0 + .6); if (a <= 0) return;

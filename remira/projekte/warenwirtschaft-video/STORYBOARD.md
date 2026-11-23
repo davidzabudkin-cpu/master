@@ -1,4 +1,6 @@
-# REMIRA Glossar-Erklärvideo „Warenwirtschaftssystem (WWS)“ – Storyboard v3
+# REMIRA Glossar-Erklärvideo „Warenwirtschaftssystem (WWS)“ – Storyboard v4
+
+**v4 23.11.2026 (Feedback Auftraggeber + Marketing zu v3):** 93,2 s. Jeder Schritt: Text zeigen → Lesezeit → Animation → nächster Schritt; Bewegungen einzeln nacheinander. Blickführung: was erklärt wird, ist hell, der Rest wird abgedunkelt (Problem: Regal → Listen → Schlagworte; So funktioniert's: Quellen → Dashboard mit blauem Rahmen → kritische Zeile → Umlagerung; Möglichkeiten: nur der neue Knoten leuchtet). Schritt-Nummern ①②③ groß zwischen Headline und Satz (erledigt = Häkchen). Problem als Frage „Was ist das Problem ohne zentrales System?“, Problemtext kleiner darunter. Intro 4,7 s, Warenstrom ohne Leerlauf (2 Kartons). Alle Texte fett, Icons Phosphor light, „selbstständig“.
 
 **v3 23.11.2026:** Feedback umgesetzt: eigene Musik (100 BPM, Marimba, Shaker, gebrochener Beat), Szenen gestaffelt (Warenstrom: erst Satz, dann Kacheln, dann 4 Kartons; So funktioniert's: ① Datenstrom → ② Dashboard → ③ Nachbestellung → Umlagerung), 81 s, strengere Lesezeit. Beat-Zeiten unten sind v2, aktuelle Zeiten in `src/timeline.js`.
 

@@ -8,9 +8,9 @@ description: Hausregeln für Remira-Motion- und Erklärvideos (Glossar-Videos, P
 Vorlage und Pipeline: `remira/projekte/oms-video/` (Canvas-Code, Playwright-Render, Musik/SFX per Code). Neues Video = Ordner kopieren, `src/data.js` + `src/timeline.js` + Szenen in `src/main.js` anpassen. Befehle in dessen `PROMPTS.md`. Ablauf: erst Storyboard (Skill `storyboard`), dann bauen, Stichproben-Standbilder, Prüfungen unten. Einmalig im Projektordner: `npm install` und `npx playwright install chromium`; dazu ffmpeg und Python mit numpy/scipy/Pillow.
 
 ## Branding
-- Schrift Source Sans 3 (Headlines 700–800, Text 500–600). Hintergrund dunkles Navy (#0F1D2F → #03060B), Text weiß, Akzent #41B6E6, Ringfarben #41B6E6 #28ABBA #61BD47 #FCDA34 #FF9524 #F53D47 nur für Bildmarke, Punkte, Balken.
+- Schrift Source Sans 3 (Headlines 700–800, Bildtexte 700; seit 23.11. keine Bildtexte mehr in 500, nur kleine Unterzeilen/Labels 600). Hintergrund dunkles Navy (#0F1D2F → #03060B), Text weiß, Akzent #41B6E6, Ringfarben #41B6E6 #28ABBA #61BD47 #FCDA34 #FF9524 #F53D47 nur für Bildmarke, Punkte, Balken.
 - Bildmarke (bunter Ring) aus der Original-Logo-SVG als roter Faden; nie nachzeichnen.
-- Icons: Phosphor **bold**, Original-SVGs, siehe Skill `remira-phosphor-icons`.
+- Icons: Phosphor **light** (schmal, seit Marketing-Feedback 23.11.2026; bold wirkte „knubbelig“), Original-SVGs, siehe Skill `remira-phosphor-icons`.
 - Heroes (KI-Nachzeichnungen) nur sparsam und vor Veröffentlichung mit Marketing abstimmen.
 
 ## Ruhe im Bild
@@ -75,3 +75,12 @@ Vorlage: `remira/projekte/plattform-animation/` (Messung: `tools/measure.py`).
 - Bewegte Mengen halbieren: lieber 4 Kartons/Datenpunkte als 9.
 - **Eigene Musik je Video:** nicht den Track eines anderen Videos wiederverwenden. Tempo, Tonart, Groove und Leitinstrument ändern (WWS: 100 BPM, G-Dur/E-Moll, Marimba, Shaker, gebrochener Beat; OMS: 116 BPM, F-Dur, Plucks, Hats).
 - **Inhalt bleibt im Widget:** Zeilen in Karten/Panels immer in lokalen Koordinaten zur Kartenmitte angeben und vor dem Rendern prüfen, dass jede Zeile innerhalb ±h/2 − Rand liegt (WWS 23.11.: dritte Bestandszeile lag unter dem Rechteck). Chips/Badges mit Abstand zum Balkenende.
+
+## Reihenfolge und Blickführung (Feedback Auftraggeber + Marketing 23.11.2026, WWS v4)
+- **Muster je Schritt:** (1) Text zeigen und Lesezeit lassen (Satz ca. 1,5–2,5 s allein), (2) erst dann die passende Animation, (3) dann der nächste Schritt mit seinem Text. Aufzählungen und Knoten erscheinen einzeln (≥ 0,4 s Abstand, bei Knoten mit Text ≈ 1 s), nie mehrere Bewegungen gleichzeitig.
+- **Blick führen:** Was gerade erklärt wird, ist hell; der Rest wird auf ca. 30 % abgedunkelt (`dimAt()` in `warenwirtschaft-video/src/main.js`), aktives Widget mit blauem Rahmen/Glow, nur der neue Knoten leuchtet. Kamera bleibt im Stand still (Text-Regel), Fokus also über Helligkeit, nicht über Zoom.
+- Abdunkeln funktioniert nur, wenn Zeichenfunktionen `globalAlpha` **multiplizieren** (`*=`) statt setzen; `text()` nimmt die Grund-Deckkraft mit.
+- **Schritt-Nummern ①②③** groß und mittig zwischen Headline und Satz (nicht klein links vor dem Text): alle drei als Reihe sichtbar, aktueller blau gefüllt, erledigte mit Häkchen.
+- **Problem-Szene als Frage einleiten** („Was ist das Problem ohne zentrales System?“ groß, Problemtext kleiner darunter), damit sie nicht überrascht.
+- **Intro kurz:** Titel + Key Visual in ≈ 4–5 s, dann erste Fahrt. Szenen ohne Leerlauf: Wiederholungen (Kartons, Datenpunkte) auf 2 begrenzen.
+- Rechtschreibung „selbstständig“ (nicht „selbständig“, Hausschreibweise).

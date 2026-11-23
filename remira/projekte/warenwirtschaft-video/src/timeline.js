@@ -9,51 +9,56 @@ const seq = (f, n) => Array.from({ length: n }, (_, k) => f(k));
 const ORDER = ['hook', 'flow', 'cycle', 'problem', 'how', 'hubs', 'gain', 'end'];
 
 // Kamerafahrten zwischen den Szenen [Start, Ende]; Index 3 = Wendepunkt (Heldin)
-export const WHIPS = [[7.6, 8.4], [19.0, 19.8], [28.0, 29.2], [38.0, 39.0], [58.0, 58.8], [67.0, 67.8], [74.0, 74.7]];
+// v4 (Feedback 23.11.): Intro kurz (4,4 s), jede Szene nach dem Muster Text → Lesezeit → Animation → nächster Schritt
+export const WHIPS = [[4.7, 5.4], [16.2, 17.0], [26.8, 28.0], [42.5, 43.5], [66.6, 67.4], [77.8, 78.6], [86.6, 87.3]];
 
 export const T = {
-  petal: k => .3 + k * .12, titleIn: 1.0, box: k => 2.2 + k * .3,
-  // Szene 2: erst Satz lesen, dann Kacheln nacheinander, dann Kartons (halb so viele)
-  node: k => 11.0 + k * .35, rail: [11.6, 12.3], data: [13.4, 14.2], flow0: 12.6, flowEvery: 1.6,
-  st2: k => 20.4 + k * .15, lap0: 21.4, v2: k => 21.4 + k * 1.1,
-  shelf2: 29.4, chaos: [30.8, 32.0], list: k => 30.4 + k * .25, tick0: 30.4, mism: 32.2, kw: k => 32.8 + k * .7,
-  hero: [37.9, 39.4], recolor: [38.3, 39.3], hubHit: 39.0,
-  // Szene 5 in drei Stufen: ① Quellen + Datenstrom ② Dashboard (Strom ruht) ③ Nachbestellung, dann Umlagerung
-  src: k => 39.4 + k * .15, stream: [40.0, 44.2], panel: 44.5, card: 45.6, avail: 47.0,
-  dip: [50.3, 50.9], reorder: 51.2, refill: [51.6, 52.6], stores: 53.3, move: [54.4, 55.6],
-  hb: k => 60.0 + k * .6,
-  draw: [68.0, 68.9], check: k => 68.8 + k * .7,
-  logo: 75.8, wipe: [75.5, 76.4]
+  petal: k => .2 + k * .1, titleIn: .4, box: k => 1.4 + k * .14,
+  // Szene 2: Satz allein lesen, dann Kacheln einzeln, Bahn, Datenlinien, dann nur 2 Kartons (kein Leerlauf)
+  sub1: 5.7, node: k => 8.4 + k * .5, rail: [10.4, 11.0], data: [10.9, 11.5], flow0: 11.6, flowEvery: 1.0,
+  // Szene 3: Satz, dann Bereiche einzeln, dann eine Runde
+  head2: 17.3, st2: k => 18.6 + k * .4, lap0: 20.8, v2: k => 20.8 + k * 1.1,
+  // Szene 4: Frage allein → Problemtext → Regal-Chaos → Listen → Schlagworte (jeweils Rest abgedunkelt)
+  q3: 28.3, head3: 30.4, shelf2: 32.8, chaos: [34.0, 35.2], list: k => 35.6 + k * .35, tick0: 32.8, mism: 36.8, kw: k => 37.4 + k * .8,
+  hero: [42.4, 43.9], recolor: [42.8, 43.8], hubHit: 43.5,
+  // Szene 5 in drei Stufen, je: Nummer + Satz → Lesezeit → Animation. ① Quellen + Datenstrom ② Dashboard ③ Nachbestellung, dann Umlagerung
+  head4: 43.8, step: [45.0, 52.0, 57.4], src: k => 46.6 + k * .4, stream: [48.2, 51.4], panel: 53.6, card: 54.4, avail: 55.8,
+  dip: [59.0, 59.6], reorder: 59.9, refill: [60.3, 61.3], cap3sub: 61.8, stores: 63.4, move: [64.4, 65.6],
+  // Szene 6: Satz, Knoten einzeln, dann Fußzeile
+  head5: 67.7, hb: k => 69.2 + k * 1.0, foot5: 73.4, spin: [68.2, 77.0],
+  // Szene 7: Satz, Linie, Häkchen einzeln
+  head6: 78.9, draw: [80.0, 80.9], check: k => 81.4 + k * .8,
+  ringEnd: 87.7, logo: 88.4, wipe: [88.1, 89.0], end: [88.9, 89.4, 90.1]
 };
 // Kartons auf der Bahn (Szene 2): Startzeiten
-export const FLOW_BOXES = seq(k => T.flow0 + k * T.flowEvery, 4);
+export const FLOW_BOXES = seq(k => T.flow0 + k * T.flowEvery, 2);
 // Datenpunkte zum Hub (Szene 5)
 export const STREAM = (() => { const out = []; for (let c = 0; c < 4; c++) for (let e = T.stream[0] + c * .23; e < T.stream[1]; e += .95 + .08 * c) out.push({ c, t: +e.toFixed(3) }); return out.sort((a, b) => a.t - b.t); })();
 
 // Texte mit Einblende-/Weg-Zeit (für die Lesezeit-Prüfung). t1 = Moment, in dem der Text das Bild verlässt.
 export const TX = {
   title: [T.titleIn, WHIPS[0][0], plain(S.titleSmall + ' ' + S.title)],
-  sub1: [8.8, WHIPS[1][0], plain(S.sub1)],
-  st1: [11.2, WHIPS[1][0], S.st1.join(' ')],
-  head2: [20.1, WHIPS[2][0], plain(S.head2)],
-  st2: [20.6, WHIPS[2][0], S.st2.flat().join(' ')],
-  label3: [29.4, WHIPS[3][0], S.label3],
-  head3: [29.6, WHIPS[3][0], plain(S.head3)],
-  kw3: [32.8, WHIPS[3][0], S.kw3.join(' ')],
-  head4: [39.3, WHIPS[4][0], plain(S.head4)],
-  src4: [39.6, WHIPS[4][0], S.ch4.join(' ')],
-  cap1: [39.9, 44.4, plain(S.cap1)],
-  cap2: [44.6, 49.6, plain(S.cap2)],
-  cap3: [49.8, 53.4, plain(S.cap3)],
-  cap3sub: [53.5, WHIPS[4][0], plain(S.cap3sub)],
-  head5: [59.1, WHIPS[5][0], plain(S.head5)],
-  cards5: [60.0, WHIPS[5][0], S.cards5.flat().join(' ')],
-  foot5: [62.9, WHIPS[5][0], plain(S.foot5)],
-  head6: [68.1, WHIPS[6][0], plain(S.head6)],
-  items6: [68.8, WHIPS[6][0], S.items6.join(' ')],
-  end1: [76.3, DURATION, S.claim],
-  end2: [76.8, DURATION, plain(S.end2)],
-  end3: [77.5, DURATION, plain(S.cta)]
+  sub1: [T.sub1, WHIPS[1][0], plain(S.sub1)],
+  st1: [T.node(0) + .2, WHIPS[1][0], S.st1.join(' ')],
+  head2: [T.head2, WHIPS[2][0], plain(S.head2)],
+  st2: [T.st2(0) + .2, WHIPS[2][0], S.st2.flat().join(' ')],
+  q3: [T.q3, WHIPS[3][0], plain(S.q3)],
+  head3: [T.head3, WHIPS[3][0], plain(S.head3)],
+  kw3: [T.kw(0), WHIPS[3][0], S.kw3.join(' ')],
+  head4: [T.head4, WHIPS[4][0], plain(S.head4)],
+  src4: [T.src(0) + .2, WHIPS[4][0], S.ch4.join(' ')],
+  cap1: [T.step[0], T.step[1] - .2, plain(S.cap1)],
+  cap2: [T.step[1], T.step[2] - .2, plain(S.cap2)],
+  cap3: [T.step[2], WHIPS[4][0], plain(S.cap3)],
+  cap3sub: [T.cap3sub, WHIPS[4][0], plain(S.cap3sub)],
+  head5: [T.head5, WHIPS[5][0], plain(S.head5)],
+  cards5: [T.hb(0) + .15, WHIPS[5][0], S.cards5.flat().join(' ')],
+  foot5: [T.foot5, WHIPS[5][0], plain(S.foot5)],
+  head6: [T.head6, WHIPS[6][0], plain(S.head6)],
+  items6: [T.check(0) + .08, WHIPS[6][0], S.items6.join(' ')],
+  end1: [T.end[0], DURATION, S.claim],
+  end2: [T.end[1], DURATION, plain(S.end2)],
+  end3: [T.end[2], DURATION, plain(S.cta)]
 };
 
 // ---------- Kamera: steht im Stand absolut still (Zoom 1), Bewegung nur in den Fahrten ----------
@@ -80,7 +85,7 @@ rk(WHIPS[3][1], P('how', ...HW.hub), HW.hubR, 0); rk(WHIPS[4][0], P('how', ...HW
 rk(WHIPS[4][1], P('hubs', ...HB.hub), HB.hubR); rk(WHIPS[5][0], P('hubs', ...HB.hub), HB.hubR);
 export const gainY = u => 10;   // Ring sitzt am Ende der geglätteten Linie (Mitte des grünen Korridors)
 rk(WHIPS[5][1], P('gain', GN.ringX, 10), 62); rk(WHIPS[6][0], P('gain', GN.ringX, 10), 62);
-rk(WHIPS[6][1], P('end', 0, -128), 150); rk(75.1, P('end', 0, -128), 150);
+rk(WHIPS[6][1], P('end', 0, -128), 150); rk(T.ringEnd, P('end', 0, -128), 150);
 rk(T.logo, P('end', LOGO_RING.x, LOGO_RING.y), LOGO_RING.r); rk(DURATION + 1, P('end', LOGO_RING.x, LOGO_RING.y), LOGO_RING.r);
 
 function ringBase(t) {
@@ -98,7 +103,7 @@ export function ringAt(t) {
   return ringBase(t);
 }
 // Drehung: ruhig; in der Datendrehscheibe (Szene 6) spürbar schneller; vor dem Logo exakt auf 0 (mod 2π)
-const rawSpin = t => .32 * t + 1.1 * inOutCubic(prog(t, T.recolor[0], T.recolor[1] + .3)) + 3.2 * inOutCubic(prog(t, 59.2, 66.6));
+const rawSpin = t => .32 * t + 1.1 * inOutCubic(prog(t, T.recolor[0], T.recolor[1] + .3)) + 3.2 * inOutCubic(prog(t, ...T.spin));
 export function spinAt(t) {
   const a = WHIPS[6][0], s0 = rawSpin(a), target = Math.ceil(s0 / (2 * Math.PI)) * 2 * Math.PI + 2 * Math.PI;
   if (t < a) return rawSpin(t);
@@ -116,7 +121,7 @@ export const cues = () => ({
   duration: DURATION, whips: WHIPS, musik: [WHIPS[0], WHIPS[2], WHIPS[3], WHIPS[4]],
   petals: seq(T.petal, 6), st1: seq(T.box, 10), v1: seq(k => T.flow0 + (FL.x[k] - FL.x[0]) / FL.speed, 4),
   st2: seq(T.st2, 5), v2: seq(T.v2, 5),
-  pch: [T.shelf2], psc: seq(T.list, 3), flights: seq(T.list, 3), tick0: T.tick0, kw: seq(T.kw, 3), mism: T.mism,
+  pch: [T.shelf2], q3: T.q3, steps: T.step, psc: seq(T.list, 3), flights: seq(T.list, 3), tick0: T.tick0, kw: seq(T.kw, 3), mism: T.mism,
   hero: T.hero, recolor: T.recolor, hubHit: T.hubHit, hch: seq(T.src, 4), stream: STREAM.map(s => s.t), card: T.card, avail: T.avail,
   hd: [T.dip[0], T.reorder, T.stores], disp: [T.reorder, T.refill[0], T.move[0], T.move[1] - .8],
   cards: seq(T.hb, 4), check: seq(T.check, 4), bar: seq(k => T.check(k) + .1, 4), logo: T.logo, wipe: T.wipe,

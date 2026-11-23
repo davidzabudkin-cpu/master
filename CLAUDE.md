@@ -44,7 +44,7 @@
 
 ## 6. Regeln für alles mit REMIRA
 - **REMIRA immer in Großbuchstaben** – im Bild, im Text und in Dateinamen (`REMIRA-OMS-Erklaervideo.mp4`).
-- **Branding** (`remira/brand/BRANDING-REMIRA.md`): Schrift Source Sans 3/Pro · Schwarz/Weiß · Akzent #41B6E6 · Ringfarben #41B6E6 #28ABBA #61BD47 #FCDA34 #FF9524 #F53D47 · Logo/Ring nur aus der Original-Datei (`remira/brand/remira-logo-claim-white.svg`), nie nachzeichnen · Icons: **Phosphor bold** (Skill `remira-phosphor-icons`).
+- **Branding** (`remira/brand/BRANDING-REMIRA.md`): Schrift Source Sans 3/Pro · Schwarz/Weiß · Akzent #41B6E6 · Ringfarben #41B6E6 #28ABBA #61BD47 #FCDA34 #FF9524 #F53D47 · Logo/Ring nur aus der Original-Datei (`remira/brand/remira-logo-claim-white.svg`), nie nachzeichnen · Icons: **Phosphor light** (seit 23.11., schmal; Skill `remira-phosphor-icons`).
 - **Heroes** (Comic-Heldin/-Held): `remira/brand/heroes-hq/` – KI-Nachzeichnungen, sparsam, vor Veröffentlichung mit Marketing abstimmen.
 - **Zeichensetzung (Text-Feedback Marketing):** Stichpunkte ohne Punkt, vor Listen ein Doppelpunkt, keine Gedankenstriche als Satzverbindung.
 - **Nichts erfinden:** Aussagen nur aus remira.com, Skript oder Glossar-Artikel. Zahlen mit „bis zu“, wenn es so auf der Seite steht.
@@ -71,7 +71,7 @@
 | **OMS-Erklärvideo** (71 s, 16:9, ohne Stimme, Glossar „Order Management System“) | `remira/projekte/oms-video/REMIRA-OMS-Erklaervideo-DE.mp4` und `-EN.mp4` + Code (Texte beider Sprachen in `src/texte.js`) | 7 Feedback-Runden, Endkarte B. **Offen:** David findet Claps störend (Intro ohne, ab 0:11 noch drin) – evtl. ganz raus. |
 | **Plattform-Animation** (21 s, Plattform-Sechseck animiert) | `remira/projekte/plattform-animation/REMIRA-Plattform-Animation-EN.mp4` und `-DE.mp4` + Code (Texte in `src/data.js`) | regelmäßige, weich gerundete Sechsecke, Hintergrund schwarz, Phosphor bold. **Offen:** hat noch die alte Flächen-Musik – evtl. dynamische Musik wie OMS. |
 | **Erklärvideo Stichprobeninventur** (Englisch, mit Stimme) | `remira/projekte/erklaervideo-v2-inventur/` | Schulungs-Demo. Bild rendert (Assets am 18.11. wiederhergestellt, Heldenbilder per `tools/hero_frames.py`, braucht `pip install opencv-python-headless`). **Fehlt:** Stimmdateien `assets/vo/*.mp3` (ElevenLabs) und das fertige MP4 – mit Ton erst nach neuer Stimme aus einem freigegebenen Tool. |
-| **Warenwirtschaft-Erklärvideo** (81 s, v3: eigener Aufbau und eigene Musik; Regal, Warenstrom, Kreislauf, Dashboard, Drehscheibe, Bestandslinie) | `remira/projekte/warenwirtschaft-video/REMIRA-WWS-Erklaervideo-DE.mp4` und `-EN.mp4` + Code | gebaut 18.11. aus remira.com-Glossar + Produktseite, Musik ohne Claps; **offen:** Freigabe Texte (Problem-Szene, Slogan, EN) |
+| **Warenwirtschaft-Erklärvideo** (93 s, v4: Schritt für Schritt mit Blickführung, eigene Musik; Regal, Warenstrom, Kreislauf, Dashboard, Drehscheibe, Bestandslinie) | `remira/projekte/warenwirtschaft-video/REMIRA-WWS-Erklaervideo-DE-v4.mp4` und `-EN-v4.mp4` (+ `-v2`, `-v3`) + Code | v4 am 23.11. nach Feedback Auftraggeber + Marketing; **offen:** Freigabe Texte (Problem-Frage DE/EN, Slogan, EN) |
 | **Demo-Websites** | `remira/demos/demo-premium/` (3D-Ring, Maus-Effekte, Fable), `demo-commerce/`, `demo-website/` (Inventur) | Konzept-Demos, intern |
 | **KI-Schulung 11.11.** | `remira/schulung/` (Präsentation als HTML, Lernpfad, Spickzettel, Folien-Quelle) | gehalten |
 | **Rechtsleitfaden KI** | `remira/rechtliches/` | fertig, keine Rechtsberatung |
@@ -97,6 +97,7 @@ Neues Video = Ordner `oms-video` kopieren, `src/data.js`, `src/timeline.js`, Sze
 - Mastering: `loudnorm` fiel bei leisem Intro in den dynamischen Modus und hob es um bis zu 10 dB an → WWS nutzt lineares Mastering (`tools/master.py`), Intro am OMS-Pegel gemessen (18.11.).
 - Neues Video ≠ Kopie: OMS ist Vorlage für Technik, Ring-Faden und Endkarte, aber Szenen, Bildsprache und Kamerapfad werden fürs Thema neu erfunden (WWS v1 war zu ähnlich, 18.11.).
 - WWS-Feedback 23.11.: eigene Musik pro Video (nicht den OMS-Track wiederverwenden); nicht zu viel gleichzeitig: erst Text lesen lassen, dann Bild-Ereignisse nacheinander, Szenen in Stufen passend zu ①②③, aber keine langen Leerlauf-Pausen. Lesezeit-Regel jetzt 2,5 Wörter/s + 1 s.
+- WWS v4 (23.11., Auftraggeber + Marketing): pro Schritt erst Text + Lesezeit, dann Animation; Rest abdunkeln; Schritt-Nummern groß zwischen Headline und Satz; Problem als Frage einleiten; Intro ≈ 4–5 s; alle Bildtexte fett; Icons light statt bold. Regeln: `remira-erklaervideo` → „Reihenfolge und Blickführung“.
 - Neue Lehren hier und im zuständigen Skill ergänzen.
 
 ## 11. Was bewusst NICHT im Kit ist

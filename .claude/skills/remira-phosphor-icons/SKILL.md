@@ -12,12 +12,11 @@ Remira verwendet in der Asset-Bibliothek die Phosphor-Icons (phosphoricons.com, 
 - Abruf: `https://unpkg.com/@phosphor-icons/core@2.1.1/assets/<gewicht>/<name>[-<gewicht>].svg` (bei regular ohne Suffix, z. B. `assets/bold/truck-bold.svg`) oder `npm pack @phosphor-icons/core@2.1.1` in einen eigenen, leeren Ordner.
 - Namen und englische Tags stehen in `dist/index.mjs` des Pakets (das Skript liest sie).
 
-## Gewicht: bold (Standard)
-- **Standard ist bold** (`--weight bold`, Dateien `assets/bold/<name>-bold.svg`).
-- Begründung: Davids Rückmeldung 12.11.2026 zum OMS-Video: „Remira-Icons sind dicker“. regular (Linie 16/256) wirkt in Video-Größe (38–50 px auf 1080p, neben fetter Source Sans 700–800) zu dünn; bold (24/256) passt zur Schrift und zu den Remira-Assets.
-- Die erste Messung an den Bibliotheks-Screenshots (≈ 14 px Linie bei 1:1-Raster → regular) war ein Irrweg: Die Screenshots zeigen die Icons sehr groß, im Video werden sie klein und brauchen mehr Strich. Davids Auge entscheidet.
-- In Videos Icons ca. 10–15 % größer setzen als die reine Kreisgröße nahelegt (OMS-Video: Faktor 1,12 in `drawIcon`).
-- regular nur für sehr große Icons (> 120 px), z. B. Hero-Grafiken auf Websites.
+## Gewicht: light (Standard seit 23.11.2026)
+- **Standard ist light** (`--weight light`, Dateien `assets/light/<name>-light.svg`). Marketing-Feedback zum WWS-Video v3: bold wirkt zu dick und „knubbelig“, REMIRA nutzt schmale Icons. thin (8/256) ist bei 38–46 px im Video kaum lesbar (≈ 1,4 px Linie), light (12/256 ≈ 2 px) ist der Kompromiss.
+- Davor (12.11., OMS-Video) war bold Standard, weil regular neben fetter Schrift zu dünn wirkte. OMS- und Plattform-Video nutzen noch bold; bei der nächsten Überarbeitung auf light umstellen.
+- In Videos Icons ca. 10–15 % größer setzen als die reine Kreisgröße nahelegt (Faktor 1,12 in `drawIcon`); Icons in Chips mindestens 22 px.
+- Ohne Netz zu unpkg: `npm pack @phosphor-icons/core@2.1.1` in einen leeren Ordner, entpacken und `package/` nach `~/.cache/phosphor-core-2.1.1` kopieren, dann läuft `scripts/phosphor.py` offline.
 
 ## Farbe und Strich im Remira-Branding
 - Auf dunklem Grund weiß (#FFFFFF), auf hellem Grund schwarz (#000000). Akzent nur für Hervorhebung: #41B6E6. Ringfarben (#41B6E6 #28ABBA #61BD47 #FCDA34 #FF9524 #F53D47) nicht für Icons, sondern für Punkte/Flächen.
@@ -28,8 +27,8 @@ Remira verwendet in der Asset-Bibliothek die Phosphor-Icons (phosphoricons.com, 
 ## Werkzeug: `scripts/phosphor.py`
 ```
 python scripts/phosphor.py search truck delivery        # Namen finden (Tags sind Englisch: „warehouse“, nicht „Lager“)
-python scripts/phosphor.py get truck warehouse --out assets/icons            # SVG-Dateien (bold) + PHOSPHOR-LICENSE.txt
-python scripts/phosphor.py js truck warehouse --out src/phosphor-icons.js    # ES-Modul für Canvas (bold)
+python scripts/phosphor.py get truck warehouse --weight light --out assets/icons   # SVG-Dateien + PHOSPHOR-LICENSE.txt
+python scripts/phosphor.py js truck warehouse --weight light --out src/phosphor-icons.js   # ES-Modul für Canvas
 python scripts/phosphor.py js truck --weight regular --out src/icons-regular.js   # nur für sehr große Icons
 ```
 Cache: `~/.cache/phosphor-core-2.1.1`. Nur Python-Standardbibliothek.
@@ -68,5 +67,5 @@ Nicht als Icon: Bildschirme, Uhrzeiger und Papierzettel im Problem-Teil sind Ill
 
 ## Fehler, die nicht wieder passieren
 - Icons nachgezeichnet statt Original (Runde 1 des OMS-Videos) → immer Skript `get`/`js`.
-- Gewicht regular im Video zu dünn (Runde 2) → bold als Standard.
+- Gewicht regular im Video zu dünn (Runde 2) → bold; bold zu „knubbelig“ (Marketing 23.11.) → light als Standard.
 - Chip/Box mit fester Breite → Breite aus `measureText` + Padding berechnen, damit Text und Icon drin bleiben.
