@@ -26,7 +26,7 @@ export const PR = { shelf: { x0: -800, y0: -40, cw: 176, ch: 120, cols: 5, rows:
   state: [-1, 0, 2, 0, -1, 0, 3, -1, 0, 1] };
 // Szene 5 So funktioniert's: Quellen links, Hub, Bestands-Dashboard rechts, zwei Filialen unten
 export const HW = { hub: [-430, -40], hubR: 118, srcX: -800, srcY: [-250, -95, 60, 215], srcIcon: ['tray-arrow-down', 'warehouse', 'storefront', 'laptop'], srcLabel: S.ch4,
-  panel: { x: 330, y: -90, w: 700, h: 300 }, rows: [-50, 25, 100], fill: [.78, .55, .66], min: .32, stores: [[160, 200], [500, 200]] };
+  panel: { x: 330, y: -90, w: 700, h: 300 }, rows: [-38, 28, 94], fill: [.78, .55, .66], min: .32, stores: [[160, 200], [500, 200]] };   // rows: lokal zur Panel-Mitte (Panel ±150)
 // Szene 6 Datendrehscheibe: 4 Knoten im Bogen um den Ring
 export const HB = { hub: [0, -60], hubR: 118, pos: [[-650, -60], [-270, 200], [270, 200], [650, -60]], r: 58, icon: ['arrows-split', 'chart-line-up', 'database', 'plugs-connected'], lines: S.cards5 };
 // Szene 7 Vorteile: Häkchen links, Bestandsverlauf rechts

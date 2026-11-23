@@ -341,9 +341,9 @@ const scenes = {
         if (ok < 1) { g.globalAlpha = 1 - ok; g.font = font(22, 600); g.fillStyle = SOFT; g.textAlign = 'right'; g.fillText(S.checking, rx, hy); g.globalAlpha = 1; }
         chip(rx, hy, S.available, GREEN, ok, 'right', ICON.check);
         // Artikelzeilen: Icon, Balken, Mindestbestand
-        const bx0 = lx + 64, bw = rx - 170 - bx0, mx = bx0 + bw * HW.min;
+        const bx0 = lx + 64, bw = rx - 205 - bx0, mx = bx0 + bw * HW.min;
         HW.rows.forEach((ry, k) => {
-          const y = ry - P0.y + (-10);
+          const y = ry;
           drawIconAt(ICON.package, lx + 18, y, 30, '#fff', .9);
           g.fillStyle = 'rgba(255,255,255,.1)'; g.beginPath(); g.roundRect(bx0, y - 9, bw, 18, 9); g.fill();
           let lvl = HW.fill[k] * outCubic(prog(t, T.card + k * .2, T.card + k * .2 + 1.0)), low = 0;
@@ -354,7 +354,7 @@ const scenes = {
         });
         g.restore();
         // Chip „nachbestellt“ neben der kritischen Zeile (außerhalb der Skalierung, steht still)
-        chip(P0.x + P0.w / 2 - 40, HW.rows[1] - 10, S.reorder, BLUE, prog(t, T.reorder, T.reorder + .3) * (pu >= 1 ? 1 : 0), 'right', ICON['arrows-clockwise']);
+        chip(P0.x + P0.w / 2 - 40, P0.y + HW.rows[1], S.reorder, BLUE, prog(t, T.reorder, T.reorder + .3) * (pu >= 1 ? 1 : 0), 'right', ICON['arrows-clockwise']);
       }
       // Umlagerung zwischen zwei Filialen
       const su = prog(t, T.stores, T.stores + .5);
