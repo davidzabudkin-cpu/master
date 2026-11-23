@@ -28,7 +28,7 @@ Vorlage und Pipeline: `remira/projekte/oms-video/` (Canvas-Code, Playwright-Rend
 - **Keine Gedankenstriche** als Satzverbindung; Komma oder neuer Satz.
 - **REMIRA immer in Großbuchstaben**, im Bild wie im Fließtext und auch in Dateinamen (`REMIRA-OMS-Erklaervideo.mp4`); Ausnahme nur technische Ordner-/Skill-Namen in Kleinbuchstaben.
 - Nichts erfinden: nur Aussagen aus Skript bzw. Remira-Artikel, keine Zahlen ohne Quelle.
-- Lesezeit: mind. 1 s pro 3 Wörter + 0,8 s (wird von `tools/dump_cues.mjs` geprüft).
+- Lesezeit: mind. 1 s pro 2,5 Wörter + 1 s (seit WWS-Feedback 23.11.; wird von `tools/dump_cues.mjs` geprüft).
 
 ## Musik und Ton
 - Musik **dynamisch statt Flächen**: modern, Corporate/Tech, ca. 110–120 BPM, klare Drums (Kick, Clap, Hi-Hats), Bass, kurze Plucks; keine langen Pads, Chor, Orgel, viel Hall („klingt nach Kirche/Weltall“ abgelehnt).
@@ -69,3 +69,8 @@ Vorlage: `remira/projekte/plattform-animation/` (Messung: `tools/measure.py`).
 
 ## Neues Video, nicht Kopie (18.11.2026)
 - Von `oms-video` übernehmen: Technik (Renderer, Text-Helfer, Ring, Kamera-Fahrten, Ton-Pipeline), Ring als roten Faden, Endkarte B. **Neu erfinden:** Szenen, Key Visuals, Kamerapfad und Ring-Rollen passend zum Thema (Beispiel WWS: Regal, Warenstrom, Kreislauf, Bestands-Dashboard, Datendrehscheibe, Bestandslinie). Vorher Storyboard nach Skill `storyboard` mit Gates.
+
+## Tempo und Musik (Feedback 23.11.2026, WWS)
+- **Nicht zu viel auf einmal:** Szene in Stufen bauen. Erst den Satz allein stehen lassen (≈ Lesezeit), dann Bildelemente nacheinander (Kacheln, dann Bewegung). Bei nummerierten Schritten ①②③ zeigt jede Stufe nur ihr eigenes Ereignis; vorherige Bewegung ruht (z. B. Datenstrom endet, wenn das Dashboard kommt). Unterzeilen erst mit ihrem Bild-Ereignis einblenden. Keine langen Leerlauf-Pausen.
+- Bewegte Mengen halbieren: lieber 4 Kartons/Datenpunkte als 9.
+- **Eigene Musik je Video:** nicht den Track eines anderen Videos wiederverwenden. Tempo, Tonart, Groove und Leitinstrument ändern (WWS: 100 BPM, G-Dur/E-Moll, Marimba, Shaker, gebrochener Beat; OMS: 116 BPM, F-Dur, Plucks, Hats).

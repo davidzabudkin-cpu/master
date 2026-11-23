@@ -212,7 +212,7 @@ const scenes = {
     pre(t) {
       softGlow(0, 60, 950, 'rgba(40,120,190,A)', .14);
       text(S.sub1, 0, -380, 42, t, TX.sub1[0], 99, { w: 500, lh: 56, st: .06 });
-      const ra = prog(t, 9.3, 10.0);
+      const ra = prog(t, ...T.rail);
       // Bahn (Förderband): nur zwischen den Kacheln, Muster läuft in Förderrichtung
       for (let k = 0; k < 3; k++) {
         const a = FL.x[k] + FL.tile / 2 + 8, b = FL.x[k + 1] - FL.tile / 2 - 8; if (ra <= 0) break;
@@ -220,7 +220,7 @@ const scenes = {
         g.strokeStyle = 'rgba(65,182,230,.55)'; g.lineWidth = 3; g.setLineDash([10, 14]); g.lineDashOffset = -(t * FL.speed) % 24; g.stroke(); g.restore();
       }
       // Datenlinien Kachel → Ring
-      FL_DATA.forEach((pts, k) => dotted(pts, 0, inOutCubic(prog(t, T.node(k) + .4, T.node(k) + 1.1)), .3));
+      FL_DATA.forEach((pts, k) => dotted(pts, 0, inOutCubic(prog(t, T.data[0] + k * .15, T.data[1] + k * .15)), .3));
       FL.x.forEach((x, k) => {
         let lit = 0; for (const tp of passTimes(k)) lit = Math.max(lit, decay(t, tp, .4));
         tile(x, FL.y, FL.tile, T.node(k), clamp(lit * 1.4));
@@ -236,7 +236,7 @@ const scenes = {
     post(t) {
       FL.x.forEach((x, k) => drawIcon(ICON[FL.icon[k]], x, FL.y, 46, prog(t, T.node(k) + .1, T.node(k) + .7), '#fff'));
       // Datenpunkte steigen zum Ring, wenn ein Karton eine Kachel erreicht („abbilden“)
-      FL.x.forEach((x, k) => { for (const tp of passTimes(k)) { const u = prog(t, tp, tp + .8); if (u > 0 && u < 1) glowDot(...ptAt(FL_DATA[k], inOutCubic(u)), 5.5, RINGC[k + 1], Math.min(1, u * 6, (1 - u) * 5)); } });
+      FL.x.forEach((x, k) => { for (const tp of passTimes(k)) { if (tp < T.data[1] + k * .15) continue; const u = prog(t, tp, tp + .8); if (u > 0 && u < 1) glowDot(...ptAt(FL_DATA[k], inOutCubic(u)), 5.5, RINGC[k + 1], Math.min(1, u * 6, (1 - u) * 5)); } });
     }
   },
   cycle: {
@@ -244,7 +244,7 @@ const scenes = {
       softGlow(CY.c[0], CY.c[1], 950, 'rgba(40,140,210,A)', .18);
       text(S.head2, 0, -440, 60, t, TX.head2[0], 99, { w: 800 });
       // Kreisbahn nur zwischen den Stationen, mit Richtungspfeilen
-      const oa = inOutCubic(prog(t, 18.0, 19.0)), gap = (CY.r + 9) / CY.R;
+      const oa = inOutCubic(prog(t, T.st2(0) - .2, T.st2(0) + .8)), gap = (CY.r + 9) / CY.R;
       for (let k = 0; k < 5; k++) {
         const a0 = CY.ang[k] * DEG + gap, a1 = (CY.ang[k] + 72) * DEG - gap, ae = lerp(a0, a1, clamp(oa * 5 - k));
         if (ae <= a0) continue;
@@ -265,7 +265,7 @@ const scenes = {
     },
     post(t) {
       CYP.forEach(([x, y], k) => drawIcon(ICON[CY.icon[k]], x, y, 44, prog(t, T.st2(k) + .1, T.st2(k) + .7), '#fff'));
-      hubLabel(t, 'cycle', 17.8);
+      hubLabel(t, 'cycle', WHIPS[1][1] - .2);
     }
   },
   problem: {
@@ -313,10 +313,10 @@ const scenes = {
       });
     },
     post(t) {
-      const R = L('problem', t), ca = prog(t, 26.9, 27.5) * (1 - prog(t, T.recolor[0], T.recolor[0] + .4));
+      const R = L('problem', t), ca = prog(t, T.shelf2 - .5, T.shelf2 + .1) * (1 - prog(t, T.recolor[0], T.recolor[0] + .4));
       if (ca > 0) {
         const ticks = Math.max(0, Math.floor((t - T.tick0) * 2)), frac = (t - T.tick0) * 2 - ticks, snap = t > T.tick0 ? outBack(clamp(frac * 6), 2.5) : 0;
-        const am = ((ticks + snap) * 30) * Math.PI / 180, ah = (t - 27) * .25;
+        const am = ((ticks + snap) * 30) * Math.PI / 180, ah = (t - T.shelf2) * .25;
         g.save(); g.translate(R.x, R.y); g.globalAlpha = ca; g.strokeStyle = '#fff'; g.lineCap = 'round';
         g.lineWidth = 4; g.beginPath(); g.moveTo(0, 0); g.lineTo(Math.sin(ah) * 17, -Math.cos(ah) * 17); g.stroke();
         g.lineWidth = 3; g.beginPath(); g.moveTo(0, 0); g.lineTo(Math.sin(am) * 28, -Math.cos(am) * 28); g.stroke();
@@ -326,7 +326,7 @@ const scenes = {
   },
   how: {
     pre(t) {
-      softGlow(HW.hub[0], HW.hub[1], 900, 'rgba(40,140,210,A)', .2 * prog(t, 35.4, 36.4));
+      softGlow(HW.hub[0], HW.hub[1], 900, 'rgba(40,140,210,A)', .2 * prog(t, T.hubHit - 1.2, T.hubHit - .2));
       text(S.head4, 0, -445, 56, t, TX.head4[0], 99, { w: 800 });
       HW.srcY.forEach((y, k) => { dotted(SRC_IN[k], 0, inOutCubic(prog(t, T.src(k) + .3, T.src(k) + .9)), .35); station(HW.srcX, y, 44, T.src(k), 0); text(HW.srcLabel[k], HW.srcX, y + 70, 26, t, T.src(k) + .2, 99, { w: 600, col: SOFT }); });
       // Hub → Dashboard
@@ -357,20 +357,20 @@ const scenes = {
         chip(P0.x + P0.w / 2 - 40, HW.rows[1] - 10, S.reorder, BLUE, prog(t, T.reorder, T.reorder + .3) * (pu >= 1 ? 1 : 0), 'right', ICON['arrows-clockwise']);
       }
       // Umlagerung zwischen zwei Filialen
-      const su = prog(t, T.move[0] - .7, T.move[0] - .2);
+      const su = prog(t, T.stores, T.stores + .5);
       if (su > 0) {
-        const [a, b] = HW.stores; HW.stores.forEach(([x, y], k) => station(x, y, 44, T.move[0] - .7 + k * .1, 0));
+        const [a, b] = HW.stores; HW.stores.forEach(([x, y], k) => station(x, y, 44, T.stores + k * .15, 0));
         dotted([[a[0] + 52, a[1]], [b[0] - 52, b[1]]], 0, inOutCubic(su), .5);
         chip((a[0] + b[0]) / 2, a[1] - 50, S.transfer, 'rgba(65,182,230,.9)', prog(t, T.move[0] - .3, T.move[0]), 'center');
         const mu = prog(t, ...T.move); if (mu > 0 && mu < 1) carton(lerp(a[0] + 52, b[0] - 52, inOutCubic(mu)), a[1], 36, RINGC[4], Math.min(1, mu * 6, (1 - mu) * 6));
       }
-      caption(t, 1, S.cap1, TX.cap1); caption(t, 2, S.cap2, TX.cap2); caption(t, 3, S.cap3, TX.cap3, S.cap3sub);
+      caption(t, 1, S.cap1, TX.cap1); caption(t, 2, S.cap2, TX.cap2); caption(t, 3, S.cap3, [TX.cap3[0], WHIPS[4][0]], S.cap3sub, TX.cap3sub[0]);
     },
     post(t) {
       HW.srcY.forEach((y, k) => drawIcon(ICON[HW.srcIcon[k]], HW.srcX, y, 38, prog(t, T.src(k) + .1, T.src(k) + .7), '#fff'));
-      if (t > T.move[0] - .7) HW.stores.forEach(([x, y], k) => drawIcon(ICON.storefront, x, y, 38, prog(t, T.move[0] - .6 + k * .1, T.move[0] + k * .1), '#fff'));
+      if (t > T.stores) HW.stores.forEach(([x, y], k) => drawIcon(ICON.storefront, x, y, 38, prog(t, T.stores + .1 + k * .15, T.stores + .7 + k * .15), '#fff'));
       STREAM.forEach(s => { const u = prog(t, s.t, s.t + .9); if (u <= 0 || u >= 1) return; glowDot(...ptAt(SRC_IN[s.c], inOutCubic(u)), 6, RINGC[s.c], Math.min(1, u * 6, (1 - u) * 5)); });
-      hubLabel(t, 'how', 35.9);
+      hubLabel(t, 'how', T.recolor[0]);
     }
   },
   hubs: {
@@ -390,7 +390,7 @@ const scenes = {
         if (t > T.hb(k) + .3) for (let j = 0; j < 2; j++) { const q = ((t - T.hb(k) - .3) * .7 + j / 2) % 1, out = j === 0, u = out ? q : 1 - q;
           glowDot(...lerpPt(SPOKES[k][0], SPOKES[k][1], u), 4.5, RINGC[k + 1], .85 * Math.min(1, q * 6, (1 - q) * 6)); }
       });
-      hubLabel(t, 'hubs', 52.9);
+      hubLabel(t, 'hubs', WHIPS[4][1] - .3);
     }
   },
   gain: {
@@ -405,7 +405,7 @@ const scenes = {
         text(s, -710, y, 48, t, t0 + .08, 99, { w: 700, align: 'left' });
       });
       // Zonen: Überbestand (oben, orange), Korridor (grün), Fehlbestand (unten, rot)
-      const za = prog(t, 61.9, 62.5), B = CH.band; if (za <= 0) return;
+      const za = prog(t, T.draw[0] - .1, T.draw[0] + .5), B = CH.band; if (za <= 0) return;
       g.save(); g.globalAlpha = za;
       g.fillStyle = 'rgba(255,149,36,.07)'; g.fillRect(CH.x0, CH.y0, CX1 - CH.x0, CYC - B - CH.y0);
       g.fillStyle = 'rgba(245,61,71,.07)'; g.fillRect(CH.x0, CYC + B, CX1 - CH.x0, CH.y1 - CYC - B);
@@ -474,14 +474,14 @@ function endB(t) {
   if (pu > 0) { g.save(); g.globalAlpha = pu; g.beginPath(); g.roundRect(left + 1.25, by - 24 + (1 - pu) * 10, w, 48, 24); g.strokeStyle = BLUE; g.lineWidth = 2.5; g.stroke(); g.fillStyle = 'rgba(65,182,230,.12)'; g.fill(); g.restore(); }
   text(S.cta, left + 26, by, 26, t, TX.end3[0] + .1, 99, { w: 600, align: 'left' });
 }
-function caption(t, n, s, [t0, t1], sub) {
+function caption(t, n, s, [t0, t1], sub, subAt) {
   if (t < t0 || (t > t1 && t1 < WHIPS[4][0])) return;
   g.save(); g.font = font(46, 700); const plain = s.replace(/\*/g, ''), w = g.measureText(plain).width; g.restore();
   const y = sub ? 380 : 400, bx = -w / 2 - 44, fadeOut = t1 >= WHIPS[4][0] ? 1 : 1 - prog(t, t1 - .3, t1);
   const u = outBack(prog(t, t0, t0 + .4), 2) * fadeOut;
   if (u > 0) { g.save(); g.globalAlpha = fadeOut; g.translate(bx, Math.round(y) + capMid(46, 700)); g.scale(u, u); g.fillStyle = BLUE; g.beginPath(); g.arc(0, 0, 25, 0, 7); g.fill(); g.fillStyle = '#fff'; g.font = font(28, 800); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(String(n), 0, 1); g.restore(); }
   text(s, 22, y, 46, t, t0 + .1, t1, { w: 700, fade: t1 < WHIPS[4][0] });
-  if (sub) text(sub, 0, y + 58, 34, t, t0 + 1.2, t1, { w: 500, col: SOFT });
+  if (sub) text(sub, 0, y + 58, 34, t, subAt ?? t0 + 1.2, t1, { w: 500, col: SOFT });
 }
 function hubLabel(t, s, t0) {
   const R = L(s, t), a = prog(t, t0, t0 + .6); if (a <= 0) return;

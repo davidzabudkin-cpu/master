@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Ton des Warenwirtschaft-Erklärvideos (Basis OMS-Mix, ohne Claps). Ursprünglich: Ton des OMS-Erklärvideos (Runde 5: rhythmische Corporate-Musik 116 BPM statt Flächen; Runde 6: Intro bis 0:13 weicher, ohne Claps — Einbau per tools/splice_intro.py vor den Ton von v5): Musikflaeche (Pad, Sub, Puls) + Sounddesign (Whooshes, Riser, weiche Impacts, gestimmte Taps). Alles per Code, geseedet.
+"""Ton des Warenwirtschaft-Erklärvideos: eigener Track (100 BPM, G-Dur/E-Moll, Marimba, Shaker, gebrochener Beat; seit 23.11.), Sounddesign-Bausteine wie OMS, ohne Claps. Ursprünglich: Ton des OMS-Erklärvideos (Runde 5: rhythmische Corporate-Musik 116 BPM statt Flächen; Runde 6: Intro bis 0:13 weicher, ohne Claps — Einbau per tools/splice_intro.py vor den Ton von v5): Musikflaeche (Pad, Sub, Puls) + Sounddesign (Whooshes, Riser, weiche Impacts, gestimmte Taps). Alles per Code, geseedet.
 Zeiten aus plan/cues.json (node tools/dump_cues.mjs). Aufruf: python tools/mix.py cache/audio/mix.wav"""
 import json, sys, pathlib
 import numpy as np
@@ -130,7 +130,7 @@ def swell(d, g=1.0, f=2400):
 # ---------- Musik (Runde 5): modern, rhythmisch, 116 BPM – Drums, Bass, kurze Plucks, keine Flächen ----------
 # Aufbau: Intro leise (Hats + Pluck, ab 4,5 s Kick) → Schritte (voller Beat) → Problem (Moll, halbes Tempo-Gefühl, dumpf)
 # → Wendepunkt (Snare-Roll) → Drop auf den Hub → Lösung (16tel-Hats, zweites Motiv ab „Möglichkeiten“) → Logo: Drums stoppen, Ausklang.
-W_ = Q['whips']; M_ = Q.get('musik', W_); BPM = 116; BEAT = 60 / BPM; S16 = BEAT / 4
+W_ = Q['whips']; M_ = Q.get('musik', W_); BPM = 100; BEAT = 60 / BPM; S16 = BEAT / 4
 HUB, LOGO = Q['hubHit'], Q['logo']
 
 
@@ -176,58 +176,71 @@ def pl(m, g=1.0, dec=.12, bright=3200):
     return lp(x * np.exp(-t / dec), bright) * env(len(t), .002, .05) * .3 * g
 
 
-PROG = {'maj': [('F', 41), ('C', 36), ('Dm', 38), ('Bb', 34)], 'min': [('Dm', 38), ('Bb', 34), ('Gm', 43), ('A', 45)]}
-CH['A'] = [45, 52, 57, 61, 64, 69]
-MOTIF = [0, 2, 1, 2, 3, 2, 1, None, 0, 2, 3, 4, 3, 2, None, 1]          # 16tel-Motiv, Index in Akkordtöne
-MOTIF2 = [None, None, 4, None, None, 3, None, 2, None, None, 4, None, 5, None, 3, None]
+# ---------- WWS-Track (eigene Musik, 23.11.2026): 100 BPM, G-Dur/E-Moll, gebrochener Beat, Shaker, Marimba-Motiv ----------
+CH.update({'G': [43, 55, 59, 62, 67, 71], 'D': [38, 50, 54, 57, 62, 66], 'Em': [40, 52, 55, 59, 64, 67], 'Am': [45, 57, 60, 64, 69, 72], 'E': [40, 52, 56, 59, 64, 68], 'Cmaj': [36, 48, 52, 55, 60, 64]})
+PROG = {'maj': [('G', 43), ('D', 38), ('Em', 40), ('Cmaj', 36)], 'min': [('Am', 45), ('F', 41), ('Am', 45), ('E', 40)]}
+
+
+def shaker(g=1.0, d=.045):
+    t = T(d * 3); return bp(rng.standard_normal(len(t)), 4500, 11000) * np.exp(-t / d) * env(len(t), .008, .02) * .26 * g
+
+
+def tom(m, g=1.0):
+    t = T(.35); f = mtof(m) * (1 + .35 * np.exp(-t / .03)); return np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t / .16) * .55 * g
+
+
+def marimba(m, g=1.0, dec=.35):
+    t = T(.9); f = mtof(m); x = np.sin(2 * np.pi * f * t) + .28 * np.sin(2 * np.pi * f * 4 * t) * np.exp(-t / .05) + .1 * np.sin(2 * np.pi * f * 10 * t) * np.exp(-t / .012)
+    return x * np.exp(-t / dec) * env(len(t), .001, .08) * .28 * g
+
+
+KICK = {0, 6, 8, 11}                                                    # gebrochener Beat (1, „und“ von 2, 3, „e“ von 4)
+ARP = [0, 2, 3, 4, 3, 2, None, 1, 0, 2, 4, None, 5, 4, 2, None]          # Marimba-Achtel/16tel, Index in Akkordtöne
+ARP2 = [None, None, None, 5, None, None, 4, None, None, None, None, 3, None, 4, None, None]
 n16 = int(DUR / S16)
 for i in range(n16):
-    t = i * S16; s = sec(t); beat = i // 4; step = i % 16; bar = i // 16
+    t = i * S16; s = sec(t); step = i % 16; bar = i // 16
     if t > LOGO + .05: break
     mode = 'min' if s == 'problem' else 'maj'
     name, root = PROG[mode][(bar // 2) % 4]; tones = CH[name][1:]
     dark = s == 'problem'
-    ramp = min(1.0, max(0.0, (t - M_[0][1]) / (13.0 - M_[0][1])))   # Runde 6: weicher Einstieg bis 0:13, danach unverändert
-    # Kick
-    if (s in ('steps', 'how', 'full') and i % 4 == 0) or (s == 'intro' and t >= 4.5 and i % 8 == 0) or (dark and i % 8 == 0):
-        place(music, t, kick(.45 if s == 'intro' else .7 + .3 * ramp), 1.0)
-    # Clap auf 2 und 4
-    # Keine Claps (OMS-Feedback 16.11.: Claps störend) – Groove nur aus Kick, Hats, Bass, Plucks
-    # Hats
-    if s == 'intro' and i % 2 == 0 and t > 1.0: place(music, t, hat(.45 + .25 * (i % 4 == 2)), db(-10), pan=.3)
-    if s == 'steps' and i % 2 == 0: place(music, t, hat((.6 + .35 * (i % 4 == 2)) * (.55 + .45 * ramp)), db(-4), pan=.3)
-    if s in ('how', 'full'): place(music, t, hat((.35 + .5 * (i % 4 == 2)) * (1.0 if s == 'full' else .85), .022 if i % 4 else .03), db(-4), pan=.3)
-    if dark and i % 4 == 2: place(music, t, hat(.4, .05), db(-9), pan=-.3)
-    # Bass: Achtel-Offbeats (pumpt gegen die Kick), im Problem längere Töne
-    if s in ('steps', 'how', 'full') and i % 2 == 0 and i % 4 != 0: place(music, t, bass(root - 12 + (12 if step in (6, 14) else 0), S16 * 1.8), db(-2))
-    if s in ('steps', 'how', 'full') and i % 4 == 0 and step in (0, 8): place(music, t, bass(root - 12, S16 * 1.6, .8), db(-3))
-    if dark and i % 8 == 0: place(music, t, lp(bass(root - 12, BEAT * 1.6), 300), db(-1))
-    # Pluck-Motive
-    if s in ('intro', 'steps', 'how', 'full') and MOTIF[step] is not None and not (s == 'intro' and t < 1.2):
-        m = tones[MOTIF[step] % len(tones)] + 12
-        gp = {'intro': .55, 'steps': .75, 'how': .85, 'full': .9}[s]
-        place(music, t, pl(m, gp), db(-7), pan=.35 * np.sin(i * .9), rev=.12)
-    if s == 'full' and MOTIF2[step] is not None:
-        place(music, t, pl(tones[MOTIF2[step] % len(tones)] + 24, .5, .08, 4200), db(-11), pan=-.4, rev=.12)
-    if dark and step in (0, 6, 10) and bar % 2 == 0:
-        place(music, t, pl(tones[[0, 2, 1][[0, 6, 10].index(step)]] + 12, .55, .2, 1600), db(-9), rev=.15)
+    ramp = min(1.0, max(0.0, (t - M_[0][1]) / (13.0 - M_[0][1])))
+    groove = s in ('steps', 'how', 'full')
+    # Kick: gebrochen im Hauptteil, im Intro nur auf 1 (ab 4,5 s), im Problem nur auf 1 und 3, dumpfer
+    if (groove and step in KICK) or (s == 'intro' and t >= 4.5 and step == 0) or (dark and step in (0, 8)):
+        place(music, t, lp(kick(.4 if s == 'intro' else (.55 if dark else .65 + .3 * ramp)), 2200 if dark else 9000), 1.0)
+    # Shaker statt Hi-Hats: 16tel, Akzent auf den Offbeats
+    if s == 'intro' and t > 1.0 and i % 2 == 1: place(music, t, shaker(.35 + .25 * (step % 4 == 2)), db(-9), pan=-.25)
+    if groove: place(music, t, shaker((.35 + .55 * (step % 4 == 2)) * (.6 + .4 * ramp) * (1.0 if s == 'full' else .85)), db(-6), pan=-.25)
+    if dark and step in (4, 12): place(music, t, shaker(.5, .08), db(-10), pan=.3)
+    # Woodblock-Tom statt Clap, nur leise auf der 4 jedes zweiten Takts
+    if groove and step == 12 and bar % 2 == 1: place(music, t, tom(79, .45), db(-14), pan=.35, rev=.15)
+    # Bass: Grundton auf 1, Quinte auf „und“ von 2, Oktav-Sprung am Taktende
+    if groove and step in (0, 6, 10, 14): place(music, t, bass(root - 12 + {0: 0, 6: 7, 10: 0, 14: 12}[step], S16 * (3.2 if step == 0 else 1.8)), db(-2))
+    if dark and step == 0: place(music, t, lp(bass(root - 12, BEAT * 3.2), 260), db(-1))
+    # Marimba-Motiv
+    if s in ('intro', 'steps', 'how', 'full') and ARP[step] is not None and not (s == 'intro' and t < 1.2):
+        gp = {'intro': .5, 'steps': .7, 'how': .8, 'full': .85}[s]
+        place(music, t, marimba(tones[ARP[step] % len(tones)] + 12, gp), db(-6), pan=.3 * np.sin(i * .7), rev=.14)
+    if s == 'full' and ARP2[step] is not None: place(music, t, marimba(tones[ARP2[step] % len(tones)] + 24, .4, .25), db(-11), pan=-.35, rev=.15)
+    if dark and step in (0, 10) and bar % 2 == 0: place(music, t, marimba(tones[[0, 2][[0, 10].index(step)]] + 12, .5, .5), db(-8), rev=.2)
 
-# Wendepunkt: Snare-Roll, der sich zum Drop auf den Hub steigert
+# Wendepunkt: Tom-Lauf (absteigend → aufsteigend), Drop auf den Hub
 t0 = M_[2][0]; k = 0
 while t0 + k * S16 < HUB - .02:
     tt = t0 + k * S16; u = (tt - M_[2][0]) / (HUB - M_[2][0])
-    if k % (2 if u < .6 else 1) == 0: place(music, tt, snare(.3 + .7 * u ** 1.5), db(-6), rev=.1)
+    if k % (2 if u < .5 else 1) == 0: place(music, tt, tom(45 + int(14 * u), .35 + .6 * u ** 1.4), db(-6), rev=.12)
     k += 1
-place(music, HUB, kick(1.1), 1.0); place(music, HUB, crash(1.0), db(-4))
-# Akzente auf allen anderen Übergängen: kurzer Snare-Fill vor dem Ende der Fahrt, Crash bei Ankunft
+place(music, HUB, kick(1.0), 1.0); place(music, HUB, crash(.8), db(-6))
+# Übrige Übergänge: kurzer Tom-Fill, weicher Crash bei Ankunft
 for a, b in W_:
     if a == M_[2][0]: continue
-    for j in range(4): place(music, b - (4 - j) * S16, snare(.35 + .15 * j), db(-8), rev=.1)
-    place(music, b, crash(.8), db(-7))
+    for j, m in enumerate([57, 52, 48]): place(music, b - (3 - j) * S16, tom(m, .4 + .12 * j), db(-9), rev=.1)
+    place(music, b, crash(.6), db(-9))
 # Logo: Drums stoppen, letzter Akkord als Pluck-Arpeggio + Bassnote klingt aus
-place(music, LOGO, crash(.9), db(-6)); place(music, LOGO, bass(29, 2.6, 1.0), db(-1))
-for j, m in enumerate([65, 69, 72, 77, 81]): place(music, LOGO + j * S16, pl(m, .6, .5, 3600), db(-7), rev=.25)
-for j, m in enumerate([69, 72, 77]): place(music, LOGO + 2.0 + j * S16 * 2, pl(m, .35, .6, 3000), db(-10), rev=.3)
+place(music, LOGO, crash(.8), db(-7)); place(music, LOGO, bass(31, 2.6, 1.0), db(-1))
+for j, m in enumerate([67, 71, 74, 79, 83]): place(music, LOGO + j * S16, marimba(m, .6, .6), db(-6), rev=.25)
+for j, m in enumerate([71, 74, 79]): place(music, LOGO + 2.0 + j * S16 * 2, marimba(m, .35, .7), db(-9), rev=.3)
 
 
 
@@ -277,7 +290,7 @@ irn = int(2.6 * SR); ti = np.arange(irn) / SR
 ir = np.vstack([lp(rng.standard_normal(irn), 5200) * np.exp(-ti / .75) for _ in range(2)]) * .03
 verb = np.vstack([fftconvolve(hp(send[c], 220), ir[c])[:N] for c in range(2)])
 # Dramaturgie der Musik: Intro leiser, Steigerung zur Lösung, ruhiges Ende (Abschnitts-Pegel mit weichen Rampen)
-_pts = [(0, 6), (M_[0][0], 6), (M_[0][1], -4.5), (13.0, -3), (M_[1][0], -3), (M_[1][1], -3), (M_[2][0], -3), (HUB, 0), (M_[3][0], 0), (M_[3][1], .5), (LOGO, .5), (DUR, 0)]
+_pts = [(0, 3), (M_[0][0], 3), (M_[0][1], -4.5), (13.0, -3), (M_[1][0], -3), (M_[1][1], -3), (M_[2][0], -3), (HUB, 0), (M_[3][0], 0), (M_[3][1], .5), (LOGO, .5), (DUR, 0)]
 _tt = np.arange(N) / SR; _env = db(np.interp(_tt, [a for a, _ in _pts], [b for _, b in _pts])); music *= _env
 mrms = np.sqrt((music[:, :int(DUR * SR)] ** 2).mean()) + 1e-9   # Musik auf denselben Pegel wie bisher (RMS −25,5 dB), SFX-Verhältnis bleibt
 MUS, SFX, VRB = music * (db(-25.5) / mrms), sfx * db(-5.5), verb * db(-11)

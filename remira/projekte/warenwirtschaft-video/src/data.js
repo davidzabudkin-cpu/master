@@ -1,6 +1,6 @@
 import { S } from './texte.js';
 // Maße, Farben (REMIRA-Branding) und Szenen-Positionen in der Welt – Warenwirtschaft v2.
-export const W = 1920, H = 1080, FPS = 30, DURATION = 74.5;
+export const W = 1920, H = 1080, FPS = 30, DURATION = 81.0;
 export const RINGC = ['#41B6E6', '#28ABBA', '#61BD47', '#FCDA34', '#FF9524', '#F53D47'];
 export const BLUE = '#41B6E6', GREEN = '#61BD47', RED = '#F53D47', ORANGE = '#FF9524', GREY = '#A8A8A8', SOFT = '#C9D3DE';
 // Welt im Zickzack (anders als OMS): runter → rechts → runter → rechts → rechts → hoch → rechts

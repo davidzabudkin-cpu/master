@@ -1,4 +1,6 @@
-# REMIRA Glossar-Erklärvideo „Warenwirtschaftssystem (WWS)“ – Storyboard v2
+# REMIRA Glossar-Erklärvideo „Warenwirtschaftssystem (WWS)“ – Storyboard v3
+
+**v3 23.11.2026:** Feedback umgesetzt: eigene Musik (100 BPM, Marimba, Shaker, gebrochener Beat), Szenen gestaffelt (Warenstrom: erst Satz, dann Kacheln, dann 4 Kartons; So funktioniert's: ① Datenstrom → ② Dashboard → ③ Nachbestellung → Umlagerung), 81 s, strengere Lesezeit. Beat-Zeiten unten sind v2, aktuelle Zeiten in `src/timeline.js`.
 
 **18.11.2026, v2 (eigenständiger Aufbau).** v1 war fast 1:1 das OMS-Video; Wunsch: eigener Aufbau, der zum Thema passt, OMS nur als Orientierung.
 Texte und Quellen: `SKRIPT.md`, `src/texte.js` (G = Glossar, P = Produktseite remira.com). 16:9, 30 fps, 74,5 s, ohne Stimme, DE + EN.
