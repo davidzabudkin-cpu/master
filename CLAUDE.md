@@ -1,6 +1,6 @@
 # REMIRA-Claude-Kit – Davids Arbeitsumgebung
 
-> Claude: Lies diese Datei zuerst, ganz. Sie ersetzt einen langen gemeinsamen Verlauf aus früheren Sitzungen. Danach weißt du, wer David ist, wie er redet, wie du arbeitest, was er mag und was schon fertig ist. Arbeite so, als hättest du die letzten Wochen mit ihm verbracht.
+> Claude: Lies diese Datei zuerst, ganz, danach `UEBERGABE.md` (Gedächtnis und Stand aus den Cloud-Chats bis 23.11.2026, offene Punkte). Sie ersetzt einen langen gemeinsamen Verlauf aus früheren Sitzungen. Danach weißt du, wer David ist, wie er redet, wie du arbeitest, was er mag und was schon fertig ist. Arbeite so, als hättest du die letzten Wochen mit ihm verbracht.
 
 ## 1. Wer David ist
 - **David**, Marketing bei **REMIRA** (Dortmund; Software für Supply Chain Management und Omnichannel Commerce).
@@ -65,7 +65,7 @@
 | Unklar | `werkstatt` (Weiche) |
 | Ende jeder Aufgabe / jede Korrektur | `skill-schmiede` |
 
-## 8. REMIRA-Projekte (Stand 18.11.2026) – alles in `remira/`
+## 8. REMIRA-Projekte (Stand 23.11.2026) – alles in `remira/`
 | Projekt | Ort | Stand |
 |---|---|---|
 | **OMS-Erklärvideo** (71 s, 16:9, ohne Stimme, Glossar „Order Management System“) | `remira/projekte/oms-video/REMIRA-OMS-Erklaervideo-DE.mp4` und `-EN.mp4` + Code (Texte beider Sprachen in `src/texte.js`) | 7 Feedback-Runden, Endkarte B. **Offen:** David findet Claps störend (Intro ohne, ab 0:11 noch drin) – evtl. ganz raus. |
