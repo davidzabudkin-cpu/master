@@ -12,3 +12,4 @@ Standbilder: `VIDEO_LANG=en node tools/stills.mjs cache/stills 5 20 40` · Texte
 Vorher einmal: `npm install` und `npx playwright install chromium`.
 
 v4 (23.11.2026): Zeitachse in `src/timeline.js` (`T`, `WHIPS`), Muster je Schritt: Text → Lesezeit → Animation. Blickführung mit `dimAt()` in `src/main.js`, Schritt-Nummern `stepRow()`. Ältere Fassungen: `-v2`, `-v3`.
+v5 (24.11.2026): `-v5`-Dateien; Logo oben rechts per `?bug=logo|url` (Standbilder: `BUG=url node tools/stills.mjs …`). Kleine Symbole auf Plaketten aus `src/phosphor-icons-bold.js`.

@@ -1,6 +1,6 @@
 import { S } from './texte.js';
 // Maße, Farben (REMIRA-Branding) und Szenen-Positionen in der Welt – Warenwirtschaft v2.
-export const W = 1920, H = 1080, FPS = 30, DURATION = 93.2;
+export const W = 1920, H = 1080, FPS = 30, DURATION = 95.1;
 export const RINGC = ['#41B6E6', '#28ABBA', '#61BD47', '#FCDA34', '#FF9524', '#F53D47'];
 export const BLUE = '#41B6E6', GREEN = '#61BD47', RED = '#F53D47', ORANGE = '#FF9524', GREY = '#A8A8A8', SOFT = '#C9D3DE';
 // Welt im Zickzack (anders als OMS): runter → rechts → runter → rechts → rechts → hoch → rechts
@@ -22,8 +22,11 @@ export const FL = { y: 110, x: [-660, -220, 220, 660], tile: 124, icon: ['truck'
 export const CY = { c: [0, 50], R: 320, r: 58, ang: [-90, -18, 54, 126, 198], icon: ['shopping-cart', 'tray-arrow-down', 'warehouse', 'tray-arrow-up', 'storefront'], label: S.st2, ringR: 128 };
 // Szene 4 Problem: Regal (links) + lose Listen (rechts) + graue Uhr
 export const PR = { shelf: { x0: -800, y0: -40, cw: 176, ch: 120, cols: 5, rows: 2, box: 90 }, lists: [[420, -40], [640, 70], [430, 190]], clock: [640, -170],
+  // v5: Regal + Listen + Uhr als Gruppe; erst mittig (A), dann rechts (B), links stehen die Schlagworte als Liste. Abbildung p' = o + s·(p − ctr)
+  ctr: [-40, 75], A: { o: [0, 60], s: .8 }, B: { o: [420, 60], s: .64 }, kwY: [-80, 40, 160],
   // Fach-Zustand im Chaos: 0 normal, -1 leer (rot), n>0 überfüllt mit n Zusatzkartons
   state: [-1, 0, 2, 0, -1, 0, 3, -1, 0, 1] };
+{ const m = (c, p) => [c.o[0] + c.s * (p[0] - PR.ctr[0]), c.o[1] + c.s * (p[1] - PR.ctr[1])]; PR.clockA = m(PR.A, PR.clock); PR.clockB = m(PR.B, PR.clock); PR.rA = 92 * PR.A.s; PR.rB = 92 * PR.B.s; }
 // Szene 5 So funktioniert's: Quellen links, Hub, Bestands-Dashboard rechts, zwei Filialen unten
 // v4: Grafik 90 px tiefer, damit Schritt-Nummern + Satz zwischen Headline und Grafik Platz haben (Marketing 23.11.)
 export const HW = { hub: [-430, 50], hubR: 118, srcX: -800, srcY: [-160, -5, 150, 305], srcIcon: ['tray-arrow-down', 'warehouse', 'storefront', 'laptop'], srcLabel: S.ch4,

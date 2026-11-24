@@ -15,6 +15,7 @@ Remira verwendet in der Asset-Bibliothek die Phosphor-Icons (phosphoricons.com, 
 ## Gewicht: light (Standard seit 23.11.2026)
 - **Standard ist light** (`--weight light`, Dateien `assets/light/<name>-light.svg`). Marketing-Feedback zum WWS-Video v3: bold wirkt zu dick und „knubbelig“, REMIRA nutzt schmale Icons. thin (8/256) ist bei 38–46 px im Video kaum lesbar (≈ 1,4 px Linie), light (12/256 ≈ 2 px) ist der Kompromiss.
 - Davor (12.11., OMS-Video) war bold Standard, weil regular neben fetter Schrift zu dünn wirkte. OMS- und Plattform-Video nutzen noch bold; bei der nächsten Überarbeitung auf light umstellen.
+- **Ausnahme bold:** kleine Symbole auf farbig gefüllten Plaketten (Häkchen in grünen Kreisen, Kreuz in roten Kreisen, Chip-Icons, erledigte Schritt-Nummern) bleiben bold, light ist dort zu dünn (Marketing 24.11.). Im WWS-Projekt: `src/phosphor-icons-bold.js` (`BOLD.check`, `BOLD.x`).
 - In Videos Icons ca. 10–15 % größer setzen als die reine Kreisgröße nahelegt (Faktor 1,12 in `drawIcon`); Icons in Chips mindestens 22 px.
 - Ohne Netz zu unpkg: `npm pack @phosphor-icons/core@2.1.1` in einen leeren Ordner, entpacken und `package/` nach `~/.cache/phosphor-core-2.1.1` kopieren, dann läuft `scripts/phosphor.py` offline.
 

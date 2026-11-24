@@ -4,9 +4,11 @@ import { S, plain } from './texte.js';
 import { W, H, FPS, DURATION, RINGC, BLUE, GREEN, RED, ORANGE, GREY, SOFT, SC, ORDER, LOGO_W, LOGO_S, LOGO_X, LOGO_Y, CLAIM, END_TITLE_Y, END_CTA_Y, SHELF, FL, CY, PR, HW, HB, GN } from './data.js';
 import { T, TX, WHIPS, camAt, ringAt, spinAt, heroAt, sceneIndex, FLOW_BOXES, STREAM } from './timeline.js';
 import { phosphorPath } from './phosphor-icons.js';
+import { phosphorPathBold } from './phosphor-icons-bold.js';
 import { prog, clamp, lerp, outCubic, inCubic, outBack, inOutCubic, rng } from './lib/ease.js';
 
 const scale = Number(new URLSearchParams(location.search).get('scale')) || 1;
+const BUG = new URLSearchParams(location.search).get('bug') || 'logo';
 const canvas = document.getElementById('c');
 canvas.width = Math.max(2, 2 * Math.round(W * scale / 2)); canvas.height = Math.max(2, 2 * Math.round(H * scale / 2));
 const out = canvas.getContext('2d');
@@ -37,6 +39,8 @@ const HERO = await createImageBitmap(await (await fetch('../assets/brand/remira-
 
 // ---------- Icons: Original-Phosphor-Icons (MIT), Gewicht light (schmal wie bei REMIRA, Marketing 23.11.), siehe Skill remira-phosphor-icons ----------
 const ICON = new Proxy({}, { get: (c, n) => c[n] || (c[n] = phosphorPath(n)) });
+// Kleine Symbole auf farbigen Plaketten (Häkchen, Kreuz, Chips) bleiben bold, sonst wirken sie zu dünn (Marketing 24.11.)
+const BOLD = new Proxy({}, { get: (c, n) => c[n] || (c[n] = phosphorPathBold(n)) });
 // Phosphor-Icons sind Flächen (keine Striche): Einblenden per Pop (Skalierung + Deckkraft) und weicher Wischblende von links.
 function drawIcon(icon, x, y, size, u, col) {
   if (u <= 0) return; size *= 1.12;   // etwas größer als der Kreis nahelegt, damit die schmalen light-Icons gut lesbar bleiben
@@ -280,6 +284,9 @@ const scenes = {
       text(S.head3, 0, -352, 40, t, T.head3, 99, { w: 600, col: SOFT, acc: ORANGE, lh: 52 });
       // Blickführung: Regal → Listen → Schlagworte
       const shA = dimAt(t, T.list(0)), liA = dimAt(t, T.kw(0));
+      // v5: Grafik-Gruppe steht erst mittig (A) und rückt vor den Schlagworten nach rechts (B)
+      const pm = inOutCubic(prog(t, ...T.pmove)), po = lerpPt(PR.A.o, PR.B.o, pm), ps = lerp(PR.A.s, PR.B.s, pm);
+      g.save(); g.translate(...po); g.scale(ps, ps); g.translate(-PR.ctr[0], -PR.ctr[1]);
       g.save(); g.globalAlpha *= shA;
       const sh = PR.shelf; shelf(sh, prog(t, T.shelf2 - .3, T.shelf2 + .3));
       const ch = prog(t, ...T.chaos);
@@ -316,10 +323,15 @@ const scenes = {
         g.save(); g.globalAlpha *= ma * blink; g.strokeStyle = RED; g.lineWidth = 2.4; g.setLineDash([8, 9]); g.beginPath(); g.moveTo(x0 + (n ? -20 : 40), y0 + 60); g.quadraticCurveTo(xm, ym, x1 + (n ? 20 : -40), y1 - 60); g.stroke(); g.setLineDash([]);
         g.fillStyle = RED; g.font = font(30, 800); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('?', xm + (n ? 10 : -10), ym); g.restore();
       });
-      g.restore();
+      g.restore(); g.restore();
+      // v5: Schlagworte als Liste links, aufgebaut wie die Vorteile am Ende (roter Kreis mit Kreuz statt grünem Häkchen)
       S.kw3.forEach((s, k) => {
-        const x = [-560, 0, 560][k], w = text(s, x + 14, 412, 40, t, T.kw(k), 99, { w: 700 });
-        const u = outBack(prog(t, T.kw(k), T.kw(k) + .4), 2); if (u > 0 && w) { g.fillStyle = RED; g.beginPath(); g.arc(x + 14 - w / 2 - 22, 412 + capMid(40, 700), 8 * u, 0, 7); g.fill(); }
+        const y = PR.kwY[k], t0 = T.kw(k), u = outBack(prog(t, t0, t0 + .4), 1.8); if (u <= 0) return;
+        const cy = y + capMid(48, 700);
+        g.save(); g.translate(-762, cy); g.scale(u, u); g.fillStyle = RED; g.beginPath(); g.arc(0, 0, 27, 0, 7); g.fill(); g.restore();
+        const c = prog(t, t0 + .12, t0 + .45);
+        if (c > 0) { g.save(); g.translate(-762, cy); g.beginPath(); g.rect(-18, -18, 36 * c, 36); g.clip(); g.translate(-15, -15); g.scale(30 / 256, 30 / 256); g.fillStyle = '#fff'; g.fill(BOLD.x); g.restore(); }
+        text(s, -710, y, 48, t, t0 + .08, 99, { w: 700, align: 'left' });
       });
     },
     post(t) {
@@ -327,7 +339,7 @@ const scenes = {
       if (ca > 0) {
         const ticks = Math.max(0, Math.floor((t - T.tick0) * 2)), frac = (t - T.tick0) * 2 - ticks, snap = t > T.tick0 ? outBack(clamp(frac * 6), 2.5) : 0;
         const am = ((ticks + snap) * 30) * Math.PI / 180, ah = (t - T.shelf2) * .25;
-        g.save(); g.translate(R.x, R.y); g.globalAlpha = ca; g.strokeStyle = '#fff'; g.lineCap = 'round';
+        g.save(); g.translate(R.x, R.y); g.scale(R.r / 92, R.r / 92); g.globalAlpha = ca; g.strokeStyle = '#fff'; g.lineCap = 'round';
         g.lineWidth = 4; g.beginPath(); g.moveTo(0, 0); g.lineTo(Math.sin(ah) * 17, -Math.cos(ah) * 17); g.stroke();
         g.lineWidth = 3; g.beginPath(); g.moveTo(0, 0); g.lineTo(Math.sin(am) * 28, -Math.cos(am) * 28); g.stroke();
         g.fillStyle = '#fff'; g.beginPath(); g.arc(0, 0, 4.5, 0, 7); g.fill(); g.restore();
@@ -357,7 +369,7 @@ const scenes = {
         g.font = font(21, 600); g.fillStyle = BLUE; g.fillText(S.realtime, lx + sw + 20, hy);
         const ok = prog(t, T.avail, T.avail + .25);
         if (ok < 1) { g.save(); g.globalAlpha *= 1 - ok; g.font = font(22, 600); g.fillStyle = SOFT; g.textAlign = 'right'; g.fillText(S.checking, rx, hy); g.restore(); }
-        chip(rx, hy, S.available, GREEN, ok, 'right', ICON.check);
+        chip(rx, hy, S.available, GREEN, ok, 'right', BOLD.check);
         // Artikelzeilen: Icon, Balken, Mindestbestand
         const bx0 = lx + 64, bw = rx - 205 - bx0, mx = bx0 + bw * HW.min;
         // ③: nur die kritische Zeile bleibt hell
@@ -375,7 +387,7 @@ const scenes = {
         });
         g.restore();
         // Chip „nachbestellt“ neben der kritischen Zeile (außerhalb der Skalierung, steht still)
-        chip(P0.x + P0.w / 2 - 40, P0.y + HW.rows[1], S.reorder, BLUE, prog(t, T.reorder, T.reorder + .3) * (pu >= 1 ? 1 : 0), 'right', ICON['arrows-clockwise']);
+        chip(P0.x + P0.w / 2 - 40, P0.y + HW.rows[1], S.reorder, BLUE, prog(t, T.reorder, T.reorder + .3) * (pu >= 1 ? 1 : 0), 'right', BOLD['arrows-clockwise']);
       }
       g.restore();
       // Umlagerung zwischen zwei Filialen
@@ -405,7 +417,7 @@ const scenes = {
         station(x, y, HB.r, t0, .35 + .65 * cur);
         text(HB.lines[k].join('\n'), x, y + HB.r + 36, 32, t, t0 + .15, 99, { w: 700, lh: 38 });
       });
-      text(S.foot5, 0, 450, 50, t, TX.foot5[0], 99, { w: 700 });
+      text(S.foot5, 0, -368, 40, t, TX.foot5[0], 99, { w: 600, col: SOFT });   // v5: direkt unter der Headline statt unten (Marketing 24.11.)
     },
     post(t) {
       HB.pos.forEach(([x, y], k) => {
@@ -424,7 +436,7 @@ const scenes = {
         const y = GN.iy[k], t0 = T.check(k), u = outBack(prog(t, t0, t0 + .4), 1.8); if (u <= 0) return;
         g.save(); g.translate(-762, y + capMid(48, 700)); g.scale(u, u); g.fillStyle = GREEN; g.beginPath(); g.arc(0, 0, 27, 0, 7); g.fill(); g.restore();
         const c = prog(t, t0 + .12, t0 + .45);
-        if (c > 0) { g.save(); g.translate(-762, y + capMid(48, 700)); g.beginPath(); g.rect(-18, -18, 36 * c, 36); g.clip(); g.translate(-16, -16); g.scale(32 / 256, 32 / 256); g.fillStyle = '#fff'; g.fill(ICON.check); g.restore(); }
+        if (c > 0) { g.save(); g.translate(-762, y + capMid(48, 700)); g.beginPath(); g.rect(-18, -18, 36 * c, 36); g.clip(); g.translate(-16, -16); g.scale(32 / 256, 32 / 256); g.fillStyle = '#fff'; g.fill(BOLD.check); g.restore(); }
         text(s, -710, y, 48, t, t0 + .08, 99, { w: 700, align: 'left' });
       });
       // Zonen: Überbestand (oben, orange), Korridor (grün), Fehlbestand (unten, rot)
@@ -513,7 +525,7 @@ function stepRow(t) {
     if (cur > 0) softGlow(0, 0, R * 2.6, 'rgba(65,182,230,A)', .35 * cur);
     g.beginPath(); g.arc(0, 0, R, 0, 7); g.fillStyle = `rgba(65,182,230,${(act * (1 - .82 * done)).toFixed(3)})`; g.fill();
     g.lineWidth = 2.4; g.strokeStyle = act > 0 ? BLUE : 'rgba(255,255,255,.35)'; g.stroke();
-    if (done > .5) { g.translate(-14, -14); g.scale(28 / 256, 28 / 256); g.fillStyle = BLUE; g.fill(ICON.check); }
+    if (done > .5) { g.translate(-14, -14); g.scale(28 / 256, 28 / 256); g.fillStyle = BLUE; g.fill(BOLD.check); }
     else { g.fillStyle = act > .5 ? '#fff' : 'rgba(255,255,255,.55)'; g.font = font(32, 800); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(String(k + 1), 0, 2); }
     g.restore();
   });
@@ -561,6 +573,14 @@ function drawScene(t) {
       const gr = g.createLinearGradient(cx - ux * len, cy - uy * len, cx + ux * len, cy + uy * len); gr.addColorStop(0, 'rgba(0,0,0,0)'); gr.addColorStop(.5, s.c); gr.addColorStop(1, 'rgba(0,0,0,0)');
       g.globalAlpha = al * s.a; g.strokeStyle = gr; g.lineWidth = s.w; g.beginPath(); g.moveTo(cx - ux * len, cy - uy * len); g.lineTo(cx + ux * len, cy + uy * len); g.stroke();
     });
+    g.restore();
+  }
+  // v5: REMIRA-Logo klein oben rechts (Original-Pfade), sichtbar zwischen Intro und Endkarte (Marketing 24.11.). ?bug=url zeigt nur „REMIRA.COM“.
+  const ba = prog(t, WHIPS[0][1], WHIPS[0][1] + .6) * (1 - prog(t, WHIPS[6][0] - .4, WHIPS[6][0]));
+  if (ba > 0) {
+    g.save(); g.setTransform(scale, 0, 0, scale, 0, 0); g.globalAlpha = .9 * ba;
+    if (BUG === 'url') { g.font = font(28, 700); g.textAlign = 'right'; g.textBaseline = 'alphabetic'; g.fillStyle = '#fff'; g.fillText('REMIRA.COM', W - 60, 76); }
+    else { const bw = 180, bs = bw / 1261.55; g.translate(W - 60 - bw, 48); g.scale(bs, bs); LOGO.petals.forEach(p => { g.fillStyle = p.grad; g.fill(p.d); }); g.fillStyle = '#fff'; LOGO.word.forEach(d => g.fill(d)); }
     g.restore();
   }
   // Heldin (Bildschirm-Raum, unverzerrt)

@@ -84,3 +84,9 @@ Vorlage: `remira/projekte/plattform-animation/` (Messung: `tools/measure.py`).
 - **Problem-Szene als Frage einleiten** („Was ist das Problem ohne zentrales System?“ groß, Problemtext kleiner darunter), damit sie nicht überrascht.
 - **Intro kurz:** Titel + Key Visual in ≈ 4–5 s, dann erste Fahrt. Szenen ohne Leerlauf: Wiederholungen (Kartons, Datenpunkte) auf 2 begrenzen.
 - Rechtschreibung „selbstständig“ (nicht „selbständig“, Hausschreibweise).
+
+## Feedback 24.11.2026 (Marketing zu WWS v4)
+- **Aufzählungen einheitlich:** Wer im Video schon eine Checkliste links hat (Vorteile), baut andere Aufzählungen genauso auf (Problem-Schlagworte als Liste links, roter Kreis mit Kreuz). Grafik rückt dafür vorher ruhig zur Seite, nicht gleichzeitig mit einer anderen Bewegung.
+- **Heldin erkennbar:** mind. 3,5 s im Bild, in der Bildmitte am langsamsten (`e = u + 0,8·sin(2πu)/2π`), Einflug aus der Ecke unten links. Die Kamerafahrt darunter entsprechend länger (≈ 2,4 s).
+- **Zusatzzeile zu einer Headline** steht direkt unter der Headline (kleiner, SOFT), nicht unten im Bild.
+- **Absender sichtbar:** kleines REMIRA-Logo (Original-Pfade) oben rechts zwischen Intro und Endkarte; Alternative nur „REMIRA.COM“. Nicht im Intro und nicht auf der Endkarte.

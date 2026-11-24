@@ -1,7 +1,7 @@
 # Skript: Was ist ein Warenwirtschaftssystem (WWS)?
 
-**Stand 23.11.2026 (v4) – gebaut, vor Veröffentlichung von Marketing freigeben lassen.**
-Länge 93,2 s (v4: Intro 4,7 s statt 7,6 s; jeder Schritt erst Text + Lesezeit, dann Animation; v3 war 81 s, v2 74,5 s; Aufbau siehe STORYBOARD.md) · 16:9 · ohne Stimme, Musik + Texteinblendungen · DE und EN (alle Texte in `src/texte.js`).
+**Stand 24.11.2026 (v5) – gebaut, vor Veröffentlichung von Marketing freigeben lassen.**
+Länge 95,1 s (v5: Problem-Schlagworte als Liste links, Heldin langsamer, Fußzeile der Möglichkeiten unter der Headline, REMIRA-Logo oben rechts; v4 93,2 s: Intro 4,7 s statt 7,6 s; jeder Schritt erst Text + Lesezeit, dann Animation; v3 war 81 s, v2 74,5 s; Aufbau siehe STORYBOARD.md) · 16:9 · ohne Stimme, Musik + Texteinblendungen · DE und EN (alle Texte in `src/texte.js`).
 Quellen: G = remira.com/de/glossar/warenwirtschaftssystem, P = remira.com/de/produkte/warenwirtschaft-software (abgerufen 18.11.2026). Keine Zahlen, keine Kundennamen.
 
 | Szene | Text DE | Quelle |

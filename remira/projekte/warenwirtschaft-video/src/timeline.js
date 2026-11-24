@@ -10,7 +10,7 @@ const ORDER = ['hook', 'flow', 'cycle', 'problem', 'how', 'hubs', 'gain', 'end']
 
 // Kamerafahrten zwischen den Szenen [Start, Ende]; Index 3 = Wendepunkt (Heldin)
 // v4 (Feedback 23.11.): Intro kurz (4,4 s), jede Szene nach dem Muster Text → Lesezeit → Animation → nächster Schritt
-export const WHIPS = [[4.7, 5.4], [16.2, 17.0], [26.8, 28.0], [42.5, 43.5], [66.6, 67.4], [77.8, 78.6], [86.6, 87.3]];
+export const WHIPS = [[4.7, 5.4], [16.2, 17.0], [26.8, 28.0], [43.0, 45.4], [68.5, 69.3], [79.7, 80.5], [88.5, 89.2]];
 
 export const T = {
   petal: k => .2 + k * .1, titleIn: .4, box: k => 1.4 + k * .14,
@@ -18,17 +18,18 @@ export const T = {
   sub1: 5.7, node: k => 8.4 + k * .5, rail: [10.4, 11.0], data: [10.9, 11.5], flow0: 11.6, flowEvery: 1.0,
   // Szene 3: Satz, dann Bereiche einzeln, dann eine Runde
   head2: 17.3, st2: k => 18.6 + k * .4, lap0: 20.8, v2: k => 20.8 + k * 1.1,
-  // Szene 4: Frage allein → Problemtext → Regal-Chaos → Listen → Schlagworte (jeweils Rest abgedunkelt)
-  q3: 28.3, head3: 30.4, shelf2: 32.8, chaos: [34.0, 35.2], list: k => 35.6 + k * .35, tick0: 32.8, mism: 36.8, kw: k => 37.4 + k * .8,
-  hero: [42.4, 43.9], recolor: [42.8, 43.8], hubHit: 43.5,
+  // Szene 4: Frage allein → Problemtext → Regal-Chaos → Listen → Grafik rückt nach rechts → Schlagworte als Liste links (v5)
+  q3: 28.3, head3: 30.4, shelf2: 32.6, chaos: [33.6, 34.8], list: k => 35.0 + k * .35, tick0: 32.6, mism: 36.4, pmove: [37.0, 37.7], kw: k => 37.9 + k * .8,
+  // v5: Heldin langsamer, von unten links, ca. 3,6 s im Bild (Marketing 24.11.)
+  hero: [42.4, 46.0], recolor: [44.0, 45.2], hubHit: 45.4,
   // Szene 5 in drei Stufen, je: Nummer + Satz → Lesezeit → Animation. ① Quellen + Datenstrom ② Dashboard ③ Nachbestellung, dann Umlagerung
-  head4: 43.8, step: [45.0, 52.0, 57.4], src: k => 46.6 + k * .4, stream: [48.2, 51.4], panel: 53.6, card: 54.4, avail: 55.8,
-  dip: [59.0, 59.6], reorder: 59.9, refill: [60.3, 61.3], cap3sub: 61.8, stores: 63.4, move: [64.4, 65.6],
-  // Szene 6: Satz, Knoten einzeln, dann Fußzeile
-  head5: 67.7, hb: k => 69.2 + k * 1.0, foot5: 73.4, spin: [68.2, 77.0],
+  head4: 45.7, step: [46.9, 53.9, 59.3], src: k => 48.5 + k * .4, stream: [50.1, 53.3], panel: 55.5, card: 56.3, avail: 57.7,
+  dip: [60.9, 61.5], reorder: 61.8, refill: [62.2, 63.2], cap3sub: 63.7, stores: 65.3, move: [66.3, 67.5],
+  // Szene 6: Satz, Knoten einzeln, dann Zeile direkt unter der Headline (v5)
+  head5: 69.6, hb: k => 71.1 + k * 1.0, foot5: 75.3, spin: [70.1, 78.9],
   // Szene 7: Satz, Linie, Häkchen einzeln
-  head6: 78.9, draw: [80.0, 80.9], check: k => 81.4 + k * .8,
-  ringEnd: 87.7, logo: 88.4, wipe: [88.1, 89.0], end: [88.9, 89.4, 90.1]
+  head6: 80.8, draw: [81.9, 82.8], check: k => 83.3 + k * .8,
+  ringEnd: 89.6, logo: 90.3, wipe: [90.0, 90.9], end: [90.8, 91.3, 92.0]
 };
 // Kartons auf der Bahn (Szene 2): Startzeiten
 export const FLOW_BOXES = seq(k => T.flow0 + k * T.flowEvery, 2);
@@ -80,7 +81,8 @@ const rk = (t, [x, y], r, grey = 0) => RK.push({ t, x, y, r, grey });
 rk(0, P('hook', 0, -330), 92); rk(WHIPS[0][0], P('hook', 0, -330), 92);
 rk(WHIPS[0][1], P('flow', ...FL.ring), 72); rk(WHIPS[1][0], P('flow', ...FL.ring), 72);
 rk(WHIPS[1][1], P('cycle', ...CY.c), CY.ringR); rk(WHIPS[2][0], P('cycle', ...CY.c), CY.ringR);
-rk(WHIPS[2][1], P('problem', ...PR.clock), 92, 1); rk(WHIPS[3][0], P('problem', ...PR.clock), 92, 1);
+rk(WHIPS[2][1], P('problem', ...PR.clockA), PR.rA, 1); rk(T.pmove[0], P('problem', ...PR.clockA), PR.rA, 1);
+rk(T.pmove[1], P('problem', ...PR.clockB), PR.rB, 1); rk(WHIPS[3][0], P('problem', ...PR.clockB), PR.rB, 1);
 rk(WHIPS[3][1], P('how', ...HW.hub), HW.hubR, 0); rk(WHIPS[4][0], P('how', ...HW.hub), HW.hubR);
 rk(WHIPS[4][1], P('hubs', ...HB.hub), HB.hubR); rk(WHIPS[5][0], P('hubs', ...HB.hub), HB.hubR);
 export const gainY = u => 10;   // Ring sitzt am Ende der geglätteten Linie (Mitte des grünen Korridors)
@@ -110,10 +112,11 @@ export function spinAt(t) {
   return lerp(s0, target, outCubic(prog(t, a, T.logo)));
 }
 // Heldin: fliegt beim Wendepunkt einmal diagonal durchs Bild (Bildschirm-Koordinaten)
+// Heldin (v5): kommt langsam aus der Ecke unten links, ist in der Bildmitte am langsamsten (gut erkennbar), fliegt oben rechts hinaus
 export function heroAt(t) {
   const [a, b] = T.hero; if (t <= a || t >= b) return null;
-  const u = (t - a) / (b - a), e = u * .55 + inOutCubic(u) * .45;
-  return { x: lerp(-700, 2650, e), y: lerp(940, -260, e) - 120 * Math.sin(Math.PI * e), w: 1000, rot: -.2 };
+  const u = (t - a) / (b - a), e = u + .8 * Math.sin(2 * Math.PI * u) / (2 * Math.PI);
+  return { x: lerp(-520, 2450, e), y: lerp(1380, -380, e) - 90 * Math.sin(Math.PI * e), w: 900, rot: -.32 };
 }
 
 // Ton-Cues: gleiche Schlüssel wie beim OMS-Mix, Inhalt an die neuen Ereignisse gebunden. „musik“ = 4 Abschnittsgrenzen für die Musik.

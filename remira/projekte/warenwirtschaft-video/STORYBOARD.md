@@ -1,4 +1,6 @@
-# REMIRA Glossar-Erklärvideo „Warenwirtschaftssystem (WWS)“ – Storyboard v4
+# REMIRA Glossar-Erklärvideo „Warenwirtschaftssystem (WWS)“ – Storyboard v5
+
+**v5 24.11.2026 (Marketing zu v4):** 95,1 s. Problem: Grafik rückt nach rechts, Schlagworte als Liste links (rote Kreise mit Kreuz, aufgebaut wie die Vorteile). Heldin kommt langsam von unten links, ca. 3,6 s im Bild, in der Mitte am langsamsten. „Die Basis für …“ direkt unter „Was dadurch möglich wird:“. Kleines REMIRA-Logo oben rechts (zwischen Intro und Endkarte; Alternative `?bug=url`). Häkchen/Kreuz/Chip-Symbole bold.
 
 **v4 23.11.2026 (Feedback Auftraggeber + Marketing zu v3):** 93,2 s. Jeder Schritt: Text zeigen → Lesezeit → Animation → nächster Schritt; Bewegungen einzeln nacheinander. Blickführung: was erklärt wird, ist hell, der Rest wird abgedunkelt (Problem: Regal → Listen → Schlagworte; So funktioniert's: Quellen → Dashboard mit blauem Rahmen → kritische Zeile → Umlagerung; Möglichkeiten: nur der neue Knoten leuchtet). Schritt-Nummern ①②③ groß zwischen Headline und Satz (erledigt = Häkchen). Problem als Frage „Was ist das Problem ohne zentrales System?“, Problemtext kleiner darunter. Intro 4,7 s, Warenstrom ohne Leerlauf (2 Kartons). Alle Texte fett, Icons Phosphor light, „selbstständig“.
 
