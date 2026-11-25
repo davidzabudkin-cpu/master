@@ -10,7 +10,7 @@ import { prog, clamp, lerp, outCubic, inCubic, outBack, inOutCubic, rng } from '
 const scale = Number(new URLSearchParams(location.search).get('scale')) || 1;
 const BUG = new URLSearchParams(location.search).get('bug') || 'logo';
 // v6: Headlines der Szenen 50 px tiefer, damit oben rechts Platz für das Logo ist (Referenz: frühere REMIRA-Videos)
-const TOP = 50, LOGO_BUG = { cap: 46, margin: 36, top: 36 };   // Logo ≈ 360 px breit, 36 px vom Rand
+const TOP = 50, LOGO_BUG = { w: 290, margin: 44, top: 40 };   // v7: Logo 290 px breit (≈ 53 px hoch), 44 px vom rechten, 40 px vom oberen Rand
 const canvas = document.getElementById('c');
 canvas.width = Math.max(2, 2 * Math.round(W * scale / 2)); canvas.height = Math.max(2, 2 * Math.round(H * scale / 2));
 const out = canvas.getContext('2d');
@@ -37,6 +37,7 @@ const LOGO = { petals: [], word: [] };
   // nur „REMIRA“ (obere Zeile); der Claim wird durch „Order Management System“ ersetzt
   LOGO.word = [...doc.querySelectorAll('path')].filter(e => e.getAttribute('class') === 'cls-1' && +e.getAttribute('d').match(/^M[\d.]+,([\d.]+)/)[1] < 200).map(e => new Path2D(e.getAttribute('d')));
 }
+const LOGO_W_IMG = await createImageBitmap(await (await fetch('../assets/brand/REMIRA_Logo_white.png')).blob());
 const HERO = await createImageBitmap(await (await fetch('../assets/brand/remira-heldin-freigestellt.png')).blob());
 
 // ---------- Icons: Original-Phosphor-Icons (MIT), Gewicht light (schmal wie bei REMIRA, Marketing 23.11.), siehe Skill remira-phosphor-icons ----------
@@ -581,13 +582,11 @@ function drawScene(t) {
   const ba = prog(t, WHIPS[0][1], WHIPS[0][1] + .6) * (1 - prog(t, WHIPS[6][0] - .4, WHIPS[6][0]));
   if (ba > 0) {
     g.save(); g.setTransform(scale, 0, 0, scale, 0, 0); g.globalAlpha = ba;
-    if (BUG === 'url') { g.font = font(28, 700); g.textAlign = 'right'; g.textBaseline = 'alphabetic'; g.fillStyle = '#fff'; g.fillText('REMIRA.COM', W - LOGO_BUG.margin, LOGO_BUG.top + 46); }
+    if (BUG === 'url') { g.font = font(28, 700); g.textAlign = 'right'; g.textBaseline = 'alphabetic'; g.fillStyle = '#fff'; g.fillText('REMIRA.COM', W - LOGO_BUG.margin, LOGO_BUG.top + 40); }
     else {
-      // Logo wie in den REMIRA-Videos: Ring links, „REMIRA“ vertikal mittig dazu (Original-Pfade aus der Logo-SVG, nur neu angeordnet; der Claim entfällt).
-      // Maße der SVG: Ring 0…318,5 × 0…291,9, Schriftzug 370,3…1260,9 × 28,6…182,7. Ring-Höhe = 1,6 × Versalhöhe, Abstand 0,15 × Ringbreite (gemessen an den Referenzen).
-      const c = LOGO_BUG.cap, rs = 1.6 * c / 291.9, ws = c / 154.1, rw = 318.5 * rs, gap = .15 * rw, ww = 890.6 * ws, x0 = W - LOGO_BUG.margin - (rw + gap + ww), y0 = LOGO_BUG.top, rh = 291.9 * rs;
-      g.save(); g.translate(x0, y0); g.scale(rs, rs); LOGO.petals.forEach(p => { g.fillStyle = p.grad; g.fill(p.d); }); g.restore();
-      g.translate(x0 + rw + gap, y0 + rh / 2 - c / 2); g.scale(ws, ws); g.translate(-370.3, -28.6); g.fillStyle = '#fff'; LOGO.word.forEach(d => g.fill(d));
+      // v7: offizielles Logo ohne Claim (Logo-Pack Marketing, REMIRA_Logo_white.png), unverändert skaliert
+      const bw = LOGO_BUG.w, bh = bw * LOGO_W_IMG.height / LOGO_W_IMG.width; g.imageSmoothingQuality = 'high';
+      g.drawImage(LOGO_W_IMG, W - LOGO_BUG.margin - bw, LOGO_BUG.top, bw, bh);
     }
     g.restore();
   }
