@@ -1,4 +1,6 @@
-# REMIRA Glossar-Erklärvideo „Warenwirtschaftssystem (WWS)“ – Storyboard v5
+# REMIRA Glossar-Erklärvideo „Warenwirtschaftssystem (WWS)“ – Storyboard v6
+
+**v6 25.11.2026:** Logo oben rechts wie in früheren REMIRA-Videos (Schriftzug mittig zum Ring, ≈ 360 px, 36 px Rand), Headlines 50 px tiefer, Ton = v5.
 
 **v5 24.11.2026 (Marketing zu v4):** 95,1 s. Problem: Grafik rückt nach rechts, Schlagworte als Liste links (rote Kreise mit Kreuz, aufgebaut wie die Vorteile). Heldin kommt langsam von unten links, ca. 3,6 s im Bild, in der Mitte am langsamsten. „Die Basis für …“ direkt unter „Was dadurch möglich wird:“. Kleines REMIRA-Logo oben rechts (zwischen Intro und Endkarte; Alternative `?bug=url`). Häkchen/Kreuz/Chip-Symbole bold.
 

@@ -29,8 +29,8 @@ export const PR = { shelf: { x0: -800, y0: -40, cw: 176, ch: 120, cols: 5, rows:
 { const m = (c, p) => [c.o[0] + c.s * (p[0] - PR.ctr[0]), c.o[1] + c.s * (p[1] - PR.ctr[1])]; PR.clockA = m(PR.A, PR.clock); PR.clockB = m(PR.B, PR.clock); PR.rA = 92 * PR.A.s; PR.rB = 92 * PR.B.s; }
 // Szene 5 So funktioniert's: Quellen links, Hub, Bestands-Dashboard rechts, zwei Filialen unten
 // v4: Grafik 90 px tiefer, damit Schritt-Nummern + Satz zwischen Headline und Grafik Platz haben (Marketing 23.11.)
-export const HW = { hub: [-430, 50], hubR: 118, srcX: -800, srcY: [-160, -5, 150, 305], srcIcon: ['tray-arrow-down', 'warehouse', 'storefront', 'laptop'], srcLabel: S.ch4,
-  panel: { x: 330, y: 0, w: 700, h: 300 }, rows: [-38, 28, 94], fill: [.78, .55, .66], min: .32, stores: [[160, 290], [500, 290]], stepY: -352, capY: -272 };   // rows: lokal zur Panel-Mitte (Panel ±150)
+export const HW = { hub: [-430, 90], hubR: 118, srcX: -800, srcY: [-120, 35, 190, 345], srcIcon: ['tray-arrow-down', 'warehouse', 'storefront', 'laptop'], srcLabel: S.ch4,
+  panel: { x: 330, y: 40, w: 700, h: 300 }, rows: [-38, 28, 94], fill: [.78, .55, .66], min: .32, stores: [[160, 330], [500, 330]], stepY: -352, capY: -272 };   // rows: lokal zur Panel-Mitte (Panel ±150)
 // Szene 6 Datendrehscheibe: 4 Knoten im Bogen um den Ring
 export const HB = { hub: [0, -60], hubR: 118, pos: [[-650, -60], [-270, 200], [270, 200], [650, -60]], r: 58, icon: ['arrows-split', 'chart-line-up', 'database', 'plugs-connected'], lines: S.cards5 };
 // Szene 7 Vorteile: Häkchen links, Bestandsverlauf rechts

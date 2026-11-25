@@ -9,6 +9,8 @@ import { prog, clamp, lerp, outCubic, inCubic, outBack, inOutCubic, rng } from '
 
 const scale = Number(new URLSearchParams(location.search).get('scale')) || 1;
 const BUG = new URLSearchParams(location.search).get('bug') || 'logo';
+// v6: Headlines der Szenen 50 px tiefer, damit oben rechts Platz für das Logo ist (Referenz: frühere REMIRA-Videos)
+const TOP = 50, LOGO_BUG = { cap: 46, margin: 36, top: 36 };   // Logo ≈ 360 px breit, 36 px vom Rand
 const canvas = document.getElementById('c');
 canvas.width = Math.max(2, 2 * Math.round(W * scale / 2)); canvas.height = Math.max(2, 2 * Math.round(H * scale / 2));
 const out = canvas.getContext('2d');
@@ -219,7 +221,7 @@ const scenes = {
   flow: {
     pre(t) {
       softGlow(0, 60, 950, 'rgba(40,120,190,A)', .14);
-      text(S.sub1, 0, -380, 42, t, TX.sub1[0], 99, { w: 700, lh: 56, st: .06 });   // fett wie alle Texte (Marketing 23.11.)
+      text(S.sub1, 0, -380 + TOP, 42, t, TX.sub1[0], 99, { w: 700, lh: 56, st: .06 });   // fett wie alle Texte (Marketing 23.11.)
       const ra = prog(t, ...T.rail);
       // Bahn (Förderband): nur zwischen den Kacheln, Muster läuft in Förderrichtung
       for (let k = 0; k < 3; k++) {
@@ -250,7 +252,7 @@ const scenes = {
   cycle: {
     pre(t) {
       softGlow(CY.c[0], CY.c[1], 950, 'rgba(40,140,210,A)', .18);
-      text(S.head2, 0, -440, 60, t, TX.head2[0], 99, { w: 800 });
+      text(S.head2, 0, -440 + TOP, 60, t, TX.head2[0], 99, { w: 800 });
       // Kreisbahn nur zwischen den Stationen, mit Richtungspfeilen
       const oa = inOutCubic(prog(t, T.st2(0) - .2, T.st2(4) + .6)), gap = (CY.r + 9) / CY.R;
       for (let k = 0; k < 5; k++) {
@@ -280,8 +282,8 @@ const scenes = {
     pre(t) {
       softGlow(0, 40, 1000, 'rgba(200,50,60,A)', .10);
       // v4: erst groß die Frage, dann kleiner der Problemtext (Marketing 23.11.)
-      text(S.q3, 0, -440, 62, t, T.q3, 99, { w: 800, acc: ORANGE });
-      text(S.head3, 0, -352, 40, t, T.head3, 99, { w: 600, col: SOFT, acc: ORANGE, lh: 52 });
+      text(S.q3, 0, -440 + TOP, 58, t, T.q3, 99, { w: 800, acc: ORANGE });
+      text(S.head3, 0, -352 + TOP, 40, t, T.head3, 99, { w: 600, col: SOFT, acc: ORANGE, lh: 52 });
       // Blickführung: Regal → Listen → Schlagworte
       const shA = dimAt(t, T.list(0)), liA = dimAt(t, T.kw(0));
       // v5: Grafik-Gruppe steht erst mittig (A) und rückt vor den Schlagworten nach rechts (B)
@@ -349,7 +351,7 @@ const scenes = {
   how: {
     pre(t) {
       softGlow(HW.hub[0], HW.hub[1], 900, 'rgba(40,140,210,A)', .2 * prog(t, T.hubHit - 1.2, T.hubHit - .2));
-      text(S.head4, 0, -445, 56, t, TX.head4[0], 99, { w: 800 });
+      text(S.head4, 0, -445 + TOP, 56, t, TX.head4[0], 99, { w: 800 });
       stepRow(t);
       // Blickführung: ab ② treten die Quellen zurück, ab der Umlagerung auch das Dashboard
       const srcA = dimAt(t, T.step[1]), panA = dimAt(t, T.stores - .2);
@@ -410,14 +412,14 @@ const scenes = {
   hubs: {
     pre(t) {
       softGlow(HB.hub[0], HB.hub[1], 950, 'rgba(40,140,210,A)', .18);
-      text(S.head5, 0, -440, 56, t, TX.head5[0], 99, { w: 800 });
+      text(S.head5, 0, -440 + TOP, 56, t, TX.head5[0], 99, { w: 800 });
       HB.pos.forEach(([x, y], k) => {
         const t0 = T.hb(k); dotted(SPOKES[k], 0, inOutCubic(prog(t, t0 - .25, t0 + .2)), .4);
         const nx = k < 3 ? T.hb(k + 1) : T.foot5, cur = prog(t, t0, t0 + .3) * (1 - prog(t, nx - .2, nx + .2));   // nur der neue Knoten leuchtet
         station(x, y, HB.r, t0, .35 + .65 * cur);
         text(HB.lines[k].join('\n'), x, y + HB.r + 36, 32, t, t0 + .15, 99, { w: 700, lh: 38 });
       });
-      text(S.foot5, 0, -368, 40, t, TX.foot5[0], 99, { w: 600, col: SOFT });   // v5: direkt unter der Headline statt unten (Marketing 24.11.)
+      text(S.foot5, 0, -368 + TOP, 40, t, TX.foot5[0], 99, { w: 600, col: SOFT });   // v5: direkt unter der Headline statt unten (Marketing 24.11.)
     },
     post(t) {
       HB.pos.forEach(([x, y], k) => {
@@ -431,7 +433,7 @@ const scenes = {
   gain: {
     pre(t) {
       softGlow(300, 0, 900, 'rgba(60,170,120,A)', .14);
-      text(S.head6, 0, -420, 56, t, TX.head6[0], 99, { w: 800 });
+      text(S.head6, 0, -420 + TOP, 56, t, TX.head6[0], 99, { w: 800 });
       GN.items.forEach((s, k) => {
         const y = GN.iy[k], t0 = T.check(k), u = outBack(prog(t, t0, t0 + .4), 1.8); if (u <= 0) return;
         g.save(); g.translate(-762, y + capMid(48, 700)); g.scale(u, u); g.fillStyle = GREEN; g.beginPath(); g.arc(0, 0, 27, 0, 7); g.fill(); g.restore();
@@ -513,7 +515,7 @@ function endB(t) {
 // Alle drei erscheinen mit Schritt 1 (man sieht die Reihenfolge), der aktuelle ist blau gefüllt, erledigte bekommen ein Häkchen, kommende sind nur Umriss.
 function stepRow(t) {
   const y0 = T.step[0], a = prog(t, y0 - .1, y0 + .3); if (a <= 0) return;
-  const R = 30, gapX = 110, y = HW.stepY, xs = [-gapX, 0, gapX];
+  const R = 30, gapX = 110, y = HW.stepY + TOP, xs = [-gapX, 0, gapX];
   g.save(); g.globalAlpha *= a;
   for (let k = 0; k < 2; k++) { const on = prog(t, T.step[k + 1] - .3, T.step[k + 1] + .2); g.save(); g.lineWidth = 2.4; g.lineCap = 'round';
     g.strokeStyle = 'rgba(255,255,255,.25)'; g.setLineDash([.01, 9]); g.beginPath(); g.moveTo(xs[k] + R + 10, y); g.lineTo(xs[k + 1] - R - 10, y); g.stroke();
@@ -534,7 +536,7 @@ function stepRow(t) {
 // Satz des Schritts: mittig unter den Nummern, Unterzeile kleiner darunter
 function caption(t, s, [t0, t1], sub, subAt) {
   if (t < t0 || (t > t1 && t1 < WHIPS[4][0])) return;
-  const y = HW.capY, fade = t1 < WHIPS[4][0];
+  const y = HW.capY + TOP, fade = t1 < WHIPS[4][0];
   text(s, 0, y, 46, t, t0 + .1, t1, { w: 700, fade });
   if (sub) text(sub, 0, y + 54, 32, t, subAt ?? t0 + 1.2, t1, { w: 600, col: SOFT });
 }
@@ -578,9 +580,15 @@ function drawScene(t) {
   // v5: REMIRA-Logo klein oben rechts (Original-Pfade), sichtbar zwischen Intro und Endkarte (Marketing 24.11.). ?bug=url zeigt nur „REMIRA.COM“.
   const ba = prog(t, WHIPS[0][1], WHIPS[0][1] + .6) * (1 - prog(t, WHIPS[6][0] - .4, WHIPS[6][0]));
   if (ba > 0) {
-    g.save(); g.setTransform(scale, 0, 0, scale, 0, 0); g.globalAlpha = .9 * ba;
-    if (BUG === 'url') { g.font = font(28, 700); g.textAlign = 'right'; g.textBaseline = 'alphabetic'; g.fillStyle = '#fff'; g.fillText('REMIRA.COM', W - 60, 76); }
-    else { const bw = 180, bs = bw / 1261.55; g.translate(W - 60 - bw, 48); g.scale(bs, bs); LOGO.petals.forEach(p => { g.fillStyle = p.grad; g.fill(p.d); }); g.fillStyle = '#fff'; LOGO.word.forEach(d => g.fill(d)); }
+    g.save(); g.setTransform(scale, 0, 0, scale, 0, 0); g.globalAlpha = ba;
+    if (BUG === 'url') { g.font = font(28, 700); g.textAlign = 'right'; g.textBaseline = 'alphabetic'; g.fillStyle = '#fff'; g.fillText('REMIRA.COM', W - LOGO_BUG.margin, LOGO_BUG.top + 46); }
+    else {
+      // Logo wie in den REMIRA-Videos: Ring links, „REMIRA“ vertikal mittig dazu (Original-Pfade aus der Logo-SVG, nur neu angeordnet; der Claim entfällt).
+      // Maße der SVG: Ring 0…318,5 × 0…291,9, Schriftzug 370,3…1260,9 × 28,6…182,7. Ring-Höhe = 1,6 × Versalhöhe, Abstand 0,15 × Ringbreite (gemessen an den Referenzen).
+      const c = LOGO_BUG.cap, rs = 1.6 * c / 291.9, ws = c / 154.1, rw = 318.5 * rs, gap = .15 * rw, ww = 890.6 * ws, x0 = W - LOGO_BUG.margin - (rw + gap + ww), y0 = LOGO_BUG.top, rh = 291.9 * rs;
+      g.save(); g.translate(x0, y0); g.scale(rs, rs); LOGO.petals.forEach(p => { g.fillStyle = p.grad; g.fill(p.d); }); g.restore();
+      g.translate(x0 + rw + gap, y0 + rh / 2 - c / 2); g.scale(ws, ws); g.translate(-370.3, -28.6); g.fillStyle = '#fff'; LOGO.word.forEach(d => g.fill(d));
+    }
     g.restore();
   }
   // Heldin (Bildschirm-Raum, unverzerrt)
