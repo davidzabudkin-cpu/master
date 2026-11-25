@@ -72,12 +72,12 @@
 | **Plattform-Animation** (21 s, Plattform-Sechseck animiert) | `remira/projekte/plattform-animation/REMIRA-Plattform-Animation-EN.mp4` und `-DE.mp4` + Code (Texte in `src/data.js`) | regelmäßige, weich gerundete Sechsecke, Hintergrund schwarz, Phosphor bold. **Offen:** hat noch die alte Flächen-Musik – evtl. dynamische Musik wie OMS. |
 | **Erklärvideo Stichprobeninventur** (Englisch, mit Stimme) | `remira/projekte/erklaervideo-v2-inventur/` | Schulungs-Demo. Bild rendert (Assets am 18.11. wiederhergestellt, Heldenbilder per `tools/hero_frames.py`, braucht `pip install opencv-python-headless`). **Fehlt:** Stimmdateien `assets/vo/*.mp3` (ElevenLabs) und das fertige MP4 – mit Ton erst nach neuer Stimme aus einem freigegebenen Tool. |
 | **Warenwirtschaft-Erklärvideo** (95 s, v7: Schritt für Schritt mit Blickführung, eigene Musik, REMIRA-Logo oben rechts; Regal, Warenstrom, Kreislauf, Dashboard, Drehscheibe, Bestandslinie) | `remira/projekte/warenwirtschaft-video/REMIRA-WWS-Erklaervideo-DE-v7.mp4` und `-EN-v7.mp4` (+ `-v2` bis `-v6`) + Code | v7 am 25.11.: offizielles Logo oben rechts; **offen:** Freigabe Texte (Problem-Frage DE/EN, Slogan, EN) |
-| **POS-Erklärvideo** (Glossar „POS (Point of Sale)“, geplant ca. 95–100 s, DE + EN) | `remira/projekte/pos-video/` (`STORYBOARD.md`, `SKRIPT.md`) | 25.11.: Storyboard + Skript v1 aus Glossar + Produktseite; **offen:** Go zum Bau, Freigabe Problem-Szene, Slogan, EN |
+| **POS-Erklärvideo** (Glossar „POS (Point of Sale)“, 99,6 s, DE + EN, Kassenbon-Bildsprache, eigene Musik 108 BPM) | `remira/projekte/pos-video/REMIRA-POS-Erklaervideo-DE-v1.mp4` und `-EN-v1.mp4` + Code, `STORYBOARD.md`, `SKRIPT.md` | v1 (erster Entwurf) am 25.11.; **offen:** Feedback, Freigabe Problem-Szene, Slogan „Jeder Verkauf. Ein System.“, EN, TSE ja/nein |
 | **Demo-Websites** | `remira/demos/demo-premium/` (3D-Ring, Maus-Effekte, Fable), `demo-commerce/`, `demo-website/` (Inventur) | Konzept-Demos, intern |
 | **KI-Schulung 11.11.** | `remira/schulung/` (Präsentation als HTML, Lernpfad, Spickzettel, Folien-Quelle) | gehalten |
 | **Rechtsleitfaden KI** | `remira/rechtliches/` | fertig, keine Rechtsberatung |
 
-Neues Video = Ordner `oms-video` kopieren, `src/data.js`, `src/timeline.js`, Szenen in `src/main.js` anpassen; Befehle in `PROMPTS.md`.
+Neues Video = Ordner `warenwirtschaft-video` (bzw. `pos-video`) kopieren, `src/texte.js`, `src/data.js`, `src/timeline.js`, Szenen in `src/main.js` neu; Befehle in `PROMPTS.md`. Ablauf siehe Skill `remira-erklaervideo` → „Neues Video aus der WWS-Vorlage“.
 
 ## 9. Technik (einmalig einrichten)
 - Python ≥ 3.10 mit `pip install numpy scipy pillow`, **ffmpeg**, **Node.js**. Prüfen: `python werkzeuge/check_setup.py`.

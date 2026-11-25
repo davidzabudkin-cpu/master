@@ -1,6 +1,6 @@
 # REMIRA Glossar-Erklärvideo „POS (Point of Sale)“ – Storyboard v1
 
-**25.11.2026, Entwurf, noch nicht gebaut.** Texte und Quellen: `SKRIPT.md`. 16:9, 30 fps, ca. 95–100 s, ohne Stimme, DE + EN.
+**25.11.2026, v1 gebaut (99,6 s, DE + EN).** Zeiten unten sind die Planung, die gebauten Zeiten stehen in `src/timeline.js`. Texte und Quellen: `SKRIPT.md`. 16:9, 30 fps, ca. 95–100 s, ohne Stimme, DE + EN.
 Technik wie WWS (`remira/projekte/warenwirtschaft-video`: Renderer, Text-Helfer, Ring, Kamerafahrten, Ton-Pipeline, Endkarte B, Logo oben rechts aus `remira/brand/logo-pack/`). Szenen, Bildsprache, Kamerapfad und Musik sind neu (Regel „Neues Video ≠ Kopie“).
 
 **Ein Satz:** Wer das Video sieht, versteht: Der POS ist der Ort des Kaufs; ein modernes POS-System verbindet Kasse, Zahlung, Bestände und Kunden live mit allen Kanälen, und REMIRA hat so ein System.
