@@ -110,7 +110,7 @@ function sideItem(c, k, left, t) {
   const n = c.lines.length, y0 = c.y - (n - 1) * LH / 2;
   // Blickführung: der gerade erscheinende Punkt ist hell, die vorherigen treten zurück, bis alle Punkte einer Seite da sind
   const tn = left ? (k < 3 ? T.ch(k + 1) : T.flow) : (k < 3 ? T.be(k + 1) : T.settle), tAll = left ? T.flow : T.settle - .6;
-  const foc = 1 - .6 * prog(t, tn - .2, tn + .2) * (1 - prog(t, tAll, tAll + .5));
+  const foc = 1 - .45 * prog(t, tn - .2, tn + .2) * (1 - prog(t, tAll, tAll + .5));
   g.save(); g.globalAlpha = a * foc; g.translate(dx, 0);
   g.font = font(TXT, 700); g.fillStyle = '#fff'; g.textBaseline = 'middle'; g.textAlign = left ? 'left' : 'right';
   g.shadowColor = 'rgba(8,50,70,.35)'; g.shadowBlur = 10 * scale; g.shadowOffsetY = 2 * scale;
