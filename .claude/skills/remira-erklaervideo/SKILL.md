@@ -98,3 +98,9 @@ Vorlage: `remira/projekte/plattform-animation/` (Messung: `tools/measure.py`).
 - `T`-Objekt: keine doppelten Schlüssel (POS v1: zweites `sale` überschrieb das erste); je Szene eigene Namen (`sale`, `sale2`).
 - DOTS-Hintergrund an die Weltgröße anpassen (x/y-Bereich der Szenen-Positionen `SC`).
 - Lange EN-Übersetzungen kürzen statt Timing zu ändern (POS: „Double sales online“, „Changes store by store“).
+
+## Plattform-Grafiken animieren (Commerce-Fassung, 25.11.2026)
+- Vorlage: `remira/projekte/commerce-animation` (aus `plattform-animation` abgeleitet, mit allen Regeln). Neue Grafik = Texte, Module, Ringtexte und Chip in `src/data.js`, Modulzahl über `NMOD` (Winkel = k·360/NMOD, Trenner dazwischen).
+- Auch bei Grafik-Animationen gilt die Lesezeit: Punkte links/rechts einzeln, jeder mit eigener Zeit (2,5 Wörter/s + 1 s), vorherige werden gedimmt, am Ende alle hell. `tools/dump_cues.mjs` prüft das für DE und EN.
+- Modul-Labels nach gemessener Breite platzieren: ≥ 16 px zur Sechseck-Kante, ≥ 10 px zum inneren Kreis (lange Wörter wie „Merchandise Management“ berührten sonst eine Kante). In beiden Sprachen per Standbild-Ausschnitt prüfen.
+- Texte wörtlich aus der gelieferten Grafik der jeweiligen Sprache übernehmen; offensichtliche Tippfehler korrigieren und zur Freigabe melden (z. B. „automatition“, „Markeneintritt“).
