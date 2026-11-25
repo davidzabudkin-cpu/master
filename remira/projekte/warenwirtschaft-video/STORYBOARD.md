@@ -1,4 +1,6 @@
-# REMIRA Glossar-Erklärvideo „Warenwirtschaftssystem (WWS)“ – Storyboard v6
+# REMIRA Glossar-Erklärvideo „Warenwirtschaftssystem (WWS)“ – Storyboard v7
+
+**v7 25.11.2026:** Logo oben rechts = offizielle Datei ohne Claim (Logo-Pack), 290 px, Abstand zu Headlines gemessen; Ton = v6.
 
 **v6 25.11.2026:** Logo oben rechts wie in früheren REMIRA-Videos (Schriftzug mittig zum Ring, ≈ 360 px, 36 px Rand), Headlines 50 px tiefer, Ton = v5.
 

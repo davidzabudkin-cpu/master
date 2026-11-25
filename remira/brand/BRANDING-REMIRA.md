@@ -18,6 +18,8 @@ Akzent-Blau der Website: **#41B6E6** (Links, Buttons), Kachel-Blau der Plattform
 | Orange | #FFB25B | #FF9524 | #FF8200 |
 | Rot | #FF5869 | #F53D47 | #E10600 |
 
+Logo-Dateien (Logo-Pack von Marketing, 25.11.2026): `logo-pack/REMIRA_Logo_white.png` (ohne Claim, weiß, für dunklen Grund), `REMIRA_figurative_mark.png` (nur Bildmarke), `REMIRA_Logo_Claim.png` / `REMIRA_Logo_Claim_white.png`. Unverändert verwenden.
+
 Signature-Idee: der bunte Ring (Logo-Zeichen) als Element, das sich durch Seite/Video bewegt. Das Logo selbst nicht nachzeichnen – Ring als abstrakte Form aus den 6 Farben oder die Original-Datei `remira-logo-claim-white.svg` (nur intern).
 
 ## Heroes (Comic-Superhelden)
