@@ -105,3 +105,10 @@ Vorlage: `remira/projekte/plattform-animation/` (Messung: `tools/measure.py`).
 - Modul-Labels nach gemessener Breite platzieren: ≥ 16 px zur Sechseck-Kante, ≥ 10 px zum inneren Kreis (lange Wörter wie „Merchandise Management“ berührten sonst eine Kante). In beiden Sprachen per Standbild-Ausschnitt prüfen.
 - Texte wörtlich aus der gelieferten Grafik der jeweiligen Sprache übernehmen; offensichtliche Tippfehler korrigieren und zur Freigabe melden (z. B. „automatition“, „Markeneintritt“).
 - Renderer überschreibt keine vorhandene Datei: neue Fassung immer als `-vN+1` rendern.
+
+## Werbespots / Ads (Commerce-Kampagne, 26.11.2026)
+- Ads sind keine Erklärvideos: 12–25 s, Hook in den ersten 2 s (ein Bild + max. 5 Wörter, ohne Ton verständlich, kein Logo am Anfang), ein Schmerz pro Spot, Ring als Wendung, Endkarte mit genau einem CTA.
+- Vorlage und Regeln: `remira/commerce-ads/spots/A-das-letzte-paar/` (Ad-Kit `src/kit.js`: Formate 9x16/16x9/1x1 über `--variant`, Endkarte mit Original-Logo-PNG, in das der Ring deckungsgleich fährt) und `remira/commerce-ads/spots/SPOT-REGELN.md`.
+- Lesezeit-Regel (2,5 Wörter/s + 1 s) und „erst Text, dann Bild-Ereignis“ gelten auch in Ads; deshalb Texte kurz halten statt Spot zu verlängern.
+- Jeder Spot in drei Formaten: Layout je Format eigens setzen (nicht skalieren), Button-Texte auf Button-Breite einpassen (EN länger), 9:16 Inhalte zwischen y 230 und 1660 (Reels-Oberfläche).
+- Ton für Ads: Intro ≈ −21 LUFS (nicht −30 wie im Erklärvideo, der Hook muss tragen), Groove ≈ −15, Ausklang ≈ −25, Master −16 LUFS.

@@ -62,6 +62,7 @@
 | Produkt-/Werbefilm mit KI-Clips | `produktfilm`, `higgsfield-praxis` |
 | Reels/Shorts, Thumbnails | `yt-shorts`, `yt-thumbnail`, `storyboard` |
 | Stil festlegen | `stil-studio` |
+| Werbespot / Ad (Commerce) | `storyboard` → Vorlage `remira/commerce-ads/spots/A-das-letzte-paar` + `SPOT-REGELN.md`, `remira-phosphor-icons` |
 | Unklar | `werkstatt` (Weiche) |
 | Ende jeder Aufgabe / jede Korrektur | `skill-schmiede` |
 
@@ -74,6 +75,7 @@
 | **Erklärvideo Stichprobeninventur** (Englisch, mit Stimme) | `remira/projekte/erklaervideo-v2-inventur/` | Schulungs-Demo. Bild rendert (Assets am 18.11. wiederhergestellt, Heldenbilder per `tools/hero_frames.py`, braucht `pip install opencv-python-headless`). **Fehlt:** Stimmdateien `assets/vo/*.mp3` (ElevenLabs) und das fertige MP4 – mit Ton erst nach neuer Stimme aus einem freigegebenen Tool. |
 | **Warenwirtschaft-Erklärvideo** (95 s, v7: Schritt für Schritt mit Blickführung, eigene Musik, REMIRA-Logo oben rechts; Regal, Warenstrom, Kreislauf, Dashboard, Drehscheibe, Bestandslinie) | `remira/projekte/warenwirtschaft-video/REMIRA-WWS-Erklaervideo-DE-v7.mp4` und `-EN-v7.mp4` (+ `-v2` bis `-v6`) + Code | v7 am 25.11.: offizielles Logo oben rechts; **offen:** Freigabe Texte (Problem-Frage DE/EN, Slogan, EN) |
 | **POS-Erklärvideo** (Glossar „POS (Point of Sale)“, 99,6 s, DE + EN, Kassenbon-Bildsprache, eigene Musik 108 BPM) | `remira/projekte/pos-video/REMIRA-POS-Erklaervideo-DE-v1.mp4` und `-EN-v1.mp4` + Code, `STORYBOARD.md`, `SKRIPT.md` | v1 (erster Entwurf) am 25.11.; **offen:** Feedback, Freigabe Problem-Szene, Slogan „Jeder Verkauf. Ein System.“, EN, TSE ja/nein |
+| **Commerce-Werbekampagne** (Konzept + 8 Ad-Prototypen, ohne Stimme, DE/EN, 9:16/16:9/1:1) | `remira/commerce-ads/` (`KONZEPT.md`, `recherche/`, `spots/A-…` bis `H-…`, Regeln `spots/SPOT-REGELN.md`) | 26.11.: Konzept v1, Spot A „Das letzte Paar“ v1 fertig, B–H als Prototypen; **offen:** Freigabe Kampagnenzeile „Ein Laden. Ein Bestand. Ein System.“, Texte, Auswahl |
 | **Demo-Websites** | `remira/demos/demo-premium/` (3D-Ring, Maus-Effekte, Fable), `demo-commerce/`, `demo-website/` (Inventur) | Konzept-Demos, intern |
 | **KI-Schulung 11.11.** | `remira/schulung/` (Präsentation als HTML, Lernpfad, Spickzettel, Folien-Quelle) | gehalten |
 | **Rechtsleitfaden KI** | `remira/rechtliches/` | fertig, keine Rechtsberatung |
