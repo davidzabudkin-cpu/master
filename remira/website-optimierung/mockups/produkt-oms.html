@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Order Management (Mockup)</title>
+<meta name="description" content="Konzeptentwurf Produktseite Order Management, intern, nicht veröffentlicht.">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .hero-oms .hero-in { grid-template-columns: minmax(0, 1fr); align-items: center; }
+  @media (min-width: 980px) { .hero-oms .hero-in { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 56px; } }
+  .hero-oms .txtcol { display: grid; gap: 22px; align-content: start; }
+  .hero-oms .ui { box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 40px 80px -30px rgba(0,0,0,.8); }
+  .route { position: relative; padding: 14px; display: grid; gap: 10px; }
+  .route-map { position: relative; height: 150px; border-radius: 12px; background: #eef3f6; overflow: hidden; }
+  .route-map svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .ui .ic-float.f1 { right: -10px; top: 70px; }
+  .ui .ic-float.f2 { left: 64px; bottom: -14px; }
+  @media (max-width: 979px) { .ui .ic-float { display: none; } }
+  .ben-grid { display: grid; grid-template-columns: minmax(0, 1fr); column-gap: 48px; }
+  @media (min-width: 760px) { .ben-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1100px) { .ben-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .cert { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: #d6dbe0; }
+  .cert .ic { width: 22px; height: 22px; color: var(--r-green); }
+</style>
+</head>
+<body data-page="produkt-oms">
+<div id="site-header"></div>
+<main id="main">
+
+  <section class="hero hero-oms" aria-labelledby="h-hero">
+    <span class="mod" data-k="a">Hero (Magic Module, Text + Bild)</span>
+    <div class="wrap hero-in">
+      <div class="txtcol">
+        <nav class="crumbs" aria-label="Brotkrumen"><a href="start.html">Start</a><span aria-hidden="true">/</span><a href="commerce.html">Commerce</a><span aria-hidden="true">/</span><span>Order Management</span></nav>
+        <span class="eyebrow" style="--dot:var(--r-green)">Order Management</span>
+        <h1 id="h-hero">Jede Bestellung schnell und fehlerfrei beim Kunden.</h1>
+        <p class="lead">REMIRA OMS steuert Aufträge aus allen Kanälen zentral, von der Bestellung bis zur Lieferung.</p>
+        <div class="hero-cta">
+          <a class="btn btn-p magnet" href="kontakt.html"><span>Demo anfragen <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></a>
+          <a class="btn btn-g" href="#funktionen">Funktionen</a>
+        </div>
+        <span class="cert"><svg class="ic" aria-hidden="true"><use href="#i-shield-check"/></svg>Zertifikat „TÜV geprüfter Datenschutz“</span>
+      </div>
+      <div class="ui" aria-label="Abstrakte Skizze der Oberfläche, kein echter Screenshot" role="img">
+        <div class="ui-bar"><i></i><i></i><i></i><span></span></div>
+        <div class="ui-body"><div class="ui-side"><i></i><i class="on"></i><i></i><i></i><i></i></div>
+          <div class="route">
+            <div class="ui-kpis"><div class="ui-kpi"><b></b><s style="--k:#41B6E6"></s></div><div class="ui-kpi"><b></b><s style="--k:#61BD47"></s></div><div class="ui-kpi"><b></b><s style="--k:#FCDA34"></s></div></div>
+            <div class="route-map">
+              <svg viewBox="0 0 400 150" preserveAspectRatio="xMidYMid slice">
+                <path d="M60 110 C120 40 200 120 250 60 S340 40 350 90" fill="none" stroke="#41B6E6" stroke-width="3" stroke-dasharray="6 6"/>
+                <path d="M60 110 C140 130 220 140 300 120" fill="none" stroke="#c4cdd5" stroke-width="2" stroke-dasharray="4 6"/>
+                <circle cx="60" cy="110" r="9" fill="#0b0d10"/><circle cx="250" cy="60" r="8" fill="#28ABBA"/><circle cx="350" cy="90" r="10" fill="#61BD47"/><circle cx="300" cy="120" r="7" fill="#c4cdd5"/>
+              </svg>
+            </div>
+            <div class="ui-row" style="--k:#61BD47;--k2:#eaf6e6"><i></i><b></b><b></b><em></em></div>
+            <div class="ui-row" style="--k:#41B6E6;--k2:#e8f6fc"><i></i><b></b><b></b><em></em></div>
+          </div>
+        </div>
+        <span class="ic-float f1"><svg class="ic" aria-hidden="true"><use href="#i-truck"/></svg></span>
+        <span class="ic-float f2"><svg class="ic" aria-hidden="true"><use href="#i-storefront"/></svg></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- VORTEILE -->
+  <section class="sec" aria-labelledby="h-ben">
+    <span class="mod" data-k="a">Image &amp; Text / Icon-Liste (Vorteile)</span>
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">Vorteile</span><h2 id="h-ben">Was REMIRA OMS bringt.</h2></div>
+      <div class="ben-grid">
+        <div class="benefit rv"><svg class="ic" aria-hidden="true"><use href="#i-lightning"/></svg><h3>Verbesserte Effizienz</h3><p>Schnellere Auftragsabwicklung, weniger manuelle Fehler</p></div>
+        <div class="benefit rv" style="--d:.05s"><svg class="ic" aria-hidden="true"><use href="#i-smiley"/></svg><h3>Zufriedenere Kunden</h3><p>Bessere Betreuung und kürzere Lieferzeiten</p></div>
+        <div class="benefit rv" style="--d:.1s"><svg class="ic" aria-hidden="true"><use href="#i-arrows-out"/></svg><h3>Volle Skalierbarkeit</h3><p>Schnell anpassbar an neue Produkte, Märkte und Vertriebswege</p></div>
+        <div class="benefit rv"><svg class="ic" aria-hidden="true"><use href="#i-gauge"/></svg><h3>Leistung messen</h3><p>KPI-Überwachung und -Analyse im Ordermanagement</p></div>
+        <div class="benefit rv" style="--d:.05s"><svg class="ic" aria-hidden="true"><use href="#i-package"/></svg><h3>Bessere Bestandskontrolle</h3><p>Lagerbestand in Echtzeit, bessere Planung, geringere Kosten</p></div>
+        <div class="benefit rv" style="--d:.1s"><svg class="ic" aria-hidden="true"><use href="#i-database"/></svg><h3>Zentrale Daten</h3><p>Ein Zugriff auf alle Informationen für alle Teams</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUNKTIONEN: Flexi-Tabs -->
+  <section class="sec alt" id="funktionen" aria-labelledby="h-fn">
+    <span class="mod" data-k="a">Flexi-Tabs (Funktionen)</span>
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">Funktionen</span><h2 id="h-fn">Middleware+ zwischen Ihren Systemen.</h2><p class="lead">REMIRA OMS bündelt Produkt-, Prozess- und Auftragsdaten Ihrer Systemlandschaft.</p></div>
+      <div class="tabs" data-tabs>
+        <div class="tablist" role="tablist" aria-label="Funktionen">
+          <button class="tab" role="tab" id="f1" aria-controls="fp1" aria-selected="true"><svg class="ic" aria-hidden="true"><use href="#i-arrows-split"/></svg>Order Routing</button>
+          <button class="tab" role="tab" id="f2" aria-controls="fp2" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-warehouse"/></svg>Bestand &amp; Lager</button>
+          <button class="tab" role="tab" id="f3" aria-controls="fp3" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-plugs-connected"/></svg>Integration</button>
+          <button class="tab" role="tab" id="f4" aria-controls="fp4" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-chart-bar"/></svg>Reporting</button>
+        </div>
+        <div class="tabpanel in" role="tabpanel" id="fp1" aria-labelledby="f1">
+          <div class="txt"><h3>Aufträge automatisch an den besten Fulfillment-Standort.</h3>
+            <p class="muted">Die Software prüft Verfügbarkeiten in Echtzeit und entscheidet nach:</p>
+            <ul class="list"><li><svg class="ic" aria-hidden="true"><use href="#i-map-pin"/></svg>Geografischer Nähe</li><li><svg class="ic" aria-hidden="true"><use href="#i-package"/></svg>Verfügbarem Bestand</li><li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>Lieferzeit</li><li><svg class="ic" aria-hidden="true"><use href="#i-git-fork"/></svg>Split Orders</li></ul></div>
+          <div class="ui" aria-hidden="true"><div class="ui-bar"><i></i><i></i><i></i><span></span></div><div class="ui-main">
+            <div class="ui-row" style="--k:#41B6E6;--k2:#e8f6fc"><i></i><b></b><b></b><em></em></div><div class="ui-row" style="--k:#61BD47;--k2:#eaf6e6"><i></i><b></b><b></b><em></em></div><div class="ui-row" style="--k:#FCDA34;--k2:#fdf7d6"><i></i><b></b><b></b><em></em></div><div class="ui-row" style="--k:#61BD47;--k2:#eaf6e6"><i></i><b></b><b></b><em></em></div></div></div>
+        </div>
+        <div class="tabpanel" role="tabpanel" id="fp2" aria-labelledby="f2" hidden>
+          <div class="txt"><h3>Bestände, Reservierungen und Liefertermine im Blick.</h3>
+            <ul class="list"><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Integriertes Lagerverwaltungssystem</li><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Lagerbestände kanalübergreifend aktuell</li><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Automatische Nachbestellungen</li></ul></div>
+          <div class="ui" aria-hidden="true"><div class="ui-bar"><i></i><i></i><i></i><span></span></div><div class="ui-main">
+            <div class="ui-kpis"><div class="ui-kpi"><b></b><s style="--k:#28ABBA"></s></div><div class="ui-kpi"><b></b><s style="--k:#28ABBA"></s></div><div class="ui-kpi"><b></b><s style="--k:#FF9524"></s></div></div>
+            <div class="ui-chart"><svg viewBox="0 0 300 90" preserveAspectRatio="none"><path d="M0 60 C60 20 100 70 150 40 S240 30 300 20" fill="none" stroke="#28ABBA" stroke-width="3"/></svg></div></div></div>
+        </div>
+        <div class="tabpanel" role="tabpanel" id="fp3" aria-labelledby="f3" hidden>
+          <div class="txt"><h3>Anbindung an Ihr ERP, ohne es zu verändern.</h3>
+            <ul class="list"><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>SAP, Microsoft Dynamics, Comarch, Intex und weitere</li><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Stamm- und Bewegungsdaten bidirektional</li><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Händler, Filialen und Streckenlieferanten angebunden</li></ul></div>
+          <div class="ui" aria-hidden="true"><div class="ui-bar"><i></i><i></i><i></i><span></span></div><div class="ui-main">
+            <div class="ui-row" style="--k:#0b0d10"><i></i><b></b><b></b><em></em></div><div class="ui-row" style="--k:#41B6E6"><i></i><b></b><b></b><em></em></div><div class="ui-row" style="--k:#28ABBA"><i></i><b></b><b></b><em></em></div></div></div>
+        </div>
+        <div class="tabpanel" role="tabpanel" id="fp4" aria-labelledby="f4" hidden>
+          <div class="txt"><h3>Transparenz über Aufträge, Bestände und Kapazitäten.</h3>
+            <ul class="list"><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Reporting für Überblick</li><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Jeder Auftrag lückenlos nachverfolgbar</li><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Skalierbare, hochverfügbare SaaS-Anwendung</li></ul></div>
+          <div class="ui" aria-hidden="true"><div class="ui-bar"><i></i><i></i><i></i><span></span></div><div class="ui-main">
+            <div class="ui-chart" style="height:140px"><svg viewBox="0 0 300 140" preserveAspectRatio="none"><g fill="#61BD47"><rect x="14" y="70" width="30" height="70" rx="4"/><rect x="62" y="50" width="30" height="90" rx="4"/><rect x="110" y="80" width="30" height="60" rx="4"/><rect x="158" y="30" width="30" height="110" rx="4"/><rect x="206" y="44" width="30" height="96" rx="4"/><rect x="254" y="20" width="30" height="120" rx="4"/></g></svg></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABLAUF -->
+  <section class="sec" aria-labelledby="h-steps">
+    <span class="mod" data-k="a">Versa Cards (Ablauf in 3 Schritten)</span>
+    <div class="wrap">
+      <div class="head"><span class="eyebrow" style="--dot:var(--r-yellow)">So funktioniert es</span><h2 id="h-steps">Von der Bestellung bis zur Lieferung.</h2></div>
+      <ol class="steps">
+        <li class="step rv" style="--c:var(--r-blue)"><span class="n">1</span><h3>Bestellung kommt rein</h3><p>Aus Onlineshop, Filiale, Marktplatz oder weiteren Kanälen, zentral an einem Ort.</p></li>
+        <li class="step rv" style="--c:var(--r-green);--d:.08s"><span class="n">2</span><h3>Verfügbarkeit prüfen und routen</h3><p>Echtzeit-Prüfung, dann Weiterleitung an Lager, Filiale oder Fulfillment-Partner.</p></li>
+        <li class="step rv" style="--c:var(--r-yellow);--d:.16s"><span class="n">3</span><h3>Liefern und informieren</h3><p>Versand oder Abholung, der Kunde sieht den Status seines Auftrags.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- REFERENZEN -->
+  <section class="sec alt" aria-labelledby="h-ref">
+    <span class="mod" data-k="a">Super Social Proof (ohne Zitate, ohne Personen)</span>
+    <div class="wrap">
+      <div class="head-row"><div class="head"><span class="eyebrow">Referenzen</span><h2 id="h-ref">Wer REMIRA OMS bereits nutzt.</h2></div><a class="tlink" href="#">Alle Referenzen <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+      <div class="grid g3">
+        <a class="ref tilt" href="#"><span class="co">expert</span><p>Eine der größten Handelskooperationen für Consumer Electronics in Deutschland, mit REMIRA OMS seit 2012.</p><ul class="chips"><li class="chip">Order Management</li><li class="chip">Elektronik</li></ul><span class="tlink">Referenzbericht <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></a>
+        <a class="ref tilt" href="#"><span class="co">BOGNER</span><p>Verbindet E-Commerce und Filialen mit Kasse, Ordermanagement, Filialmanagement und Warenwirtschaft von REMIRA.</p><ul class="chips"><li class="chip">Omnichannel</li><li class="chip">Fashion</li></ul><span class="tlink">Referenzbericht <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></a>
+        <a class="ref tilt" href="#"><span class="co">Pieper</span><p>Waren online und stationär automatisch steuern. <span class="fehlt">[FEHLT: Ergebnis aus Referenzbericht]</span></p><ul class="chips"><li class="chip">Order Management</li><li class="chip">Einzelhandel</li></ul><span class="tlink">Referenzbericht <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec" aria-labelledby="h-faq">
+    <span class="mod" data-k="a">FAQ Accordion</span>
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">FAQ</span><h2 id="h-faq">Häufige Fragen zum Order Management.</h2></div>
+      <div class="faq">
+        <details open><summary>Was ist ein Order Management System?<span class="pm"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></span></summary><div class="ans"><p>Ein OMS automatisiert und koordiniert alle Schritte des Bestellprozesses, vom Eingang einer Bestellung bis zur Auslieferung. Es arbeitet mit E-Commerce-Plattformen, Lagerverwaltung und Buchhaltung zusammen.</p></div></details>
+        <details><summary>Was unterscheidet Ordermanagement von einem ERP?<span class="pm"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></span></summary><div class="ans"><p>Ein ERP verwaltet interne Prozesse wie Buchhaltung, Einkauf oder Personal. Eine Order Management Software steuert die kanalübergreifende Auftragsabwicklung: Bestellungen, Verfügbarkeit in Echtzeit und Fulfillment-Routen.</p></div></details>
+        <details><summary>Wie lange dauert die Einführung?<span class="pm"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></span></summary><div class="ans"><p>Mit REMIRA-Standardprozessen und -Standardschnittstellen in rund sechs Wochen. Mit Sonderprozessen oder speziellen Schnittstellen dauert die Implementierung in der Regel drei bis sechs Monate.</p></div></details>
+        <details><summary>Für welche Unternehmensgröße eignet sich REMIRA OMS?<span class="pm"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></span></summary><div class="ans"><p>Als Ziel sollte ein Umsatz von über drei Millionen gelten, damit sich die Investition in einem vernünftigen Zeitrahmen amortisiert. Nach oben ist dem Transaktionsvolumen keine Grenze gesetzt.</p></div></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band" aria-labelledby="h-cta">
+    <span class="mod" data-k="a+c">CTA-Band + magnetischer Button</span>
+    <span class="ring-bg" aria-hidden="true"></span>
+    <div class="wrap in">
+      <div style="display:grid;gap:18px"><h2 id="h-cta">REMIRA OMS live sehen.</h2><p class="lead">Wir zeigen Ihnen kostenlos und unverbindlich, wie es in Ihre Systemlandschaft passt.</p></div>
+      <div class="hero-cta" style="justify-self:start"><a class="btn btn-p magnet" href="kontakt.html"><span>Demo anfragen <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></a></div>
+    </div>
+  </section>
+</main>
+<div id="site-footer"></div>
+
+<div class="sticky-cta" role="complementary" aria-label="Schnellkontakt">
+  <span class="mod" data-k="b" style="top:-30px;left:var(--gut)">Sticky-CTA Handy</span>
+  <span class="t">REMIRA OMS<small>Kostenlose Demo</small></span>
+  <a class="btn btn-p" href="kontakt.html">Demo anfragen</a>
+</div>
+<script src="assets/icons.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

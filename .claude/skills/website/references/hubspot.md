@@ -19,3 +19,8 @@ Erster Lauf: `remira/website-optimierung/` (Audit, Relaunch-Konzept mit Theme CL
 
 ## Netz in der Cloud-Umgebung
 - Freigegeben waren nur remira.com (+ npm-Registry). Gesperrt: fremde Seiten, HubSpot-CDN (`*.hubspotusercontent-*.net`, `*.hsappstatic.net`), cdnjs, jsdelivr, unpkg, Font Awesome, Usercentrics. Folge: Slider, Logo-Leisten, Cookie-Banner fehlen in Screenshots, Lighthouse-Werte zu gut. Immer als Messgrenze nennen; vollständige Domainliste in `remira/website-optimierung/01-theme-analyse.md`.
+
+## Mockups (gelernt 26.11.)
+- Mockups für HubSpot-Relaunch: gemeinsame `styles.css`/`main.js`, Header/Footer per JS, je Sektion Label „Modulname · (a)/(b)/(c)“, Schalter „Module anzeigen“, gelbes Band „Konzeptentwurf“, `noindex`.
+- Formulare mit `hidden`-Feldern: immer `[hidden]{display:none!important}` setzen, sonst überschreibt z. B. `.field{display:grid}` das Attribut.
+- Keine Personennamen aus Kontakt-/Referenzseiten übernehmen (auch keine persönlichen E-Mail-Adressen), nur Firmen und Fakten.

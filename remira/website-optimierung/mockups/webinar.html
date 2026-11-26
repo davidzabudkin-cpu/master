@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Webinar (Mockup)</title>
+<meta name="description" content="Konzeptentwurf Webinar-Detailseite, intern, nicht veröffentlicht.">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .hero-web .hero-in { grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 980px) { .hero-web .hero-in { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 56px; align-items: end; } }
+  .hero-web h1 { max-width: 20ch; font-size: clamp(32px, 5.4vw, 56px); }
+  .hero-web .txtcol { display: grid; gap: 20px; align-content: start; }
+  .cd-wrap { display: grid; gap: 12px; position: relative; padding-top: 34px; }
+  .cd-wrap .mod { top: 0; left: 0; }
+  .cd-wrap p { color: #9aa3ad; font-size: 14px; }
+  .web-grid { display: grid; gap: 40px; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 980px) { .web-grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 64px; align-items: start; } .web-grid .form { position: sticky; top: calc(var(--hdr) + 24px); } }
+  .speakers { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 640px) { .speakers { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .block { display: grid; gap: 18px; position: relative; }
+  .block + .block { margin-top: 48px; }
+  .block .mod { position: relative; top: 0; left: 0; justify-self: start; }
+</style>
+</head>
+<body data-page="webinar">
+<div id="site-header"></div>
+<main id="main">
+
+  <section class="hero hero-web" aria-labelledby="h-hero">
+    <span class="mod" data-k="a">Hero (Magic Module, Event)</span>
+    <div class="wrap hero-in">
+      <div class="txtcol">
+        <nav class="crumbs" aria-label="Brotkrumen"><a href="start.html">Start</a><span aria-hidden="true">/</span><a href="#">Wissen</a><span aria-hidden="true">/</span><span>Webinare</span></nav>
+        <span class="eyebrow" style="--dot:var(--r-red)">Kostenfreies Live-Webinar · Prozessoptimierung</span>
+        <h1 id="h-hero">Vom Warenchaos zur Klarheit: Der Weg zu einem schlanken, kundenorientierten Store-Betrieb ohne Wartezeiten</h1>
+        <div class="ev-meta">
+          <span><svg class="ic" aria-hidden="true"><use href="#i-calendar-blank"/></svg><span class="fehlt">[Datum: Platzhalter]</span></span>
+          <span><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>10:00 bis 11:00 Uhr</span>
+          <span><svg class="ic" aria-hidden="true"><use href="#i-video-camera"/></svg>Online, kostenfrei</span>
+        </div>
+        <div class="hero-cta"><a class="btn btn-p magnet" href="#anmeldung"><span>Jetzt anmelden <svg class="ic" aria-hidden="true"><use href="#i-arrow-down"/></svg></span></a></div>
+      </div>
+      <div class="cd-wrap">
+        <span class="mod" data-k="a">Countdown Timer</span>
+        <div class="countdown" data-countdown aria-label="Zeit bis zum Webinar (Platzhalter-Datum)">
+          <div class="cd"><b data-u="d">0</b><span>Tage</span></div>
+          <div class="cd"><b data-u="h">00</b><span>Std.</span></div>
+          <div class="cd"><b data-u="m">00</b><span>Min.</span></div>
+          <div class="cd"><b data-u="s">00</b><span>Sek.</span></div>
+        </div>
+        <p>Zählt im Mockup auf ein Platzhalter-Datum (heute plus 12 Tage, 10:00 Uhr).</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="anmeldung" aria-labelledby="h-about">
+    <div class="wrap web-grid">
+      <div>
+        <div class="block">
+          <span class="mod" data-k="a">Rich Text (Beschreibung)</span>
+          <span class="eyebrow">Worum es geht</span>
+          <h2 id="h-about">Weniger Warten, mehr Überblick im Store.</h2>
+          <p class="lead">Ungenaue Bestände und manuelle Prozesse bremsen den Handel täglich. Im Webinar sehen Sie, wie eine vernetzte Warenwirtschaft mit einem benutzerfreundlichen POS für Transparenz sorgt und Prozesse automatisiert.</p>
+          <ul class="list">
+            <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Transparenz in Lagern und Filialen</li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Warenwirtschaft und POS im Zusammenspiel</li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Schnellere Abläufe für Kunden und Team</li>
+          </ul>
+        </div>
+        <div class="block">
+          <span class="mod" data-k="a">Tables / Agenda-Liste</span>
+          <span class="eyebrow" style="--dot:var(--r-yellow)">Agenda</span>
+          <h3>Ablauf <span class="fehlt">[Entwurf aus der Beschreibung, mit Fachbereich abstimmen]</span></h3>
+          <ol class="agenda">
+            <li><time>10:00</time><div><b>Begrüßung</b><span>Kurze Einführung</span></div></li>
+            <li><time>10:05</time><div><b>Wo der Store-Betrieb heute hakt</b><span>Bestände, manuelle Prozesse, Wartezeiten</span></div></li>
+            <li><time>10:20</time><div><b>Warenwirtschaft und POS live</b><span>Demo im System</span></div></li>
+            <li><time>10:45</time><div><b>Fragen und Antworten</b><span>Ihre Fragen im Chat</span></div></li>
+          </ol>
+        </div>
+        <div class="block">
+          <span class="mod" data-k="a">Team (Referierende, Platzhalter)</span>
+          <span class="eyebrow" style="--dot:var(--r-petrol)">Referierende</span>
+          <div class="speakers">
+            <div class="speaker"><span class="avatar"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg></span><div><b><span class="fehlt">[Name]</span></b><span>Referent*in Warenwirtschaft, REMIRA</span></div></div>
+            <div class="speaker"><span class="avatar"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg></span><div><b><span class="fehlt">[Name]</span></b><span>Referent*in POS, REMIRA</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <form class="form" novalidate aria-labelledby="h-form">
+        <span class="mod" data-k="a" style="top:-14px;left:16px">HubSpot-Formular (4 Felder)</span>
+        <h3 id="h-form">Kostenfrei anmelden</h3>
+        <div class="row2">
+          <div class="field"><label for="w-vn">Vorname</label><input id="w-vn" name="vorname" autocomplete="given-name" required></div>
+          <div class="field"><label for="w-nn">Nachname</label><input id="w-nn" name="nachname" autocomplete="family-name" required></div>
+        </div>
+        <div class="field"><label for="w-em">Geschäftliche E-Mail</label><input id="w-em" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+        <div class="field"><label for="w-co">Unternehmen</label><input id="w-co" name="unternehmen" autocomplete="organization" required></div>
+        <button class="btn btn-p" type="submit">Platz sichern <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+        <p class="hint">Mockup ohne Funktion. Hinweis zum Datenschutz: <span class="fehlt">[FEHLT: Text aus HubSpot-Formular]</span></p>
+        <div class="form-ok" role="status">
+          <span class="okc"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>
+          <h3>Sie sind angemeldet.</h3>
+          <p class="muted">Die Bestätigung mit dem Zugangslink kommt per E-Mail.</p>
+          <button class="tlink" type="button" data-again>Weitere Person anmelden</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ON DEMAND -->
+  <section class="sec alt" aria-labelledby="h-od" data-playlist>
+    <span class="mod" data-k="a">Video Playlist (On demand)</span>
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">On demand</span><h2 id="h-od">Aufzeichnungen zu Commerce.</h2></div>
+      <div class="playlist">
+        <div class="player" role="img" aria-label="Video-Platzhalter"><span class="bg ph-2"></span><span class="play"><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg></span><span class="cap"><b>Stationäres Geschäft und Online-Shop erfolgreich verschmelzen</b><span>Omnichannel-Excellence für Modeketten · Aufzeichnung</span></span></div>
+        <div class="pl-list">
+          <button class="pl-item" type="button" aria-current="true" data-ph="ph-2" data-title="Stationäres Geschäft und Online-Shop erfolgreich verschmelzen" data-meta="Omnichannel-Excellence für Modeketten · Aufzeichnung"><span class="th ph-2"><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg></span><span><b>Stationäres Geschäft und Online-Shop erfolgreich verschmelzen</b><span>Omnichannel-Excellence</span></span></button>
+          <button class="pl-item" type="button" aria-current="false" data-ph="ph-3" data-title="Bestand ist King, Chaos ist teuer: Wie Modehändler ihre Marge retten" data-meta="Warensteuerung · Aufzeichnung"><span class="th ph-3"><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg></span><span><b>Bestand ist King, Chaos ist teuer</b><span>Warensteuerung</span></span></button>
+          <button class="pl-item" type="button" aria-current="false" data-ph="ph-1" data-title="Digitales Filialmanagement im Einzelhandel: Kundenzufriedenheit dank App" data-meta="Digitales Filialmanagement · Aufzeichnung"><span class="th ph-1"><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg></span><span><b>Digitales Filialmanagement im Einzelhandel</b><span>Mobile Store Management</span></span></button>
+          <button class="pl-item" type="button" aria-current="false" data-ph="ph-6" data-title="Der digitale Kassenbon als neuer Marketingkanal am POS" data-meta="Point of Sale · Aufzeichnung"><span class="th ph-6"><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg></span><span><b>Der digitale Kassenbon als neuer Marketingkanal</b><span>Point of Sale</span></span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band" aria-labelledby="h-cta">
+    <span class="mod" data-k="a">CTA-Band</span>
+    <span class="ring-bg" aria-hidden="true"></span>
+    <div class="wrap in">
+      <div style="display:grid;gap:18px"><h2 id="h-cta">Keinen Termin mehr verpassen.</h2><p class="lead">Neue Webinare und Events per Newsletter.</p></div>
+      <div class="hero-cta" style="justify-self:start"><a class="btn btn-p" href="#">Newsletter abonnieren</a><a class="btn btn-g" href="#">Alle Webinare</a></div>
+    </div>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script src="assets/icons.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

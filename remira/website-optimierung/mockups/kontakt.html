@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Kontakt und Demo (Mockup)</title>
+<meta name="description" content="Konzeptentwurf Kontakt- und Demo-Seite, intern, nicht veröffentlicht.">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .hero-k .hero-in { padding-bottom: 40px; }
+  .k-grid { display: grid; gap: 32px; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 980px) { .k-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 64px; align-items: start; } }
+  .k-side { display: grid; gap: 20px; align-content: start; }
+  .direct { display: grid; gap: 10px; }
+  .direct a { display: flex; align-items: center; gap: 12px; min-height: 48px; font-weight: 700; }
+  .direct a .ic { width: 24px; height: 24px; color: var(--acc-ink); }
+  .loc-grid { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 640px) { .loc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1000px) { .loc-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .loc-grid .hq { grid-row: span 2; }
+  @media (max-width: 999px) { .loc-grid .hq { grid-row: auto; } }
+</style>
+</head>
+<body data-page="kontakt">
+<div id="site-header"></div>
+<main id="main">
+
+  <section class="hero hero-k" aria-labelledby="h-hero">
+    <span class="mod" data-k="a">Hero (schlicht)</span>
+    <div class="wrap hero-in">
+      <nav class="crumbs" aria-label="Brotkrumen"><a href="start.html">Start</a><span aria-hidden="true">/</span><span>Kontakt</span></nav>
+      <span class="eyebrow" style="--dot:var(--r-green)">Kontakt</span>
+      <h1 id="h-hero">Wie können wir helfen?</h1>
+      <p class="lead">Demo vereinbaren oder Frage stellen: Wir melden uns schnellstmöglich.</p>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:40px" aria-label="Kontaktformular">
+    <div class="wrap k-grid">
+      <div class="k-side">
+        <div class="ways" role="group" aria-label="Anliegen wählen" style="position:relative">
+          <span class="mod" data-k="b" style="top:-36px;left:0">Weg-Auswahl (2 Wege)</span>
+          <button class="wbtn" type="button" data-way="demo" aria-pressed="true"><svg class="ic" aria-hidden="true"><use href="#i-presentation-chart"/></svg><b>Demo anfragen</b><span>Live-Vorführung, kostenlos</span></button>
+          <button class="wbtn" type="button" data-way="frage" aria-pressed="false"><svg class="ic" aria-hidden="true"><use href="#i-chat-circle-text"/></svg><b>Allgemeine Frage</b><span>Wir antworten per E-Mail</span></button>
+        </div>
+        <div class="direct">
+          <span class="eyebrow">Direkt</span>
+          <a href="#"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>+49 231 997 82-0</a>
+          <a href="#"><svg class="ic" aria-hidden="true"><use href="#i-envelope-simple"/></svg>info@remira.com</a>
+          <a href="#"><svg class="ic" aria-hidden="true"><use href="#i-headset"/></svg>Support: support.remira.com</a>
+        </div>
+      </div>
+
+      <form class="form" novalidate aria-label="Anfrage">
+        <span class="mod" data-k="a" style="top:-14px;left:16px">HubSpot-Formular (4 Felder, 2 Varianten)</span>
+        <h2 style="font-size:28px" data-only="demo">Demo anfragen</h2>
+        <h2 style="font-size:28px" data-only="frage" hidden>Ihre Frage</h2>
+        <div class="field"><label for="k-name">Vor- und Nachname</label><input id="k-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="k-em">Geschäftliche E-Mail</label><input id="k-em" name="email" type="email" inputmode="email" autocomplete="email" required></div>
+        <div class="field"><label for="k-co">Unternehmen</label><input id="k-co" name="unternehmen" autocomplete="organization" required></div>
+        <div class="field" data-only="demo"><label for="k-pr">Interesse an</label>
+          <select id="k-pr" name="produkt"><option>Omnichannel Commerce (Übersicht)</option><option>Point of Sale</option><option>Warenwirtschaft</option><option>Order Management</option><option>Mobile Store Management</option><option>Payment</option><option>Customer Hub</option><option>Supply Chain</option></select></div>
+        <div class="field" data-only="frage" hidden><label for="k-msg">Nachricht</label><textarea id="k-msg" name="nachricht"></textarea></div>
+        <button class="btn btn-p" type="submit">Absenden <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+        <p class="hint">Mockup ohne Funktion. Datenschutzhinweis: <span class="fehlt">[FEHLT: Text aus HubSpot-Formular]</span></p>
+        <div class="form-ok" role="status">
+          <span class="okc"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>
+          <h3>Danke, Ihre Anfrage ist da.</h3>
+          <p class="muted">Wir melden uns schnellstmöglich bei Ihnen.</p>
+          <button class="tlink" type="button" data-again>Neue Anfrage</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- SHOWROOM -->
+  <section class="sec tight" id="showroom" aria-labelledby="h-show">
+    <span class="mod" data-k="a">Magic Module (Hintergrund-Verlauf) Showroom-Termin</span>
+    <div class="wrap">
+      <div class="showroom">
+        <span class="bg" aria-hidden="true"></span>
+        <div class="txt">
+          <span class="eyebrow" style="--dot:var(--r-yellow)">Showroom Dortmund</span>
+          <h2 id="h-show">Termin im Showroom.</h2>
+          <p class="lead">RFID, Digital Signage, interaktive Belege und Mobile Store Management vor Ort im Dortmunder Headquarter testen.</p>
+          <div class="hero-cta"><a class="btn btn-p magnet" href="#"><span>Termin anfragen <svg class="ic" aria-hidden="true"><use href="#i-calendar-check"/></svg></span></a></div>
+        </div>
+        <div class="loc hq" style="background:rgba(255,255,255,.06)">
+          <span class="cty"><i style="--c:var(--r-yellow)"></i>Adresse Showroom</span>
+          <b>REMIRA GmbH, Headquarter</b>
+          <address>Phoenixplatz 2<br>44263 Dortmund</address>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STANDORTE -->
+  <section class="sec alt" aria-labelledby="h-loc">
+    <span class="mod" data-k="a">Versa Cards (Standorte)</span>
+    <div class="wrap">
+      <div class="head"><span class="eyebrow" style="--dot:var(--r-petrol)">Standorte</span><h2 id="h-loc">12 Standorte, vier davon in Deutschland.</h2></div>
+      <div class="loc-grid">
+        <div class="loc hq"><span class="cty"><i style="--c:var(--r-blue)"></i>Deutschland · Headquarter</span><b>REMIRA GmbH</b><address>Phoenixplatz 2<br>44263 Dortmund</address><a href="#">+49 231 997 82-0</a><a href="#">info@remira.com</a></div>
+        <div class="loc"><span class="cty"><i style="--c:var(--r-blue)"></i>Deutschland</span><b>REMIRA Commerce GmbH</b><address>Hof Meisebach<br>36251 Bad Hersfeld</address></div>
+        <div class="loc"><span class="cty"><i style="--c:var(--r-blue)"></i>Deutschland</span><b>REMIRA Commerce GmbH</b><address>Blohmstr. 29<br>21079 Hamburg</address></div>
+        <div class="loc"><span class="cty"><i style="--c:var(--r-blue)"></i>Deutschland</span><b>REMIRA Commerce GmbH</b><address>Wilhelm-Bleyle-Straße 10<br>71636 Ludwigsburg</address></div>
+        <div class="loc"><span class="cty"><i style="--c:var(--r-red)"></i>Österreich</span><b>REMIRA Austria GmbH</b><address>U4 Center, Schönbrunner Strasse 218-220<br>Stiege B/6.01, 1120 Wien</address></div>
+        <div class="loc"><span class="cty"><i style="--c:var(--r-red)"></i>Schweiz</span><b>REMIRA Schweiz AG</b><address>Spätzstrasse 33<br>8810 Horgen</address></div>
+        <div class="loc"><span class="cty"><i style="--c:var(--r-green)"></i>Italien</span><b>REMIRA Italia SRL</b><address>Via Isaac Newton, 46<br>50018 Scandicci</address></div>
+        <div class="loc"><span class="cty"><i style="--c:var(--r-green)"></i>Italien</span><b>REMIRA Italia SRL</b><address>Via Sobborgo Spina, 37<br>19038 Sarzana</address></div>
+        <div class="loc"><span class="cty"><i style="--c:var(--r-orange)"></i>Niederlande</span><b>REMIRA Netherlands B.V.</b><address>Willem II Singel 19a<br>6041 HP Roermond</address></div>
+        <div class="loc"><span class="cty"><i style="--c:var(--r-yellow)"></i>Australien</span><b>REMIRA Australia</b><address>Suite 8.03, Level 8/15 Help St<br>NSW 2067 Chatswood</address></div>
+        <div class="loc"><span class="cty"><i style="--c:var(--r-petrol)"></i>USA</span><b>REMIRA North America LLC</b><address>Philadelphia, PA</address></div>
+      </div>
+      <p class="src">Adressen von remira.com/de/kontakt. Telefonnummern und E-Mails der Länder im finalen Entwurf ergänzen, persönliche Kontaktadressen bewusst weggelassen.</p>
+    </div>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script src="assets/icons.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

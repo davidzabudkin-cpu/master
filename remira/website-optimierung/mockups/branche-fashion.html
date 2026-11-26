@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Fashion &amp; Schuhe (Mockup)</title>
+<meta name="description" content="Konzeptentwurf Branchenseite Fashion & Schuhe, intern, nicht veröffentlicht.">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .hero-fa .ringcv { right: -14vw; top: -10vw; width: 56vw; height: 56vw; opacity: .6; }
+  @media (max-width: 759px) { .hero-fa .ringcv { right: -45vw; top: 20px; width: 90vw; height: 90vw; opacity: .3; } }
+  .case { padding: 0; overflow: hidden; gap: 0; }
+  .case .thumb { aspect-ratio: 16 / 9; display: grid; place-items: center; color: #fff; position: relative; overflow: hidden; }
+  .case .thumb::before { content: ""; position: absolute; inset: 0; background: var(--bgimg); transition: transform .6s var(--ease); }
+  .case:hover .thumb::before { transform: scale(1.05); }
+  .case .thumb b { position: relative; font-size: 28px; font-weight: 800; letter-spacing: .03em; }
+  .case .pb { padding: 22px; display: grid; gap: 10px; align-content: start; }
+  .case .res { font-weight: 700; }
+</style>
+</head>
+<body data-page="branche-fashion">
+<div id="site-header"></div>
+<main id="main">
+
+  <section class="hero hero-fa" aria-labelledby="h-hero">
+    <canvas class="ringcv" data-ring="calm" aria-hidden="true"></canvas>
+    <span class="mod" data-k="a+c">Hero (Magic Module) + Ring ruhig</span>
+    <div class="wrap hero-in">
+      <nav class="crumbs" aria-label="Brotkrumen"><a href="start.html">Start</a><span aria-hidden="true">/</span><a href="#">Branchen</a><span aria-hidden="true">/</span><span>Fashion &amp; Schuhe</span></nav>
+      <span class="eyebrow" style="--dot:var(--r-red)">Branche Fashion &amp; Schuhe</span>
+      <h1 id="h-hero">Mit Modetrends Schritt halten.</h1>
+      <p class="lead">Saisonale Trends, schnell wechselnde Bestände und komplexe Lieferketten im Griff.</p>
+      <div class="hero-cta">
+        <a class="btn btn-p magnet" href="kontakt.html"><span>Demo anfragen <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></a>
+        <a class="btn btn-g" href="#loesung">Passende Module</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERAUSFORDERUNG → MODUL -->
+  <section class="sec" id="loesung" aria-labelledby="h-ch">
+    <span class="mod" data-k="a">Scroll Swap (Herausforderung links, Modul rechts)</span>
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">Herausforderungen</span><h2 id="h-ch">Was die Modebranche bremst und was hilft.</h2></div>
+      <div class="sswap" data-sswap>
+        <ol class="sswap-list">
+          <li class="sswap-item" style="--c:var(--r-blue)"><h3>Schnelllebige Trends</h3><p>Bestände müssen schnell auf wechselnde Trends reagieren, ohne Überbestände.</p><span class="to"><svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg>Absatzprognose &amp; Bestandsmanagement</span></li>
+          <li class="sswap-item" style="--c:var(--r-green)"><h3>Unsichere Nachfrage</h3><p>Fehl- und Überbestände entstehen, wenn die Nachfrage falsch eingeschätzt wird.</p><span class="to"><svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg>IBP &amp; S&amp;OP</span></li>
+          <li class="sswap-item" style="--c:var(--r-yellow)"><h3>Getrennte Kanäle</h3><p>Online-Shop und Filiale arbeiten mit unterschiedlichen Beständen.</p><span class="to"><svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg>Omnichannel Commerce</span></li>
+          <li class="sswap-item" style="--c:var(--r-orange)"><h3>Langsame Auftragsabwicklung</h3><p>Kunden erwarten ihre Bestellung pünktlich, über jeden Kanal.</p><span class="to"><svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg>Order Management</span></li>
+          <li class="sswap-item" style="--c:var(--r-red)"><h3>Aufwendige Inventur</h3><p>Vollinventur bindet Personal und schließt Lager.</p><span class="to"><svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg>Stichprobeninventur</span></li>
+        </ol>
+        <div class="sswap-stage" aria-hidden="true">
+          <div class="sswap-panel"><div class="mcard" style="--c:var(--r-blue)"><svg class="ic ic-big" aria-hidden="true"><use href="#i-trend-up"/></svg><span class="eyebrow">Supply Chain</span><h3>Absatzprognose &amp; Bestandsmanagement</h3><p>KI-Absatzprognosen und automatische Bestellvorschläge für alle Lager und Filialen.</p><ul class="chips"><li class="chip">Saison- und Trenderkennung</li><li class="chip">Auto-Dispo</li></ul></div></div>
+          <div class="sswap-panel"><div class="mcard" style="--c:var(--r-green)"><svg class="ic ic-big" aria-hidden="true"><use href="#i-chart-line-up"/></svg><span class="eyebrow">Supply Chain</span><h3>IBP &amp; S&amp;OP</h3><p>Höhere Planungsgenauigkeit für Produktion und Absatz, weniger Überbestände.</p><ul class="chips"><li class="chip">Bedarf und Nachfrage in Balance</li><li class="chip">Trends früh erkennen</li></ul></div></div>
+          <div class="sswap-panel"><div class="mcard" style="--c:var(--r-yellow)"><svg class="ic ic-big" aria-hidden="true"><use href="#i-storefront"/></svg><span class="eyebrow">Commerce</span><h3>Omnichannel Commerce</h3><p>Produktdaten und Bestände vernetzt, Filialmanagement und mobiles Kassieren inklusive.</p><ul class="chips"><li class="chip">Click &amp; Collect</li><li class="chip">Mobiles Kassieren</li></ul></div></div>
+          <div class="sswap-panel"><div class="mcard" style="--c:var(--r-orange)"><svg class="ic ic-big" aria-hidden="true"><use href="#i-arrows-split"/></svg><span class="eyebrow">Commerce</span><h3>Order Management</h3><p>Zentrale Daten, bessere Bestandskontrolle, hohe Skalierbarkeit.</p><a class="tlink" href="produkt-oms.html">Zur Produktseite <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div></div>
+          <div class="sswap-panel"><div class="mcard" style="--c:var(--r-red)"><svg class="ic ic-big" aria-hidden="true"><use href="#i-barcode"/></svg><span class="eyebrow">Supply Chain</span><h3>Stichprobeninventur</h3><p>Mit gesetzlich zulässigen, zertifizierten statistischen Verfahren den Inventuraufwand um bis zu 99 % senken.</p><ul class="chips"><li class="chip">Optional papierlos</li><li class="chip">Cloud</li></ul></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDIES -->
+  <section class="sec alt" aria-labelledby="h-cs">
+    <span class="mod" data-k="a+c">Versa Cards (Case Studies) + Tilt</span>
+    <div class="wrap">
+      <div class="head-row"><div class="head"><span class="eyebrow">Case Studies</span><h2 id="h-cs">Aus der Fashion- und Schuhbranche.</h2></div><a class="tlink" href="#">Alle Case Studies <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+      <div class="grid g3">
+        <a class="card case tilt" href="#"><span class="glare"></span><div class="thumb ph-2"><b>BOGNER</b></div><div class="pb"><ul class="chips"><li class="chip">Omnichannel</li><li class="chip">Warenwirtschaft</li></ul><p class="res">Stationäre und digitale Verkaufswelten vernetzt</p><p>Kasse, Ordermanagement, digitales Filialmanagement und Warenwirtschaft von REMIRA.</p></div></a>
+        <a class="card case tilt" href="#"><span class="glare"></span><div class="thumb ph-1"><b>Pier14</b></div><div class="pb"><ul class="chips"><li class="chip">Omnichannel</li><li class="chip">Loyalty</li></ul><p class="res">Omnichannel-Tools mit Loyalty-Software kombiniert</p><p><span class="fehlt">[FEHLT: Ergebnis aus Referenzbericht]</span></p></div></a>
+        <a class="card case tilt" href="#"><span class="glare"></span><div class="thumb ph-3"><b>FYNCH-HATTON</b></div><div class="pb"><ul class="chips"><li class="chip">Stichprobeninventur</li></ul><p class="res">Inventurprozesse optimiert</p><p><span class="fehlt">[FEHLT: Ergebnis aus Referenzbericht, ohne Zitat]</span></p></div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEBINAR ON DEMAND -->
+  <section class="sec" aria-labelledby="h-od">
+    <span class="mod" data-k="a">Magic Module (Text + Video-Vorschau)</span>
+    <div class="wrap">
+      <div class="magic rv">
+        <div class="txt">
+          <span class="eyebrow" style="--dot:var(--r-red)">Webinar on demand</span>
+          <h2 id="h-od">Bestand ist King, Chaos ist teuer.</h2>
+          <p class="lead">Wie Modehändler mit flexibler Warenverteilung und Order Management ihre Marge sichern.</p>
+          <div><a class="btn btn-k" href="webinar.html">Aufzeichnung ansehen <svg class="ic" aria-hidden="true"><use href="#i-play"/></svg></a></div>
+        </div>
+        <a class="player" href="webinar.html" aria-label="Aufzeichnung ansehen"><span class="bg ph-3"></span><span class="play"><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg></span><span class="cap"><b>Bedarfsgerechte und flexible Warensteuerung</b><span>Aufzeichnung, kostenlos</span></span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band" aria-labelledby="h-cta">
+    <span class="mod" data-k="a+c">CTA-Band + magnetischer Button</span>
+    <span class="ring-bg" aria-hidden="true"></span>
+    <div class="wrap in">
+      <div style="display:grid;gap:18px"><h2 id="h-cta">Ihre Saison, unsere Software.</h2><p class="lead">Wir zeigen Ihnen, welche Module zu Ihrem Modeunternehmen passen.</p></div>
+      <div class="hero-cta" style="justify-self:start"><a class="btn btn-p magnet" href="kontakt.html"><span>Demo anfragen <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></a><a class="btn btn-g" href="kontakt.html#showroom">Showroom besuchen</a></div>
+    </div>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script src="assets/icons.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
