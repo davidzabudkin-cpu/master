@@ -8,11 +8,12 @@ export const T = {
   mod: k => 5.2 + k * .68, ring: [9.4, 10.6], omni: [10.4, 11.0], scm: [10.85, 11.5],
   panel: [11.7, 12.6], ch: k => 12.6 + k * .4, flow: 14.3, hit: 15.55, spin: [15.2, 16.5], out: 15.75,
   be: k => 16.3 + k * .42, settle: 18.4,
-  // Loop: Vorteile + Impulse blenden aus, dann Rücklauf des Aufbaus (Bildzeit REW[0] → 0) bis ins Schwarz
-  fadeBe: [21.0, 21.5], rew: [21.5, 26.5], rewFrom: 14.2, end: DURATION
+  // Loop v3 (26.11.): Kamerafahrt ins Zentrum, Ebenen lösen sich von außen nach innen, Ringblätter drehen sich heraus → Anfangsbild (nah, schwarz)
+  oText: [21.0, 21.8], oPanel: [21.5, 22.4], oRing: [22.1, 23.1], oMods: [22.7, 23.5], oDisc: [23.3, 24.2], oAI: [24.1, 24.5], oHex: [24.3, 24.9],
+  oPetal: k => [24.7 + k * .09, 25.3 + k * .09], push: [21.3, 25.4], end: DURATION
 };
-// Bildzeit im Rücklauf: von „alles aufgebaut, vor den Impulsen“ zurück bis 0
-export const sceneTime = t => t < T.rew[0] ? t : T.rewFrom * (.5 + .5 * Math.cos(Math.PI * Math.min(1, (t - T.rew[0]) / (T.rew[1] - T.rew[0]))));   // weiche Kurve, kurzes Schwarz am Ende (Loop-Übergang)
+export const sceneTime = t => t;   // (v2-Rücklauf entfernt)
+export const out = (t, [a, b]) => 1 - inOutCubic(Math.min(1, Math.max(0, (t - a) / (b - a))));   // 1 → 0 im Abbau
 // Kamera: fährt nur zwischen den Phasen. Solange Text aufgebaut wird oder steht, steht auch die Kamera (Hausregel „Text steht still“).
 const sine = u => .5 - .5 * Math.cos(Math.PI * u);
 const K = [];
@@ -27,7 +28,9 @@ key(9.3, 1.5, 0, 0, 0);
 key(10.3, 1.12, 0, 0, 0, inOutCubic);
 key(11.6, 1.12, 0, 0, 0);
 key(12.5, 1, 0, 0, 0, inOutCubic);
-key(DURATION + 1, 1, 0, 0, 0);
+key(21.3, 1, 0, 0, 0);
+key(25.4, 3.5, 0, 0, -.05, inOutCubic);   // Loop: endet in derselben Nähe und Neigung wie Bild 0
+key(DURATION + 1, 3.5, 0, 0, -.05);
 export function camAt(t) {
   let i = 0; while (i < K.length - 2 && t >= K[i + 1].t) i++;
   const a = K[i], b = K[i + 1], u = b.e(Math.min(1, Math.max(0, (t - a.t) / (b.t - a.t)))), L = (p) => a[p] + (b[p] - a[p]) * u;
@@ -36,5 +39,5 @@ export function camAt(t) {
 const seq = (f, n) => Array.from({ length: n }, (_, k) => f(k));
 export const cues = () => ({
   duration: DURATION, petals: seq(T.petal, 6), hex: T.hex, ai: T.ai, disc: T.disc, inner: seq(T.inner, 4), mods: seq(T.mod, 6),
-  ring: T.ring, omni: T.omni, scm: T.scm, panel: T.panel, ch: seq(T.ch, 4), flow: T.flow, hit: T.hit, spin: T.spin, out: T.out, be: seq(T.be, 4), settle: T.settle, fadeBe: T.fadeBe, rew: T.rew
+  ring: T.ring, omni: T.omni, scm: T.scm, panel: T.panel, ch: seq(T.ch, 4), flow: T.flow, hit: T.hit, spin: T.spin, out: T.out, be: seq(T.be, 4), settle: T.settle, oText: T.oText, push: T.push, oRing: T.oRing, oDisc: T.oDisc, oHex: T.oHex, oPetal: T.oPetal(0)
 });

@@ -1,7 +1,7 @@
 // REMIRA-Commerce-Plattform als Motion-Video (25.11.2026, aus der Plattform-Animation abgeleitet). Alles Vektor in Canvas, jede Frame hängt nur von t ab (timeline.js).
 // Hausregeln (Skill remira-erklaervideo): regelmäßige Sechsecke, Phosphor light (bold nur auf farbigen Flächen), Text steht still, kein Motion Blur, erst lesen lassen, Blickführung.
 import { W, H, C, RINGC, CHALLENGES, BENEFITS, MODULES, MOD_A, NMOD, INNER, RING_TOP, RING_BOTTOM, CHIP } from './data.js';
-import { T, camAt, sceneTime } from './timeline.js';
+import { T, camAt, out as outro } from './timeline.js';
 import { phosphorPath } from './phosphor-icons.js';
 import { phosphorPathBold } from './phosphor-icons-bold.js';
 import { prog, clamp, lerp, outCubic, outBack, inOutCubic, rng } from './lib/ease.js';
@@ -96,9 +96,10 @@ function typeText(s, x, y, px, col, u) {                // schreibt sich Buchsta
   if (u <= 0) return;
   g.font = font(px, 700); g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillStyle = col;
   const tot = g.measureText(s).width, n = s.length, f = u * n, cx = Math.round(x - tot / 2);
-  for (let i = 0; i < n; i++) { const a = clamp(f - i); if (a <= 0) break; g.globalAlpha = a; g.fillText(s[i], cx + g.measureText(s.slice(0, i)).width, y); }
-  g.globalAlpha = 1;
-  if (u < 1) { const w = g.measureText(s.slice(0, Math.ceil(f))).width; g.globalAlpha = .7; g.fillRect(cx + w + 3, y - px * .42, 2.5, px * .84); g.globalAlpha = 1; }
+  const b0 = g.globalAlpha;
+  for (let i = 0; i < n; i++) { const a = clamp(f - i); if (a <= 0) break; g.globalAlpha = b0 * a; g.fillText(s[i], cx + g.measureText(s.slice(0, i)).width, y); }
+  g.globalAlpha = b0;
+  if (u < 1) { const w = g.measureText(s.slice(0, Math.ceil(f))).width; g.globalAlpha = b0 * .7; g.fillRect(cx + w + 3, y - px * .42, 2.5, px * .84); g.globalAlpha = b0; }
 }
 function wedge(a0, a1, r0, r1) { g.beginPath(); g.arc(0, 0, r1, a0 * D2R - Math.PI / 2, a1 * D2R - Math.PI / 2); g.arc(0, 0, r0, a1 * D2R - Math.PI / 2, a0 * D2R - Math.PI / 2, true); g.closePath(); }
 const decay = (t, t0, d) => t < t0 ? 0 : Math.exp(-(t - t0) / d);
@@ -110,7 +111,7 @@ function sideItem(c, k, left, t) {
   const n = c.lines.length, y0 = c.y - (n - 1) * LH / 2;
   // Blickführung: der gerade erscheinende Punkt ist hell, die vorherigen treten zurück, bis alle Punkte einer Seite da sind
   const tn = left ? (k < 3 ? T.ch(k + 1) : T.flow) : (k < 3 ? T.be(k + 1) : T.settle), tAll = left ? T.flow : T.settle - .6;
-  const foc = left ? 1 : 1 - prog(tReal, ...T.fadeBe);   // v2: kein Dimmen (Tempo wie Plattform-Animation); Vorteile blenden vor dem Rücklauf aus
+  const foc = outro(t, T.oText);   // Loop-Ende: Texte links/rechts blenden zuerst aus
   g.save(); g.globalAlpha = a * foc; g.translate(dx, 0);
   g.font = font(TXT, 700); g.fillStyle = '#fff'; g.textBaseline = 'middle'; g.textAlign = left ? 'left' : 'right';
   g.shadowColor = 'rgba(8,50,70,.35)'; g.shadowBlur = 10 * scale; g.shadowOffsetY = 2 * scale;
@@ -142,9 +143,7 @@ function pulse(pts, q, a, col) {
   if (polyPart(pts, e - .13, e)) g.stroke(); g.restore();
 }
 
-let tReal = 0;
-function drawScene(tr) {
-  tReal = tr; const t = sceneTime(tr);   // Loop: im Rücklauf wird der Aufbau rückwärts gezeigt
+function drawScene(t) {
   const cam = camAt(t);
   g.setTransform(scale, 0, 0, scale, 0, 0); g.globalAlpha = 1; g.globalCompositeOperation = 'source-over'; g.setLineDash([]); g.shadowColor = 'transparent'; g.filter = 'none';
   // Hintergrund: dasselbe Schwarz wie das große Sechseck, damit es mit dem Grund verschmilzt (wie im Original)
@@ -152,10 +151,10 @@ function drawScene(tr) {
   g.translate(W / 2, H / 2); g.rotate(cam.rot); g.scale(cam.z, cam.z);
 
   // Blaue Fläche: öffnet sich hinter dem Sechseck nach beiden Seiten
-  const pu = inOutCubic(prog(t, T.panel[0], T.panel[1]));
+  const pu = inOutCubic(prog(t, T.panel[0], T.panel[1])) * outro(t, T.oPanel);   // Loop-Ende: blaue Fläche schließt sich hinter dem Sechseck
   if (pu > 0) {
     const hw = lerp(300, PANEL.x + 2, pu);
-    g.save(); g.beginPath(); g.rect(-hw, -600, 2 * hw, 1200); g.clip();
+    g.save(); g.globalAlpha *= outro(t, [T.oPanel[0] + .3, T.oPanel[1]]); g.beginPath(); g.rect(-hw, -600, 2 * hw, 1200); g.clip();   // Loop-Ende: schließt und blendet aus (keine blauen Reste)
     const bl = g.createLinearGradient(-PANEL.x, -PANEL.y, PANEL.x, PANEL.y); bl.addColorStop(0, '#31A6D1'); bl.addColorStop(.5, '#2A9AC4'); bl.addColorStop(1, '#2189B4');
     g.fillStyle = bl; g.beginPath(); g.roundRect(-PANEL.x, -PANEL.y, 2 * PANEL.x, 2 * PANEL.y, PANEL.r); g.fill();
     const sh = g.createLinearGradient(0, -PANEL.y, 0, PANEL.y); sh.addColorStop(0, 'rgba(255,255,255,.10)'); sh.addColorStop(.35, 'rgba(255,255,255,0)'); sh.addColorStop(1, 'rgba(0,20,40,.12)'); g.fillStyle = sh; g.fill();
@@ -168,23 +167,25 @@ function drawScene(tr) {
   flows(t);
 
   // Grüner Ring: zwei Arme von unten, schließen sich oben
-  const ru = inOutCubic(prog(t, T.ring[0], T.ring[1]));
-  if (ru > 0) {
+  const ru = inOutCubic(prog(t, T.ring[0], T.ring[1])), rA = outro(t, T.oRing);   // Loop-Ende: Ring blendet weich nach außen aus
+  if (ru > 0 && rA > 0) {
+    g.save(); g.globalAlpha *= rA; const rs = lerp(1.07, 1, rA); g.scale(rs, rs);
     g.save();
     if (ru < 1) { const sw = ru * Math.PI; g.beginPath(); g.moveTo(0, 0); g.arc(0, 0, 700, Math.PI / 2 - sw, Math.PI / 2 + sw); g.closePath(); g.clip(); }
     const gg = g.createLinearGradient(0, -hh(GEO.GO), 0, hh(GEO.GO)); gg.addColorStop(0, '#B6DFA8'); gg.addColorStop(.5, '#A8D59A'); gg.addColorStop(1, '#9ACB8B');
     g.fillStyle = gg; g.fill(GREEN, 'evenodd');
     const fl = decay(t, T.ring[1] - .05, .35) * prog(t, T.ring[1] - .12, T.ring[1] - .05) * .45 + decay(t, T.hit, .4) * prog(t, T.hit - .06, T.hit) * .4;
-    if (fl > .01) { g.globalAlpha = fl; g.fillStyle = '#fff'; g.fill(GREEN, 'evenodd'); g.globalAlpha = 1; }
+    if (fl > .01) { g.save(); g.globalAlpha *= fl; g.fillStyle = '#fff'; g.fill(GREEN, 'evenodd'); g.restore(); }
     g.strokeStyle = '#fff'; g.lineWidth = 2.6; g.lineCap = 'round'; g.setLineDash([.01, 6.6]); g.stroke(GO); g.stroke(GI); g.setLineDash([]);
     g.restore();
     if (ru < 1) for (const s of [-1, 1]) { const [x, y] = pol(RINGY + 20, 180 + s * ru * 180); const gl = g.createRadialGradient(x, y, 0, x, y, 70); gl.addColorStop(0, 'rgba(255,255,255,.4)'); gl.addColorStop(1, 'rgba(200,255,190,0)'); g.fillStyle = gl; g.globalCompositeOperation = 'lighter'; g.beginPath(); g.arc(x, y, 70, 0, 7); g.fill(); g.globalCompositeOperation = 'source-over'; }
     typeText(RING_TOP, 0, -RINGY, 30, C.ink, prog(t, T.omni[0], T.omni[1]));
     typeText(RING_BOTTOM, 0, RINGY, 30, C.ink, prog(t, T.scm[0], T.scm[1]));
+    g.restore();
   }
 
   // Module im inneren Sechseck
-  g.save(); g.clip(GI);
+  const mA = outro(t, T.oMods); g.save(); g.globalAlpha *= mA; g.clip(GI);
   for (let k = 0; k < NMOD; k++) {
     const tm = T.mod(k), a = MOD_A(k), half = 180 / NMOD; if (t < tm - .05) continue;
     const hl = prog(t, tm - .05, tm + .12) * decay(t, tm + .12, .55);
@@ -199,6 +200,7 @@ function drawScene(tr) {
   }
   g.setLineDash([]); g.restore();
   // jedes Modul gleich aufgebaut: Icon 42 px mittig über dem Label, fester Abstand, Label zweizeilig zentriert
+  g.save(); g.globalAlpha *= mA; const ms = lerp(.92, 1, mA); g.scale(ms, ms);
   MODULES.forEach((m, k) => {
     const tm = T.mod(k); if (t < tm) return;
     // Seitliche Module: Gruppe waagerecht mittig zwischen innerem Kreis und Sechseck-Kante (sonst berühren lange Labels wie „Merchandise“ eine Kante)
@@ -211,12 +213,13 @@ function drawScene(tr) {
     const mx = Math.round(p[0]), my = Math.round(p[1]);
     drawIcon(m.icon, mx, my - 30, 42, prog(t, tm, tm + .5), C.green);
     g.save(); g.font = font(20, 700); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = '#fff';
-    m.lines.forEach((l, i) => { const u = outCubic(prog(t, tm + .16 + i * .1, tm + .5 + i * .1)); if (u <= 0) return; g.globalAlpha = u; g.fillText(l, mx, my + 11 + i * 24 + Math.round((1 - u) * 8)); });
+    m.lines.forEach((l, i) => { const u = outCubic(prog(t, tm + .16 + i * .1, tm + .5 + i * .1)); if (u <= 0) return; g.globalAlpha = u * mA; g.fillText(l, mx, my + 11 + i * 24 + Math.round((1 - u) * 8)); });
     g.restore();
   });
 
   // Innerer grüner Kreis: dreht sich ein, danach erscheinen die vier Segment-Gruppen
-  const du = prog(t, T.disc[0], T.disc[1]);
+  g.restore();
+  const du = prog(t, T.disc[0], T.disc[1]) * outro(t, T.oDisc);   // Loop-Ende: innerer Kreis dreht sich heraus
   if (du > 0) {
     const e = outCubic(du), sc = lerp(.55, 1, outBack(clamp(du * 1.25), 1.2)), R = GEO.RC;
     g.save(); g.rotate(-(1 - e) * 2.6); g.scale(sc, sc); g.globalAlpha = clamp(du * 4);
@@ -228,7 +231,7 @@ function drawScene(tr) {
   }
 
   // Zentrum: Leuchten, weißes Sechseck, Ring aus der Bildmarke, AI-Chip
-  const lit = prog(t, .3, 1.3), hx = prog(t, T.hex, T.hex + .5);
+  const lit = prog(t, .3, 1.3) * outro(t, [T.oPetal(5)[0], T.oPetal(5)[1] + .2]), hx = prog(t, T.hex, T.hex + .5) * outro(t, T.oHex);
   const glowA = .5 * lit * (1 - .75 * prog(t, 2.6, 4.2)) + .5 * decay(t, T.hex, .35) * (t >= T.hex ? 1 : 0) + .45 * decay(t, T.hit, .5) * prog(t, T.hit - .08, T.hit);
   if (glowA > .01) {
     g.save(); g.globalCompositeOperation = 'lighter';
@@ -238,13 +241,13 @@ function drawScene(tr) {
   if (hx > 0) { const s = outBack(hx, 1.4); g.save(); g.scale(s, s); g.shadowColor = 'rgba(0,0,0,.28)'; g.shadowBlur = 14 * scale * cam.z; g.fillStyle = '#fff'; g.fill(WHX); g.restore(); }
   const spin = 2 * Math.PI * inOutCubic(prog(t, T.spin[0], T.spin[1]));
   LOGO.petals.forEach((p, k) => {
-    const u = prog(t, T.petal(k), T.petal(k) + .7); if (u <= 0) return;
+    const u = prog(t, T.petal(k), T.petal(k) + .7) * outro(t, T.oPetal(k)); if (u <= 0) return;   // Loop-Ende: Blätter drehen sich heraus wie sie hereinkamen
     const e = outBack(u, 1.3), s = 57 / 150;
     g.save(); g.rotate(spin - (1 - outCubic(u)) * 1.9); g.scale(s * e, s * e); g.translate(-LOGO.cx, -LOGO.cy); g.globalAlpha = clamp(u * 3);
     if (hx < 1) { g.shadowColor = RINGC[k]; g.shadowBlur = 26 * scale * cam.z * (1 - hx); }
     g.fillStyle = p.grad; g.fill(p.d); g.restore();
   });
-  const au = prog(t, T.ai[0] - .25, T.ai[0] + .15);
+  const au = prog(t, T.ai[0] - .25, T.ai[0] + .15) * outro(t, T.oAI);
   if (au > 0) {
     const bl = Math.max(...T.ai.map(a => decay(t, a, .16) * (t >= a ? 1 : 0)), decay(t, T.hit, .3) * (t >= T.hit ? 1 : 0)), s = .86 * outBack(au, 1.6) * (1 + .14 * bl);
     for (const a of T.ai) { const q = prog(t, a, a + .55); if (q > 0 && q < 1) { g.save(); g.globalAlpha = (1 - q) * .8; g.strokeStyle = '#41B6E6'; g.lineWidth = 3 * (1 - q) + .6; g.beginPath(); g.arc(0, 0, 24 + outCubic(q) * 56, 0, 7); g.stroke(); g.restore(); } }
@@ -268,7 +271,7 @@ window.renderFrame = async t => {
   out.setTransform(1, 0, 0, 1, 0, 0); out.globalCompositeOperation = 'source-over'; out.globalAlpha = 1;
   drawScene(t); out.drawImage(scn, 0, 0);
   out.setTransform(canvas.width / W, 0, 0, canvas.height / H, 0, 0);
-  const f = 1 - prog(sceneTime(t), 0, .3); if (f > 0) { out.globalAlpha = clamp(f); out.fillStyle = '#000'; out.fillRect(0, 0, W, H); out.globalAlpha = 1; }
+  const f = Math.max(1 - prog(t, 0, .3), prog(t, T.end - .25, T.end)); if (f > 0) { out.globalAlpha = clamp(f); out.fillStyle = '#000'; out.fillRect(0, 0, W, H); out.globalAlpha = 1; }
   out.save(); out.fillStyle = out.createPattern(grainCv, 'repeat'); out.globalCompositeOperation = 'overlay'; out.fillRect(0, 0, W, H); out.restore();
 };
 window.grab = (type, quality = .93) => canvas.toDataURL(type, quality);

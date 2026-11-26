@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Ton der Commerce-Plattform-Animation v2 (26.11.2026): dieselbe Musik wie die Plattform-Animation (Wunsch David), angepasst an 6 Module und den Loop (Rücklauf am Ende, endet leise wie der Anfang). Original: Musikflaeche (Pad, Sub, Puls) + Sounddesign (Whooshes, Riser, weiche Impacts, gestimmte Taps). Alles per Code, geseedet.
+"""Ton der Commerce-Plattform-Animation v2 (26.11.2026): dieselbe Musik wie die Plattform-Animation (Wunsch David), angepasst an 6 Module und den Loop (v3: Fahrt ins Zentrum am Ende, endet leise wie der Anfang). Original: Musikflaeche (Pad, Sub, Puls) + Sounddesign (Whooshes, Riser, weiche Impacts, gestimmte Taps). Alles per Code, geseedet.
 Zeiten aus plan/cues.json (node tools/dump_cues.mjs). Aufruf: python tools/mix.py cache/audio/mix.wav"""
 import json, sys, pathlib
 import numpy as np
@@ -142,7 +142,7 @@ def sub(t0, t1, m, g):
     place(music, t0, np.sin(2 * np.pi * mtof(m) * t) * (1 + .3 * np.sin(2 * np.pi * .25 * t)) * env(n, 1.0, 1.5), g)
 
 
-sub(0, Q['disc'][0] + .5, 26, .5); sub(Q['ch'][0], Q['hit'], 31, .35); sub(Q['hit'], Q['rew'][0] + 1.0, 29, .35)
+sub(0, Q['disc'][0] + .5, 26, .5); sub(Q['ch'][0], Q['hit'], 31, .35); sub(Q['hit'], Q['push'][0] + 1.5, 29, .35)
 
 # ---------- Cues ----------
 for k, tp in enumerate(Q['petals']): place(sfx, tp + .1, tap(PENTA[k], .8), db(-14), pan=-.4 + k * .16, rev=.6); place(sfx, tp - .05, whoosh(.3, 500, 2400, .5, .7, (0, 0)), db(-24))
@@ -173,10 +173,9 @@ for k, tb in enumerate(Q['be']):
 place(sfx, Q['settle'] - .65, swell(.6, .9, 3000), db(-19), rev=.3)
 place(sfx, Q['settle'] - .1, shimmer(), db(-10), rev=.8); place(sfx, Q['settle'] - .12, impact(.8, 43.65, .9), db(-10), rev=.6); place(sfx, Q['settle'] - .1, chord([41, 53, 60, 65, 69, 72], 3.2, 1.0, .05), db(-11), rev=.6)
 
-# Loop: Vorteile blenden aus, Rücklauf als umgekehrter, leiser Whoosh
-f0, f1 = Q['fadeBe']; place(sfx, f0, whoosh(f1 - f0 + .3, 400, 2600, .5, .5, (.6, -.2)), db(-20), rev=.3)
-w0, w1 = Q['rew']; rw = whoosh(w1 - w0, 200, 3000, .9, .7, (.5, -.5)); place(sfx, w0, rw[:, ::-1].copy() * .8, db(-16), rev=.4)
-place(sfx, w0 + .2, shimmer(3.2)[:, ::-1].copy(), db(-16), rev=.6)
+# Loop-Ende (v3): Kamerafahrt ins Zentrum = weicher Sog (Whoosh, leiser Riser), Ringblätter drehen sich heraus = umgekehrter Shimmer, dann Stille wie am Anfang
+p0, p1 = Q['push']; place(sfx, p0, whoosh(p1 - p0, 150, 2400, .8, .75, (.4, 0)), db(-17), rev=.4); place(sfx, p0 + .8, riser(p1 - p0 - .8, .6), db(-24), rev=.4)
+place(sfx, Q['oPetal'][0] - 1.4, shimmer(2.0)[:, ::-1].copy(), db(-16), rev=.6)
 
 # ---------- Hall + Mischung ----------
 irn = int(2.6 * SR); ti = np.arange(irn) / SR
@@ -186,7 +185,7 @@ MUS, SFX, VRB = music * db(-9), sfx * db(-3), verb * db(-11)
 mix = MUS + SFX + VRB
 # Intro leise und weich: bis kurz vor dem Ringschluss 3,5 dB zurueck, dann sanft hochfahren (kein Sprung)
 tg = np.arange(N) / SR; mix *= db(-3.5 * (1 - np.clip((tg - (Q['ring'][0] - 1.0)) / 2.2, 0, 1) ** 2 * (3 - 2 * np.clip((tg - (Q['ring'][0] - 1.0)) / 2.2, 0, 1))))
-n1 = int(DUR * SR); n0 = int((Q['rew'][0] + .3) * SR);   # Loop: im Rücklauf weich ausblenden, endet so leise wie der Anfang
+n1 = int(DUR * SR); n0 = int((Q['push'][0] + .5) * SR);   # Loop: während der Fahrt ins Zentrum weich ausblenden, endet so leise wie der Anfang
 mix = mix[:, :n1]; mix[:, n0:] *= np.linspace(1, 0, n1 - n0) ** 1.6
 mix[:, :int(.25 * SR)] *= np.linspace(0, 1, int(.25 * SR))
 pk = np.max(np.abs(mix)); mix *= db(-3) / pk
