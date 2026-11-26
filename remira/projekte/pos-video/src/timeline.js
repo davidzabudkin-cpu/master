@@ -8,26 +8,27 @@ const inOutQuint = u => u < .5 ? 16 * u ** 5 : 1 - Math.pow(-2 * u + 2, 5) / 2;
 const seq = (f, n) => Array.from({ length: n }, (_, k) => f(k));
 
 // Kamerafahrten zwischen den Szenen [Start, Ende]; Index 3 = Wendepunkt (Heldin, lange Fahrt)
-export const WHIPS = [[4.7, 5.4], [14.6, 15.4], [26.4, 27.2], [44.6, 47.0], [67.9, 68.7], [84.2, 85.0], [92.9, 93.6]];
+// v2 (Marketing-Feedback): zu lange Pausen gekürzt (nach den Orten −1,2 s, nach dem POS-System −1,2 s, Tap2Pay −1,7 s)
+export const WHIPS = [[4.7, 5.4], [13.4, 14.2], [24.0, 24.8], [42.2, 44.6], [65.5, 66.3], [80.1, 80.9], [88.8, 89.5]];
 
 export const T = {
   petal: k => .2 + k * .1, titleIn: .4, box: 1.3, scan: [1.7, 2.3], beep: 2.3, print: [2.5, 3.8],
   // Szene 2: Satz → „Zum Beispiel:“ → Orte einzeln
-  head1: 5.7, eg: 8.4, place: k => 9.0 + k * .9,
+  head1: 5.7, eg: 8.4, place: k => 8.9 + k * .9,
   // Szene 3: Headline → je Punkt: Text, dann Teil dockt an
-  head2: 15.7, sys: k => 17.4 + k * 1.8, dock: .8,
+  head2: 14.5, sys: k => 16.2 + k * 1.8, dock: .8,
   // Szene 4: Frage → Problemtext → Fenster → Verkauf in der Filiale → Online noch „verfügbar“ → Bestellung → Doppelverkauf → Grafik rechts → Liste
-  q3: 27.5, head3: 29.6, win: 32.6, sale: 33.6, still: 34.8, order: 35.8, double: 36.6, pmove: [37.4, 38.0], kw: k => 38.3 + k * .8,
-  hero: [44.0, 47.6], recolor: [45.6, 46.8], hubHit: 47.0,
+  q3: 25.1, head3: 27.2, win: 30.2, sale: 31.2, still: 32.4, order: 33.4, double: 34.2, pmove: [35.0, 35.6], kw: k => 35.9 + k * .8,
+  hero: [41.6, 45.2], recolor: [43.2, 44.4], hubHit: 44.6,
   // Szene 5: ① Preis aus der Zentrale ② Verkauf → Bestände live ③ Filiale ↔ Online-Shop
-  head4: 47.3, step: [48.6, 54.6, 60.6], central: 50.6, store: 50.9, price: [51.2, 52.6], rtChip: 52.8,
-  shop: 56.6, sale2: 57.0, syncDot: [57.3, 58.4], drop: [58.4, 59.0],
-  cap3sub: 62.6, cc: [64.0, 65.4], ris: [65.9, 67.1],
-  // Szene 6: Satz → Unterzeile → Schlange → Smartphone → zwei Kunden bezahlen → zweite Unterzeile
-  head5: 69.0, sub5a: 70.9, queue: k => 72.8 + k * .15, phone: 74.0, walk: k => [74.9 + k * 2.0, 75.8 + k * 2.0], tap: k => 76.0 + k * 2.0, sub5b: 79.0,
+  head4: 44.9, step: [46.0, 52.2, 58.2], central: 48.2, store: 48.5, price: [48.8, 50.2], rtChip: 50.4,
+  shop: 54.2, sale2: 54.6, syncDot: [54.9, 56.0], drop: [56.0, 56.6],
+  cap3sub: 60.2, cc: [61.6, 63.0], ris: [63.5, 64.7],
+  // Szene 6 (v2, Marketing): Satz → Unterzeile → Schlange → Smartphone → Kunde 1 bezahlt → zweite Unterzeile (lesen) → erst dann Kunde 2
+  head5: 66.6, sub5a: 68.5, queue: k => 70.4 + k * .15, phone: 71.6, walk: k => [[72.5, 73.4], [76.2, 77.1]][k], tap: k => [73.6, 77.3][k], sub5b: 75.0,
   // Szene 7: Satz → Häkchen einzeln, Bon druckt mit → wird digital
-  head6: 85.3, check: k => 86.9 + k * .9, toPhone: [90.8, 91.8],
-  ringEnd: 94.0, logo: 94.7, wipe: [94.4, 95.3], end: [95.2, 95.7, 96.4], spin: [69.0, 84.0]
+  head6: 81.2, check: k => 82.4 + k * .9, toPhone: [86.7, 87.7],
+  ringEnd: 89.9, logo: 90.6, wipe: [90.3, 91.2], end: [91.1, 91.6, 92.3], spin: [66.6, 79.9]
 };
 // Texte mit Einblende-/Weg-Zeit (für die Lesezeit-Prüfung). t1 = Moment, in dem der Text das Bild verlässt.
 export const TX = {

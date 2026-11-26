@@ -105,3 +105,11 @@ Vorlage: `remira/projekte/plattform-animation/` (Messung: `tools/measure.py`).
 - Modul-Labels nach gemessener Breite platzieren: ≥ 16 px zur Sechseck-Kante, ≥ 10 px zum inneren Kreis (lange Wörter wie „Merchandise Management“ berührten sonst eine Kante). In beiden Sprachen per Standbild-Ausschnitt prüfen.
 - Texte wörtlich aus der gelieferten Grafik der jeweiligen Sprache übernehmen; offensichtliche Tippfehler korrigieren und zur Freigabe melden (z. B. „automatition“, „Markeneintritt“).
 - Renderer überschreibt keine vorhandene Datei: neue Fassung immer als `-vN+1` rendern.
+
+## Feedback 26.11.2026 (Marketing zu POS v1 und Commerce v3)
+- Auch Unterzeilen: erst Text, dann die zugehörige Bewegung (POS: zweiter Tap erst nach „Der Verkauf wird dort abgeschlossen …“). Lange Leerlauf-Pausen vor Szenenwechseln kürzen (Haltezeit nach der letzten Animation ≈ 1 s, sofern die Lesezeit reicht).
+- Grafik neben einer Liste in voller Größe lassen: Kästchen hoch und schmal statt breit und klein skalieren; Zahlen/Chips darin groß.
+- Bewegte Gegenstände (Bezahlkarte) als gefüllte Form zeichnen, nicht als Outline-Icon, und nie über ein anderes Icon schieben.
+- Kamera ohne Neigung, wenn Sechsecke groß im Bild stehen (wirkte „schief“).
+- Texte auf den blauen Flächen müssen zum Thema der Grafik passen (Commerce-Grafik braucht Commerce-Punkte, nicht die der allgemeinen Plattform). Neue Punkte erst vorschlagen, dann einbauen.
+- Produktfunktionen im Video vor Veröffentlichung von Produkt/Commerce fachlich bestätigen lassen.

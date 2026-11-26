@@ -227,6 +227,12 @@ function bar(x, y, w, lvl, col = null) {
 }
 // Person (Warteschlange): Glaskreis + Icon
 function person(x, y, a, lit = 0) { if (a <= 0) return; g.save(); g.globalAlpha *= a; g.beginPath(); g.arc(x, y, 36, 0, 7); g.fillStyle = lit ? 'rgba(65,182,230,.18)' : 'rgba(255,255,255,.07)'; g.fill(); g.lineWidth = 2; g.strokeStyle = lit ? BLUE : 'rgba(255,255,255,.25)'; g.stroke(); g.restore(); drawIconAt(ICON['user-circle'], x, y, 44, '#fff', a); }
+// Bezahlkarte (gefüllt): Ringfarben-Verlauf, Chip, Streifen
+function payCard(x, y, rot, a) { if (a <= 0) return; g.save(); g.globalAlpha *= a; g.translate(x, y); g.rotate(rot);
+  const w = 92, h = 58, gr = g.createLinearGradient(-w / 2, -h / 2, w / 2, h / 2); gr.addColorStop(0, BLUE); gr.addColorStop(1, '#28ABBA');
+  g.shadowColor = 'rgba(0,0,0,.35)'; g.shadowBlur = 12; g.fillStyle = gr; g.beginPath(); g.roundRect(-w / 2, -h / 2, w, h, 8); g.fill(); g.shadowColor = 'transparent';
+  g.fillStyle = '#FCDA34'; g.beginPath(); g.roundRect(-w / 2 + 12, -h / 2 + 14, 18, 13, 3); g.fill();
+  g.fillStyle = 'rgba(255,255,255,.75)'; g.fillRect(-w / 2 + 12, h / 2 - 16, w * .55, 5); g.restore(); }
 // Kontaktlos-Wellen
 function waves(x, y, u, col = BLUE) { if (u <= 0 || u >= 1) return; g.save(); g.lineCap = 'round'; for (let i = 0; i < 3; i++) { const q = clamp(u * 1.6 - i * .25); if (q <= 0 || q >= 1) continue; g.globalAlpha = (1 - q) * .9; g.strokeStyle = col; g.lineWidth = 3; g.beginPath(); g.arc(x, y, 24 + q * 70, -Math.PI * .3, Math.PI * .3); g.stroke(); } g.restore(); }
 const decayIn = (t, t0, d = .35) => t < t0 ? 0 : clamp((t - t0) / .12) * Math.exp(-Math.max(0, t - t0 - .12) / d);
@@ -330,14 +336,16 @@ const scenes = {
       panel({ x: sw[0], y: sw[1], w: PR.ww, h: PR.wh }, 'storefront', S.store, wa[0]);
       panel({ x: ow[0], y: ow[1], w: PR.ww, h: PR.wh }, 'laptop', S.shop, wa[1], dbl > 0 ? `rgba(245,61,71,${(.16 + .84 * dbl).toFixed(3)})` : undefined);
       // Bestand: große Zahl + Chip
-      const num = (x, y, v, a) => { if (a <= 0) return; g.save(); g.globalAlpha *= a; g.font = font(112, 800); g.fillStyle = '#fff'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(v, x, y); g.restore(); };
+      const num = (x, y, v, a) => { if (a <= 0) return; g.save(); g.globalAlpha *= a; g.font = font(140, 800); g.fillStyle = '#fff'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(v, x, y); g.restore(); };
       const sold = prog(t, T.sale + .3, T.sale + .6);
-      num(sw[0] - 70, sw[1] + 20, '1', wa[0] * (1 - sold)); num(sw[0] - 70, sw[1] + 20, '0', sold);
-      num(ow[0] - 70, ow[1] + 20, '1', wa[1]);
-      chip(sw[0] + 10, sw[1] + 20, S.available, GREEN, wa[0] * (1 - sold), 'left', BOLD.check);
-      chip(sw[0] + 10, sw[1] + 20, S.soldout, 'rgba(168,168,168,.9)', sold, 'left');
-      chip(ow[0] + 10, ow[1] + 20, S.available, GREEN, wa[1] * (1 - dbl), 'left', BOLD.check);
-      chip(ow[0] + 10, ow[1] + 20, S.double, RED, dbl, 'left', BOLD.x);
+      // v2: hohe Kästchen: Zahl mittig, Chip darunter
+      const bchip = (x, y, ...a) => { g.save(); g.translate(x, y); g.scale(1.35, 1.35); chip(0, 0, ...a); g.restore(); };   // größere Chips in den hohen Kästchen
+      num(sw[0], sw[1] + 10, '1', wa[0] * (1 - sold)); num(sw[0], sw[1] + 10, '0', sold);
+      num(ow[0], ow[1] + 10, '1', wa[1]);
+      bchip(sw[0], sw[1] + 130, S.available, GREEN, wa[0] * (1 - sold), 'center', BOLD.check);
+      bchip(sw[0], sw[1] + 130, S.soldout, 'rgba(168,168,168,.9)', sold, 'center');
+      bchip(ow[0], ow[1] + 130, S.available, GREEN, wa[1] * (1 - dbl), 'center', BOLD.check);
+      bchip(ow[0], ow[1] + 130, S.double, RED, dbl, 'center', BOLD.x);
       // Verkauf in der Filiale (Bon), Bestellung im Online-Shop (Wagen fällt ein)
       const sp = decayIn(t, T.sale, .6); if (sp > 0) drawIconAt(ICON.receipt, sw[0] + hw - 40, sw[1] - hh + 38, 34, GREEN, sp);
       const ou = prog(t, T.order, T.order + .5); if (ou > 0) { drawIconAt(ICON['shopping-cart'], ow[0] + hw - 44, ow[1] - hh + 38 - (1 - outCubic(ou)) * 60, 34, ORANGE, clamp(ou * 2)); }
@@ -414,7 +422,7 @@ const scenes = {
       for (let k = 0; k < TP.n; k++) {
         const a = prog(t, T.queue(k), T.queue(k) + .3); if (a <= 0) continue;
         const j = TP.n - 1 - k; let [x, y] = TP.queue(k), leave = 1, lit = 0;
-        if (j < 2) { const [w0, w1] = T.walk(j), u = inOutCubic(prog(t, w0, w1)), tx = TP.phone[0] - 150, ty = TP.phone[1] + 40; x = lerp(x, tx, u); y = lerp(y, ty, u) - Math.sin(Math.PI * u) * 40; lit = u > 0 && t < T.tap(j) + .9 ? 1 : 0; leave = 1 - prog(t, T.tap(j) + .8, T.tap(j) + 1.2); }
+        if (j < 2) { const [w0, w1] = T.walk(j), u = inOutCubic(prog(t, w0, w1)), tx = TP.phone[0] - 220, ty = TP.phone[1] + 55; x = lerp(x, tx, u); y = lerp(y, ty, u) - Math.sin(Math.PI * u) * 40; lit = u > 0 && t < T.tap(j) + .9 ? 1 : 0; leave = 1 - prog(t, T.tap(j) + .8, T.tap(j) + 1.2); }
         person(x, y, a * leave, lit);
       }
       // Smartphone als Kartenterminal
@@ -428,7 +436,8 @@ const scenes = {
       withA(dimAt(t, T.phone + .2), () => drawIcon(ICON['cash-register'], ...TP.checkout, 48, prog(t, T.queue(0) - .2, T.queue(0) + .4), '#fff'));
       // Karte tippt ans Smartphone
       for (let j = 0; j < 2; j++) { const tt = T.tap(j), u = prog(t, tt - .5, tt), back = prog(t, tt + .4, tt + .8); if (u <= 0 || back >= 1) continue;
-        const x = TP.phone[0] - 150 + 40 + (110 * outCubic(u)) * (1 - back), y = TP.phone[1] + 40 - 20 * u; drawIconAt(ICON['credit-card'], x, y, 54, '#fff', 1 - back); }
+        // v2 (Marketing): gefüllte Karte statt Outline-Icon, tippt links an den Rand des Smartphones, nicht über das Kontaktlos-Symbol
+        const x0 = TP.phone[0] - 200, x1 = TP.phone[0] - TP.pw / 2 - 52, x = lerp(x0, x1, outCubic(u)) - 40 * back, y = TP.phone[1] + 10 - 25 * outCubic(u); payCard(x, y, -.18 * (1 - u) + .12 * u, 1 - back); }
     }
   },
   gain: {

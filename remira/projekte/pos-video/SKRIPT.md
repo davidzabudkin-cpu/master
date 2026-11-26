@@ -25,3 +25,11 @@ Zusätzliche Bildtexte (Labels im Bild, P): „Echtzeit“, „verfügbar“, �
 Bewusst weggelassen (Länge): TSE/Fiskalisierung, Internationalisierung, Cloud. Falls Marketing TSE drin haben will: als 5. Punkt bei den Vorteilen („Rechtssicher dank TSE“, P) oder als Unterzeile in Szene 3.
 
 EN in v1 an einigen Stellen gekürzt, damit die Lesezeit reicht (Stand oben).
+
+## v2 (Marketing-Feedback, 26.11.2026)
+- Orte: Filiale · Online-Shop · Outlet · Gastro (statt Glossar-Beispielen; EN: Store · Online shop · Outlet · Hospitality)
+- Problem-Liste: „Einzelne Änderungen in jeder Filiale“ (EN „Single changes in every store“)
+- ① „Neue Artikel und Preise sind in Echtzeit an der Kasse verfügbar.“
+- „Kassieren direkt auf der Fläche:“ (mit Doppelpunkt)
+- Vorteile: Besseren Kundenservice · Wirtschaftlichere Unternehmensführung · Flexiblere Prozesse · Entlastung der Mitarbeitenden (EN: Better customer service · More efficient management · More flexible processes · Relief for employees)
+- **Fachliche Freigabe nötig:** Produkt/Commerce muss bestätigen, dass alle beschriebenen Funktionen so von REMIRA POS geleistet werden (Hinweis Marketing).

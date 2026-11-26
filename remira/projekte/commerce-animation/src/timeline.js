@@ -18,8 +18,8 @@ export const out = (t, [a, b]) => 1 - inOutCubic(Math.min(1, Math.max(0, (t - a)
 const sine = u => .5 - .5 * Math.cos(Math.PI * u);
 const K = [];
 const key = (t, z, cx = 0, cy = 0, rot = 0, e = sine) => K.push({ t, z, cx, cy, rot, e });
-key(0, 3.5, 0, 0, -.05);
-key(1.5, 3.05, 0, 0, -.02, outCubic);
+key(0, 3.5, 0, 0, 0);   // v4: ohne Neigung (Sechseck wirkte am Ende schief, Marketing)
+key(1.5, 3.05, 0, 0, 0, outCubic);
 key(2.6, 2.9, 0, 0, 0);
 key(3.6, 2.0, 0, 0, 0, inOutCubic);
 key(4.65, 2.0, 0, 0, 0);
@@ -29,8 +29,8 @@ key(10.3, 1.12, 0, 0, 0, inOutCubic);
 key(11.6, 1.12, 0, 0, 0);
 key(12.5, 1, 0, 0, 0, inOutCubic);
 key(21.3, 1, 0, 0, 0);
-key(25.4, 3.5, 0, 0, -.05, inOutCubic);   // Loop: endet in derselben Nähe und Neigung wie Bild 0
-key(DURATION + 1, 3.5, 0, 0, -.05);
+key(25.4, 3.5, 0, 0, 0, inOutCubic);   // Loop: endet in derselben Nähe wie Bild 0, gerade
+key(DURATION + 1, 3.5, 0, 0, 0);
 export function camAt(t) {
   let i = 0; while (i < K.length - 2 && t >= K[i + 1].t) i++;
   const a = K[i], b = K[i + 1], u = b.e(Math.min(1, Math.max(0, (t - a.t) / (b.t - a.t)))), L = (p) => a[p] + (b[p] - a[p]) * u;
