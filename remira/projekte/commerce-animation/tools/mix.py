@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Ton der Commerce-Plattform-Animation (25.11.2026): eigene dynamische Musik (112 BPM, D-Dur, Plucks, Kick/Hats/Rimshot, Bass; keine Flaechen, keine Claps) + Sounddesign wie die Plattform-Animation. Frueher: Musikflaeche (Pad, Sub, Puls) + Sounddesign (Whooshes, Riser, weiche Impacts, gestimmte Taps). Alles per Code, geseedet.
+"""Ton der Commerce-Plattform-Animation v2 (26.11.2026): dieselbe Musik wie die Plattform-Animation (Wunsch David), angepasst an 6 Module und den Loop (Rücklauf am Ende, endet leise wie der Anfang). Original: Musikflaeche (Pad, Sub, Puls) + Sounddesign (Whooshes, Riser, weiche Impacts, gestimmte Taps). Alles per Code, geseedet.
 Zeiten aus plan/cues.json (node tools/dump_cues.mjs). Aufruf: python tools/mix.py cache/audio/mix.wav"""
 import json, sys, pathlib
 import numpy as np
@@ -90,7 +90,7 @@ def thump(g=1.0):
     t = T(.45); return (np.sin(2 * np.pi * np.cumsum(50 + 70 * np.exp(-t / .04)) / SR) * np.exp(-t / .13) + lp(rng.standard_normal(len(t)) * np.exp(-t / .02), 900) * .6) * env(len(t), .003, .1) * g
 
 
-PENTA = [62, 64, 66, 69, 71, 74, 76, 78, 81]   # D-Dur-Pentatonik (passend zur Musik)
+PENTA = [65, 67, 69, 72, 74, 77, 79, 81, 84]
 
 
 def tap(m, g=1.0):
@@ -126,103 +126,68 @@ def swell(d, g=1.0, f=2400):
 
 
 
-M = Q['mods']
-# ---------- Musik Commerce (eigene, dynamisch, 25.11.2026): 112 BPM, D-Dur, Plucks + Kick/Hats/Rimshot + Bass, keine Flächen, keine Claps ----------
-BPM = 112; BEAT = 60 / BPM; S16 = BEAT / 4
-CH.update({'D': [38, 50, 54, 57, 62, 66], 'A': [45, 57, 61, 64, 69, 73], 'Bm': [47, 54, 59, 62, 66, 71], 'G': [43, 55, 59, 62, 67, 71]})
-PROG = [('D', 38), ('A', 45), ('Bm', 47), ('G', 43)]
+M = Q['mods']; STEP = (M[1] - M[0]) / 2          # Achtel = halber Modul-Abstand, der Puls sitzt auf den Modulen
+SEQ = [('Dm9', 0, .55, 1200), ('Bb', Q['disc'][0], .6, 1700), ('F', M[0], .65, 2000), ('C', M[2], .65, 2000), ('Dm9', M[4], .65, 2000), ('Bb', M[5], .7, 2200),
+       ('F', Q['ring'][1], .85, 2600), ('Gm', Q['ch'][0], .65, 1800), ('Am', Q['ch'][2], .65, 1800), ('C', Q['flow'], .7, 2200), ('Bb', Q['hit'], .8, 2500), ('F', Q['be'][1], .9, 2800)]
+for k, (ch, a, g, br) in enumerate(SEQ): pad(ch, max(0, a - .25), SEQ[k + 1][1] - .25 if k + 1 < len(SEQ) else DUR, g, br)
+tt = M[0]; k = 0
+while tt < Q['settle'] - .2:
+    ch = [c for c in SEQ if c[1] - .25 <= tt][-1][0]; notes = CH[ch][2:]; m = notes[[0, 2, 1, 3, 2, 1, 3, 2][k % 8] % len(notes)] + 12
+    place(music, tt, pluck(m, .5 + .3 * (k % 2 == 0)), db(-8), pan=.5 * np.sin(k * 1.3), rev=.5)
+    tt += STEP; k += 1
 
 
-def kick(g=1.0):
-    t = T(.38); f = 48 + 110 * np.exp(-t / .035)
-    return (np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t / .16) + lp(rng.standard_normal(len(t)) * np.exp(-t / .004), 3000) * .25) * g
+def sub(t0, t1, m, g):
+    n = int((t1 - t0) * SR); t = np.arange(n) / SR
+    place(music, t0, np.sin(2 * np.pi * mtof(m) * t) * (1 + .3 * np.sin(2 * np.pi * .25 * t)) * env(n, 1.0, 1.5), g)
 
 
-def hat(g=1.0, d=.028):
-    t = T(d * 4); return hp(rng.standard_normal(len(t)), 7500) * np.exp(-t / d) * .32 * g
-
-
-def rim(g=1.0):
-    t = T(.12); return (bp(rng.standard_normal(len(t)), 1800, 5200) * np.exp(-t / .012) * .5 + np.sin(2 * np.pi * 1650 * t) * np.exp(-t / .02) * .25) * g
-
-
-def bass(m, d, g=1.0):
-    t = T(d); f = mtof(m); x = sum(np.sin(2 * np.pi * f * k * t) / k for k in range(1, 7))
-    return lp(x, 420) * env(len(t), .004, min(.06, d * .4)) * .5 * g
-
-
-def crash(g=1.0):
-    t = T(1.4); return lp(hp(rng.standard_normal(len(t)), 3500), 9000) * np.exp(-t / .45) * .22 * g
-
-
-def sec(t):
-    if t < M[0] - .3: return 'intro'          # Ring + Kern: leise, nur Plucks
-    if t < Q['panel'][0]: return 'build'     # Module + Ring: Kick auf 1, Hats
-    if t < Q['settle']: return 'full'        # Herausforderungen → Vorteile: voller Groove
-    return 'end'
-
-
-ARP = [0, 2, 1, 3, 2, 4, 3, 2]
-n16 = int(DUR / S16)
-for i in range(n16):
-    t = i * S16; s = sec(t); step = i % 16; bar = i // 16
-    if s == 'end': break
-    name, root = PROG[bar % 4]; tones = CH[name][1:]
-    if s == 'full' and step in (0, 4, 8, 12): place(music, t, kick(.6 if step in (0, 8) else .4), 1.0)
-    if s == 'build' and step == 0: place(music, t, kick(.45), 1.0)
-    if s == 'full' and step % 2 == 0: place(music, t, hat(.45 if step % 4 == 2 else .22, .05 if step % 4 == 2 else .025), db(-8), pan=.25)
-    if s == 'build' and step % 4 == 2: place(music, t, hat(.3, .03), db(-11), pan=.25)
-    if s == 'full' and step in (4, 12): place(music, t, rim(.7), db(-12), pan=-.2, rev=.12)
-    if s == 'full' and step in (0, 3, 6, 10, 14): place(music, t, bass(root - 12 + (12 if step == 14 else 0), S16 * (2.6 if step == 0 else 1.5)), db(-3))
-    if s in ('build', 'full') and step % 2 == 0 and step != 0 or (s == 'intro' and step % 4 == 0 and t > .6):
-        m = tones[ARP[(i // 2) % 8] % len(tones)] + 12
-        place(music, t, pluck(m, .5 if s == 'intro' else (.6 if s == 'build' else .75)), db(-8), pan=.4 * np.sin(i * .9), rev=.35)
-# Übergänge: kurzer Fill vor dem Ringschluss und vor dem Treffer, Crash bei Ankunft
-for tt in (Q['ring'][1], Q['hit']):
-    for j in range(4): place(music, tt - (4 - j) * S16, hat(.4 + .15 * j, .03), db(-8))
-    place(music, tt, crash(.6), db(-10))
-# Schluss: Drums stoppen, D-Dur-Pluck-Arpeggio + Bass klingen aus
-place(music, Q['settle'], bass(26, 2.6, 1.0), db(-2))
-for j, m in enumerate([62, 66, 69, 74, 78]): place(music, Q['settle'] + j * S16, pluck(m, .7), db(-7), rev=.45)
+sub(0, Q['disc'][0] + .5, 26, .5); sub(Q['ch'][0], Q['hit'], 31, .35); sub(Q['hit'], Q['rew'][0] + 1.0, 29, .35)
 
 # ---------- Cues ----------
 for k, tp in enumerate(Q['petals']): place(sfx, tp + .1, tap(PENTA[k], .8), db(-14), pan=-.4 + k * .16, rev=.6); place(sfx, tp - .05, whoosh(.3, 500, 2400, .5, .7, (0, 0)), db(-24))
 place(sfx, Q['hex'] - .7, riser(.8, 1.0), db(-22), rev=.3)
-place(sfx, Q['hex'] + .03, impact(1.0, 43.65, .7), db(-7), rev=.6); place(sfx, Q['hex'] + .05, chord([50, 57, 62, 66, 69], 2.6, 1.0), db(-13), rev=.6)
+place(sfx, Q['hex'] + .03, impact(1.0, 43.65, .7), db(-7), rev=.6); place(sfx, Q['hex'] + .05, chord([53, 60, 65, 69, 72], 2.6, 1.0), db(-13), rev=.6)
 for k, ta in enumerate(Q['ai']): place(sfx, ta - .01, tap(89 + 4 * k, .8), db(-13), rev=.6); place(sfx, ta - .01, tick(.8, 3200), db(-22))
 d0, d1 = Q['disc']; place(sfx, d0 - .1, whoosh(1.2, 220, 2400, 1.0, .45, (-.6, .6)), db(-11), rev=.3)
-for k, ti in enumerate(Q['inner']): place(sfx, ti + .05, tap([69, 71, 74, 76][k], .8), db(-15), pan=[-.4, .4, .4, -.4][k], rev=.5)
+for k, ti in enumerate(Q['inner']): place(sfx, ti + .05, tap([72, 74, 77, 79][k], .8), db(-15), pan=[-.4, .4, .4, -.4][k], rev=.5)
 place(sfx, M[0] - .75, whoosh(.9, 160, 1800, .9, .55, (0, 0)), db(-14), rev=.25)
 for k, tm in enumerate(M):
     a = float(np.sin(np.radians(k * 60)))
     place(sfx, tm - .01, tap(PENTA[k + 1], 1.0), db(-10), pan=.6 * a, rev=.45); place(sfx, tm - .2, whoosh(.3, 500, 2600, .5, .7, (0, .5 * a)), db(-21)); place(sfx, tm, thump(.3), db(-19))
 r0, r1 = Q['ring']
 place(sfx, r0 - .1, riser(r1 - r0 + .1, 1.0), db(-15), rev=.3); place(sfx, r0, whoosh(r1 - r0 + .15, 160, 2800, 1.1, .8, (0, 0)), db(-12), rev=.25)
-place(sfx, r1 - .05, impact(1.1, 43.65, .7), db(-6), rev=.6); place(sfx, r1 - .03, chord([50, 62, 66, 69, 74], 2.8, 1.0), db(-11), rev=.6)
+place(sfx, r1 - .05, impact(1.1, 43.65, .7), db(-6), rev=.6); place(sfx, r1 - .03, chord([53, 65, 69, 72, 77], 2.8, 1.0), db(-11), rev=.6)
 for a, b in (Q['omni'], Q['scm']):
     for k in range(9): place(sfx, a + (b - a) * k / 9, tick(.7, 2200 + 70 * (k % 4)), db(-23), pan=-.3 + .6 * k / 9, rev=.15)
 p0, p1 = Q['panel']
 place(sfx, p0 - .15, whoosh(p1 - p0 + .3, 120, 2200, 1.2, .5, (0, 0)), db(-9), rev=.25); place(sfx, p1 - .12, impact(.7, 46, .5), db(-12), rev=.5)
 for k, tc in enumerate(Q['ch']):
-    place(sfx, tc - .12, whoosh(.5, 300, 2200, .7, .6, (-.9, -.3)), db(-15), rev=.2); place(sfx, tc + .42, thump(.55), db(-13), pan=-.5, rev=.25); place(sfx, tc + .42, tap([62, 59, 57, 54][k], .9), db(-14), pan=-.5, rev=.5)
+    place(sfx, tc - .12, whoosh(.5, 300, 2200, .7, .6, (-.9, -.3)), db(-15), rev=.2); place(sfx, tc + .42, thump(.55), db(-13), pan=-.5, rev=.25); place(sfx, tc + .42, tap([62, 60, 58, 57][k], .9), db(-14), pan=-.5, rev=.5)
 place(sfx, Q['flow'], riser(Q['hit'] - Q['flow'], 1.0), db(-15), rev=.3)
 for k in range(10): place(sfx, Q['flow'] + .45 + (Q['hit'] - Q['flow'] - .45) * (1 - (1 - k / 10) ** 1.6), tick(.8, 1900 + 140 * k), db(-21), pan=-.7 + .07 * k, rev=.2)
-place(sfx, Q['hit'] - .03, impact(1.2, 43.65, .8), db(-5), rev=.6); place(sfx, Q['hit'] - .02, chord([45, 57, 61, 64, 69, 73], 2.6, 1.0), db(-11), rev=.6)
+place(sfx, Q['hit'] - .03, impact(1.2, 43.65, .8), db(-5), rev=.6); place(sfx, Q['hit'] - .02, chord([46, 58, 62, 65, 70, 74], 2.6, 1.0), db(-11), rev=.6)
 s0, s1 = Q['spin']; place(sfx, s0, whoosh(s1 - s0, 240, 3000, .9, .5, (-.5, .5)), db(-13), rev=.3)
 for k, tb in enumerate(Q['be']):
-    place(sfx, tb - .5, whoosh(.55, 400, 3000, .7, .75, (.2, .9)), db(-16), rev=.2); place(sfx, tb + .02, tap([66, 69, 74, 78][k], 1.0), db(-10), pan=.5, rev=.5); place(sfx, tb + .02, thump(.3), db(-18), pan=.4)
+    place(sfx, tb - .5, whoosh(.55, 400, 3000, .7, .75, (.2, .9)), db(-16), rev=.2); place(sfx, tb + .02, tap([65, 69, 72, 77][k], 1.0), db(-10), pan=.5, rev=.5); place(sfx, tb + .02, thump(.3), db(-18), pan=.4)
 place(sfx, Q['settle'] - .65, swell(.6, .9, 3000), db(-19), rev=.3)
-place(sfx, Q['settle'] - .1, shimmer(), db(-10), rev=.8); place(sfx, Q['settle'] - .12, impact(.8, 43.65, .9), db(-10), rev=.6); place(sfx, Q['settle'] - .1, chord([38, 50, 57, 62, 66, 69], 3.2, 1.0, .05), db(-11), rev=.6)
+place(sfx, Q['settle'] - .1, shimmer(), db(-10), rev=.8); place(sfx, Q['settle'] - .12, impact(.8, 43.65, .9), db(-10), rev=.6); place(sfx, Q['settle'] - .1, chord([41, 53, 60, 65, 69, 72], 3.2, 1.0, .05), db(-11), rev=.6)
+
+# Loop: Vorteile blenden aus, Rücklauf als umgekehrter, leiser Whoosh
+f0, f1 = Q['fadeBe']; place(sfx, f0, whoosh(f1 - f0 + .3, 400, 2600, .5, .5, (.6, -.2)), db(-20), rev=.3)
+w0, w1 = Q['rew']; rw = whoosh(w1 - w0, 200, 3000, .9, .7, (.5, -.5)); place(sfx, w0, rw[:, ::-1].copy() * .8, db(-16), rev=.4)
+place(sfx, w0 + .2, shimmer(3.2)[:, ::-1].copy(), db(-16), rev=.6)
 
 # ---------- Hall + Mischung ----------
 irn = int(2.6 * SR); ti = np.arange(irn) / SR
 ir = np.vstack([lp(rng.standard_normal(irn), 5200) * np.exp(-ti / .75) for _ in range(2)]) * .03
 verb = np.vstack([fftconvolve(hp(send[c], 220), ir[c])[:N] for c in range(2)])
-MUS, SFX, VRB = music * db(-6), sfx * db(-4.5), verb * db(-11)
+MUS, SFX, VRB = music * db(-9), sfx * db(-3), verb * db(-11)
 mix = MUS + SFX + VRB
 # Intro leise und weich: bis kurz vor dem Ringschluss 3,5 dB zurueck, dann sanft hochfahren (kein Sprung)
 tg = np.arange(N) / SR; mix *= db(-3.5 * (1 - np.clip((tg - (Q['ring'][0] - 1.0)) / 2.2, 0, 1) ** 2 * (3 - 2 * np.clip((tg - (Q['ring'][0] - 1.0)) / 2.2, 0, 1))))
-n1 = int(DUR * SR); n0 = int((DUR - 1.6) * SR); mix = mix[:, :n1]; mix[:, n0:] *= np.linspace(1, 0, n1 - n0) ** 1.6
+n1 = int(DUR * SR); n0 = int((Q['rew'][0] + .3) * SR);   # Loop: im Rücklauf weich ausblenden, endet so leise wie der Anfang
+mix = mix[:, :n1]; mix[:, n0:] *= np.linspace(1, 0, n1 - n0) ** 1.6
 mix[:, :int(.25 * SR)] *= np.linspace(0, 1, int(.25 * SR))
 pk = np.max(np.abs(mix)); mix *= db(-3) / pk
 out = pathlib.Path(sys.argv[1]); out.parent.mkdir(parents=True, exist_ok=True)

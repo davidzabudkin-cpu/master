@@ -1,7 +1,7 @@
 // REMIRA-Commerce-Plattform als Motion-Video (25.11.2026, aus der Plattform-Animation abgeleitet). Alles Vektor in Canvas, jede Frame hängt nur von t ab (timeline.js).
 // Hausregeln (Skill remira-erklaervideo): regelmäßige Sechsecke, Phosphor light (bold nur auf farbigen Flächen), Text steht still, kein Motion Blur, erst lesen lassen, Blickführung.
 import { W, H, C, RINGC, CHALLENGES, BENEFITS, MODULES, MOD_A, NMOD, INNER, RING_TOP, RING_BOTTOM, CHIP } from './data.js';
-import { T, camAt } from './timeline.js';
+import { T, camAt, sceneTime } from './timeline.js';
 import { phosphorPath } from './phosphor-icons.js';
 import { phosphorPathBold } from './phosphor-icons-bold.js';
 import { prog, clamp, lerp, outCubic, outBack, inOutCubic, rng } from './lib/ease.js';
@@ -110,7 +110,7 @@ function sideItem(c, k, left, t) {
   const n = c.lines.length, y0 = c.y - (n - 1) * LH / 2;
   // Blickführung: der gerade erscheinende Punkt ist hell, die vorherigen treten zurück, bis alle Punkte einer Seite da sind
   const tn = left ? (k < 3 ? T.ch(k + 1) : T.flow) : (k < 3 ? T.be(k + 1) : T.settle), tAll = left ? T.flow : T.settle - .6;
-  const foc = 1 - .45 * prog(t, tn - .2, tn + .2) * (1 - prog(t, tAll, tAll + .5));
+  const foc = left ? 1 : 1 - prog(tReal, ...T.fadeBe);   // v2: kein Dimmen (Tempo wie Plattform-Animation); Vorteile blenden vor dem Rücklauf aus
   g.save(); g.globalAlpha = a * foc; g.translate(dx, 0);
   g.font = font(TXT, 700); g.fillStyle = '#fff'; g.textBaseline = 'middle'; g.textAlign = left ? 'left' : 'right';
   g.shadowColor = 'rgba(8,50,70,.35)'; g.shadowBlur = 10 * scale; g.shadowOffsetY = 2 * scale;
@@ -142,7 +142,9 @@ function pulse(pts, q, a, col) {
   if (polyPart(pts, e - .13, e)) g.stroke(); g.restore();
 }
 
-function drawScene(t) {
+let tReal = 0;
+function drawScene(tr) {
+  tReal = tr; const t = sceneTime(tr);   // Loop: im Rücklauf wird der Aufbau rückwärts gezeigt
   const cam = camAt(t);
   g.setTransform(scale, 0, 0, scale, 0, 0); g.globalAlpha = 1; g.globalCompositeOperation = 'source-over'; g.setLineDash([]); g.shadowColor = 'transparent'; g.filter = 'none';
   // Hintergrund: dasselbe Schwarz wie das große Sechseck, damit es mit dem Grund verschmilzt (wie im Original)
@@ -266,7 +268,7 @@ window.renderFrame = async t => {
   out.setTransform(1, 0, 0, 1, 0, 0); out.globalCompositeOperation = 'source-over'; out.globalAlpha = 1;
   drawScene(t); out.drawImage(scn, 0, 0);
   out.setTransform(canvas.width / W, 0, 0, canvas.height / H, 0, 0);
-  const f = 1 - prog(t, 0, .3); if (f > 0) { out.globalAlpha = clamp(f); out.fillStyle = '#000'; out.fillRect(0, 0, W, H); out.globalAlpha = 1; }
+  const f = 1 - prog(sceneTime(t), 0, .3); if (f > 0) { out.globalAlpha = clamp(f); out.fillStyle = '#000'; out.fillRect(0, 0, W, H); out.globalAlpha = 1; }
   out.save(); out.fillStyle = out.createPattern(grainCv, 'repeat'); out.globalCompositeOperation = 'overlay'; out.fillRect(0, 0, W, H); out.restore();
 };
 window.grab = (type, quality = .93) => canvas.toDataURL(type, quality);

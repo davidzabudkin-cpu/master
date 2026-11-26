@@ -2,12 +2,17 @@
 // Commerce-Fassung (25.11.2026): Regeln seit WWS v4: erst lesen lassen, dann weiter; Punkte links/rechts einzeln mit Lesezeit (2,5 Wörter/s + 1 s).
 import { DURATION } from './data.js';
 import { inOutCubic, outCubic } from './lib/ease.js';
+// v2 (26.11., David): Tempo wie die Plattform-Animation (keine Lese-Pausen), danach Loop: Schlussbild steht, dann läuft alles zurück bis zum Anfang (Schwarz).
 export const T = {
-  petal: k => .35 + k * .14, hex: 1.5, ai: [2.0, 2.42], disc: [2.7, 3.6], inner: k => 3.65 + k * .3,
-  mod: k => 5.5 + k * .75, ring: [10.2, 11.4], omni: [11.2, 11.7], scm: [11.65, 12.15],
-  panel: [12.5, 13.4], ch: k => 13.6 + k * 2.3, flow: 22.9, hit: 24.15, spin: [23.8, 25.1], out: 24.35,
-  be: k => [24.9, 28.3, 31.1, 35.4][k], settle: 39.7, end: DURATION
+  petal: k => .35 + k * .14, hex: 1.5, ai: [2.0, 2.42], disc: [2.7, 3.6], inner: k => 3.65 + k * .25,
+  mod: k => 5.2 + k * .68, ring: [9.4, 10.6], omni: [10.4, 11.0], scm: [10.85, 11.5],
+  panel: [11.7, 12.6], ch: k => 12.6 + k * .4, flow: 14.3, hit: 15.55, spin: [15.2, 16.5], out: 15.75,
+  be: k => 16.3 + k * .42, settle: 18.4,
+  // Loop: Vorteile + Impulse blenden aus, dann Rücklauf des Aufbaus (Bildzeit REW[0] → 0) bis ins Schwarz
+  fadeBe: [21.0, 21.5], rew: [21.5, 26.5], rewFrom: 14.2, end: DURATION
 };
+// Bildzeit im Rücklauf: von „alles aufgebaut, vor den Impulsen“ zurück bis 0
+export const sceneTime = t => t < T.rew[0] ? t : T.rewFrom * (.5 + .5 * Math.cos(Math.PI * Math.min(1, (t - T.rew[0]) / (T.rew[1] - T.rew[0]))));   // weiche Kurve, kurzes Schwarz am Ende (Loop-Übergang)
 // Kamera: fährt nur zwischen den Phasen. Solange Text aufgebaut wird oder steht, steht auch die Kamera (Hausregel „Text steht still“).
 const sine = u => .5 - .5 * Math.cos(Math.PI * u);
 const K = [];
@@ -16,12 +21,12 @@ key(0, 3.5, 0, 0, -.05);
 key(1.5, 3.05, 0, 0, -.02, outCubic);
 key(2.6, 2.9, 0, 0, 0);
 key(3.6, 2.0, 0, 0, 0, inOutCubic);
-key(4.8, 2.0, 0, 0, 0);
-key(5.5, 1.5, 0, 0, 0, inOutCubic);
-key(10.1, 1.5, 0, 0, 0);
-key(11.1, 1.12, 0, 0, 0, inOutCubic);
-key(12.4, 1.12, 0, 0, 0);
-key(13.3, 1, 0, 0, 0, inOutCubic);
+key(4.65, 2.0, 0, 0, 0);
+key(5.2, 1.5, 0, 0, 0, inOutCubic);
+key(9.3, 1.5, 0, 0, 0);
+key(10.3, 1.12, 0, 0, 0, inOutCubic);
+key(11.6, 1.12, 0, 0, 0);
+key(12.5, 1, 0, 0, 0, inOutCubic);
 key(DURATION + 1, 1, 0, 0, 0);
 export function camAt(t) {
   let i = 0; while (i < K.length - 2 && t >= K[i + 1].t) i++;
@@ -31,5 +36,5 @@ export function camAt(t) {
 const seq = (f, n) => Array.from({ length: n }, (_, k) => f(k));
 export const cues = () => ({
   duration: DURATION, petals: seq(T.petal, 6), hex: T.hex, ai: T.ai, disc: T.disc, inner: seq(T.inner, 4), mods: seq(T.mod, 6),
-  ring: T.ring, omni: T.omni, scm: T.scm, panel: T.panel, ch: seq(T.ch, 4), flow: T.flow, hit: T.hit, spin: T.spin, out: T.out, be: seq(T.be, 4), settle: T.settle
+  ring: T.ring, omni: T.omni, scm: T.scm, panel: T.panel, ch: seq(T.ch, 4), flow: T.flow, hit: T.hit, spin: T.spin, out: T.out, be: seq(T.be, 4), settle: T.settle, fadeBe: T.fadeBe, rew: T.rew
 });

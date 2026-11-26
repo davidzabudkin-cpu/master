@@ -1,7 +1,7 @@
 import { pick } from './lang.js';
 // REMIRA Commerce-Plattform (Grafik von Marketing, 25.11.2026, DE + EN). Texte wörtlich aus der Grafik; Ausnahmen siehe SKRIPT.md.
 // Maße, Farben (REMIRA-Branding) und alle Texte. Aufbau wie die Plattform-Animation (remira/projekte/plattform-animation).
-export const W = 1920, H = 1080, FPS = 30, DURATION = 42.5;
+export const W = 1920, H = 1080, FPS = 30, DURATION = 26.5;
 export const C = { blue: '#2A9AC4', green: '#A8D59A', ink: '#10231A', white: '#FFFFFF' };
 export const RINGC = ['#41B6E6', '#28ABBA', '#61BD47', '#FCDA34', '#FF9524', '#F53D47'];
 export const RING_TOP = 'Omnichannel', RING_BOTTOM = 'Commerce', CHIP = pick({ en: 'AI', de: 'KI' });
