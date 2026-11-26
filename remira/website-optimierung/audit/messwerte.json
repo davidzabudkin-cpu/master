@@ -3,30 +3,45 @@
   "name": "start",
   "url": "https://remira.com/de/",
   "vp": "desktop",
-  "loadMs": 2781,
-  "ttfb": 432,
-  "dcl": 1830,
-  "load": 2774,
-  "fcp": 1296,
-  "bytes": 2323866,
-  "reqs": 98,
+  "loadMs": 2051,
+  "ttfb": 185,
+  "dcl": 1254,
+  "load": 2046,
+  "fcp": 860,
+  "bytes": 2458487,
+  "reqs": 113,
   "byType": {
    "document": 252329,
-   "script": 90958,
-   "stylesheet": 136354,
-   "image": 1723805,
-   "font": 115184,
-   "other": 5236
+   "stylesheet": 163366,
+   "script": 276089,
+   "image": 1702123,
+   "font": 64580
   },
   "hosts": [
    "remira.com",
+   "cdnjs.cloudflare.com",
    "ajax.googleapis.com",
-   "hubspot-no-cache-eu1-prod.s3.amazonaws.com"
+   "7052064.fs1.hubspotusercontent-na1.net",
+   "cdn.jsdelivr.net",
+   "static.hsappstatic.net",
+   "8189726.fs1.hubspotusercontent-na1.net",
+   "hubspot-no-cache-eu1-prod.s3.amazonaws.com",
+   "8189726.fs1.hubspotusercontent-eu1.net"
   ],
   "title": "REMIRA intelligent software solutions",
   "metaDesc": "REMIRA entwickelt intelligente Softwarelösungen für die gesamte Wertschöpfungskette und unterstützt Sie dabei, Ihre Wertschöpfung zu optimieren.",
-  "h1count": 8,
+  "h1count": 18,
   "heads": [
+   "H1: Wie Einzelhändler Absatz, Bestände und Lieferanten intelligent vernetzen",
+   "H1: Wie Einzelhändler Absatz, Bestände und Lieferanten intelligent vernetzen",
+   "H1: KI-GESTÜTZTE SOFTWARE FÜR SUPPLY CHAIN UND COMMERCE AUS DER CLOUD",
+   "H1: Software für Supply Chain & Commerce",
+   "H1: Der Weg zu einem schlanken, kunden­orientierten Store-Betrieb ohne Wartezeiten",
+   "H1: Tipps & Tricks für mehr Effizienz und das volle Potenzial Ihrer Warenwirtschaft",
+   "H1: Gastro-Großhändler reduziert Dispositions­aufwand dank REMIRA-Lösung um 75 %",
+   "H1: So hat Eurogast Grissemann seinen Dispositions­aufwand minimiert",
+   "H1: Wie Einzelhändler Absatz, Bestände und Lieferanten intelligent vernetzen",
+   "H1: Wie Einzelhändler Absatz, Bestände und Lieferanten intelligent vernetzen",
    "H1: KI-GESTÜTZTE SOFTWARE FÜR SUPPLY CHAIN UND COMMERCE AUS DER CLOUD",
    "H1: Software für Supply Chain & Commerce",
    "H1: Der Weg zu einem schlanken, kunden­orientierten Store-Betrieb ohne Wartezeiten",
@@ -56,16 +71,19 @@
    "H3: Sport & Spiel",
    "H3: Elektronik",
    "H3: Lifestyle",
-   "H2: Das sagen unsere zufriedenen Kunden",
-   "H2: Case Studies & Blogs zu Supply Chain & Commerce",
-   "H2: Neugierig auf unsere Supply-Chain- und Commerce-Lösungen?",
-   "H3: REMIRA GmbH"
+   "H2: Das sagen unsere zufriedenen Kunden"
   ],
   "ctas": [
    "Kontakt",
-   "Zu unseren Lösungen",
    "Jetzt anmelden",
-   "Jetzt mehr erfahren"
+   "Zu unseren Lösungen",
+   "Jetzt mehr erfahren",
+   "1",
+   "2",
+   "3",
+   "4",
+   "Previous",
+   "Next"
   ],
   "fontBody": "\"Source Sans Pro\", sans-serif",
   "pSize": "18px",
@@ -73,8 +91,8 @@
   "pColor": "rgb(168, 168, 168)",
   "overflowX": false,
   "scrollW": 1440,
-  "height": 16215,
-  "smallTap": 16,
+  "height": 8354,
+  "smallTap": 28,
   "imgs": [
    {
     "src": "s://remira.com/hubfs/REMIRA%20Logos%20and%20Pictures/REMIRA_Logo_Claim_white.svg",
@@ -246,30 +264,6 @@
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Helly%20Hansen.png",
-    "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
-    "lazy": "lazy",
-    "fmt": "png"
-   },
-   {
-    "src": "ttps://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/EngelbertStrauss.png",
-    "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
-    "lazy": "lazy",
-    "fmt": "png"
-   },
-   {
-    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/ONEAL.png",
-    "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
-    "lazy": "lazy",
-    "fmt": "png"
-   },
-   {
-    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/deuter.png",
     "nat": "150x107",
     "shown": "150x107",
     "ratio": 1,
@@ -517,6 +511,14 @@
     "fmt": "png"
    },
    {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Fynch.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Bohnenkamp.png",
     "nat": "200x143",
     "shown": "200x143",
@@ -543,22 +545,30 @@
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Fynch.png",
     "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Bohnenkamp.png",
+    "nat": "200x143",
     "shown": "200x143",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
-    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Transgourmet.png",
-    "nat": "200x142",
+    "src": "a.com/hs-fs/hubfs/REFERENCES/References%20Logos/INTERSPORT%20Krumholz%20Logo.png",
+    "nat": "200x143",
     "shown": "200x143",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
-    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/WAHL%20Logo.png",
-    "nat": "200x142",
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/innocent.png",
+    "nat": "200x143",
     "shown": "200x143",
     "ratio": 1,
     "lazy": "lazy",
@@ -589,30 +599,36 @@
     "fmt": "png"
    }
   ],
-  "words": 1381
+  "words": 2072
  },
  {
   "name": "plattform",
   "url": "https://remira.com/de/supply-chain-und-omnichannel-commerce-plattform",
   "vp": "desktop",
-  "loadMs": 1701,
-  "ttfb": 102,
-  "dcl": 1037,
-  "load": 1698,
-  "fcp": 696,
-  "bytes": 2098720,
-  "reqs": 85,
+  "loadMs": 1754,
+  "ttfb": 117,
+  "dcl": 1102,
+  "load": 1750,
+  "fcp": 764,
+  "bytes": 2103050,
+  "reqs": 108,
   "byType": {
    "document": 222842,
-   "stylesheet": 135120,
-   "script": 90958,
-   "image": 1480084,
-   "font": 169716
+   "script": 284595,
+   "stylesheet": 162132,
+   "image": 1356493,
+   "font": 76988
   },
   "hosts": [
    "remira.com",
    "ajax.googleapis.com",
-   "hubspot-no-cache-eu1-prod.s3.amazonaws.com"
+   "cdnjs.cloudflare.com",
+   "7052064.fs1.hubspotusercontent-na1.net",
+   "hubspot-no-cache-eu1-prod.s3.amazonaws.com",
+   "8189726.fs1.hubspotusercontent-na1.net",
+   "static.hsappstatic.net",
+   "cdn.jsdelivr.net",
+   "8189726.fs1.hubspotusercontent-eu1.net"
   ],
   "title": "REMIRA Supply Chain und Omnichannel Commerce Plattform",
   "metaDesc": "Unsere zentrale REMIRA PLATFORM steuert all Ihre Prozesse entlang der gesamten Wertschöpfungskette in einem zentralen Hub. Jetzt mehr erfahren!",
@@ -647,7 +663,9 @@
   "ctas": [
    "Kontakt",
    "Jetzt Demo anfordern!",
-   "Mehr erfahren"
+   "Mehr erfahren",
+   "Previous",
+   "Next"
   ],
   "fontBody": "\"Source Sans Pro\", sans-serif",
   "pSize": "18px",
@@ -655,8 +673,8 @@
   "pColor": "rgb(168, 168, 168)",
   "overflowX": false,
   "scrollW": 1440,
-  "height": 13858,
-  "smallTap": 16,
+  "height": 9868,
+  "smallTap": 22,
   "imgs": [
    {
     "src": "s://remira.com/hubfs/REMIRA%20Logos%20and%20Pictures/REMIRA_Logo_Claim_white.svg",
@@ -1075,6 +1093,22 @@
     "fmt": "png"
    },
    {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Fynch.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Transgourmet.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/innocent.png",
     "nat": "200x143",
     "shown": "200x143",
@@ -1093,7 +1127,7 @@
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Fynch.png",
     "nat": "200x142",
-    "shown": "200x143",
+    "shown": "201x143",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -1101,6 +1135,22 @@
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Transgourmet.png",
     "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/innocent.png",
+    "nat": "200x143",
+    "shown": "200x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "a.com/hs-fs/hubfs/REFERENCES/References%20Logos/INTERSPORT%20Krumholz%20Logo.png",
+    "nat": "200x143",
     "shown": "200x143",
     "ratio": 1,
     "lazy": "lazy",
@@ -1131,35 +1181,52 @@
     "fmt": "png"
    }
   ],
-  "words": 1111
+  "words": 1290
  },
  {
   "name": "commerce",
   "url": "https://remira.com/de/omnichannel-commerce-software",
   "vp": "desktop",
-  "loadMs": 2219,
-  "ttfb": 126,
-  "dcl": 1189,
-  "load": 2216,
-  "fcp": 708,
-  "bytes": 4116268,
-  "reqs": 99,
+  "loadMs": 1982,
+  "ttfb": 196,
+  "dcl": 1262,
+  "load": 1975,
+  "fcp": 856,
+  "bytes": 2537634,
+  "reqs": 122,
   "byType": {
    "document": 318872,
-   "script": 91426,
-   "stylesheet": 140358,
-   "image": 3395896,
-   "font": 169716
+   "stylesheet": 167370,
+   "script": 213355,
+   "image": 1703301,
+   "font": 134268,
+   "other": 468
   },
   "hosts": [
    "remira.com",
+   "cdnjs.cloudflare.com",
    "ajax.googleapis.com",
-   "hubspot-no-cache-eu1-prod.s3.amazonaws.com"
+   "7052064.fs1.hubspotusercontent-na1.net",
+   "hubspot-no-cache-eu1-prod.s3.amazonaws.com",
+   "static.hsappstatic.net",
+   "8189726.fs1.hubspotusercontent-na1.net",
+   "cdn.jsdelivr.net",
+   "8189726.fs1.hubspotusercontent-eu1.net"
   ],
   "title": "Omnichannel Commerce Software Lösung",
   "metaDesc": "Unsere Software für Omnichannel Commerce ermöglicht die schnelle Anbindung aller internen und externen Systeme und schafft so zahlreiche Vorteile.",
-  "h1count": 8,
+  "h1count": 18,
   "heads": [
+   "H1: Optimiertes Einkaufserlebnis und bessere Beratung",
+   "H1: Optimiertes Einkaufserlebnis und bessere Beratung",
+   "H1: Omnichannel Commerce Software",
+   "H1: Omnichannel Commerce Software",
+   "H1: Tipps & Tricks für mehr Effizienz und das volle Potenzial Ihrer Warenwirtschaft",
+   "H1: Tipps & Tricks für mehr Effizienz und das volle Potenzial Ihrer Warenwirtschaft",
+   "H1: REMIRA ergänzt Kassensystem um interaktive After-Sales-Lösungen",
+   "H1: Kassensysteme mit interaktiven After-Sales-Lösungen",
+   "H1: Optimiertes Einkaufserlebnis und bessere Beratung",
+   "H1: Optimiertes Einkaufserlebnis und bessere Beratung",
    "H1: Omnichannel Commerce Software",
    "H1: Omnichannel Commerce Software",
    "H1: Tipps & Tricks für mehr Effizienz und das volle Potenzial Ihrer Warenwirtschaft",
@@ -1189,26 +1256,22 @@
    "H3: Lifestyle",
    "H2: Das sagen unsere zufriedenen Kunden",
    "H2: Case Studies zu Omnichannel Commerce",
-   "H2: FAQ: Omnichannel Commerce Software",
-   "H3: Was versteht man unter einer Omnichannel-Commerce-Software?",
-   "H3: Welche Funktionen bietet eine Omnichannel-Lösung?",
-   "H3: Wie unterstützt eine Omnichannel-Lösung den stationären Handel?",
-   "H3: Kann ich Bestände anderer Filialen, den Zentrallagern oder sogar die der Lieferanten einse",
-   "H3: Wie hilft Omnichannel Commerce dabei, Filialen und Online-Shops effizient zu verknüpfen?",
-   "H3: Kann auch eine Marktplatzanbindung über eine Omnichannel-Lösung zentral gesteuert werden?",
-   "H3: Für welche Größe bzw. Filialanzahl eignet sich die REMIRA Omnichannel Software?",
-   "H3: Wie läuft die Integration einer Omnichannel-Commerce-Software mit bestehenden Systemen wie",
-   "H3: Wie schnell ist eine Omnichannel-Software im Einzelhandel einsatzbereit und wie viel Aufwa",
-   "H3: Welche Prozesse muss eine Software für Omnichannel Commerce verbinden?"
+   "H2: FAQ: Omnichannel Commerce Software"
   ],
   "ctas": [
    "Kontakt",
+   "Mehr erfahren",
    "Jetzt Demo anfordern!",
    "Jetzt anmelden",
    "Jetzt mehr erfahren",
-   "Mehr erfahren",
+   "1",
+   "2",
+   "3",
+   "4",
    "Referenzbericht lesen",
    "Showroom live erleben",
+   "Previous",
+   "Next",
    "Was versteht man unter einer Omnichannel-Commerce-Software?",
    "Welche Funktionen bietet eine Omnichannel-Lösung?",
    "Wie unterstützt eine Omnichannel-Lösung den stationären Handel?",
@@ -1228,8 +1291,8 @@
   "pColor": "rgb(168, 168, 168)",
   "overflowX": false,
   "scrollW": 1440,
-  "height": 23802,
-  "smallTap": 22,
+  "height": 16185,
+  "smallTap": 34,
   "imgs": [
    {
     "src": "s://remira.com/hubfs/REMIRA%20Logos%20and%20Pictures/REMIRA_Logo_Claim_white.svg",
@@ -1338,7 +1401,7 @@
    {
     "src": "ps://remira.com/hs-fs/hubfs/06_Sales/REFERENCES/References%20Logos/CB%20Mode.png",
     "nat": "200x142",
-    "shown": "200x142",
+    "shown": "198x140",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -1656,33 +1719,9 @@
     "fmt": "png"
    },
    {
-    "src": "a.com/hs-fs/hubfs/REFERENCES/References%20Logos/INTERSPORT%20Krumholz%20Logo.png",
-    "nat": "200x143",
-    "shown": "200x143",
-    "ratio": 1,
-    "lazy": "lazy",
-    "fmt": "png"
-   },
-   {
-    "src": "tps://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/JEANSfritz%20Logo.png",
-    "nat": "200x142",
-    "shown": "200x143",
-    "ratio": 1,
-    "lazy": "lazy",
-    "fmt": "png"
-   },
-   {
-    "src": "/remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Droste%20Doro%20Decker.png",
-    "nat": "200x117",
-    "shown": "200x118",
-    "ratio": 1,
-    "lazy": "lazy",
-    "fmt": "png"
-   },
-   {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/WAHL%20Logo.png",
     "nat": "200x142",
-    "shown": "200x143",
+    "shown": "201x143",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -1690,7 +1729,7 @@
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/HORSCH.png",
     "nat": "200x142",
-    "shown": "200x143",
+    "shown": "201x143",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -1698,7 +1737,63 @@
    {
     "src": "ps://remira.com/hs-fs/hubfs/06_Sales/REFERENCES/References%20Logos/CB%20Mode.png",
     "nat": "200x142",
-    "shown": "200x143",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "tps://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/JEANSfritz%20Logo.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "/remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Droste%20Doro%20Decker.png",
+    "nat": "200x117",
+    "shown": "202x118",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/WAHL%20Logo.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/HORSCH.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "ps://remira.com/hs-fs/hubfs/06_Sales/REFERENCES/References%20Logos/CB%20Mode.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "tps://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/JEANSfritz%20Logo.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "/remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Droste%20Doro%20Decker.png",
+    "nat": "200x117",
+    "shown": "202x118",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -1720,30 +1815,35 @@
     "fmt": "png"
    }
   ],
-  "words": 1826
+  "words": 2383
  },
  {
   "name": "produkt_oms",
   "url": "https://remira.com/de/ordermanagement-software",
   "vp": "desktop",
-  "loadMs": 1640,
-  "ttfb": 179,
-  "dcl": 1005,
-  "load": 1636,
-  "fcp": 708,
-  "bytes": 2074043,
-  "reqs": 71,
+  "loadMs": 1909,
+  "ttfb": 116,
+  "dcl": 1186,
+  "load": 1906,
+  "fcp": 852,
+  "bytes": 2238050,
+  "reqs": 93,
   "byType": {
    "document": 233247,
-   "stylesheet": 135120,
-   "script": 135645,
-   "image": 1454379,
-   "font": 115184,
-   "other": 468
+   "stylesheet": 162132,
+   "script": 266080,
+   "image": 1454731,
+   "font": 121860
   },
   "hosts": [
    "remira.com",
-   "ajax.googleapis.com"
+   "cdnjs.cloudflare.com",
+   "ajax.googleapis.com",
+   "7052064.fs1.hubspotusercontent-na1.net",
+   "8189726.fs1.hubspotusercontent-na1.net",
+   "cdn.jsdelivr.net",
+   "static.hsappstatic.net",
+   "8189726.fs1.hubspotusercontent-eu1.net"
   ],
   "title": "Order Management Software für effiziente Bestellprozesse",
   "metaDesc": "Optimieren Sie mit Order Management Software Ihre Prozesse, automatisieren Sie Abläufe und integrieren Sie bestehende Systeme flexibel.",
@@ -1788,6 +1888,8 @@
    "Jetzt Demo anfordern!",
    "Jetzt mehr erfahren",
    "Referenzbericht lesen",
+   "Previous",
+   "Next",
    "Was ist Order Management?",
    "Was ist ein Order Management System?",
    "Warum ist ein Order Management System wichtig?",
@@ -1808,8 +1910,8 @@
   "pColor": "rgb(168, 168, 168)",
   "overflowX": false,
   "scrollW": 1440,
-  "height": 15104,
-  "smallTap": 15,
+  "height": 12960,
+  "smallTap": 21,
   "imgs": [
    {
     "src": "s://remira.com/hubfs/REMIRA%20Logos%20and%20Pictures/REMIRA_Logo_Claim_white.svg",
@@ -2132,6 +2234,22 @@
     "fmt": "png"
    },
    {
+    "src": "tps://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/JEANSfritz%20Logo.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/WAHL%20Logo.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
     "src": "a.com/hs-fs/hubfs/REFERENCES/References%20Logos/INTERSPORT%20Krumholz%20Logo.png",
     "nat": "200x143",
     "shown": "200x143",
@@ -2142,7 +2260,7 @@
    {
     "src": "https://remira.com/hs-fs/hubfs/06_Sales/REFERENCES/References%20Logos/expert.png",
     "nat": "200x142",
-    "shown": "200x143",
+    "shown": "201x143",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -2150,7 +2268,7 @@
    {
     "src": "tps://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/JEANSfritz%20Logo.png",
     "nat": "200x142",
-    "shown": "200x143",
+    "shown": "201x143",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -2158,7 +2276,23 @@
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/WAHL%20Logo.png",
     "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "a.com/hs-fs/hubfs/REFERENCES/References%20Logos/INTERSPORT%20Krumholz%20Logo.png",
+    "nat": "200x143",
     "shown": "200x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/06_Sales/REFERENCES/References%20Logos/expert.png",
+    "nat": "200x142",
+    "shown": "201x143",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -2180,30 +2314,36 @@
     "fmt": "png"
    }
   ],
-  "words": 1239
+  "words": 1439
  },
  {
   "name": "branche_fashion",
   "url": "https://remira.com/de/software/fashion-und-schuhe",
   "vp": "desktop",
-  "loadMs": 1732,
-  "ttfb": 105,
-  "dcl": 1132,
-  "load": 1729,
-  "fcp": 732,
-  "bytes": 1041446,
-  "reqs": 60,
+  "loadMs": 1978,
+  "ttfb": 139,
+  "dcl": 1201,
+  "load": 1974,
+  "fcp": 800,
+  "bytes": 1147291,
+  "reqs": 81,
   "byType": {
    "document": 160878,
-   "script": 154180,
-   "stylesheet": 135453,
-   "image": 475751,
-   "font": 115184
+   "script": 284605,
+   "stylesheet": 162465,
+   "image": 474763,
+   "font": 64580
   },
   "hosts": [
    "remira.com",
    "ajax.googleapis.com",
-   "hubspot-no-cache-eu1-prod.s3.amazonaws.com"
+   "cdnjs.cloudflare.com",
+   "7052064.fs1.hubspotusercontent-na1.net",
+   "static.hsappstatic.net",
+   "cdn.jsdelivr.net",
+   "8189726.fs1.hubspotusercontent-na1.net",
+   "hubspot-no-cache-eu1-prod.s3.amazonaws.com",
+   "8189726.fs1.hubspotusercontent-eu1.net"
   ],
   "title": "REMIRA-Software für die Mode-Branche",
   "metaDesc": "Mit der REMIRA-Software für die Mode-Branche sind Sie Trends immer einen Schritt voraus und können die saisonale Nachfrage steuern. Jetzt mehr erfahren!",
@@ -2227,7 +2367,9 @@
    "Kontakt",
    "Unsere Softwarelösungen",
    "Mehr erfahren",
-   "Showroom live erleben"
+   "Showroom live erleben",
+   "Previous",
+   "Next"
   ],
   "fontBody": "\"Source Sans Pro\", sans-serif",
   "pSize": "18px",
@@ -2235,8 +2377,8 @@
   "pColor": "rgb(168, 168, 168)",
   "overflowX": false,
   "scrollW": 1440,
-  "height": 12208,
-  "smallTap": 16,
+  "height": 8106,
+  "smallTap": 23,
   "imgs": [
    {
     "src": "s://remira.com/hubfs/REMIRA%20Logos%20and%20Pictures/REMIRA_Logo_Claim_white.svg",
@@ -2337,8 +2479,8 @@
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/GANT.png",
     "nat": "701x501",
-    "shown": "701x501",
-    "ratio": 1,
+    "shown": "198x141",
+    "ratio": 3.5,
     "lazy": "lazy",
     "fmt": "png"
    },
@@ -2447,25 +2589,9 @@
     "fmt": "png"
    },
    {
-    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/TOMS.png",
-    "nat": "200x142",
-    "shown": "200x143",
-    "ratio": 1,
-    "lazy": "lazy",
-    "fmt": "png"
-   },
-   {
-    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Allshoes.png",
-    "nat": "200x142",
-    "shown": "200x143",
-    "ratio": 1,
-    "lazy": "lazy",
-    "fmt": "png"
-   },
-   {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/CALIDA.png",
     "nat": "200x142",
-    "shown": "200x143",
+    "shown": "201x143",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -2473,15 +2599,63 @@
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Fynch.png",
     "nat": "200x142",
-    "shown": "200x143",
+    "shown": "201x143",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
-    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/LLOYD.png",
-    "nat": "200x143",
-    "shown": "200x143",
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/TOMS.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Allshoes.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/CALIDA.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Fynch.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/TOMS.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Allshoes.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/CALIDA.png",
+    "nat": "200x142",
+    "shown": "201x143",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -2511,29 +2685,34 @@
     "fmt": "png"
    }
   ],
-  "words": 881
+  "words": 1155
  },
  {
   "name": "webinare",
   "url": "https://remira.com/de/webinare",
   "vp": "desktop",
-  "loadMs": 1867,
-  "ttfb": 100,
-  "dcl": 876,
-  "load": 1866,
-  "fcp": 640,
-  "bytes": 3413585,
-  "reqs": 47,
+  "loadMs": 1634,
+  "ttfb": 108,
+  "dcl": 962,
+  "load": 1632,
+  "fcp": 736,
+  "bytes": 3316643,
+  "reqs": 60,
   "byType": {
    "document": 258963,
-   "stylesheet": 132526,
-   "script": 135187,
-   "image": 2659357,
-   "font": 227552
+   "stylesheet": 133532,
+   "script": 87491,
+   "image": 2659709,
+   "font": 176948
   },
   "hosts": [
    "remira.com",
-   "ajax.googleapis.com"
+   "cdnjs.cloudflare.com",
+   "ajax.googleapis.com",
+   "7052064.fs1.hubspotusercontent-na1.net",
+   "8189726.fs1.hubspotusercontent-na1.net",
+   "static.hsappstatic.net",
+   "8189726.fs1.hubspotusercontent-eu1.net"
   ],
   "title": "REMIRA Webinare",
   "metaDesc": "Profitieren Sie von wertvollen Webinaren zu Supply Chain und Commerce.",
@@ -2756,24 +2935,29 @@
   "name": "kontakt",
   "url": "https://remira.com/de/kontakt",
   "vp": "desktop",
-  "loadMs": 1379,
-  "ttfb": 191,
-  "dcl": 1105,
-  "load": 1377,
-  "fcp": 704,
-  "bytes": 1296870,
-  "reqs": 22,
+  "loadMs": 1752,
+  "ttfb": 239,
+  "dcl": 1092,
+  "load": 1749,
+  "fcp": 712,
+  "bytes": 1048636,
+  "reqs": 36,
   "byType": {
    "document": 102852,
-   "script": 680298,
-   "stylesheet": 129162,
-   "image": 200831,
-   "font": 169716,
+   "script": 695814,
+   "stylesheet": 130168,
+   "image": 28803,
+   "font": 76988,
    "xhr": 14011
   },
   "hosts": [
    "remira.com",
-   "ajax.googleapis.com"
+   "cdnjs.cloudflare.com",
+   "ajax.googleapis.com",
+   "7052064.fs1.hubspotusercontent-na1.net",
+   "8189726.fs1.hubspotusercontent-na1.net",
+   "static.hsappstatic.net",
+   "8189726.fs1.hubspotusercontent-eu1.net"
   ],
   "title": "Kontakt",
   "metaDesc": "Sie haben Fragen zu unseren Produkten oder ein allgemeines Anliegen? Nehmen Sie einfach mit uns Kontakt auf. Wir helfen Ihnen gerne weiter.",
@@ -2840,29 +3024,45 @@
   "name": "start",
   "url": "https://remira.com/de/",
   "vp": "mobil",
-  "loadMs": 1951,
-  "ttfb": 125,
-  "dcl": 1095,
-  "load": 1949,
-  "fcp": 720,
-  "bytes": 2150316,
-  "reqs": 97,
+  "loadMs": 1949,
+  "ttfb": 120,
+  "dcl": 1194,
+  "load": 1946,
+  "fcp": 744,
+  "bytes": 2297059,
+  "reqs": 116,
   "byType": {
    "document": 252329,
-   "script": 90968,
-   "stylesheet": 136354,
-   "image": 1555481,
-   "font": 115184
+   "stylesheet": 163366,
+   "script": 276089,
+   "image": 1553779,
+   "font": 51496
   },
   "hosts": [
    "remira.com",
+   "cdnjs.cloudflare.com",
    "ajax.googleapis.com",
-   "hubspot-no-cache-eu1-prod.s3.amazonaws.com"
+   "7052064.fs1.hubspotusercontent-na1.net",
+   "8189726.fs1.hubspotusercontent-na1.net",
+   "static.hsappstatic.net",
+   "cdn.jsdelivr.net",
+   "hubspot-no-cache-eu1-prod.s3.amazonaws.com",
+   "8189726.fs1.hubspotusercontent-eu1.net"
   ],
   "title": "REMIRA intelligent software solutions",
   "metaDesc": "REMIRA entwickelt intelligente Softwarelösungen für die gesamte Wertschöpfungskette und unterstützt Sie dabei, Ihre Wertschöpfung zu optimieren.",
-  "h1count": 8,
+  "h1count": 18,
   "heads": [
+   "H1: Wie Einzelhändler Absatz, Bestände und Lieferanten intelligent vernetzen",
+   "H1: Wie Einzelhändler Absatz, Bestände und Lieferanten intelligent vernetzen",
+   "H1: KI-GESTÜTZTE SOFTWARE FÜR SUPPLY CHAIN UND COMMERCE AUS DER CLOUD",
+   "H1: Software für Supply Chain & Commerce",
+   "H1: Der Weg zu einem schlanken, kunden­orientierten Store-Betrieb ohne Wartezeiten",
+   "H1: Tipps & Tricks für mehr Effizienz und das volle Potenzial Ihrer Warenwirtschaft",
+   "H1: Gastro-Großhändler reduziert Dispositions­aufwand dank REMIRA-Lösung um 75 %",
+   "H1: So hat Eurogast Grissemann seinen Dispositions­aufwand minimiert",
+   "H1: Wie Einzelhändler Absatz, Bestände und Lieferanten intelligent vernetzen",
+   "H1: Wie Einzelhändler Absatz, Bestände und Lieferanten intelligent vernetzen",
    "H1: KI-GESTÜTZTE SOFTWARE FÜR SUPPLY CHAIN UND COMMERCE AUS DER CLOUD",
    "H1: Software für Supply Chain & Commerce",
    "H1: Der Weg zu einem schlanken, kunden­orientierten Store-Betrieb ohne Wartezeiten",
@@ -2892,16 +3092,17 @@
    "H3: Sport & Spiel",
    "H3: Elektronik",
    "H3: Lifestyle",
-   "H2: Das sagen unsere zufriedenen Kunden",
-   "H2: Case Studies & Blogs zu Supply Chain & Commerce",
-   "H2: Neugierig auf unsere Supply-Chain- und Commerce-Lösungen?",
-   "H3: REMIRA GmbH"
+   "H2: Das sagen unsere zufriedenen Kunden"
   ],
   "ctas": [
    "Kontakt",
-   "Zu unseren Lösungen",
    "Jetzt anmelden",
-   "Jetzt lesen"
+   "Zu unseren Lösungen",
+   "Jetzt lesen",
+   "1",
+   "2",
+   "3",
+   "4"
   ],
   "fontBody": "\"Source Sans Pro\", sans-serif",
   "pSize": "14px",
@@ -2909,8 +3110,8 @@
   "pColor": "rgb(168, 168, 168)",
   "overflowX": false,
   "scrollW": 390,
-  "height": 25540,
-  "smallTap": 22,
+  "height": 16853,
+  "smallTap": 32,
   "imgs": [
    {
     "src": "s://remira.com/hubfs/REMIRA%20Logos%20and%20Pictures/REMIRA_Logo_Claim_white.svg",
@@ -2923,192 +3124,192 @@
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/innocent%20(1).png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/zalando.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "tps://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/INTERSPORT%20Logo.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Coca%20Cola%20Peninsula.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REMIRA%20ITALIA/BMW_CORRETTO.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/viega%20Logo.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/hagebau%20logo.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/ROSE-1.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Alnatura%20Logo.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Olymp.png",
     "nat": "150x106",
-    "shown": "150x106",
-    "ratio": 1,
+    "shown": "129x91",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Steiff.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/LLOYD.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/CALIDA.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/asics.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/LIEBHERR.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/XXXLutz.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Rhenus.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/KING%26PRICE.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "/remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/LANDPORT%20Batteries-1.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/erima.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Helly%20Hansen.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "ttps://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/EngelbertStrauss.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/ONEAL.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/deuter.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
@@ -3353,6 +3554,30 @@
     "fmt": "png"
    },
    {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Fynch.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Transgourmet.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/WAHL%20Logo.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Bohnenkamp.png",
     "nat": "200x143",
     "shown": "200x143",
@@ -3379,7 +3604,7 @@
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Fynch.png",
     "nat": "200x142",
-    "shown": "200x143",
+    "shown": "201x143",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -3387,7 +3612,7 @@
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Transgourmet.png",
     "nat": "200x142",
-    "shown": "200x143",
+    "shown": "201x143",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -3395,6 +3620,30 @@
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/WAHL%20Logo.png",
     "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Bohnenkamp.png",
+    "nat": "200x143",
+    "shown": "200x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "a.com/hs-fs/hubfs/REFERENCES/References%20Logos/INTERSPORT%20Krumholz%20Logo.png",
+    "nat": "200x143",
+    "shown": "200x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/innocent.png",
+    "nat": "200x143",
     "shown": "200x143",
     "ratio": 1,
     "lazy": "lazy",
@@ -3425,30 +3674,36 @@
     "fmt": "png"
    }
   ],
-  "words": 1235
+  "words": 1758
  },
  {
   "name": "plattform",
   "url": "https://remira.com/de/supply-chain-und-omnichannel-commerce-plattform",
   "vp": "mobil",
-  "loadMs": 1510,
-  "ttfb": 231,
-  "dcl": 1137,
-  "load": 1507,
-  "fcp": 816,
-  "bytes": 1806469,
-  "reqs": 85,
+  "loadMs": 1687,
+  "ttfb": 117,
+  "dcl": 1061,
+  "load": 1684,
+  "fcp": 704,
+  "bytes": 1919588,
+  "reqs": 106,
   "byType": {
    "document": 222842,
-   "script": 90968,
-   "stylesheet": 135120,
-   "image": 1187823,
-   "font": 169716
+   "stylesheet": 162132,
+   "script": 284595,
+   "image": 1186115,
+   "font": 63904
   },
   "hosts": [
    "remira.com",
+   "cdnjs.cloudflare.com",
    "ajax.googleapis.com",
-   "hubspot-no-cache-eu1-prod.s3.amazonaws.com"
+   "7052064.fs1.hubspotusercontent-na1.net",
+   "hubspot-no-cache-eu1-prod.s3.amazonaws.com",
+   "8189726.fs1.hubspotusercontent-na1.net",
+   "cdn.jsdelivr.net",
+   "static.hsappstatic.net",
+   "8189726.fs1.hubspotusercontent-eu1.net"
   ],
   "title": "REMIRA Supply Chain und Omnichannel Commerce Plattform",
   "metaDesc": "Unsere zentrale REMIRA PLATFORM steuert all Ihre Prozesse entlang der gesamten Wertschöpfungskette in einem zentralen Hub. Jetzt mehr erfahren!",
@@ -3491,8 +3746,8 @@
   "pColor": "rgb(168, 168, 168)",
   "overflowX": false,
   "scrollW": 390,
-  "height": 22044,
-  "smallTap": 22,
+  "height": 17226,
+  "smallTap": 26,
   "imgs": [
    {
     "src": "s://remira.com/hubfs/REMIRA%20Logos%20and%20Pictures/REMIRA_Logo_Claim_white.svg",
@@ -3569,152 +3824,152 @@
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/innocent%20(1).png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "128x91",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/zalando.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "128x91",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "tps://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/INTERSPORT%20Logo.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "128x91",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Steiff.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "128x91",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Coca%20Cola%20Peninsula.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "128x91",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REMIRA%20ITALIA/BMW_CORRETTO.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "128x91",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/viega%20Logo.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "128x91",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/VERSACE.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "128x91",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/hagebau%20logo.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "128x91",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Alnatura%20Logo.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "128x91",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Olymp.png",
     "nat": "150x106",
-    "shown": "150x106",
-    "ratio": 1,
+    "shown": "128x90",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/LIEBHERR.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "128x91",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/OBI-1.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "128x91",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/XXXLutz.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "128x91",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "ttps://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/EngelbertStrauss.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "128x91",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/deuter.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "128x91",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/ROSE-1.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "128x91",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Netto.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "128x91",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/CALIDA.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "128x91",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
@@ -3911,6 +4166,22 @@
     "fmt": "png"
    },
    {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Fynch.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Transgourmet.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/innocent.png",
     "nat": "200x143",
     "shown": "200x143",
@@ -3929,7 +4200,7 @@
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Fynch.png",
     "nat": "200x142",
-    "shown": "200x143",
+    "shown": "201x143",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -3937,6 +4208,22 @@
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Transgourmet.png",
     "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/innocent.png",
+    "nat": "200x143",
+    "shown": "200x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "a.com/hs-fs/hubfs/REFERENCES/References%20Logos/INTERSPORT%20Krumholz%20Logo.png",
+    "nat": "200x143",
     "shown": "200x143",
     "ratio": 1,
     "lazy": "lazy",
@@ -3967,35 +4254,52 @@
     "fmt": "png"
    }
   ],
-  "words": 1111
+  "words": 1288
  },
  {
   "name": "commerce",
   "url": "https://remira.com/de/omnichannel-commerce-software",
   "vp": "mobil",
-  "loadMs": 2076,
-  "ttfb": 224,
-  "dcl": 1357,
-  "load": 2074,
-  "fcp": 872,
-  "bytes": 3041333,
-  "reqs": 99,
+  "loadMs": 1869,
+  "ttfb": 160,
+  "dcl": 1244,
+  "load": 1865,
+  "fcp": 804,
+  "bytes": 2327868,
+  "reqs": 121,
   "byType": {
    "document": 318872,
-   "script": 91436,
-   "stylesheet": 140358,
-   "image": 2320951,
-   "font": 169716
+   "script": 213345,
+   "stylesheet": 167370,
+   "image": 1506629,
+   "font": 121184,
+   "other": 468
   },
   "hosts": [
    "remira.com",
    "ajax.googleapis.com",
-   "hubspot-no-cache-eu1-prod.s3.amazonaws.com"
+   "cdnjs.cloudflare.com",
+   "7052064.fs1.hubspotusercontent-na1.net",
+   "hubspot-no-cache-eu1-prod.s3.amazonaws.com",
+   "8189726.fs1.hubspotusercontent-na1.net",
+   "cdn.jsdelivr.net",
+   "static.hsappstatic.net",
+   "8189726.fs1.hubspotusercontent-eu1.net"
   ],
   "title": "Omnichannel Commerce Software Lösung",
   "metaDesc": "Unsere Software für Omnichannel Commerce ermöglicht die schnelle Anbindung aller internen und externen Systeme und schafft so zahlreiche Vorteile.",
-  "h1count": 8,
+  "h1count": 18,
   "heads": [
+   "H1: Optimiertes Einkaufserlebnis und bessere Beratung",
+   "H1: Optimiertes Einkaufserlebnis und bessere Beratung",
+   "H1: Omnichannel Commerce Software",
+   "H1: Omnichannel Commerce Software",
+   "H1: Tipps & Tricks für mehr Effizienz und das volle Potenzial Ihrer Warenwirtschaft",
+   "H1: Tipps & Tricks für mehr Effizienz und das volle Potenzial Ihrer Warenwirtschaft",
+   "H1: REMIRA ergänzt Kassensystem um interaktive After-Sales-Lösungen",
+   "H1: Kassensysteme mit interaktiven After-Sales-Lösungen",
+   "H1: Optimiertes Einkaufserlebnis und bessere Beratung",
+   "H1: Optimiertes Einkaufserlebnis und bessere Beratung",
    "H1: Omnichannel Commerce Software",
    "H1: Omnichannel Commerce Software",
    "H1: Tipps & Tricks für mehr Effizienz und das volle Potenzial Ihrer Warenwirtschaft",
@@ -4025,22 +4329,16 @@
    "H3: Lifestyle",
    "H2: Das sagen unsere zufriedenen Kunden",
    "H2: Case Studies zu Omnichannel Commerce",
-   "H2: FAQ: Omnichannel Commerce Software",
-   "H3: Was versteht man unter einer Omnichannel-Commerce-Software?",
-   "H3: Welche Funktionen bietet eine Omnichannel-Lösung?",
-   "H3: Wie unterstützt eine Omnichannel-Lösung den stationären Handel?",
-   "H3: Kann ich Bestände anderer Filialen, den Zentrallagern oder sogar die der Lieferanten einse",
-   "H3: Wie hilft Omnichannel Commerce dabei, Filialen und Online-Shops effizient zu verknüpfen?",
-   "H3: Kann auch eine Marktplatzanbindung über eine Omnichannel-Lösung zentral gesteuert werden?",
-   "H3: Für welche Größe bzw. Filialanzahl eignet sich die REMIRA Omnichannel Software?",
-   "H3: Wie läuft die Integration einer Omnichannel-Commerce-Software mit bestehenden Systemen wie",
-   "H3: Wie schnell ist eine Omnichannel-Software im Einzelhandel einsatzbereit und wie viel Aufwa",
-   "H3: Welche Prozesse muss eine Software für Omnichannel Commerce verbinden?"
+   "H2: FAQ: Omnichannel Commerce Software"
   ],
   "ctas": [
    "Kontakt",
-   "Jetzt anmelden",
    "Jetzt mehr erfahren",
+   "Jetzt anmelden",
+   "1",
+   "2",
+   "3",
+   "4",
    "Mehr erfahren",
    "Referenzbericht lesen",
    "Showroom live erleben",
@@ -4063,8 +4361,8 @@
   "pColor": "rgb(168, 168, 168)",
   "overflowX": false,
   "scrollW": 390,
-  "height": 33937,
-  "smallTap": 23,
+  "height": 25534,
+  "smallTap": 33,
   "imgs": [
    {
     "src": "s://remira.com/hubfs/REMIRA%20Logos%20and%20Pictures/REMIRA_Logo_Claim_white.svg",
@@ -4133,200 +4431,200 @@
    {
     "src": "ps://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/25%20Hours%20Hotel.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "139x99",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Astorga%20Logo.png",
     "nat": "150x106",
-    "shown": "150x106",
-    "ratio": 1,
+    "shown": "139x98",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/BIRKENSTOCK.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "139x99",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Bogner.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "139x99",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/BOLLAG.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "139x99",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "ps://remira.com/hs-fs/hubfs/06_Sales/REFERENCES/References%20Logos/CB%20Mode.png",
     "nat": "200x142",
-    "shown": "200x142",
-    "ratio": 1,
+    "shown": "139x98",
+    "ratio": 1.4,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/CLOSED.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "139x99",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/EQUIVA%20Logo.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "139x99",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "ttps://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/ErwinM%C3%BCller.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "139x99",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/expert.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "139x99",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Fynch.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "139x99",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/GANT.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "139x99",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "tps://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/INTERSPORT%20Logo.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "139x99",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "/remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Kleider%20Bauer%20logo.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "139x99",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/LIVING%20STARS.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "139x99",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/LLOYD.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "139x99",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/MAMMUT.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "139x99",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/mister%20lady.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "139x99",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/ONYGO.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "139x99",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Pieper.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "139x99",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Pier14%20Logo.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "139x99",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/reisenthel.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "139x99",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/S%C3%98R.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "139x99",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/SPIELE%20MAX.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "139x99",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Steiff.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "139x99",
+    "ratio": 1.1,
     "lazy": "lazy",
     "fmt": "png"
    },
@@ -4491,6 +4789,30 @@
     "fmt": "png"
    },
    {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/WAHL%20Logo.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/HORSCH.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "ps://remira.com/hs-fs/hubfs/06_Sales/REFERENCES/References%20Logos/CB%20Mode.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
     "src": "a.com/hs-fs/hubfs/REFERENCES/References%20Logos/INTERSPORT%20Krumholz%20Logo.png",
     "nat": "200x143",
     "shown": "200x143",
@@ -4501,7 +4823,7 @@
    {
     "src": "tps://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/JEANSfritz%20Logo.png",
     "nat": "200x142",
-    "shown": "200x143",
+    "shown": "201x143",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -4509,7 +4831,7 @@
    {
     "src": "/remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Droste%20Doro%20Decker.png",
     "nat": "200x117",
-    "shown": "200x118",
+    "shown": "202x118",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -4517,7 +4839,7 @@
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/WAHL%20Logo.png",
     "nat": "200x142",
-    "shown": "200x143",
+    "shown": "201x143",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -4525,7 +4847,7 @@
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/HORSCH.png",
     "nat": "200x142",
-    "shown": "200x143",
+    "shown": "201x143",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -4533,7 +4855,31 @@
    {
     "src": "ps://remira.com/hs-fs/hubfs/06_Sales/REFERENCES/References%20Logos/CB%20Mode.png",
     "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "a.com/hs-fs/hubfs/REFERENCES/References%20Logos/INTERSPORT%20Krumholz%20Logo.png",
+    "nat": "200x143",
     "shown": "200x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "tps://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/JEANSfritz%20Logo.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "/remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Droste%20Doro%20Decker.png",
+    "nat": "200x117",
+    "shown": "202x118",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -4555,29 +4901,36 @@
     "fmt": "png"
    }
   ],
-  "words": 1763
+  "words": 2242
  },
  {
   "name": "produkt_oms",
   "url": "https://remira.com/de/ordermanagement-software",
   "vp": "mobil",
-  "loadMs": 1448,
-  "ttfb": 132,
-  "dcl": 1035,
-  "load": 1446,
-  "fcp": 788,
-  "bytes": 1876485,
-  "reqs": 70,
+  "loadMs": 1739,
+  "ttfb": 99,
+  "dcl": 983,
+  "load": 1735,
+  "fcp": 708,
+  "bytes": 2093596,
+  "reqs": 92,
   "byType": {
    "document": 233247,
-   "stylesheet": 135120,
-   "script": 72443,
-   "image": 1320491,
-   "font": 115184
+   "stylesheet": 162132,
+   "script": 266070,
+   "image": 1322903,
+   "font": 108776,
+   "other": 468
   },
   "hosts": [
    "remira.com",
-   "ajax.googleapis.com"
+   "cdnjs.cloudflare.com",
+   "ajax.googleapis.com",
+   "7052064.fs1.hubspotusercontent-na1.net",
+   "cdn.jsdelivr.net",
+   "8189726.fs1.hubspotusercontent-na1.net",
+   "static.hsappstatic.net",
+   "8189726.fs1.hubspotusercontent-eu1.net"
   ],
   "title": "Order Management Software für effiziente Bestellprozesse",
   "metaDesc": "Optimieren Sie mit Order Management Software Ihre Prozesse, automatisieren Sie Abläufe und integrieren Sie bestehende Systeme flexibel.",
@@ -4642,8 +4995,8 @@
   "pColor": "rgb(168, 168, 168)",
   "overflowX": false,
   "scrollW": 425,
-  "height": 24977,
-  "smallTap": 21,
+  "height": 22148,
+  "smallTap": 25,
   "imgs": [
    {
     "src": "s://remira.com/hubfs/REMIRA%20Logos%20and%20Pictures/REMIRA_Logo_Claim_white.svg",
@@ -4712,56 +5065,56 @@
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/ROSE-1.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Pier14%20Logo.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "//remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Dorothee%20Schumacher.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Bogner.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/expert.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/sonepar%20Logo.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "ra.com/hs-fs/hubfs/REFERENCES/References%20Logos/Siemes%20Schuhcenter%20Logo.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
@@ -4966,6 +5319,22 @@
     "fmt": "png"
    },
    {
+    "src": "tps://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/JEANSfritz%20Logo.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/WAHL%20Logo.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
     "src": "a.com/hs-fs/hubfs/REFERENCES/References%20Logos/INTERSPORT%20Krumholz%20Logo.png",
     "nat": "200x143",
     "shown": "200x143",
@@ -4976,7 +5345,7 @@
    {
     "src": "https://remira.com/hs-fs/hubfs/06_Sales/REFERENCES/References%20Logos/expert.png",
     "nat": "200x142",
-    "shown": "200x143",
+    "shown": "201x143",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -4984,7 +5353,7 @@
    {
     "src": "tps://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/JEANSfritz%20Logo.png",
     "nat": "200x142",
-    "shown": "200x143",
+    "shown": "201x143",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -4992,7 +5361,23 @@
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/WAHL%20Logo.png",
     "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "a.com/hs-fs/hubfs/REFERENCES/References%20Logos/INTERSPORT%20Krumholz%20Logo.png",
+    "nat": "200x143",
     "shown": "200x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/06_Sales/REFERENCES/References%20Logos/expert.png",
+    "nat": "200x142",
+    "shown": "201x143",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -5014,30 +5399,36 @@
     "fmt": "png"
    }
   ],
-  "words": 1239
+  "words": 1437
  },
  {
   "name": "branche_fashion",
   "url": "https://remira.com/de/software/fashion-und-schuhe",
   "vp": "mobil",
-  "loadMs": 1462,
-  "ttfb": 195,
-  "dcl": 1114,
-  "load": 1459,
+  "loadMs": 1846,
+  "ttfb": 190,
+  "dcl": 1192,
+  "load": 1842,
   "fcp": 820,
-  "bytes": 980294,
-  "reqs": 60,
+  "bytes": 1137607,
+  "reqs": 80,
   "byType": {
    "document": 160878,
-   "script": 90968,
-   "stylesheet": 135453,
-   "image": 477811,
-   "font": 115184
+   "stylesheet": 162465,
+   "script": 284605,
+   "image": 478163,
+   "font": 51496
   },
   "hosts": [
    "remira.com",
+   "cdnjs.cloudflare.com",
    "ajax.googleapis.com",
-   "hubspot-no-cache-eu1-prod.s3.amazonaws.com"
+   "7052064.fs1.hubspotusercontent-na1.net",
+   "8189726.fs1.hubspotusercontent-na1.net",
+   "cdn.jsdelivr.net",
+   "static.hsappstatic.net",
+   "hubspot-no-cache-eu1-prod.s3.amazonaws.com",
+   "8189726.fs1.hubspotusercontent-eu1.net"
   ],
   "title": "REMIRA-Software für die Mode-Branche",
   "metaDesc": "Mit der REMIRA-Software für die Mode-Branche sind Sie Trends immer einen Schritt voraus und können die saisonale Nachfrage steuern. Jetzt mehr erfahren!",
@@ -5069,8 +5460,8 @@
   "pColor": "rgb(168, 168, 168)",
   "overflowX": false,
   "scrollW": 390,
-  "height": 18556,
-  "smallTap": 22,
+  "height": 13680,
+  "smallTap": 27,
   "imgs": [
    {
     "src": "s://remira.com/hubfs/REMIRA%20Logos%20and%20Pictures/REMIRA_Logo_Claim_white.svg",
@@ -5131,120 +5522,120 @@
    {
     "src": "tps://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/INTERSPORT%20Logo.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/zalando.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "tps://remira.com/hs-fs/hubfs/06_Sales/REFERENCES/References%20Logos/Carhartt.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Olymp.png",
     "nat": "150x106",
-    "shown": "150x106",
-    "ratio": 1,
+    "shown": "129x91",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/LLOYD.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/GANT.png",
     "nat": "390x278",
-    "shown": "262x187",
-    "ratio": 1.5,
+    "shown": "129x92",
+    "ratio": 3,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/CALIDA.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "ttps://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/EngelbertStrauss.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/asics.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/erima.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/NKD.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Helly%20Hansen.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/ONEAL.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/deuter.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/CalvinKlein.png",
     "nat": "150x107",
-    "shown": "150x107",
-    "ratio": 1,
+    "shown": "129x92",
+    "ratio": 1.2,
     "lazy": "lazy",
     "fmt": "png"
    },
@@ -5281,25 +5672,9 @@
     "fmt": "png"
    },
    {
-    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/TOMS.png",
-    "nat": "200x142",
-    "shown": "200x143",
-    "ratio": 1,
-    "lazy": "lazy",
-    "fmt": "png"
-   },
-   {
-    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Allshoes.png",
-    "nat": "200x142",
-    "shown": "200x143",
-    "ratio": 1,
-    "lazy": "lazy",
-    "fmt": "png"
-   },
-   {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/CALIDA.png",
     "nat": "200x142",
-    "shown": "200x143",
+    "shown": "201x143",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -5307,7 +5682,7 @@
    {
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Fynch.png",
     "nat": "200x142",
-    "shown": "200x143",
+    "shown": "201x143",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -5316,6 +5691,70 @@
     "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/LLOYD.png",
     "nat": "200x143",
     "shown": "200x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/TOMS.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Allshoes.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/CALIDA.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Fynch.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/LLOYD.png",
+    "nat": "200x143",
+    "shown": "200x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/TOMS.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/Allshoes.png",
+    "nat": "200x142",
+    "shown": "201x143",
+    "ratio": 1,
+    "lazy": "lazy",
+    "fmt": "png"
+   },
+   {
+    "src": "https://remira.com/hs-fs/hubfs/REFERENCES/References%20Logos/CALIDA.png",
+    "nat": "200x142",
+    "shown": "201x143",
     "ratio": 1,
     "lazy": "lazy",
     "fmt": "png"
@@ -5345,29 +5784,34 @@
     "fmt": "png"
    }
   ],
-  "words": 881
+  "words": 1153
  },
  {
   "name": "webinare",
   "url": "https://remira.com/de/webinare",
   "vp": "mobil",
-  "loadMs": 1516,
-  "ttfb": 129,
-  "dcl": 1059,
-  "load": 1512,
-  "fcp": 724,
-  "bytes": 3166045,
-  "reqs": 47,
+  "loadMs": 1766,
+  "ttfb": 107,
+  "dcl": 976,
+  "load": 1763,
+  "fcp": 672,
+  "bytes": 3182443,
+  "reqs": 58,
   "byType": {
    "document": 258963,
-   "script": 71975,
-   "stylesheet": 132526,
-   "image": 2475029,
-   "font": 227552
+   "stylesheet": 133532,
+   "script": 150703,
+   "image": 2475381,
+   "font": 163864
   },
   "hosts": [
    "remira.com",
-   "ajax.googleapis.com"
+   "cdnjs.cloudflare.com",
+   "ajax.googleapis.com",
+   "7052064.fs1.hubspotusercontent-na1.net",
+   "8189726.fs1.hubspotusercontent-na1.net",
+   "static.hsappstatic.net",
+   "8189726.fs1.hubspotusercontent-eu1.net"
   ],
   "title": "REMIRA Webinare",
   "metaDesc": "Profitieren Sie von wertvollen Webinaren zu Supply Chain und Commerce.",
@@ -5590,24 +6034,29 @@
   "name": "kontakt",
   "url": "https://remira.com/de/kontakt",
   "vp": "mobil",
-  "loadMs": 1470,
-  "ttfb": 202,
-  "dcl": 1200,
-  "load": 1467,
-  "fcp": 788,
-  "bytes": 1187702,
-  "reqs": 22,
+  "loadMs": 1717,
+  "ttfb": 195,
+  "dcl": 1206,
+  "load": 1713,
+  "fcp": 824,
+  "bytes": 1035552,
+  "reqs": 34,
   "byType": {
    "document": 102852,
-   "stylesheet": 129162,
-   "script": 743510,
-   "image": 28451,
-   "font": 169716,
+   "stylesheet": 130168,
+   "script": 695814,
+   "image": 28803,
+   "font": 63904,
    "xhr": 14011
   },
   "hosts": [
    "remira.com",
-   "ajax.googleapis.com"
+   "cdnjs.cloudflare.com",
+   "ajax.googleapis.com",
+   "7052064.fs1.hubspotusercontent-na1.net",
+   "8189726.fs1.hubspotusercontent-na1.net",
+   "static.hsappstatic.net",
+   "8189726.fs1.hubspotusercontent-eu1.net"
   ],
   "title": "Kontakt",
   "metaDesc": "Sie haben Fragen zu unseren Produkten oder ein allgemeines Anliegen? Nehmen Sie einfach mit uns Kontakt auf. Wir helfen Ihnen gerne weiter.",
@@ -5648,7 +6097,7 @@
   "pColor": "rgb(168, 168, 168)",
   "overflowX": false,
   "scrollW": 390,
-  "height": 6083,
+  "height": 6068,
   "smallTap": 37,
   "imgs": [
    {

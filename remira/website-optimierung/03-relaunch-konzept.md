@@ -48,7 +48,7 @@ Offene Frage an Marketing: Gehört die Stichprobeninventur zu Supply Chain oder 
 Am Handy: Akkordeon-Menü, Button „Demo anfragen“ unten als Daumen-Leiste (b, kleines eigenes Modul, falls CLEAN Pro keine Sticky-Leiste hat).
 
 ## 3.3 Seitentypen und Module
-Modulnamen nach öffentlicher CLEAN-Pro-Doku; vor dem Bau gegen die echte Modulliste prüfen.
+Modulnamen geprüft gegen den Modul-Katalog clean.pro/modules (26.11.).
 
 ### Startseite (`mockups/start.html`)
 | Sektion | Modul | Kat. | Hinweis |
@@ -57,9 +57,9 @@ Modulnamen nach öffentlicher CLEAN-Pro-Doku; vor dem Bau gegen die echte Modull
 | Signature: REMIRA-Ring als bewegter Hintergrund | eigenes Modul „Ring-Canvas“ | (b) | nur Desktop animiert, Handy ruhig, `prefers-reduced-motion` |
 | Kundenlogos | Logo Scroller | (a) | Logos als SVG/WebP, nur freigegebene |
 | Plattform in 6 Modulen | Versa Cards | (a) | Phosphor light als SVG statt 512-px-PNG |
-| Commerce im Fokus | Flexi-Tabs | (a) | je Tab: Nutzen, Bild, Link zur Modulseite |
-| Zahlen | Magic Module / Zähler | (a) | nur Zahlen von remira.com/de/fakten |
-| Webinar / Event | Content Slider oder Karte | (a) | automatisch aus HubDB wäre (c) |
+| Commerce im Fokus | Flexi Tabs | (a) | je Tab: Nutzen, Bild, Link zur Modulseite |
+| Zahlen | Number Count Up | (a) | nur Zahlen von remira.com/de/fakten |
+| Webinar / Event | Magic Module mit Countdown Timer oder Content Slider | (a) | automatisch aus HubDB wäre (c) |
 | Blog | Blog-Listing des Themes | (a) | |
 | Demo-Band | CTA-Modul | (a) | ein Wortlaut überall: „Demo anfragen“ |
 
@@ -67,22 +67,22 @@ Modulnamen nach öffentlicher CLEAN-Pro-Doku; vor dem Bau gegen die echte Modull
 | Sektion | Modul | Kat. | Hinweis |
 |---|---|---|---|
 | Hero | Magic Module | (a) | |
-| 6 Commerce-Module | Versa Cards / Hover Swap | (a) | jede Karte führt auf eigene Modulseite |
+| 6 Commerce-Module | Versa Cards / Hover Cards | (a) | jede Karte führt auf eigene Modulseite |
 | „So hängt alles zusammen“: Kanäle verbinden sich | eigenes Modul (SVG + JS) | (b) | Signature-Grafik Commerce, passend zu Davids Wunsch „Effekte mit Bedeutung“ |
 | Branchen Handel | Versa Cards (Bild) | (a) | |
 | Referenz-Teaser | Super Social Proof | (a) | ohne Personennamen in unseren Entwürfen; live nur mit Freigabe |
 | Showroom Dortmund | Magic Module + CTA | (a) | |
-| FAQ | FAQ Accordion | (a) | FAQ-Schema (JSON-LD) prüfen, sonst (b) |
+| FAQ | Multi-Column Accordion (oder Akkordeon im Magic Module) | (a) | FAQ-Schema (JSON-LD) prüfen, sonst (b) |
 
 ### Produktseite, Beispiel Order Management (`mockups/produkt-oms.html`)
 | Sektion | Modul | Kat. | Hinweis |
 |---|---|---|---|
 | Hero mit Produktbild | Magic Module | (a) | Bild als `<img>` mit Vorladen statt CSS-Hintergrund (Audit Befund 10) |
-| 3–6 Vorteile | Versa Cards (Icon) | (a) | Icon + ein Satz |
-| Funktionen | Flexi-Tabs | (a) | |
-| Ablauf in 3 Schritten | Vert Scroller / Scroll Swap | (a) | |
+| 3–6 Vorteile | Icon & Text | (a) | Icon + ein Satz |
+| Funktionen | Flexi Tabs | (a) | |
+| Ablauf in 3 Schritten | Timeline oder Scroll Swap | (a) | |
 | Referenz | Super Social Proof | (a) | |
-| FAQ | FAQ Accordion | (a) | |
+| FAQ | Multi-Column Accordion | (a) | |
 | Sticky-CTA am Handy | eigenes Mini-Modul | (b) | falls Theme es nicht kann |
 Vorlage einmal als **Seiten-Template „Produkt“** speichern (a, „Als Vorlage speichern“) bzw. als Theme-Template mit fester Reihenfolge (b), dann alle 11 Produktseiten gleich aufbauen.
 
@@ -90,10 +90,10 @@ Vorlage einmal als **Seiten-Template „Produkt“** speichern (a, „Als Vorlag
 Hero (Magic Module, a) · Herausforderungen → passendes Modul als Hover Swap (a) · Case-Study-Karten (Blog-/Content-Listing, a; automatisch nach Branche gefiltert = HubDB oder Tags, c) · CTA (a).
 
 ### Webinar/Event (`mockups/webinar.html`)
-Hero mit Datum (Magic Module, a) · Countdown Timer (a) · Agenda (Tables oder Akkordeon, a) · Referierende (Team-Modul, a) · Anmeldung (HubSpot-Formular, max. 4 Felder, a) · On-Demand-Liste (Video Playlist, a). Webinar-Daten zentral in HubDB und automatische Listen auf Start/Wissen: (c), braucht CMS Pro.
+Hero mit Datum (Magic Module, a) · Countdown Timer (a) · Agenda (Event Schedule, a) · Referierende (Versa Cards im Team-Stil, a) · Anmeldung (HubSpot-Formular, max. 4 Felder, a) · On-Demand-Liste (Video Playlist, a). Webinar-Daten zentral in HubDB und automatische Listen auf Start/Wissen: (c), braucht CMS Pro.
 
 ### Kontakt/Demo (`mockups/kontakt.html`)
-Zwei Wege „Demo anfragen“ / „Allgemeine Frage“ (Flexi-Tabs, a) · Formular mit 4–5 Feldern statt heute 6+ (HubSpot-Formular, a; progressives Formular braucht Marketing Hub Pro) · Standorte als Karten (a) · Showroom-Termin (HubSpot-Meetings-Link, a).
+Zwei Wege „Demo anfragen“ / „Allgemeine Frage“ (Tabbed Content oder Flexi Tabs, a) · Formular mit 4–5 Feldern statt heute 6+ (HubSpot-Formular, a; progressives Formular braucht Marketing Hub Pro) · Standorte als Karten (a) · Showroom-Termin (Meeting Scheduler, a).
 
 ## 3.4 Querschnitt-Regeln für das neue Theme
 | Maßnahme | Kat. |

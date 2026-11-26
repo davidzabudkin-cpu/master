@@ -3,7 +3,7 @@
 Geprüft: 7 Seiten, je Desktop 1440 px und Handy 390 px, mit Playwright (Screenshots, Ladezeit, Bildgrößen, Überschriften, CTAs, Kontrast) und Lighthouse 13.6 (mobil und Desktop, 5 Seiten).
 Seiten: Start `/de/`, Plattform, Omnichannel Commerce, Order Management, Branche Fashion & Schuhe, Webinare, Kontakt.
 
-> **Messgrenze:** In der Cloud-Umgebung waren nur remira.com-Hosts erreichbar. Fremd-Skripte (cdnjs, jsdelivr, Font Awesome, Usercentrics-Cookie-Banner, HubSpot-Modul-CDN) wurden **nicht geladen**. Folgen: In den Screenshots fehlen Slider-Funktion, Logo-Leisten und Cookie-Banner (Slider-Folien stehen untereinander, Logo-Leisten erscheinen als weiße Lücke), und die echten Ladezeiten und Lighthouse-Werte sind **schlechter** als hier gemessen. Für belastbare Zahlen einmal PageSpeed Insights (pagespeed.web.dev) von einem normalen Rechner laufen lassen.
+> **Messgrenze:** Beim ersten Lauf waren nur remira.com-Hosts erreichbar. Nach der Netzfreigabe (26.11.) wurden die Screenshots neu gemacht: Slider und Logo-Leisten laden jetzt. Weiterhin gesperrt sind Font Awesome und der Usercentrics-Cookie-Banner, deshalb fehlt der Banner auf den Bildern. Die Lighthouse-Zahlen unten stammen aus dem ersten Lauf ohne Fremd-Skripte und sind darum eher zu gut. Für belastbare Zahlen einmal PageSpeed Insights (pagespeed.web.dev) von einem normalen Rechner laufen lassen.
 
 Dateien: `audit/screenshots/` (Erstansicht je Seite und Gerät), `audit/uebersicht/` (ganze Seite verkleinert, Kundenzitate unkenntlich gemacht), `audit/messwerte.json`, `audit/lighthouse-zusammenfassung.txt`, Skript `tools/audit-shots.cjs`.
 
@@ -18,7 +18,7 @@ Dateien: `audit/screenshots/` (Erstansicht je Seite und Gerät), `audit/uebersic
 | Webinare | – | – | – | 22.200 px | 1.880 | 3,4 MB |
 | Plattform | – | – | – | 22.000 px | 1.110 | 2,1 MB |
 
-\* Playwright-Messung ohne Fremd-CDNs. Zielwerte: LCP mobil unter 2,5 s, Perf. mobil ab 90. Server-Antwort (TTFB 100–430 ms) und Layout-Stabilität (CLS ≤ 0,08) sind gut.
+\* Playwright-Messung aus dem ersten Lauf (ohne Fremd-CDNs). Zielwerte: LCP mobil unter 2,5 s, Perf. mobil ab 90. Server-Antwort (TTFB 100–430 ms) und Layout-Stabilität (CLS ≤ 0,08) sind gut.
 
 ## Befunde (wichtigste zuerst)
 

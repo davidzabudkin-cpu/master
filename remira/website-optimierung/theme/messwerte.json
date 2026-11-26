@@ -1,0 +1,2933 @@
+[
+ {
+  "name": "cleanpro-start",
+  "url": "https://www.clean.pro/",
+  "vp": "desktop",
+  "loadMs": 4745,
+  "ttfb": 548,
+  "load": 4739,
+  "fcp": 1320,
+  "bytes": 5798860,
+  "reqs": 172,
+  "libs": [
+   "morph-text.min.js",
+   "lottie-player.min.js",
+   "slick-slider-min.min.js",
+   "count-up.min.js",
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "player.vimeo.com",
+   "www.youtube.com",
+   "no-cache.hubspot.com",
+   "js.hubspot.com",
+   "www.googletagmanager.com",
+   "www.gstatic.com",
+   "lottie.host",
+   "js.hsadspixel.net",
+   "app.hubspot.com",
+   "cta-service-cms2.hubspot.com",
+   "js.hs-analytics.net",
+   "js.hs-banner.com",
+   "play.hubspotvideo.com",
+   "perf.hsforms.com",
+   "507386.fs1.hubspotusercontent-na2.net"
+  ],
+  "h1": {
+   "font": "Inter Tight",
+   "size": "80px",
+   "weight": "700",
+   "line": "88px",
+   "color": "rgb(0, 0, 0)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "Inter Tight",
+   "size": "50px",
+   "weight": "700",
+   "line": "65px",
+   "color": "rgb(34, 34, 34)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Inter Tight",
+   "size": "18px",
+   "weight": "400",
+   "line": "27px",
+   "color": "rgb(102, 102, 102)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": {
+   "bg": "rgb(255, 122, 89)",
+   "color": "rgb(255, 255, 255)",
+   "radius": "3px",
+   "font": "\"Inter Tight\"",
+   "weight": "700",
+   "pad": "20px 25px"
+  },
+  "topColors": [
+   "rgb(0, 0, 0)",
+   "rgb(102, 102, 102)",
+   "rgb(255, 122, 89)",
+   "rgb(68, 68, 68)",
+   "rgb(255, 255, 255)",
+   "rgb(241, 166, 4)",
+   "rgb(34, 34, 34)",
+   "rgba(0, 0, 0, 0.5)",
+   "rgba(255, 255, 255, 0.7)",
+   "rgb(238, 238, 238)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 9,
+   "video": 0,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 18900,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 10,
+  "sectionsPos": null
+ },
+ {
+  "name": "cleanpro-module",
+  "url": "https://www.clean.pro/modules",
+  "vp": "desktop",
+  "loadMs": 2549,
+  "ttfb": 138,
+  "load": 2544,
+  "fcp": 1196,
+  "bytes": 6026299,
+  "reqs": 134,
+  "libs": [
+   "slick-slider-min.min.js",
+   "count-up.min.js",
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "player.vimeo.com",
+   "www.youtube.com",
+   "www.loom.com",
+   "js.hubspot.com",
+   "www.googletagmanager.com",
+   "dl.dropboxusercontent.com",
+   "507386.fs1.hubspotusercontent-na2.net",
+   "www.gstatic.com",
+   "cdn2.hubspot.net",
+   "js.hsforms.net",
+   "www.google.com",
+   "forms-na1.hsforms.com",
+   "js.hsadspixel.net",
+   "js.hs-analytics.net",
+   "js.hs-banner.com",
+   "app.hubspot.com",
+   "play.hubspotvideo.com",
+   "forms.hubspot.com",
+   "f.hubspotusercontent30.net"
+  ],
+  "h1": {
+   "font": "Inter Tight",
+   "size": "80px",
+   "weight": "700",
+   "line": "88px",
+   "color": "rgb(0, 0, 0)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "Inter Tight",
+   "size": "50px",
+   "weight": "700",
+   "line": "65px",
+   "color": "rgb(34, 34, 34)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Inter Tight",
+   "size": "18px",
+   "weight": "400",
+   "line": "27px",
+   "color": "rgb(102, 102, 102)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": {
+   "bg": "rgb(250, 250, 250)",
+   "color": "rgb(0, 0, 0)",
+   "radius": "3px",
+   "font": "\"Inter Tight\"",
+   "weight": "600",
+   "pad": "20px 25px"
+  },
+  "topColors": [
+   "rgb(0, 0, 0)",
+   "rgb(102, 102, 102)",
+   "rgb(255, 255, 255)",
+   "rgb(68, 68, 68)",
+   "rgb(255, 122, 89)",
+   "rgb(34, 34, 34)",
+   "rgba(255, 255, 255, 0)",
+   "rgb(0, 164, 189)",
+   "rgb(241, 166, 4)",
+   "rgb(153, 153, 153)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 5,
+   "video": 2,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 31608,
+  "overflowX": true,
+  "h1count": 1,
+  "sections": 5,
+  "sectionsPos": [
+   {
+    "tag": "H4",
+    "text": "Hero",
+    "y": 577
+   },
+   {
+    "tag": "H4",
+    "text": "Multi-Purpose",
+    "y": 740
+   },
+   {
+    "tag": "H4",
+    "text": "Tables",
+    "y": 793
+   },
+   {
+    "tag": "H4",
+    "text": "Image & Text",
+    "y": 846
+   },
+   {
+    "tag": "H4",
+    "text": "Image Galleries",
+    "y": 899
+   },
+   {
+    "tag": "H4",
+    "text": "Social Proof",
+    "y": 952
+   },
+   {
+    "tag": "H4",
+    "text": "Video",
+    "y": 1005
+   },
+   {
+    "tag": "H4",
+    "text": "Pricing",
+    "y": 1058
+   },
+   {
+    "tag": "H4",
+    "text": "Team",
+    "y": 1111
+   },
+   {
+    "tag": "H4",
+    "text": "Specialty",
+    "y": 1164
+   },
+   {
+    "tag": "H2",
+    "text": "Heroes",
+    "y": 609
+   },
+   {
+    "tag": "H4",
+    "text": "Magic Module",
+    "y": 743
+   },
+   {
+    "tag": "H2",
+    "text": "Tons of Options",
+    "y": 1029
+   },
+   {
+    "tag": "H4",
+    "text": "Add a color, image, video, or gradient background. Want two ",
+    "y": 1074
+   },
+   {
+    "tag": "H4",
+    "text": "Hero Slider",
+    "y": 1423
+   },
+   {
+    "tag": "H2",
+    "text": "Hero Slider",
+    "y": 1824
+   },
+   {
+    "tag": "H4",
+    "text": "Add as many slides as you like and control tons of their opt",
+    "y": 1868
+   },
+   {
+    "tag": "H2",
+    "text": "Want a two-column slider?",
+    "y": 1686
+   },
+   {
+    "tag": "H4",
+    "text": "Gotcha covered and then some.",
+    "y": 1730
+   },
+   {
+    "tag": "H4",
+    "text": "Option to add a form? You bet your bottom dollar.",
+    "y": 1711
+   },
+   {
+    "tag": "H2",
+    "text": "Multi-Purpose",
+    "y": 2283
+   },
+   {
+    "tag": "H4",
+    "text": "Magic Module",
+    "y": 2417
+   },
+   {
+    "tag": "H4",
+    "text": "Versa Cards",
+    "y": 3105
+   },
+   {
+    "tag": "H4",
+    "text": "Content Slider",
+    "y": 5609
+   },
+   {
+    "tag": "H4",
+    "text": "Multi-Column Accordion",
+    "y": 6407
+   },
+   {
+    "tag": "H4",
+    "text": "This is the accordion title",
+    "y": 6707
+   },
+   {
+    "tag": "H4",
+    "text": "This is the accordion title",
+    "y": 6756
+   },
+   {
+    "tag": "H4",
+    "text": "This is the accordion title",
+    "y": 6804
+   },
+   {
+    "tag": "H2",
+    "text": "Tables",
+    "y": 7061
+   },
+   {
+    "tag": "H4",
+    "text": "Flexi Table",
+    "y": 7195
+   },
+   {
+    "tag": "H4",
+    "text": "Table Flow",
+    "y": 7679
+   },
+   {
+    "tag": "H2",
+    "text": "Images & Text",
+    "y": 8294
+   },
+   {
+    "tag": "H4",
+    "text": "Image and Text Opt 1",
+    "y": 8428
+   },
+   {
+    "tag": "H4",
+    "text": "Icon & Text",
+    "y": 9044
+   },
+   {
+    "tag": "H4",
+    "text": "Icon & Text",
+    "y": 9247
+   },
+   {
+    "tag": "H4",
+    "text": "Icon & Text",
+    "y": 9247
+   },
+   {
+    "tag": "H4",
+    "text": "Icon & Text",
+    "y": 9247
+   },
+   {
+    "tag": "H4",
+    "text": "Hover Cards",
+    "y": 9509
+   },
+   {
+    "tag": "H4",
+    "text": "Front of Card",
+    "y": 9776
+   },
+   {
+    "tag": "H4",
+    "text": "Front of Card",
+    "y": 9776
+   },
+   {
+    "tag": "H4",
+    "text": "Hover Swap",
+    "y": 10200
+   },
+   {
+    "tag": "H4",
+    "text": "Before & After Image Slider",
+    "y": 10928
+   },
+   {
+    "tag": "H2",
+    "text": "Image Galleries",
+    "y": 11660
+   },
+   {
+    "tag": "H4",
+    "text": "Image Gallery Grid",
+    "y": 11794
+   },
+   {
+    "tag": "H4",
+    "text": "Masonry Image Gallery",
+    "y": 12498
+   },
+   {
+    "tag": "H4",
+    "text": "Image Grid",
+    "y": 12916
+   },
+   {
+    "tag": "H2",
+    "text": "Social Proof",
+    "y": 13475
+   },
+   {
+    "tag": "H4",
+    "text": "Versa Cards (Testimonial Card Style)",
+    "y": 13609
+   },
+   {
+    "tag": "H4",
+    "text": "Testimonial Scroller",
+    "y": 14292
+   },
+   {
+    "tag": "H4",
+    "text": "Logo Scroller",
+    "y": 14944
+   },
+   {
+    "tag": "H4",
+    "text": "Number Count Up",
+    "y": 15399
+   },
+   {
+    "tag": "H2",
+    "text": "340",
+    "y": 15559
+   },
+   {
+    "tag": "H2",
+    "text": "340",
+    "y": 15559
+   },
+   {
+    "tag": "H2",
+    "text": "340",
+    "y": 15559
+   },
+   {
+    "tag": "H4",
+    "text": "Super Social Proof",
+    "y": 15844
+   },
+   {
+    "tag": "H2",
+    "text": "Video",
+    "y": 16765
+   },
+   {
+    "tag": "H4",
+    "text": "Video Gallery",
+    "y": 16899
+   },
+   {
+    "tag": "H4",
+    "text": "Video Playlist",
+    "y": 17599
+   },
+   {
+    "tag": "H2",
+    "text": "Pricing",
+    "y": 18225
+   },
+   {
+    "tag": "H4",
+    "text": "Pricing Table",
+    "y": 18359
+   },
+   {
+    "tag": "H4",
+    "text": "Pricing Comparison Table",
+    "y": 19274
+   },
+   {
+    "tag": "H2",
+    "text": "Team",
+    "y": 20111
+   },
+   {
+    "tag": "H4",
+    "text": "Versa Cards (Team Profile Style)",
+    "y": 20245
+   },
+   {
+    "tag": "H4",
+    "text": "John Wick",
+    "y": 20510
+   },
+   {
+    "tag": "H4",
+    "text": "John Wick",
+    "y": 20510
+   },
+   {
+    "tag": "H4",
+    "text": "John Wick",
+    "y": 20510
+   },
+   {
+    "tag": "H4",
+    "text": "Job Listing Table",
+    "y": 21103
+   },
+   {
+    "tag": "H2",
+    "text": "Specialty",
+    "y": 21551
+   },
+   {
+    "tag": "H4",
+    "text": "Card Flippers",
+    "y": 21685
+   },
+   {
+    "tag": "H4",
+    "text": "Front of the card.",
+    "y": 22001
+   },
+   {
+    "tag": "H4",
+    "text": "Front of the card.",
+    "y": 22001
+   },
+   {
+    "tag": "H4",
+    "text": "Countdown Timer",
+    "y": 22398
+   },
+   {
+    "tag": "H4",
+    "text": "35",
+    "y": 22602
+   },
+   {
+    "tag": "H4",
+    "text": "16",
+    "y": 22602
+   },
+   {
+    "tag": "H4",
+    "text": "10",
+    "y": 22602
+   },
+   {
+    "tag": "H4",
+    "text": "56",
+    "y": 22602
+   },
+   {
+    "tag": "H4",
+    "text": "Event Schedule",
+    "y": 22998
+   },
+   {
+    "tag": "H4",
+    "text": "Tabbed Content",
+    "y": 23626
+   },
+   {
+    "tag": "H4",
+    "text": "Flexi Tabs",
+    "y": 24268
+   },
+   {
+    "tag": "H4",
+    "text": "Product Detail",
+    "y": 24683
+   },
+   {
+    "tag": "H4",
+    "text": "Timeline",
+    "y": 25561
+   },
+   {
+    "tag": "H4",
+    "text": "Headline goes here",
+    "y": 26217
+   },
+   {
+    "tag": "H4",
+    "text": "Meeting Scheduler",
+    "y": 26484
+   },
+   {
+    "tag": "H4",
+    "text": "Scroll Swap",
+    "y": 27533
+   },
+   {
+    "tag": "H2",
+    "text": "Have an idea for an awesome module?",
+    "y": 30437
+   }
+  ]
+ },
+ {
+  "name": "cleanpro-home-opt-1",
+  "url": "https://www.clean.pro/template/home-opt-1",
+  "vp": "desktop",
+  "loadMs": 1481,
+  "ttfb": 126,
+  "load": 1478,
+  "fcp": 588,
+  "bytes": 863554,
+  "reqs": 42,
+  "libs": [
+   "count-up.min.js",
+   "slick-slider-min.min.js",
+   "morph-text.min.js",
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "player.vimeo.com",
+   "www.youtube.com",
+   "www.gstatic.com",
+   "js.hubspot.com",
+   "www.googletagmanager.com",
+   "js.hs-banner.com",
+   "js.hs-analytics.net",
+   "js.hsadspixel.net",
+   "app.hubspot.com",
+   "507386.fs1.hubspotusercontent-na2.net"
+  ],
+  "h1": {
+   "font": "Inter Tight",
+   "size": "80px",
+   "weight": "700",
+   "line": "88px",
+   "color": "rgb(0, 0, 0)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "Inter Tight",
+   "size": "50px",
+   "weight": "700",
+   "line": "65px",
+   "color": "rgb(34, 34, 34)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Inter Tight",
+   "size": "18px",
+   "weight": "400",
+   "line": "27px",
+   "color": "rgb(102, 102, 102)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": null,
+  "topColors": [
+   "rgb(0, 0, 0)",
+   "rgb(102, 102, 102)",
+   "rgb(68, 68, 68)",
+   "rgb(255, 122, 89)",
+   "rgb(255, 255, 255)",
+   "rgba(255, 255, 255, 0.7)",
+   "rgb(249, 249, 249)",
+   "rgb(34, 34, 34)",
+   "rgb(51, 71, 91)",
+   "rgb(242, 245, 248)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 2,
+   "video": 0,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 5052,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 8,
+  "sectionsPos": null
+ },
+ {
+  "name": "cleanpro-home-opt-3",
+  "url": "https://www.clean.pro/template/home-opt-3",
+  "vp": "desktop",
+  "loadMs": 1391,
+  "ttfb": 106,
+  "load": 1388,
+  "fcp": 508,
+  "bytes": 463786,
+  "reqs": 37,
+  "libs": [
+   "slick-slider-min.min.js",
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "player.vimeo.com",
+   "www.youtube.com",
+   "www.gstatic.com",
+   "js.hubspot.com",
+   "www.googletagmanager.com",
+   "507386.fs1.hubspotusercontent-na2.net",
+   "js.hs-analytics.net",
+   "js.hs-banner.com",
+   "js.hsadspixel.net",
+   "app.hubspot.com"
+  ],
+  "h1": null,
+  "h2": {
+   "font": "Inter Tight",
+   "size": "50px",
+   "weight": "700",
+   "line": "65px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Inter Tight",
+   "size": "18px",
+   "weight": "400",
+   "line": "27px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": null,
+  "topColors": [
+   "rgb(0, 0, 0)",
+   "rgb(68, 68, 68)",
+   "rgb(102, 102, 102)",
+   "rgb(241, 166, 4)",
+   "rgb(255, 255, 255)",
+   "rgb(255, 122, 89)",
+   "rgb(249, 249, 249)",
+   "rgb(34, 34, 34)",
+   "rgb(238, 238, 238)",
+   "rgb(51, 71, 91)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 2,
+   "video": 0,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 4527,
+  "overflowX": false,
+  "h1count": 0,
+  "sections": 7,
+  "sectionsPos": null
+ },
+ {
+  "name": "cleanpro-event",
+  "url": "https://www.clean.pro/template/event",
+  "vp": "desktop",
+  "loadMs": 1481,
+  "ttfb": 162,
+  "load": 1479,
+  "fcp": 868,
+  "bytes": 652248,
+  "reqs": 37,
+  "libs": [
+   "slick-slider-min.min.js",
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "player.vimeo.com",
+   "www.youtube.com",
+   "www.gstatic.com",
+   "js.hubspot.com",
+   "www.googletagmanager.com",
+   "507386.fs1.hubspotusercontent-na2.net",
+   "js.hs-analytics.net",
+   "js.hs-banner.com",
+   "js.hsadspixel.net",
+   "app.hubspot.com"
+  ],
+  "h1": {
+   "font": "Inter Tight",
+   "size": "80px",
+   "weight": "700",
+   "line": "88px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "Inter Tight",
+   "size": "50px",
+   "weight": "700",
+   "line": "65px",
+   "color": "rgb(34, 34, 34)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Inter Tight",
+   "size": "18px",
+   "weight": "400",
+   "line": "27px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": null,
+  "topColors": [
+   "rgb(0, 0, 0)",
+   "rgb(102, 102, 102)",
+   "rgb(68, 68, 68)",
+   "rgb(255, 255, 255)",
+   "rgb(255, 122, 89)",
+   "rgb(0, 164, 189)",
+   "rgb(249, 249, 249)",
+   "rgb(34, 34, 34)",
+   "rgb(153, 153, 153)",
+   "rgb(51, 71, 91)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 6,
+   "video": 1,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 6310,
+  "overflowX": true,
+  "h1count": 2,
+  "sections": 6,
+  "sectionsPos": null
+ },
+ {
+  "name": "cleanpro-kontakt",
+  "url": "https://www.clean.pro/template/contact-us",
+  "vp": "desktop",
+  "loadMs": 1339,
+  "ttfb": 143,
+  "load": 1336,
+  "fcp": 548,
+  "bytes": 542304,
+  "reqs": 25,
+  "libs": [
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "player.vimeo.com",
+   "www.youtube.com",
+   "www.googletagmanager.com",
+   "js.hubspot.com",
+   "www.gstatic.com",
+   "js.hs-analytics.net",
+   "507386.fs1.hubspotusercontent-na2.net",
+   "forms-na1.hsforms.com",
+   "js.hsforms.net",
+   "js.hs-banner.com",
+   "js.hsadspixel.net",
+   "app.hubspot.com",
+   "www.google.com"
+  ],
+  "h1": {
+   "font": "Inter Tight",
+   "size": "80px",
+   "weight": "700",
+   "line": "88px",
+   "color": "rgb(0, 0, 0)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "Inter Tight",
+   "size": "50px",
+   "weight": "700",
+   "line": "65px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Inter Tight",
+   "size": "18px",
+   "weight": "400",
+   "line": "27px",
+   "color": "rgb(102, 102, 102)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": null,
+  "topColors": [
+   "rgb(0, 0, 0)",
+   "rgb(68, 68, 68)",
+   "rgb(102, 102, 102)",
+   "rgb(255, 122, 89)",
+   "rgb(255, 255, 255)",
+   "rgb(255, 0, 0)",
+   "rgb(238, 238, 238)",
+   "rgb(51, 71, 91)",
+   "rgb(242, 245, 248)",
+   "rgba(0, 0, 0, 0.5)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 0,
+   "video": 0,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 1753,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 3,
+  "sectionsPos": null
+ },
+ {
+  "name": "cleanpro-casestudy",
+  "url": "https://www.clean.pro/template/case-study",
+  "vp": "desktop",
+  "loadMs": 1253,
+  "ttfb": 217,
+  "load": 1251,
+  "fcp": 620,
+  "bytes": 465203,
+  "reqs": 23,
+  "libs": [
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "player.vimeo.com",
+   "www.youtube.com",
+   "www.googletagmanager.com",
+   "www.gstatic.com",
+   "js.hubspot.com",
+   "app.hubspot.com",
+   "js.hs-banner.com",
+   "507386.fs1.hubspotusercontent-na2.net",
+   "js.hs-analytics.net",
+   "js.hsadspixel.net"
+  ],
+  "h1": {
+   "font": "Inter Tight",
+   "size": "80px",
+   "weight": "700",
+   "line": "88px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "Inter Tight",
+   "size": "50px",
+   "weight": "700",
+   "line": "65px",
+   "color": "rgb(34, 34, 34)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Inter Tight",
+   "size": "18px",
+   "weight": "400",
+   "line": "27px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": null,
+  "topColors": [
+   "rgb(0, 0, 0)",
+   "rgb(102, 102, 102)",
+   "rgb(68, 68, 68)",
+   "rgb(255, 255, 255)",
+   "rgb(255, 122, 89)",
+   "rgb(34, 34, 34)",
+   "rgb(238, 238, 238)",
+   "rgb(51, 71, 91)",
+   "rgb(242, 245, 248)",
+   "rgb(250, 250, 250)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 0,
+   "video": 0,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 3538,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 4,
+  "sectionsPos": null
+ },
+ {
+  "name": "cleanpro-vergleich",
+  "url": "https://www.clean.pro/template/feature-comparison",
+  "vp": "desktop",
+  "loadMs": 1203,
+  "ttfb": 158,
+  "load": 1199,
+  "fcp": 636,
+  "bytes": 544664,
+  "reqs": 37,
+  "libs": [
+   "slick-slider-min.min.js",
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "player.vimeo.com",
+   "www.youtube.com",
+   "www.gstatic.com",
+   "js.hubspot.com",
+   "www.googletagmanager.com",
+   "507386.fs1.hubspotusercontent-na2.net",
+   "js.hs-analytics.net",
+   "js.hsadspixel.net",
+   "js.hs-banner.com",
+   "app.hubspot.com"
+  ],
+  "h1": {
+   "font": "Inter Tight",
+   "size": "80px",
+   "weight": "700",
+   "line": "88px",
+   "color": "rgb(0, 0, 0)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "Inter Tight",
+   "size": "50px",
+   "weight": "700",
+   "line": "65px",
+   "color": "rgb(34, 34, 34)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Inter Tight",
+   "size": "18px",
+   "weight": "400",
+   "line": "27px",
+   "color": "rgb(102, 102, 102)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": null,
+  "topColors": [
+   "rgb(0, 0, 0)",
+   "rgb(68, 68, 68)",
+   "rgb(102, 102, 102)",
+   "rgb(255, 255, 255)",
+   "rgb(255, 122, 89)",
+   "rgb(241, 166, 4)",
+   "rgb(204, 204, 204)",
+   "rgb(34, 34, 34)",
+   "rgb(238, 238, 238)",
+   "rgb(51, 71, 91)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 1,
+   "video": 0,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 3463,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 6,
+  "sectionsPos": null
+ },
+ {
+  "name": "momentum-start",
+  "url": "https://momentumamp.com/",
+  "vp": "desktop",
+  "loadMs": 2345,
+  "ttfb": 323,
+  "load": 2342,
+  "fcp": 872,
+  "bytes": 30546619,
+  "reqs": 78,
+  "libs": [
+   "slick-slider-min.min.js",
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "apiautomate.nowcerts.com",
+   "www.googletagmanager.com",
+   "js.hsforms.net",
+   "forms-na1.hsforms.com",
+   "app.hubspot.com",
+   "js.hs-banner.com",
+   "js.hs-analytics.net",
+   "js.hubspot.com",
+   "js.hsadspixel.net",
+   "play.hubspotvideo.com"
+  ],
+  "h1": {
+   "font": "Poppins",
+   "size": "44.16px",
+   "weight": "700",
+   "line": "44.16px",
+   "color": "rgb(12, 12, 12)",
+   "ls": "-2px",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "Poppins",
+   "size": "48px",
+   "weight": "700",
+   "line": "52.8px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "-1px",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Poppins",
+   "size": "16px",
+   "weight": "400",
+   "line": "24px",
+   "color": "rgb(12, 12, 12)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": {
+   "bg": "rgb(162, 0, 255)",
+   "color": "rgb(255, 255, 255)",
+   "radius": "3px",
+   "font": "Poppins",
+   "weight": "600",
+   "pad": "20px 25px"
+  },
+  "topColors": [
+   "rgb(0, 0, 0)",
+   "rgb(56, 21, 116)",
+   "rgb(102, 102, 102)",
+   "rgb(255, 255, 255)",
+   "rgb(12, 12, 12)",
+   "rgb(56, 21, 118)",
+   "rgb(162, 0, 255)",
+   "rgb(250, 250, 250)",
+   "rgba(250, 250, 250, 0.9)",
+   "rgb(244, 238, 246)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 2,
+   "video": 1,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 8049,
+  "overflowX": true,
+  "h1count": 1,
+  "sections": 14,
+  "sectionsPos": null
+ },
+ {
+  "name": "momentum-produkt-ams",
+  "url": "https://momentumamp.com/ams",
+  "vp": "desktop",
+  "loadMs": 1115,
+  "ttfb": 119,
+  "load": 1112,
+  "fcp": 468,
+  "bytes": 550290,
+  "reqs": 30,
+  "libs": [
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "apiautomate.nowcerts.com",
+   "www.googletagmanager.com",
+   "js.hubspot.com",
+   "app.hubspot.com",
+   "js.hs-banner.com",
+   "js.hs-analytics.net",
+   "js.hsadspixel.net"
+  ],
+  "h1": {
+   "font": "Poppins",
+   "size": "20.752px",
+   "weight": "700",
+   "line": "25.94px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "Poppins",
+   "size": "48px",
+   "weight": "700",
+   "line": "52.8px",
+   "color": "rgb(12, 12, 12)",
+   "ls": "-1px",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Poppins",
+   "size": "16px",
+   "weight": "400",
+   "line": "24px",
+   "color": "rgb(12, 12, 12)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": {
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(0, 0, 0)",
+   "radius": "3px",
+   "font": "Poppins",
+   "weight": "600",
+   "pad": "20px 25px"
+  },
+  "topColors": [
+   "rgb(0, 0, 0)",
+   "rgb(12, 12, 12)",
+   "rgb(56, 21, 118)",
+   "rgb(54, 21, 114)",
+   "rgb(255, 255, 255)",
+   "rgb(250, 250, 250)",
+   "rgba(255, 255, 255, 0.9)",
+   "rgb(162, 0, 255)",
+   "rgb(244, 238, 246)",
+   "rgb(209, 210, 214)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 3,
+   "video": 0,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 4736,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 10,
+  "sectionsPos": null
+ },
+ {
+  "name": "momentum-preise",
+  "url": "https://momentumamp.com/pricing",
+  "vp": "desktop",
+  "loadMs": 1045,
+  "ttfb": 108,
+  "load": 1033,
+  "fcp": 408,
+  "bytes": 569740,
+  "reqs": 28,
+  "libs": [
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "apiautomate.nowcerts.com",
+   "js.hubspot.com",
+   "www.googletagmanager.com",
+   "js.hs-banner.com",
+   "app.hubspot.com",
+   "js.hsadspixel.net",
+   "js.hs-analytics.net"
+  ],
+  "h1": {
+   "font": "Poppins",
+   "size": "60px",
+   "weight": "700",
+   "line": "66px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "-2px",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "Poppins",
+   "size": "48px",
+   "weight": "700",
+   "line": "52.8px",
+   "color": "rgb(12, 12, 12)",
+   "ls": "-1px",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Poppins",
+   "size": "16px",
+   "weight": "400",
+   "line": "24px",
+   "color": "rgb(12, 12, 12)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": null,
+  "topColors": [
+   "rgb(0, 0, 0)",
+   "rgb(12, 12, 12)",
+   "rgb(56, 21, 118)",
+   "rgb(54, 21, 114)",
+   "rgb(68, 68, 68)",
+   "rgb(255, 255, 255)",
+   "rgb(162, 0, 255)",
+   "rgb(250, 250, 250)",
+   "rgba(255, 255, 255, 0.9)",
+   "rgb(244, 238, 246)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 0,
+   "video": 0,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 9048,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 13,
+  "sectionsPos": null
+ },
+ {
+  "name": "momentum-events",
+  "url": "https://momentumamp.com/events",
+  "vp": "desktop",
+  "loadMs": 1199,
+  "ttfb": 158,
+  "load": 1197,
+  "fcp": 488,
+  "bytes": 476712,
+  "reqs": 23,
+  "libs": [
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "calendar.google.com",
+   "apiautomate.nowcerts.com",
+   "www.googletagmanager.com",
+   "js.hsadspixel.net",
+   "js.hs-banner.com",
+   "js.hubspot.com",
+   "app.hubspot.com",
+   "js.hs-analytics.net"
+  ],
+  "h1": {
+   "font": "Poppins",
+   "size": "60px",
+   "weight": "700",
+   "line": "66px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "-2px",
+   "tt": "none"
+  },
+  "h2": null,
+  "p": {
+   "font": "Poppins",
+   "size": "16px",
+   "weight": "400",
+   "line": "24px",
+   "color": "rgb(12, 12, 12)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": null,
+  "topColors": [
+   "rgb(12, 12, 12)",
+   "rgb(56, 21, 118)",
+   "rgb(0, 0, 0)",
+   "rgb(54, 21, 114)",
+   "rgb(255, 255, 255)",
+   "rgb(250, 250, 250)",
+   "rgba(255, 255, 255, 0.9)",
+   "rgb(162, 0, 255)",
+   "rgb(244, 238, 246)",
+   "rgb(51, 71, 91)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 0,
+   "video": 0,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 2509,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 2,
+  "sectionsPos": null
+ },
+ {
+  "name": "flipside-start",
+  "url": "https://www.flipsidegroup.com.au/",
+  "vp": "desktop",
+  "loadMs": 2228,
+  "ttfb": 418,
+  "load": 2224,
+  "fcp": 1236,
+  "bytes": 53275,
+  "reqs": 36,
+  "libs": [],
+  "failedHosts": [
+   "analytics.tiktok.com",
+   "www.googletagmanager.com",
+   "snap.licdn.com",
+   "js.hs-banner.com",
+   "js.hscollectedforms.net",
+   "app.hubspot.com",
+   "js.hs-analytics.net",
+   "js.hubspot.com"
+  ],
+  "h1": {
+   "font": "Lato",
+   "size": "116.1px",
+   "weight": "900",
+   "line": "127.71px",
+   "color": "rgb(33, 26, 33)",
+   "ls": "-2.9025px",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "Lato",
+   "size": "52px",
+   "weight": "900",
+   "line": "56.16px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "-1.04px",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Lato",
+   "size": "14.08px",
+   "weight": "400",
+   "line": "19.712px",
+   "color": "rgb(88, 80, 78)",
+   "ls": "1.408px",
+   "tt": "none"
+  },
+  "button": {
+   "bg": "rgb(247, 147, 30)",
+   "color": "rgb(33, 26, 33)",
+   "radius": "4px",
+   "font": "Lato",
+   "weight": "700",
+   "pad": "18px 32px"
+  },
+  "topColors": [
+   "rgb(33, 26, 33)",
+   "rgb(255, 255, 255)",
+   "rgb(247, 147, 30)",
+   "rgb(176, 170, 168)",
+   "rgb(88, 80, 78)",
+   "rgb(228, 224, 223)",
+   "color(srgb 0.968627 0.576471 0.117647 / 0.07)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 7,
+   "video": 0,
+   "lottie": 0,
+   "canvas": 1,
+   "sticky": true
+  },
+  "height": 6692,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 18,
+  "sectionsPos": null
+ },
+ {
+  "name": "cloudcapsule-start",
+  "url": "https://www.cloudcapsule.io/",
+  "vp": "desktop",
+  "loadMs": 3001,
+  "ttfb": 541,
+  "load": 2997,
+  "fcp": 1228,
+  "bytes": 11890347,
+  "reqs": 113,
+  "libs": [],
+  "failedHosts": [
+   "www.youtube.com",
+   "www.googletagmanager.com",
+   "us-assets.i.posthog.com",
+   "static.claydar.com",
+   "snap.licdn.com",
+   "static.ads-twitter.com",
+   "www.cloudcapsule.io",
+   "js.hs-scripts.com",
+   "us.i.posthog.com"
+  ],
+  "h1": {
+   "font": "JetBrains Mono",
+   "size": "44.8px",
+   "weight": "700",
+   "line": "51.52px",
+   "color": "rgb(232, 240, 249)",
+   "ls": "-0.896px",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "JetBrains Mono",
+   "size": "36px",
+   "weight": "700",
+   "line": "41.4px",
+   "color": "rgb(232, 240, 249)",
+   "ls": "-0.72px",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Google Sans Flex",
+   "size": "18px",
+   "weight": "500",
+   "line": "28px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": {
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(232, 240, 249)",
+   "radius": "8px",
+   "font": "\"Google Sans Flex\"",
+   "weight": "500",
+   "pad": "12px 16px"
+  },
+  "topColors": [
+   "rgb(232, 240, 249)",
+   "rgb(207, 220, 234)",
+   "rgb(56, 189, 248)",
+   "rgb(157, 176, 198)",
+   "rgb(255, 255, 255)",
+   "rgb(0, 0, 0)",
+   "rgb(34, 197, 94)",
+   "oklab(0.888875 -0.00808141 -0.0224052 / 0.6)",
+   "rgb(35, 22, 68)",
+   "rgba(8, 8, 10, 0.25)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 33,
+   "video": 8,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": true
+  },
+  "height": 8219,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 7,
+  "sectionsPos": null
+ },
+ {
+  "name": "cloudcapsule-preise",
+  "url": "https://www.cloudcapsule.io/pricing/",
+  "vp": "desktop",
+  "loadMs": 846,
+  "ttfb": 131,
+  "load": 839,
+  "fcp": 460,
+  "bytes": 179110,
+  "reqs": 100,
+  "libs": [],
+  "failedHosts": [
+   "www.googletagmanager.com",
+   "us-assets.i.posthog.com",
+   "static.ads-twitter.com",
+   "snap.licdn.com",
+   "static.claydar.com",
+   "js.hs-scripts.com",
+   "us.i.posthog.com"
+  ],
+  "h1": {
+   "font": "JetBrains Mono",
+   "size": "55.2px",
+   "weight": "700",
+   "line": "63.48px",
+   "color": "rgb(232, 240, 249)",
+   "ls": "-1.104px",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "JetBrains Mono",
+   "size": "36px",
+   "weight": "700",
+   "line": "41.4px",
+   "color": "rgb(232, 240, 249)",
+   "ls": "-0.72px",
+   "tt": "none"
+  },
+  "p": {
+   "font": "JetBrains Mono",
+   "size": "30px",
+   "weight": "500",
+   "line": "36px",
+   "color": "oklab(0.951718 -0.00475138 -0.0140308 / 0.8)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": {
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(232, 240, 249)",
+   "radius": "8px",
+   "font": "\"Google Sans Flex\"",
+   "weight": "500",
+   "pad": "12px 16px"
+  },
+  "topColors": [
+   "rgb(232, 240, 249)",
+   "oklab(0.951718 -0.00475138 -0.0140308 / 0.9)",
+   "rgb(207, 220, 234)",
+   "rgb(56, 189, 248)",
+   "rgb(157, 176, 198)",
+   "rgb(34, 197, 94)",
+   "rgb(0, 0, 0)",
+   "oklab(0.888875 -0.00808141 -0.0224052 / 0.6)",
+   "color(srgb 0.113725 0.0705882 0.219608 / 0.85)",
+   "rgb(35, 22, 68)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 33,
+   "video": 0,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": true
+  },
+  "height": 5693,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 7,
+  "sectionsPos": null
+ },
+ {
+  "name": "cleanpro-start",
+  "url": "https://www.clean.pro/",
+  "vp": "mobil",
+  "loadMs": 1623,
+  "ttfb": 208,
+  "load": 1621,
+  "fcp": 696,
+  "bytes": 3799473,
+  "reqs": 131,
+  "libs": [
+   "morph-text.min.js",
+   "slick-slider-min.min.js",
+   "lottie-player.min.js",
+   "count-up.min.js",
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "player.vimeo.com",
+   "www.youtube.com",
+   "no-cache.hubspot.com",
+   "www.gstatic.com",
+   "js.hubspot.com",
+   "www.googletagmanager.com",
+   "js.hsadspixel.net",
+   "app.hubspot.com",
+   "lottie.host",
+   "js.hs-banner.com",
+   "js.hs-analytics.net",
+   "cta-service-cms2.hubspot.com",
+   "play.hubspotvideo.com",
+   "perf.hsforms.com"
+  ],
+  "h1": {
+   "font": "Inter Tight",
+   "size": "42px",
+   "weight": "700",
+   "line": "46.2px",
+   "color": "rgb(0, 0, 0)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "Inter Tight",
+   "size": "33px",
+   "weight": "700",
+   "line": "42.9px",
+   "color": "rgb(34, 34, 34)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Inter Tight",
+   "size": "16px",
+   "weight": "400",
+   "line": "24px",
+   "color": "rgb(102, 102, 102)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": {
+   "bg": "rgb(255, 122, 89)",
+   "color": "rgb(255, 255, 255)",
+   "radius": "3px",
+   "font": "\"Inter Tight\"",
+   "weight": "700",
+   "pad": "20px 25px"
+  },
+  "topColors": [
+   "rgb(0, 0, 0)",
+   "rgb(255, 122, 89)",
+   "rgb(102, 102, 102)",
+   "rgb(68, 68, 68)",
+   "rgb(255, 255, 255)",
+   "rgb(241, 166, 4)",
+   "rgb(34, 34, 34)",
+   "rgba(0, 0, 0, 0.5)",
+   "rgba(255, 255, 255, 0.7)",
+   "rgb(238, 238, 238)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 5,
+   "video": 0,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 16669,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 10,
+  "sectionsPos": null
+ },
+ {
+  "name": "cleanpro-module",
+  "url": "https://www.clean.pro/modules",
+  "vp": "mobil",
+  "loadMs": 2525,
+  "ttfb": 113,
+  "load": 2523,
+  "fcp": 1276,
+  "bytes": 4735431,
+  "reqs": 131,
+  "libs": [
+   "slick-slider-min.min.js",
+   "count-up.min.js",
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "www.youtube.com",
+   "player.vimeo.com",
+   "js.hubspot.com",
+   "dl.dropboxusercontent.com",
+   "www.loom.com",
+   "www.googletagmanager.com",
+   "www.gstatic.com",
+   "507386.fs1.hubspotusercontent-na2.net",
+   "js.hsforms.net",
+   "cdn2.hubspot.net",
+   "forms-na1.hsforms.com",
+   "www.google.com",
+   "js.hs-banner.com",
+   "js.hsadspixel.net",
+   "js.hs-analytics.net",
+   "play.hubspotvideo.com",
+   "app.hubspot.com",
+   "forms.hubspot.com",
+   "f.hubspotusercontent30.net"
+  ],
+  "h1": {
+   "font": "Inter Tight",
+   "size": "42px",
+   "weight": "700",
+   "line": "46.2px",
+   "color": "rgb(0, 0, 0)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "Inter Tight",
+   "size": "33px",
+   "weight": "700",
+   "line": "42.9px",
+   "color": "rgb(34, 34, 34)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Inter Tight",
+   "size": "16px",
+   "weight": "400",
+   "line": "24px",
+   "color": "rgb(102, 102, 102)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": {
+   "bg": "rgb(250, 250, 250)",
+   "color": "rgb(0, 0, 0)",
+   "radius": "3px",
+   "font": "\"Inter Tight\"",
+   "weight": "600",
+   "pad": "20px 25px"
+  },
+  "topColors": [
+   "rgb(0, 0, 0)",
+   "rgb(102, 102, 102)",
+   "rgb(255, 255, 255)",
+   "rgb(255, 122, 89)",
+   "rgb(68, 68, 68)",
+   "rgb(34, 34, 34)",
+   "rgba(255, 255, 255, 0)",
+   "rgb(0, 164, 189)",
+   "rgb(241, 166, 4)",
+   "rgb(153, 153, 153)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 5,
+   "video": 2,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 36645,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 5,
+  "sectionsPos": null
+ },
+ {
+  "name": "cleanpro-home-opt-1",
+  "url": "https://www.clean.pro/template/home-opt-1",
+  "vp": "mobil",
+  "loadMs": 1447,
+  "ttfb": 111,
+  "load": 1445,
+  "fcp": 532,
+  "bytes": 863553,
+  "reqs": 42,
+  "libs": [
+   "morph-text.min.js",
+   "count-up.min.js",
+   "slick-slider-min.min.js",
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "player.vimeo.com",
+   "www.youtube.com",
+   "www.gstatic.com",
+   "www.googletagmanager.com",
+   "js.hubspot.com",
+   "js.hs-analytics.net",
+   "js.hs-banner.com",
+   "js.hsadspixel.net",
+   "app.hubspot.com",
+   "507386.fs1.hubspotusercontent-na2.net"
+  ],
+  "h1": {
+   "font": "Inter Tight",
+   "size": "42px",
+   "weight": "700",
+   "line": "46.2px",
+   "color": "rgb(0, 0, 0)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "Inter Tight",
+   "size": "33px",
+   "weight": "700",
+   "line": "42.9px",
+   "color": "rgb(34, 34, 34)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Inter Tight",
+   "size": "16px",
+   "weight": "400",
+   "line": "24px",
+   "color": "rgb(102, 102, 102)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": {
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(68, 68, 68)",
+   "radius": "0px",
+   "font": "\"Inter Tight\"",
+   "weight": "400",
+   "pad": "1px 0px 20px"
+  },
+  "topColors": [
+   "rgb(0, 0, 0)",
+   "rgb(102, 102, 102)",
+   "rgb(68, 68, 68)",
+   "rgb(255, 122, 89)",
+   "rgb(255, 255, 255)",
+   "rgba(255, 255, 255, 0.7)",
+   "rgb(249, 249, 249)",
+   "rgb(34, 34, 34)",
+   "rgb(51, 71, 91)",
+   "rgb(242, 245, 248)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 2,
+   "video": 0,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 8135,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 8,
+  "sectionsPos": null
+ },
+ {
+  "name": "cleanpro-home-opt-3",
+  "url": "https://www.clean.pro/template/home-opt-3",
+  "vp": "mobil",
+  "loadMs": 2480,
+  "ttfb": 112,
+  "load": 2477,
+  "fcp": 600,
+  "bytes": 523419,
+  "reqs": 38,
+  "libs": [
+   "slick-slider-min.min.js",
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "www.youtube.com",
+   "player.vimeo.com",
+   "www.gstatic.com",
+   "www.googletagmanager.com",
+   "js.hubspot.com",
+   "js.hs-analytics.net",
+   "js.hs-banner.com",
+   "js.hsadspixel.net",
+   "app.hubspot.com",
+   "507386.fs1.hubspotusercontent-na2.net"
+  ],
+  "h1": null,
+  "h2": {
+   "font": "Inter Tight",
+   "size": "33px",
+   "weight": "700",
+   "line": "42.9px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Inter Tight",
+   "size": "16px",
+   "weight": "400",
+   "line": "24px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": {
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(68, 68, 68)",
+   "radius": "0px",
+   "font": "\"Inter Tight\"",
+   "weight": "400",
+   "pad": "1px 0px 20px"
+  },
+  "topColors": [
+   "rgb(0, 0, 0)",
+   "rgb(68, 68, 68)",
+   "rgb(102, 102, 102)",
+   "rgb(255, 122, 89)",
+   "rgb(241, 166, 4)",
+   "rgb(255, 255, 255)",
+   "rgb(249, 249, 249)",
+   "rgb(34, 34, 34)",
+   "rgb(238, 238, 238)",
+   "rgb(51, 71, 91)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 15,
+   "video": 0,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 6689,
+  "overflowX": false,
+  "h1count": 0,
+  "sections": 7,
+  "sectionsPos": null
+ },
+ {
+  "name": "cleanpro-event",
+  "url": "https://www.clean.pro/template/event",
+  "vp": "mobil",
+  "loadMs": 1460,
+  "ttfb": 208,
+  "load": 1457,
+  "fcp": 768,
+  "bytes": 640155,
+  "reqs": 37,
+  "libs": [
+   "slick-slider-min.min.js",
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "player.vimeo.com",
+   "www.youtube.com",
+   "www.gstatic.com",
+   "www.googletagmanager.com",
+   "js.hubspot.com",
+   "js.hs-banner.com",
+   "js.hsadspixel.net",
+   "507386.fs1.hubspotusercontent-na2.net",
+   "app.hubspot.com",
+   "js.hs-analytics.net"
+  ],
+  "h1": {
+   "font": "Inter Tight",
+   "size": "42px",
+   "weight": "700",
+   "line": "46.2px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "Inter Tight",
+   "size": "33px",
+   "weight": "700",
+   "line": "42.9px",
+   "color": "rgb(34, 34, 34)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Inter Tight",
+   "size": "16px",
+   "weight": "400",
+   "line": "24px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": {
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(68, 68, 68)",
+   "radius": "0px",
+   "font": "\"Inter Tight\"",
+   "weight": "400",
+   "pad": "1px 0px 20px"
+  },
+  "topColors": [
+   "rgb(0, 0, 0)",
+   "rgb(255, 122, 89)",
+   "rgb(102, 102, 102)",
+   "rgb(68, 68, 68)",
+   "rgb(255, 255, 255)",
+   "rgb(0, 164, 189)",
+   "rgb(249, 249, 249)",
+   "rgb(34, 34, 34)",
+   "rgb(153, 153, 153)",
+   "rgb(51, 71, 91)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 4,
+   "video": 1,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 11339,
+  "overflowX": false,
+  "h1count": 2,
+  "sections": 6,
+  "sectionsPos": null
+ },
+ {
+  "name": "cleanpro-kontakt",
+  "url": "https://www.clean.pro/template/contact-us",
+  "vp": "mobil",
+  "loadMs": 1487,
+  "ttfb": 210,
+  "load": 1485,
+  "fcp": 644,
+  "bytes": 567227,
+  "reqs": 26,
+  "libs": [
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "www.youtube.com",
+   "player.vimeo.com",
+   "www.gstatic.com",
+   "www.googletagmanager.com",
+   "js.hubspot.com",
+   "507386.fs1.hubspotusercontent-na2.net",
+   "js.hs-banner.com",
+   "forms-na1.hsforms.com",
+   "www.google.com",
+   "app.hubspot.com",
+   "js.hsforms.net",
+   "js.hsadspixel.net",
+   "js.hs-analytics.net"
+  ],
+  "h1": {
+   "font": "Inter Tight",
+   "size": "42px",
+   "weight": "700",
+   "line": "46.2px",
+   "color": "rgb(0, 0, 0)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "Inter Tight",
+   "size": "33px",
+   "weight": "700",
+   "line": "42.9px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Inter Tight",
+   "size": "16px",
+   "weight": "400",
+   "line": "24px",
+   "color": "rgb(102, 102, 102)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": {
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(68, 68, 68)",
+   "radius": "0px",
+   "font": "\"Inter Tight\"",
+   "weight": "400",
+   "pad": "1px 0px 20px"
+  },
+  "topColors": [
+   "rgb(0, 0, 0)",
+   "rgb(68, 68, 68)",
+   "rgb(102, 102, 102)",
+   "rgb(255, 122, 89)",
+   "rgb(255, 255, 255)",
+   "rgb(255, 0, 0)",
+   "rgb(238, 238, 238)",
+   "rgb(51, 71, 91)",
+   "rgb(242, 245, 248)",
+   "rgba(0, 0, 0, 0.5)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 0,
+   "video": 0,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 2154,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 3,
+  "sectionsPos": null
+ },
+ {
+  "name": "cleanpro-casestudy",
+  "url": "https://www.clean.pro/template/case-study",
+  "vp": "mobil",
+  "loadMs": 1450,
+  "ttfb": 262,
+  "load": 1446,
+  "fcp": 708,
+  "bytes": 540327,
+  "reqs": 24,
+  "libs": [
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "www.youtube.com",
+   "player.vimeo.com",
+   "www.gstatic.com",
+   "www.googletagmanager.com",
+   "js.hubspot.com",
+   "app.hubspot.com",
+   "js.hsadspixel.net",
+   "js.hs-analytics.net",
+   "js.hs-banner.com",
+   "507386.fs1.hubspotusercontent-na2.net"
+  ],
+  "h1": {
+   "font": "Inter Tight",
+   "size": "42px",
+   "weight": "700",
+   "line": "46.2px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "Inter Tight",
+   "size": "33px",
+   "weight": "700",
+   "line": "42.9px",
+   "color": "rgb(34, 34, 34)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Inter Tight",
+   "size": "16px",
+   "weight": "400",
+   "line": "24px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": {
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(68, 68, 68)",
+   "radius": "0px",
+   "font": "\"Inter Tight\"",
+   "weight": "400",
+   "pad": "1px 0px 20px"
+  },
+  "topColors": [
+   "rgb(0, 0, 0)",
+   "rgb(102, 102, 102)",
+   "rgb(255, 122, 89)",
+   "rgb(68, 68, 68)",
+   "rgb(255, 255, 255)",
+   "rgb(34, 34, 34)",
+   "rgb(238, 238, 238)",
+   "rgb(51, 71, 91)",
+   "rgb(242, 245, 248)",
+   "rgb(250, 250, 250)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 0,
+   "video": 0,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 4473,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 4,
+  "sectionsPos": null
+ },
+ {
+  "name": "cleanpro-vergleich",
+  "url": "https://www.clean.pro/template/feature-comparison",
+  "vp": "mobil",
+  "loadMs": 1468,
+  "ttfb": 161,
+  "load": 1465,
+  "fcp": 664,
+  "bytes": 544673,
+  "reqs": 37,
+  "libs": [
+   "slick-slider-min.min.js",
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "player.vimeo.com",
+   "www.youtube.com",
+   "js.hubspot.com",
+   "www.gstatic.com",
+   "www.googletagmanager.com",
+   "app.hubspot.com",
+   "js.hsadspixel.net",
+   "js.hs-banner.com",
+   "js.hs-analytics.net",
+   "507386.fs1.hubspotusercontent-na2.net"
+  ],
+  "h1": {
+   "font": "Inter Tight",
+   "size": "42px",
+   "weight": "700",
+   "line": "46.2px",
+   "color": "rgb(0, 0, 0)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "Inter Tight",
+   "size": "33px",
+   "weight": "700",
+   "line": "42.9px",
+   "color": "rgb(34, 34, 34)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Inter Tight",
+   "size": "16px",
+   "weight": "400",
+   "line": "24px",
+   "color": "rgb(102, 102, 102)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": {
+   "bg": "rgb(204, 204, 204)",
+   "color": "rgb(0, 0, 0)",
+   "radius": "0px",
+   "font": "\"Inter Tight\"",
+   "weight": "700",
+   "pad": "10px"
+  },
+  "topColors": [
+   "rgb(0, 0, 0)",
+   "rgb(68, 68, 68)",
+   "rgb(255, 122, 89)",
+   "rgb(102, 102, 102)",
+   "rgb(255, 255, 255)",
+   "rgb(241, 166, 4)",
+   "rgb(204, 204, 204)",
+   "rgb(34, 34, 34)",
+   "rgb(238, 238, 238)",
+   "rgb(51, 71, 91)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 1,
+   "video": 0,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 4814,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 6,
+  "sectionsPos": null
+ },
+ {
+  "name": "momentum-start",
+  "url": "https://momentumamp.com/",
+  "vp": "mobil",
+  "loadMs": 1967,
+  "ttfb": 249,
+  "load": 1964,
+  "fcp": 860,
+  "bytes": 30453482,
+  "reqs": 76,
+  "libs": [
+   "slick-slider-min.min.js",
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "www.googletagmanager.com",
+   "apiautomate.nowcerts.com",
+   "forms-na1.hsforms.com",
+   "js.hsforms.net",
+   "js.hsadspixel.net",
+   "js.hubspot.com",
+   "play.hubspotvideo.com",
+   "js.hs-analytics.net",
+   "js.hs-banner.com",
+   "app.hubspot.com"
+  ],
+  "h1": {
+   "font": "Poppins",
+   "size": "29.46px",
+   "weight": "700",
+   "line": "29.46px",
+   "color": "rgb(12, 12, 12)",
+   "ls": "-2px",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "Poppins",
+   "size": "48px",
+   "weight": "700",
+   "line": "52.8px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "-1px",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Poppins",
+   "size": "16px",
+   "weight": "400",
+   "line": "24px",
+   "color": "rgb(12, 12, 12)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": {
+   "bg": "rgb(162, 0, 255)",
+   "color": "rgb(255, 255, 255)",
+   "radius": "3px",
+   "font": "Poppins",
+   "weight": "600",
+   "pad": "20px 25px"
+  },
+  "topColors": [
+   "rgb(0, 0, 0)",
+   "rgb(56, 21, 116)",
+   "rgb(255, 255, 255)",
+   "rgb(12, 12, 12)",
+   "rgb(56, 21, 118)",
+   "rgb(102, 102, 102)",
+   "rgb(162, 0, 255)",
+   "rgb(250, 250, 250)",
+   "rgba(250, 250, 250, 0.9)",
+   "rgb(244, 238, 246)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 2,
+   "video": 1,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 14322,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 14,
+  "sectionsPos": null
+ },
+ {
+  "name": "momentum-produkt-ams",
+  "url": "https://momentumamp.com/ams",
+  "vp": "mobil",
+  "loadMs": 1147,
+  "ttfb": 134,
+  "load": 1144,
+  "fcp": 480,
+  "bytes": 629729,
+  "reqs": 31,
+  "libs": [
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "apiautomate.nowcerts.com",
+   "www.googletagmanager.com",
+   "js.hsadspixel.net",
+   "js.hubspot.com",
+   "js.hs-analytics.net",
+   "js.hs-banner.com",
+   "app.hubspot.com"
+  ],
+  "h1": {
+   "font": "Poppins",
+   "size": "17.287px",
+   "weight": "700",
+   "line": "21.6087px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "Poppins",
+   "size": "48px",
+   "weight": "700",
+   "line": "52.8px",
+   "color": "rgb(12, 12, 12)",
+   "ls": "-1px",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Poppins",
+   "size": "16px",
+   "weight": "400",
+   "line": "24px",
+   "color": "rgb(12, 12, 12)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": {
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(0, 0, 0)",
+   "radius": "3px",
+   "font": "Poppins",
+   "weight": "600",
+   "pad": "20px 25px"
+  },
+  "topColors": [
+   "rgb(0, 0, 0)",
+   "rgb(56, 21, 118)",
+   "rgb(12, 12, 12)",
+   "rgb(54, 21, 114)",
+   "rgb(255, 255, 255)",
+   "rgb(250, 250, 250)",
+   "rgba(255, 255, 255, 0.9)",
+   "rgb(209, 210, 214)",
+   "rgb(162, 0, 255)",
+   "rgb(244, 238, 246)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 1,
+   "video": 0,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 7888,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 10,
+  "sectionsPos": null
+ },
+ {
+  "name": "momentum-preise",
+  "url": "https://momentumamp.com/pricing",
+  "vp": "mobil",
+  "loadMs": 1014,
+  "ttfb": 107,
+  "load": 1012,
+  "fcp": 420,
+  "bytes": 569735,
+  "reqs": 28,
+  "libs": [
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "js.hubspot.com",
+   "apiautomate.nowcerts.com",
+   "www.googletagmanager.com",
+   "js.hs-banner.com",
+   "app.hubspot.com",
+   "js.hsadspixel.net",
+   "js.hs-analytics.net"
+  ],
+  "h1": {
+   "font": "Poppins",
+   "size": "44px",
+   "weight": "700",
+   "line": "48.4px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "-2px",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "Poppins",
+   "size": "48px",
+   "weight": "700",
+   "line": "52.8px",
+   "color": "rgb(12, 12, 12)",
+   "ls": "-1px",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Poppins",
+   "size": "16px",
+   "weight": "400",
+   "line": "24px",
+   "color": "rgb(12, 12, 12)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": {
+   "bg": "rgb(204, 204, 204)",
+   "color": "rgb(255, 255, 255)",
+   "radius": "0px",
+   "font": "Poppins",
+   "weight": "700",
+   "pad": "10px"
+  },
+  "topColors": [
+   "rgb(0, 0, 0)",
+   "rgb(56, 21, 118)",
+   "rgb(12, 12, 12)",
+   "rgb(68, 68, 68)",
+   "rgb(54, 21, 114)",
+   "rgb(255, 255, 255)",
+   "rgb(162, 0, 255)",
+   "rgb(250, 250, 250)",
+   "rgba(255, 255, 255, 0.9)",
+   "rgb(244, 238, 246)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 0,
+   "video": 0,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 9170,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 13,
+  "sectionsPos": null
+ },
+ {
+  "name": "momentum-events",
+  "url": "https://momentumamp.com/events",
+  "vp": "mobil",
+  "loadMs": 1083,
+  "ttfb": 115,
+  "load": 1079,
+  "fcp": 432,
+  "bytes": 507107,
+  "reqs": 23,
+  "libs": [
+   "jquery-modal-min.min.js"
+  ],
+  "failedHosts": [
+   "calendar.google.com",
+   "www.googletagmanager.com",
+   "apiautomate.nowcerts.com",
+   "js.hsadspixel.net",
+   "app.hubspot.com",
+   "js.hs-analytics.net",
+   "js.hubspot.com",
+   "js.hs-banner.com"
+  ],
+  "h1": {
+   "font": "Poppins",
+   "size": "44px",
+   "weight": "700",
+   "line": "48.4px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "-2px",
+   "tt": "none"
+  },
+  "h2": null,
+  "p": {
+   "font": "Poppins",
+   "size": "16px",
+   "weight": "400",
+   "line": "24px",
+   "color": "rgb(12, 12, 12)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": {
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(0, 0, 0)",
+   "radius": "0px",
+   "font": "Poppins",
+   "weight": "400",
+   "pad": "1px 0px 20px"
+  },
+  "topColors": [
+   "rgb(0, 0, 0)",
+   "rgb(56, 21, 118)",
+   "rgb(54, 21, 114)",
+   "rgb(12, 12, 12)",
+   "rgb(255, 255, 255)",
+   "rgb(250, 250, 250)",
+   "rgba(255, 255, 255, 0.9)",
+   "rgb(162, 0, 255)",
+   "rgb(244, 238, 246)",
+   "rgb(51, 71, 91)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 0,
+   "video": 0,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": false
+  },
+  "height": 1451,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 2,
+  "sectionsPos": null
+ },
+ {
+  "name": "flipside-start",
+  "url": "https://www.flipsidegroup.com.au/",
+  "vp": "mobil",
+  "loadMs": 1895,
+  "ttfb": 346,
+  "load": 1892,
+  "fcp": 1044,
+  "bytes": 99304,
+  "reqs": 87,
+  "libs": [],
+  "failedHosts": [
+   "www.googletagmanager.com",
+   "analytics.tiktok.com",
+   "snap.licdn.com",
+   "js.hubspot.com",
+   "js.hs-analytics.net",
+   "app.hubspot.com",
+   "js.hs-banner.com",
+   "js.hscollectedforms.net"
+  ],
+  "h1": {
+   "font": "Lato",
+   "size": "43px",
+   "weight": "900",
+   "line": "47.3px",
+   "color": "rgb(33, 26, 33)",
+   "ls": "-1.075px",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "Lato",
+   "size": "31.2px",
+   "weight": "900",
+   "line": "33.696px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "-0.624px",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Lato",
+   "size": "11.52px",
+   "weight": "400",
+   "line": "16.128px",
+   "color": "rgb(88, 80, 78)",
+   "ls": "1.152px",
+   "tt": "none"
+  },
+  "button": {
+   "bg": "rgb(247, 147, 30)",
+   "color": "rgb(33, 26, 33)",
+   "radius": "4px",
+   "font": "Lato",
+   "weight": "700",
+   "pad": "18px 32px"
+  },
+  "topColors": [
+   "rgb(33, 26, 33)",
+   "rgb(255, 255, 255)",
+   "rgb(247, 147, 30)",
+   "rgb(176, 170, 168)",
+   "rgb(88, 80, 78)",
+   "rgb(228, 224, 223)",
+   "color(srgb 0.968627 0.576471 0.117647 / 0.07)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 7,
+   "video": 0,
+   "lottie": 0,
+   "canvas": 1,
+   "sticky": true
+  },
+  "height": 9018,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 18,
+  "sectionsPos": null
+ },
+ {
+  "name": "cloudcapsule-start",
+  "url": "https://www.cloudcapsule.io/",
+  "vp": "mobil",
+  "loadMs": 2329,
+  "ttfb": 308,
+  "load": 2326,
+  "fcp": 796,
+  "bytes": 16647010,
+  "reqs": 163,
+  "libs": [],
+  "failedHosts": [
+   "www.youtube.com",
+   "www.googletagmanager.com",
+   "js.hs-scripts.com",
+   "us-assets.i.posthog.com",
+   "static.claydar.com",
+   "static.ads-twitter.com",
+   "www.cloudcapsule.io",
+   "snap.licdn.com",
+   "us.i.posthog.com"
+  ],
+  "h1": {
+   "font": "JetBrains Mono",
+   "size": "44px",
+   "weight": "700",
+   "line": "50.6px",
+   "color": "rgb(232, 240, 249)",
+   "ls": "-0.88px",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "JetBrains Mono",
+   "size": "24px",
+   "weight": "700",
+   "line": "27.6px",
+   "color": "rgb(232, 240, 249)",
+   "ls": "-0.48px",
+   "tt": "none"
+  },
+  "p": {
+   "font": "Google Sans Flex",
+   "size": "18px",
+   "weight": "500",
+   "line": "28px",
+   "color": "rgb(255, 255, 255)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": {
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(232, 240, 249)",
+   "radius": "8px",
+   "font": "\"Google Sans Flex\"",
+   "weight": "500",
+   "pad": "12px 16px"
+  },
+  "topColors": [
+   "rgb(232, 240, 249)",
+   "rgb(207, 220, 234)",
+   "rgb(56, 189, 248)",
+   "rgb(157, 176, 198)",
+   "rgb(255, 255, 255)",
+   "rgb(0, 0, 0)",
+   "rgb(34, 197, 94)",
+   "oklab(0.888875 -0.00808141 -0.0224052 / 0.6)",
+   "rgb(35, 22, 68)",
+   "rgba(8, 8, 10, 0.25)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 34,
+   "video": 8,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": true
+  },
+  "height": 8784,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 7,
+  "sectionsPos": null
+ },
+ {
+  "name": "cloudcapsule-preise",
+  "url": "https://www.cloudcapsule.io/pricing/",
+  "vp": "mobil",
+  "loadMs": 831,
+  "ttfb": 137,
+  "load": 828,
+  "fcp": 364,
+  "bytes": 287358,
+  "reqs": 139,
+  "libs": [],
+  "failedHosts": [
+   "www.googletagmanager.com",
+   "us-assets.i.posthog.com",
+   "us.i.posthog.com",
+   "js.hs-scripts.com",
+   "snap.licdn.com",
+   "static.ads-twitter.com",
+   "static.claydar.com"
+  ],
+  "h1": {
+   "font": "JetBrains Mono",
+   "size": "44px",
+   "weight": "700",
+   "line": "50.6px",
+   "color": "rgb(232, 240, 249)",
+   "ls": "-0.88px",
+   "tt": "none"
+  },
+  "h2": {
+   "font": "JetBrains Mono",
+   "size": "30px",
+   "weight": "700",
+   "line": "34.5px",
+   "color": "rgb(232, 240, 249)",
+   "ls": "-0.6px",
+   "tt": "none"
+  },
+  "p": {
+   "font": "JetBrains Mono",
+   "size": "24px",
+   "weight": "500",
+   "line": "32px",
+   "color": "oklab(0.951718 -0.00475138 -0.0140308 / 0.8)",
+   "ls": "normal",
+   "tt": "none"
+  },
+  "button": {
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(232, 240, 249)",
+   "radius": "8px",
+   "font": "\"Google Sans Flex\"",
+   "weight": "500",
+   "pad": "12px 16px"
+  },
+  "topColors": [
+   "rgb(232, 240, 249)",
+   "oklab(0.951718 -0.00475138 -0.0140308 / 0.9)",
+   "rgb(207, 220, 234)",
+   "rgb(56, 189, 248)",
+   "rgb(157, 176, 198)",
+   "rgb(34, 197, 94)",
+   "rgb(0, 0, 0)",
+   "oklab(0.888875 -0.00808141 -0.0224052 / 0.6)",
+   "color(srgb 0.113725 0.0705882 0.219608 / 0.85)",
+   "rgb(35, 22, 68)"
+  ],
+  "anim": {
+   "aos": 0,
+   "animatedCss": 34,
+   "video": 0,
+   "lottie": 0,
+   "canvas": 0,
+   "sticky": true
+  },
+  "height": 7395,
+  "overflowX": false,
+  "h1count": 1,
+  "sections": 7,
+  "sectionsPos": null
+ }
+]
