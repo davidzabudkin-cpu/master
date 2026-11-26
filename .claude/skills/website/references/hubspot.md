@@ -24,3 +24,8 @@ Erster Lauf: `remira/website-optimierung/` (Audit, Relaunch-Konzept mit Theme CL
 - Mockups für HubSpot-Relaunch: gemeinsame `styles.css`/`main.js`, Header/Footer per JS, je Sektion Label „Modulname · (a)/(b)/(c)“, Schalter „Module anzeigen“, gelbes Band „Konzeptentwurf“, `noindex`.
 - Formulare mit `hidden`-Feldern: immer `[hidden]{display:none!important}` setzen, sonst überschreibt z. B. `.field{display:grid}` das Attribut.
 - Keine Personennamen aus Kontakt-/Referenzseiten übernehmen (auch keine persönlichen E-Mail-Adressen), nur Firmen und Fakten.
+
+## Theme-Prüfung (gelernt 26.11.)
+- Beispielseiten vom Auftraggeber nie ungeprüft als „das Theme“ nehmen: Von 4 Seiten liefen nur 2 auf CLEAN Pro (Belege: `template_clean-foundation`, `template_clean-pro.js`, `module_CLEAN_Pro_-_…`), eine hatte ein eigenes HubSpot-Theme, eine war gar kein HubSpot (Next.js). Erst Quelltext prüfen (`meta generator`, `hub_generated`, `_next/static`), dann bewerten.
+- Modulnamen nur aus dem echten Katalog (clean.pro/modules) übernehmen; Konzept und Mockup-Labels danach angleichen.
+- Kundenstimmen: Blur auf `[class*=testimonial]` reicht nicht immer, Namen stehen teils außerhalb. Seitenverläufe vor dem Commit ansehen und Reste manuell unkenntlich machen oder das Bild weglassen.
